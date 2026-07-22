@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# LaTeX (auxiliares — mantener solo .tex y .pdf final)
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.spl
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Excel temporales
+~$*.xlsx
+
+# Entregables intermedios (mantener solo REV*/)
+06_entregables/_draft/

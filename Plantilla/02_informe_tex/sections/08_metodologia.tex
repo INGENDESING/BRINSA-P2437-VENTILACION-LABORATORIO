@@ -1,0 +1,42 @@
+\section{Metodología}
+
+El procedimiento de diseño sigue una secuencia lógica de cálculo que parte del volumen del recinto y del número de renovaciones de aire requerido. En primer lugar, se calcula el caudal de ventilación mediante la Ec. (\ref{eq:caudal}), que relaciona el volumen efectivo del laboratorio con las renovaciones por hora.
+
+\begin{equation}
+	Q = \frac{V \cdot N}{60}
+	\label{eq:caudal}
+\end{equation}
+
+En la Ec. (\ref{eq:caudal}), $Q$ representa el caudal volumétrico en m$^3$/min, $V$ es el volumen efectivo del recinto en m$^3$ y $N$ es el número de renovaciones de aire por hora. El resultado se convierte a m$^3$/h y a pies cúbicos por minuto (CFM) para facilitar la selección del ventilador.
+
+En segundo lugar, se estima la potencia del ventilador mediante la Ec. (\ref{eq:potencia}), que expresa el trabajo necesario para mover el caudal calculado contra una presión total estimada del sistema.
+
+\begin{equation}
+	P = \frac{Q_s \cdot \Delta P}{\eta \cdot 1000}
+	\label{eq:potencia}
+\end{equation}
+
+En la Ec. (\ref{eq:potencia}), $P$ es la potencia en kW, $Q_s$ es el caudal en m$^3$/s, $\Delta P$ es la presión total a vencer en Pa y $\eta$ es la eficiencia total del ventilador. La presión total incluye pérdidas por filtración, accesorios y las rejillas de exfiltración.
+
+En tercer lugar, se dimensiona el área de impulsión del ventilador mediante la Ec. (\ref{eq:area_vent}), asumiendo una velocidad facial de diseño en el rango de 6 a 12 m/s.
+
+\begin{equation}
+	A_{vent} = \frac{Q_s}{v_{vent}}
+	\label{eq:area_vent}
+\end{equation}
+
+A partir del área de impulsión se calculan el diámetro y el radio equivalentes mediante las relaciones geométricas de un círculo.
+
+\begin{equation}
+	D = \sqrt{\frac{4 A_{vent}}{\pi}} \quad ; \quad r = \frac{D}{2}
+	\label{eq:diametro}
+\end{equation}
+
+En cuarto lugar, se dimensionan las rejillas de exfiltración mediante la Ec. (\ref{eq:area_exfil}), definiendo una velocidad de salida entre 2.5 y 4.0 m/s para limitar el ruido y mantener la presión positiva.
+
+\begin{equation}
+	A_{exfil} = \frac{Q_s}{v_{salida}}
+	\label{eq:area_exfil}
+\end{equation}
+
+El área total se divide entre el número de rejillas propuestas. Para cada rejilla se asignan dimensiones rectangulares que conserven el área neta requerida. Finalmente, se verifica el balance de masas entre la entrada y la salida del recinto, y se entregan las condiciones de contorno para el modelo CFD.

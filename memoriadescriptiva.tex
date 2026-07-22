@@ -1,0 +1,452 @@
+\documentclass[12pt,a4paper]{article}
+
+% Codificación y fuentes (XeLaTeX)
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setmainlanguage{spanish}
+\usepackage{microtype}
+
+% Matemáticas
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{siunitx}
+
+% Tablas
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{multirow}
+
+% Gráficos, colores y diseño
+\usepackage[table]{xcolor}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{setspace}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+% Configuración de página
+\geometry{
+    top=2.5cm,
+    bottom=2.5cm,
+    left=2.5cm,
+    right=2.5cm
+}
+
+% Colores institucionales
+\definecolor{azuloscuro}{RGB}{31,78,121}
+\definecolor{grisclaro}{RGB}{245,245,245}
+
+% Encabezados
+\pagestyle{fancy}
+\setlength{\headheight}{14pt}
+\fancyhf{}
+\fancyhead[L]{\small\textcolor{azuloscuro}{Memoria Descriptiva --- HVAC Laboratorio}}
+\fancyhead[R]{\small\textcolor{azuloscuro}{\thepage}}
+\renewcommand{\headrulewidth}{0.5pt}
+
+% Formato de secciones
+\titleformat{\section}
+    {\Large\bfseries\color{azuloscuro}}{\thesection}{1em}{}
+\titleformat{\subsection}
+    {\large\bfseries\color{azuloscuro}}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}
+    {\normalsize\bfseries\color{azuloscuro}}{\thesubsubsection}{1em}{}
+
+% Espaciado
+\setstretch{1.15}
+
+% Configuración de hyperref
+\hypersetup{
+    colorlinks=true,
+    linkcolor=azuloscuro,
+    urlcolor=azuloscuro,
+    citecolor=azuloscuro
+}
+
+\begin{document}
+
+% PORTADA
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    {\Huge\bfseries\color{azuloscuro} Memoria Descriptiva}\par
+    \vspace{0.5cm}
+    {\LARGE Sistema de Ventilación y Presurización del Laboratorio}\par
+    \vspace{2cm}
+    {\Large Proyecto HVAC --- Laboratorio Brinsa}\par
+    \vspace{1cm}
+    {\large Volumen efectivo: 320 m$^3$}\par
+    {\large Renovaciones de aire: 12 ACH}\par
+    \vfill
+    {\large Carpeta de cálculos:\\ \footnotesize\texttt{C:\textbackslash Users\textbackslash ingen\textbackslash OneDrive\textbackslash Escritorio\textbackslash HVAC\textbackslash Calculos}}\par
+    \vspace{1cm}
+    {\large Fecha: 2026-07-16}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+% ===================== SECCIÓN 1 =====================
+\section{Información general del proyecto}
+
+\begin{table}[h!]
+\centering
+\rowcolors{2}{grisclaro}{white}
+\begin{tabular}{@{}p{6cm}p{8.5cm}@{}}
+\toprule
+\textbf{Concepto} & \textbf{Valor} \\
+\midrule
+Ubicación del proyecto & {\footnotesize\texttt{C:\textbackslash Users\textbackslash ingen\textbackslash OneDrive\textbackslash Escritorio\textbackslash HVAC\textbackslash Calculos}} \\
+Volumen efectivo del laboratorio, $V$ & 320 m$^3$ \\
+Renovaciones de aire requeridas, $N$ & 12 ren/h (12 ACH) \\
+Objetivo de operación & Ventilación por impulsión con presión positiva respecto a zonas adyacentes \\
+Estrategia & Ventilador de impulsión directa + rejillas de exfiltración controladas \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+La estrategia de presurización positiva consiste en inyectar aire limpio directamente al recinto mediante un ventilador de impulsión (sin ductos), de modo que el flujo neto de aire atraviese las rendijas y aberturas desde el laboratorio hacia el exterior. Las rejillas de exfiltración controladas en las paredes permiten que el aire salga de forma distribuida y mantengan la presión positiva deseada, evitando la entrada de contaminantes, polvo o microorganismos desde áreas menos controladas.
+
+% ===================== SECCIÓN 2 =====================
+\section{Marco normativo y sustentación de las 12 renovaciones/hora}
+
+\subsection{Referencias normativas aplicables}
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{ASHRAE 170 --- Ventilation of Health Care Facilities}\\
+    Establece caudales de ventilación y presiones diferenciales para instalaciones de salud. Para espacios de laboratorio clínico/procedimiento recomienda entre \textbf{6 y 15 renovaciones/hora (ACH)}, dependiendo del nivel de riesgo y del uso.
+
+    \item \textbf{ASHRAE Standard 62.1 --- Ventilation for Acceptable Indoor Air Quality}\\
+    Proporciona los requisitos mínimos de ventilación exterior y calidad del aire interior para edificios, excepto edificios de baja altura residenciales. Para laboratorios, exige ventilación suficiente para diluir contaminantes generados en el proceso.
+
+    \item \textbf{OSHA 29 CFR 1910.1450 --- Laboratory Standard}\\
+    Requiere que los empleadores mantengan niveles de exposición por debajo de los límites permisibles (PEL) mediante controles de ingeniería, incluida la ventilación general y local.
+
+    \item \textbf{NFPA 99 --- Health Care Facilities Code}\\
+    Regula los sistemas de aire y gases en instalaciones de salud, incluyendo requisitos de fiabilidad para sistemas de ventilación críticos.
+
+    \item \textbf{WHO --- Laboratory Biosafety Manual (4$^\text{a}$ edición)}\\
+    Para laboratorios de bioseguridad nivel 2 (BSL-2) recomienda \textbf{6--12 ACH}; para BSL-3 se eleva a \textbf{12--15 ACH}. El valor de 12 ACH cubre con holgura el rango superior de un laboratorio BSL-2 y el umbral inferior de un BSL-3.
+
+    \item \textbf{NIH Design Requirements Manual (DRM)}\\
+    Para laboratorios de investigación biomédica sugiere \textbf{10--12 ACH} como punto de diseño para control de contaminación y confort térmico.
+\end{enumerate}
+
+\subsection{Sustentación de las 12 renovaciones/hora}
+
+\begin{table}[h!]
+\centering
+\rowcolors{2}{grisclaro}{white}
+\begin{tabular}{@{}p{5cm}p{4cm}p{6cm}@{}}
+\toprule
+\textbf{Norma / Guía} & \textbf{Recomendación ACH} & \textbf{Observación} \\
+\midrule
+ASHRAE 170 --- Laboratory / Procedure room & 15 ACH típico; 6--12 ACH para general & El valor de 12 ACH es adecuado para laboratorio de control medio \\
+WHO BSL-2 & 6--12 ACH & 12 ACH = límite superior, cubre mayor riesgo \\
+WHO BSL-3 & 12--15 ACH & 12 ACH = umbral inferior, aceptable como punto de partida \\
+NIH DRM & 10--12 ACH & Punto de diseño recomendado \\
+ASHRAE 62.1 & Según ocupación y área & Complementa con caudal por persona/m$^2$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Conclusión normativa:}
+
+La selección de \textbf{12 renovaciones de aire por hora (12 ACH)} está sustentada por las guías internacionales de bioseguridad (WHO, NIH) y los estándares de ventilación de ASHRAE para instalaciones de salud. Este valor garantiza una dilución rápida de contaminantes internos, soporta el requerimiento de presión positiva y deja margen de seguridad respecto al mínimo de 6 ACH para laboratorios generales.
+
+% ===================== SECCIÓN 3 =====================
+\section{Cálculo del caudal de aire de impulsión}
+
+\subsection{Fórmula}
+
+El caudal de ventilación por renovaciones de aire se calcula como:
+\[
+Q = \frac{V \times N}{60}
+\]
+
+Donde:
+\begin{itemize}[leftmargin=*]
+    \item $Q$ = Caudal de aire, m$^3$/min
+    \item $V$ = Volumen efectivo del recinto, m$^3$
+    \item $N$ = Número de renovaciones de aire por hora, ren/h
+\end{itemize}
+
+\subsection{Desarrollo}
+
+\[
+Q = \frac{320 \text{ m}^3 \times 12 \text{ ren/h}}{60 \text{ min/h}} = 64.00 \text{ m}^3/\text{min}
+\]
+
+Equivalente:
+\[
+Q = 64.00 \times 60 = 3\,840 \text{ m}^3/\text{h}
+\]
+
+\subsection{Conversión a CFM}
+
+\[
+1 \text{ m}^3/\text{min} = 35.3147 \text{ CFM}
+\]
+
+\[
+Q = 64.00 \times 35.3147 = 2\,260.1 \text{ CFM}
+\]
+
+\textbf{Caudal de diseño del ventilador:} \textbf{2 260 CFM ($\approx$ 3 840 m$^3$/h)}
+
+% ===================== SECCIÓN 4 =====================
+\section{Potencia estimada del ventilador}
+
+\subsection{Fórmula}
+
+\[
+P = \frac{Q \times \Delta P}{\eta \times 1\,000}
+\]
+
+Donde:
+\begin{itemize}[leftmargin=*]
+    \item $P$ = Potencia del ventilador, kW
+    \item $Q$ = Caudal, m$^3$/s
+    \item $\Delta P$ = Presión total a vencer, Pa
+    \item $\eta$ = Eficiencia total del ventilador (típica 0.55--0.70)
+\end{itemize}
+
+\subsection{Datos de diseño}
+
+\begin{itemize}[leftmargin=*]
+    \item $Q = 64.00 \text{ m}^3/\text{min} = 1.0667 \text{ m}^3/\text{s}$
+    \item $\Delta P$ estimada para sistema de impulsión directa con filtración media + rejillas de exfiltración: \textbf{150--300 Pa}
+    \item Eficiencia estimada del ventilador, $\eta = 0.60$
+\end{itemize}
+
+\subsection{Desarrollo --- escenarios}
+
+\subsubsection{Escenario conservador (\texorpdfstring{$\Delta P = 150$}{Delta P = 150} Pa)}
+
+\[
+P = \frac{1.0667 \times 150}{0.60 \times 1\,000} = 0.267 \text{ kW}
+\]
+
+\subsubsection{Escenario de diseño (\texorpdfstring{$\Delta P = 250$}{Delta P = 250} Pa)}
+
+\[
+P = \frac{1.0667 \times 250}{0.60 \times 1\,000} = 0.444 \text{ kW}
+\]
+
+\subsubsection{Escenario alto (\texorpdfstring{$\Delta P = 350$}{Delta P = 350} Pa)}
+
+\[
+P = \frac{1.0667 \times 350}{0.60 \times 1\,000} = 0.622 \text{ kW}
+\]
+
+\subsection{Selección de motor}
+
+Se recomienda seleccionar un ventilador con motor de \textbf{0.75 HP (0.56 kW)} o \textbf{1.0 HP (0.75 kW)} para dejar margen de sobredimensionamiento, pérdidas adicionales por filtración sucia y variación de eficiencia.
+
+\textbf{Potencia de diseño propuesta:} \textbf{0.44 kW / 0.60 HP}, motor instalado \textbf{1.0 HP}.
+
+% ===================== SECCIÓN 5 =====================
+\section{Área de impulsión del ventilador (sin ductos)}
+
+\subsection{Criterio de velocidad}
+
+Para ventiladores centrífugos o axiales de impulsión directa, una velocidad razonable en la boca de impulsión se sitúa entre \textbf{6 y 12 m/s}. Se adopta \textbf{8 m/s} como punto de diseño intermedio.
+
+\subsection{Fórmula}
+
+\[
+A_{vent} = \frac{Q}{v_{vent}}
+\]
+
+\[
+D = \sqrt{\frac{4 A_{vent}}{\pi}}
+\quad \text{y} \quad
+r = \frac{D}{2}
+\]
+
+Donde:
+\begin{itemize}[leftmargin=*]
+    \item $A_{vent}$ = Área de boca del ventilador, m$^2$
+    \item $D$ = Diámetro equivalente, m
+    \item $r$ = Radio equivalente, m
+    \item $Q = 1.0667 \text{ m}^3/\text{s}$
+    \item $v_{vent}$ = Velocidad en boca del ventilador, m/s
+\end{itemize}
+
+\subsection{Desarrollo}
+
+Con $v_{vent} = 8 \text{ m/s}$:
+
+\[
+A_{vent} = \frac{1.0667}{8} = 0.1333 \text{ m}^2
+\]
+
+\[
+D = \sqrt{\frac{4 \times 0.1333}{\pi}} = 0.412 \text{ m}
+\]
+
+\[
+r = \frac{0.412}{2} = 0.206 \text{ m} = 206.0 \text{ mm}
+\]
+
+\textbf{Área de impulsión del ventilador:} \textbf{0.1333 m$^2$}\\
+\textbf{Diámetro equivalente:} \textbf{412 mm}\\
+\textbf{Radio equivalente:} \textbf{206.0 mm}
+
+Para el modelo CFD se recomienda representar la boca de impulsión como un \textbf{círculo de radio 206.0 mm} con el caudal de \textbf{1.0667 m$^3$/s} normal a la superficie, equivalente a una velocidad de \textbf{8 m/s}.
+
+% ===================== SECCIÓN 6 =====================
+\section{Rejillas de exfiltración / salida}
+
+\subsection{Criterio de velocidad}
+
+Para mantener la presión positiva sin generar ruido excesivo ni corrientes de aire molestas, la velocidad facial en rejillas de exfiltración para laboratorios suele estar entre \textbf{2.5 y 4.0 m/s}. Se adopta \textbf{3.0 m/s} como punto de diseño.
+
+\subsection{Fórmula}
+
+\[
+A_{exfil} = \frac{Q}{v_{salida}}
+\]
+
+Donde:
+\begin{itemize}[leftmargin=*]
+    \item $A_{exfil}$ = Área neta total de rejillas de salida, m$^2$
+    \item $Q = 1.0667 \text{ m}^3/\text{s}$
+    \item $v_{salida}$ = Velocidad facial de salida, m/s
+\end{itemize}
+
+\subsection{Desarrollo}
+
+Con $v_{salida} = 3.0 \text{ m/s}$:
+
+\[
+A_{exfil} = \frac{1.0667}{3.0} = 0.3556 \text{ m}^2
+\]
+
+Si se instalan \textbf{3 rejillas de exfiltración}:
+
+\[
+A_{rejilla} = \frac{0.3556}{3} = 0.1185 \text{ m}^2
+\]
+
+Para una proporción ancho/alto de 0.95, las dimensiones calculadas son:
+
+\[
+h = \sqrt{\frac{A_{rejilla}}{0.95}} = \sqrt{\frac{0.1185}{0.95}} = 0.3532 \text{ m}
+\]
+
+\[
+w = \frac{A_{rejilla}}{h} = \frac{0.1185}{0.3532} = 0.3355 \text{ m}
+\]
+
+\subsection{Alternativas de configuración}
+
+\begin{table}[h!]
+\centering
+\rowcolors{2}{grisclaro}{white}
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+\textbf{Prioridad} & \textbf{$v_{salida}$ (m/s)} & \textbf{Área total (m$^2$)} & \textbf{N$^\circ$ rejillas} & \textbf{Dimensiones (mm)} \\
+\midrule
+Menor ruido & 2.5 & 0.427 & 3 & 390 $\times$ 365 \\
+Recomendado & 3.0 & 0.356 & 3 & 350 $\times$ 340 \\
+Mayor presión & 4.0 & 0.267 & 3 & 300 $\times$ 295 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Rejillas de salida propuestas:} \textbf{3 rejillas de 353 mm $\times$ 336 mm cada una} (normalizables a 350 mm $\times$ 340 mm), con velocidad de exfiltración de \textbf{3.0 m/s}.
+
+% ===================== SECCIÓN 7 =====================
+\section{Datos para el modelo CFD}
+
+\begin{table}[h!]
+\centering
+\rowcolors{2}{grisclaro}{white}
+\begin{tabular}{@{}p{4cm}p{3cm}p{3.5cm}p{4cm}@{}}
+\toprule
+\textbf{Elemento} & \textbf{Geometría} & \textbf{Dimensiones} & \textbf{Condición de contorno} \\
+\midrule
+Impulsión del ventilador & Círculo & Radio 206.0 mm & Velocity inlet, 8 m/s \\
+Rejilla de salida 1 & Rectángulo & 353 mm $\times$ 336 mm & Velocity outlet, 3 m/s \\
+Rejilla de salida 2 & Rectángulo & 353 mm $\times$ 336 mm & Velocity outlet, 3 m/s \\
+Rejilla de salida 3 & Rectángulo & 353 mm $\times$ 336 mm & Velocity outlet, 3 m/s \\
+Paredes del laboratorio & Sólidas & Según geometría 3D & Wall, no slip \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Notas para el CFD:}
+\begin{itemize}[leftmargin=*]
+    \item El caudal total de entrada (1.0667 m$^3$/s) debe igualar el caudal total de salida (3 $\times$ 0.1185 m$^2$ $\times$ 3 m/s = 1.0665 m$^3$/s).
+    \item La diferencia mínima se debe al redondeo de dimensiones.
+    \item El campo de presión relativa debe mostrar valores positivos dentro del laboratorio respecto a zonas adyacentes.
+    \item Se recomienda colocar las rejillas de salida en paredes opuestas o perpendiculares a la impulsión para favorecer un flujo cruzado efectivo.
+\end{itemize}
+
+% ===================== SECCIÓN 8 =====================
+\section{Resumen de resultados de diseño}
+
+\begin{table}[h!]
+\centering
+\rowcolors{2}{grisclaro}{white}
+\begin{tabular}{@{}p{6.5cm}p{3cm}p{4.5cm}@{}}
+\toprule
+\textbf{Parámetro} & \textbf{Valor} & \textbf{Unidad} \\
+\midrule
+Volumen efectivo & 320 & m$^3$ \\
+Renovaciones de aire & 12 & ren/h (ACH) \\
+Caudal de diseño & 64.0 & m$^3$/min \\
+Caudal de diseño & 3 840 & m$^3$/h \\
+Caudal de diseño & \textbf{2 260} & \textbf{CFM} \\
+Potencia estimada del ventilador & 0.444 & kW (a 250 Pa, $\eta$=0.6) \\
+Potencia instalada recomendada & \textbf{1.0} & \textbf{HP} \\
+Área de impulsión del ventilador & \textbf{0.1333} & \textbf{m$^2$} \\
+Radio de impulsión (CFD) & \textbf{206.0} & \textbf{mm} \\
+Velocidad de impulsión & 8 & m/s \\
+Número de rejillas de salida & \textbf{3} & \textbf{unidades} \\
+Área neta por rejilla de salida & \textbf{0.1185} & \textbf{m$^2$} \\
+Dimensiones de rejillas de salida & \textbf{353 $\times$ 336} & \textbf{mm} \\
+Velocidad de exfiltración & 3.0 & m/s \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ===================== SECCIÓN 9 =====================
+\section{Consideraciones adicionales para la presurización positiva}
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Balance de masas:} para mantener presión positiva, el caudal de impulsión debe superar el caudal de extracción (si existe) más las fugas naturales del recinto. En este diseño, las rejillas de salida están dimensionadas para que todo el caudal de impulsión se exfiltre controladamente.
+
+    \item \textbf{Extracción localizada:} si se requiere campana o puntos de captación, debe compensarse con mayor impulsión para preservar la presión positiva en el volumen general.
+
+    \item \textbf{Control de presión diferencial:} se recomienda instalar sensor de presión diferencial entre el laboratorio y el corredor/zona adyacente, con set-point típico de \textbf{+12.5 Pa a +25 Pa} (+0.05 a +0.10 inH$_2$O).
+
+    \item \textbf{Filtración:} el aire de impulsión debe filtrarse al menos con filtros MERV 13--14; para aplicaciones de mayor riesgo, HEPA (H13/H14) según normativa sanitaria local.
+
+    \item \textbf{Rendijas y estanqueidad:} puertas con burletes, umbras herméticas y sellado de pasos de instalaciones facilitan mantener la presión positiva con menor caudal de fugas.
+
+    \item \textbf{Modelo CFD:} se sugiere simular el flujo con condiciones de inyección circular (radio 206.0 mm, 8 m/s) y salida por las tres rejillas (353 $\times$ 336 mm, 3 m/s), evaluando la distribución de velocidades, edad del aire y presión relativa en el recinto.
+\end{enumerate}
+
+% ===================== SECCIÓN 10 =====================
+\section{Referencias}
+
+\begin{itemize}[leftmargin=*]
+    \item ASHRAE. (2021). \textit{ANSI/ASHRAE Standard 170-2021, Ventilation of Health Care Facilities}.
+    \item ASHRAE. (2022). \textit{ANSI/ASHRAE Standard 62.1-2022, Ventilation for Acceptable Indoor Air Quality}.
+    \item NFPA. (2021). \textit{NFPA 99, Health Care Facilities Code}.
+    \item OSHA. (2012). \textit{29 CFR 1910.1450, Occupational Exposure to Hazardous Chemicals in Laboratories}.
+    \item World Health Organization. (2004). \textit{Laboratory Biosafety Manual} (3$^\text{rd}$ ed.). Geneva: WHO.
+    \item National Institutes of Health. (2023). \textit{NIH Design Requirements Manual}.
+\end{itemize}
+
+\vfill
+\noindent\rule{\textwidth}{0.4pt}\\
+\textit{Documento generado para el proyecto HVAC --- Laboratorio Brinsa.}\\
+\textit{Fecha: 2026-07-16}
+
+\end{document}

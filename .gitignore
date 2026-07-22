@@ -1,0 +1,26 @@
+# Archivos temporales de LaTeX
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Entornos virtuales
+venv/
+env/
+.venv/
+
+# Sistema Operativo
+.DS_Store
+Thumbs.db
+
+# Ignorar otras carpetas temporales o de caché
+.vscode/
+.idea/

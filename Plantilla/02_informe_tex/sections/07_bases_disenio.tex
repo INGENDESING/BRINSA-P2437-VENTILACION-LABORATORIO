@@ -1,0 +1,93 @@
+\section{Bases de Diseño}
+
+\subsection{Condiciones Ambientales del Sitio}
+
+Las condiciones ambientales del sitio se presentan en la Tabla \ref{tab:environmental_conditions}. Estos valores corresponden a condiciones típicas del Valle del Cauca y se utilizan para la estimación de las propiedades del aire de impulsión.
+
+\begin{table}[htbp]
+	\centering
+	\caption{Condiciones ambientales del sitio de instalación}
+	\label{tab:environmental_conditions}
+	\setcounter{itemcount}{0}
+	\begin{tabularx}{\textwidth}{@{}NXclc@{}}
+		\toprule
+		\multicolumn{1}{c}{\textbf{Item}} & \textbf{Parámetro Ambiental} & \textbf{Valor} & \textbf{Unidad} & \textbf{Referencia} \\
+		\midrule
+		& Temperatura ambiente máxima & 35.0 & $^{\circ}$C & IDEAM 2023 \\
+		& Temperatura ambiente mínima & 18.0 & $^{\circ}$C & IDEAM 2023 \\
+		& Temperatura ambiente promedio & 26.5 & $^{\circ}$C & IDEAM 2023 \\
+		& Humedad relativa máxima & 90.0 & \% & IDEAM 2023 \\
+		& Humedad relativa mínima & 60.0 & \% & IDEAM 2023 \\
+		& Presión atmosférica & 101.3 & kPa & NOAA 2022 \\
+		& Altitud sobre el nivel del mar & 960 & msnm & IGAC 2021 \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+\subsection{Propiedades del Aire de Impulsión}
+
+El aire de impulsión se considera a 25 $^{\circ}$C y 101.3 kPa, con propiedades aproximadas presentadas en la Tabla \ref{tab:air_properties}.
+
+\begin{table}[htbp]
+	\centering
+	\caption{Propiedades del aire de impulsión}
+	\label{tab:air_properties}
+	\setcounter{itemcount}{0}
+	\begin{tabularx}{\textwidth}{@{}NXclc@{}}
+		\toprule
+		\multicolumn{1}{c}{\textbf{Item}} & \textbf{Propiedad} & \textbf{Valor} & \textbf{Unidad} & \textbf{Referencia} \\
+		\midrule
+		& Densidad & 1.20 & kg/m$^3$ & Cengel \u0026 Ghajar (2020) \\
+		& Viscosidad dinámica & $1.81 \times 10^{-5}$ & Pa$\cdot$s & Cengel \u0026 Ghajar (2020) \\
+		& Temperatura de impulsión & 25.0 & $^{\circ}$C & Criterio de diseño \\
+		& Calidad de filtración mínima & MERV 13-14 & -- & ASHRAE 52.2 \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+\subsection{Datos del Recinto y Criterios de Ventilación}
+
+La Tabla \ref{tab:room_data} resume las características geométricas y los criterios de ventilación del laboratorio.
+
+\begin{table}[htbp]
+	\centering
+	\caption{Datos del recinto y criterios de ventilación}
+	\label{tab:room_data}
+	\setcounter{itemcount}{0}
+	\begin{tabularx}{\textwidth}{@{}NXclc@{}}
+		\toprule
+		\multicolumn{1}{c}{\textbf{Item}} & \textbf{Parámetro} & \textbf{Valor} & \textbf{Unidad} & \textbf{Referencia} \\
+		\midrule
+		& Volumen efectivo del laboratorio & 320 & m$^3$ & Medición / modelo 3D \\
+		& Renovaciones de aire requeridas & 12 & ren/h & ASHRAE 170 / WHO / NIH \\
+		& Estrategia de ventilación & Ventilador directo + rejillas de exfiltración & -- & Criterio de diseño \\
+		& Presión diferencial objetivo & +25 & Pa & Criterio de diseño \\
+		& Presión diferencial mínima & +12.5 & Pa & Criterio de diseño \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+\subsection{Normativas Aplicables}
+
+El número de 12 renovaciones de aire por hora se sustenta en los rangos recomendados por las normas y guías internacionales presentadas en la Tabla \ref{tab:applicable_norms}.
+
+\begin{table}[htbp]
+	\centering
+	\caption{Normativas y guías aplicables al diseño de ventilación}
+	\label{tab:applicable_norms}
+	\setcounter{itemcount}{0}
+	\begin{tabularx}{\textwidth}{@{}NXlXc@{}}
+		\toprule
+		\multicolumn{1}{c}{\textbf{Item}} & \textbf{Norma / Guía} & \textbf{Recomendación ACH} & \textbf{Referencia} \\
+		\midrule
+		& ASHRAE 170 — Ventilation of Health Care Facilities & 6–15 ACH según uso & ASHRAE (2021) \\
+		& ASHRAE 62.1 — Ventilation for Acceptable IAQ & Caudal por ocupación y área & ASHRAE (2022) \\
+		& WHO Laboratory Biosafety Manual (BSL-2) & 6–12 ACH & WHO (2004) \\
+		& WHO Laboratory Biosafety Manual (BSL-3) & 12–15 ACH & WHO (2004) \\
+		& NIH Design Requirements Manual & 10–12 ACH & NIH (2023) \\
+		& OSHA 29 CFR 1910.1450 & Control de exposición por ventilación & OSHA (2012) \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+La selección de 12 ACH cubre con holgura el rango superior establecido para laboratorios BSL-2 y el umbral inferior para laboratorios BSL-3, proporcionando un margen de seguridad respecto al mínimo de 6 ACH para espacios generales.
