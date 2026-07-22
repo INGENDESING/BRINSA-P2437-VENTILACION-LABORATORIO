@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HVAC Lab Brinsa | Diseño de Presurización</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="background-glow"></div>
+    
+    <header class="header">
+        <div class="container">
+            <p class="subtitle">PROYECTO DML</p>
+            <h1 class="title">Laboratorio Brinsa</h1>
+            <p class="description">Sistema de Ventilación y Presurización Positiva sin Ductos</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="grid-layout">
+            
+            <!-- Tarjeta 1: Parámetros Base -->
+            <article class="card fade-in" style="animation-delay: 0.1s;">
+                <div class="card-icon">📏</div>
+                <h2>Bases de Diseño</h2>
+                <div class="data-group">
+                    <div class="data-item">
+                        <span class="label">Volumen Efectivo</span>
+                        <span class="value">320 <small>m³</small></span>
+                    </div>
+                    <div class="data-item">
+                        <span class="label">Tasa de Renovación</span>
+                        <span class="value">12 <small>ACH</small></span>
+                    </div>
+                    <div class="data-item">
+                        <span class="label">Presión Objetivo</span>
+                        <span class="value">+25 <small>Pa</small></span>
+                    </div>
+                </div>
+                <p class="card-note">Basado en normas ASHRAE 170 y WHO BSL-2.</p>
+            </article>
+
+            <!-- Tarjeta 2: Caudal y Potencia -->
+            <article class="card fade-in" style="animation-delay: 0.2s;">
+                <div class="card-icon">💨</div>
+                <h2>Caudal y Potencia</h2>
+                <div class="data-group">
+                    <div class="data-item">
+                        <span class="label">Caudal de Diseño</span>
+                        <span class="value highlight">2,260 <small>CFM</small></span>
+                    </div>
+                    <div class="data-item">
+                        <span class="label">Caudal Equivalente</span>
+                        <span class="value">3,840 <small>m³/h</small></span>
+                    </div>
+                    <div class="data-item">
+                        <span class="label">Potencia Instalada</span>
+                        <span class="value highlight">1.0 <small>HP</small></span>
+                    </div>
+                </div>
+                <p class="card-note">Incluye caída de presión por filtros (250 Pa) con η=0.60.</p>
+            </article>
+
+            <!-- Tarjeta 3: Impulsión -->
+            <article class="card fade-in" style="animation-delay: 0.3s;">
+                <div class="card-icon">⚙️</div>
+                <h2>Impulsión Directa</h2>
+                <div class="data-group">
+                    <div class="data-item">
+                        <span class="label">Área de Boca</span>
+                        <span class="value">0.133 <small>m²</small></span>
+                    </div>
+                    <div class="data-item">
+                        <span class="label">Radio Equivalente (CFD)</span>
+                        <span class="value">206 <small>mm</small></span>
+                    </div>
+                    <div class="data-item">
+                        <span class="label">Velocidad Inyección</span>
+                        <span class="value">8.0 <small>m/s</small></span>
+                    </div>
+                </div>
+                <p class="card-note">Punto de diseño para la simulación de dinámica de fluidos.</p>
+            </article>
+
+            <!-- Tarjeta 4: Rejillas -->
+            <article class="card fade-in" style="animation-delay: 0.4s;">
+                <div class="card-icon">🚪</div>
+                <h2>Rejillas de Exfiltración</h2>
+                <div class="data-group">
+                    <div class="data-item">
+                        <span class="label">Cantidad</span>
+                        <span class="value">3 <small>Und.</small></span>
+                    </div>
+                    <div class="data-item">
+                        <span class="label">Dimensiones</span>
+                        <span class="value">353 x 336 <small>mm</small></span>
+                    </div>
+                    <div class="data-item">
+                        <span class="label">Velocidad Exfiltración</span>
+                        <span class="value">3.0 <small>m/s</small></span>
+                    </div>
+                </div>
+                <p class="card-note">Dimensionadas para garantizar flujo de salida sin ruido excesivo.</p>
+            </article>
+
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>Documento interactivo generado a partir de la memoria técnica de cálculo.</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
