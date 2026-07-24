@@ -78,10 +78,17 @@ def parsear_linea_tabla(linea):
 
 def spans_tabla(n_cols):
     """Distribuye n_cols columnas markdown en el ancho total del encabezado
-    corporativo (N_COLS columnas físicas). Reparte lo más uniformemente posible,
-    dando una columna extra a las primeras columnas Markdown cuando no sea divisible."""
+    corporativo (N_COLS columnas físicas).
+
+    Para la BOQ del listado de equipos (7 columnas Markdown) se usa la
+    distribución específica solicitada por el cliente:
+      Ítem(1) + Función(2) + Especificación clave(3) + Material(2) +
+      Cant.(1) + Candidatos comerciales(3) + Fuente(3) = 15 columnas.
+    Para otras tablas se reparte lo más uniformemente posible."""
     if n_cols > N_COLS:
         raise ValueError(f"Tabla con {n_cols} columnas supera el layout A:{get_column_letter(N_COLS)}")
+    if n_cols == 7:
+        return [1, 2, 3, 2, 1, 3, 3]
     base, resto = divmod(N_COLS, n_cols)
     return [base + 1] * resto + [base] * (n_cols - resto)
 
