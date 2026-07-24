@@ -4,8 +4,8 @@
 - Última tarea completada (2026-07-23): Estructura de emisión `Emisiones/` (4 subcarpetas GP-N-09 + manifiesto) con script `scripts/emitir.py` que regenera Excel, recompila informes y copia entregables codificados; nuevo informe **P2437-HV-INF-002** (investigación del sistema, formato DML, 25 pp., 0 errores); bases de diseño completadas como sección de INF-001; codificación GP-N-09 de todos los documentos.
 - Tarea previa: Investigación exhaustiva del sistema (`Investigacion/Sistemas/`) y **recálculo completo para el sitio real Cajicá, Cundinamarca** (2 558 msnm, ρ = 0.88 kg/m³). El documento `memoriadescriptiva.*` fue eliminado (2026-07-23): su contenido vive en el informe DML, que es el documento canónico.
 - Tarea previa: Migración a `AGENTS.md` como único archivo director + vault de Obsidian en `vault/` con skill `obsidian-vault`.
-- Próxima tarea pendiente: Subir el repositorio remoto a GitHub (`git remote add origin <URL>`); ejecutar el modelo CFD con las nuevas BC (pressure outlet); confirmar disponibilidad comercial de los equipos seleccionados.
-- Fecha de última actualización: 2026-07-23
+- Próxima tarea pendiente: Ejecutar el modelo CFD con las nuevas BC (pressure outlet); confirmar disponibilidad comercial de los equipos seleccionados.
+- Fecha de última actualización: 2026-07-24
 
 ## Bases de diseño congeladas (actualizadas 2026-07-23 — sitio real)
 - Sitio: BRINSA, Cajicá, Cundinamarca — 2 558 msnm, P_atm = 74.1 kPa, T 21/3/14 °C (máx/mín/media), HR media 84 %
@@ -41,7 +41,7 @@
 - [x] ~~Confirmar si el laboratorio requiere HEPA~~ → Resuelto 2026-07-23: NO requiere (análisis industrial).
 - [ ] Confirmar disponibilidad comercial local de los equipos seleccionados (Greenheck vía Prime Lines, Dwyer, rejillas fabricación local). Plazo máximo de entrega presupuestado: ~3 meses (dato cliente, 2026-07-23).
 - [ ] Confirmar la lectura de presión diferencial real tras el ensayo de balanceo.
-- [ ] Conectar el origen remoto para GitHub (`git remote add origin <URL>`) y ejecutar el `push`.
+- [x] ~~Conectar el origen remoto para GitHub y ejecutar el `push`~~ → Resuelto 2026-07-24: commit `2bc5b65`, 138 archivos, push a `origin/main` OK.
 
 ## Comandos / workflows útiles
 - Regenerar Excel: `python generar_excel.py`
