@@ -34,7 +34,7 @@ ROOT = Path(__file__).resolve().parent.parent
 PLANTILLA = ROOT / "FormatosDocumentos" / "DTS.xlsx"
 SALIDA = ROOT / "build" / "dts"
 FILA_INICIO = 9  # contenido tras encabezado corporativo (1-7) y fila 8 libre
-N_COLS = 6       # layout unificado: todas las tablas abarcan A:F
+N_COLS = 15      # layout unificado: todas las tablas abarcan A:O
 
 # (archivo .md fuente, código del documento, título para PORTADA!Z5)
 DOCUMENTOS = [
@@ -59,6 +59,7 @@ title_font = Font(bold=True, size=14, color="1F4E78")        # títulos #
 section_font = Font(bold=True, size=12, color="1F4E78")      # títulos ##
 subtitle_font = Font(bold=True, size=11, color="1F4E78")     # títulos ###
 caption_font = Font(bold=True, size=11)                      # leyendas **Tabla N.**
+nota_font = Font(italic=True, size=10, color="404040")        # notas numeradas N.N.
 thin_border = Border(
     left=Side(style='thin'), right=Side(style='thin'),
     top=Side(style='thin'), bottom=Side(style='thin')
@@ -85,11 +86,27 @@ def parsear_linea_tabla(linea):
 
 
 def spans_tabla(n_cols):
-    """Distribuye n_cols columnas markdown en el layout A:F: las primeras
-    n_cols-1 ocupan 1 columna y la última se extiende hasta F."""
+    """Distribuye n_cols columnas markdown en el layout A:O (15 columnas físicas).
+
+    La distribución es automática: base = 15 // n_cols; el residuo se reparte
+    en las primeras columnas.
+    """
     if n_cols > N_COLS:
-        raise ValueError(f"Tabla con {n_cols} columnas supera el layout A:F")
-    return [1] * (n_cols - 1) + [N_COLS - n_cols + 1]
+        raise ValueError(f"Tabla con {n_cols} columnas supera el layout A:O")
+    base = N_COLS // n_cols
+    extra = N_COLS % n_cols
+    return [base + 1 if i < extra else base for i in range(n_cols)]
+
+
+# ===================== NOTAS NUMERADAS =====================
+def dividir_notas_numeradas(texto):
+    """Divide un párrafo que contiene varias notas numeradas N.N. en líneas separadas."""
+    partes = re.split(r'(?=\b\d+\.\d+\.\s)', texto)
+    return [p.strip() for p in partes if p.strip()]
+
+
+def es_nota_numerada(texto):
+    return bool(re.match(r'^\d+\.\d+\.\s', texto))
 
 
 # ===================== CONSTRUCCIÓN DE LA HOJA =====================
@@ -110,16 +127,25 @@ class HojaDTS:
         self._combinar(self.r, self.r)
         self.r += 1
 
-    def parrafo(self, texto, negrita=False):
-        # Filas estimadas para el texto con wrap en el ancho A:F (~90 caracteres)
-        n = min(max(1, math.ceil(len(texto) / 80)), 15)
+    def _parrafo_simple(self, texto, negrita=False, fuente=None):
+        # Filas estimadas para el texto con wrap en el ancho A:O (~200 caracteres)
+        n = min(max(1, math.ceil(len(texto) / 120)), 15)
         cell = self.ws.cell(row=self.r, column=1, value=texto)
         cell.alignment = AL_PARRAFO
-        if negrita:
+        if fuente:
+            cell.font = fuente
+        elif negrita:
             cell.font = caption_font
         if n > 1:
             self._combinar(self.r, self.r + n - 1)
         self.r += n
+
+    def parrafo(self, texto, negrita=False):
+        if es_nota_numerada(texto):
+            for nota in dividir_notas_numeradas(texto):
+                self._parrafo_simple(nota, fuente=nota_font)
+        else:
+            self._parrafo_simple(texto, negrita=negrita)
 
     def tabla(self, filas):
         spans = spans_tabla(len(filas[0]))
@@ -179,6 +205,39 @@ def construir_especificacion(ws, md):
             hoja.titulo(limpiar_md(ln.lstrip('#')), nivel)
         else:
             hoja.parrafo(limpiar_md(ln), negrita=ln.startswith('**Tabla'))
+    return hoja
+
+
+def insertar_graficos_dts001(ws, fila):
+    """Inserta la referencia gráfica del ventilador (solo DTS-001)."""
+    img_dir = SALIDA / "img"
+    curva = img_dir / "curva_ventilador_dts001.png"
+    ref = img_dir / "ventilador_referencia_dts001.png"
+    if not curva.exists() or not ref.exists():
+        return fila
+    # Título de sección
+    cell = ws.cell(row=fila, column=1, value="Referencia gráfica")
+    cell.font = section_font
+    cell.alignment = Alignment(vertical='center', wrap_text=True)
+    ws.merge_cells(start_row=fila, start_column=1, end_row=fila, end_column=N_COLS)
+    fila += 2
+    # Curva característica ilustrativa
+    img = XLImage(str(curva))
+    img.width = 600
+    img.height = 400
+    ws.add_image(img, f"A{fila}")
+    for r in range(fila, fila + 21):
+        ws.row_dimensions[r].height = 15
+    fila += 21
+    # Imagen de referencia del ventilador
+    img = XLImage(str(ref))
+    img.width = 600
+    img.height = 400
+    ws.add_image(img, f"A{fila}")
+    for r in range(fila, fila + 21):
+        ws.row_dimensions[r].height = 15
+    fila += 21
+    return fila
 
 
 def insertar_encabezado(ws, ws_enc, imagenes):
@@ -218,7 +277,9 @@ def generar_libro(md_rel, codigo, titulo):
     ws_portada["Z5"] = titulo
 
     ws = wb.create_sheet("ESPECIFICACIÓN")
-    construir_especificacion(ws, md)
+    hoja = construir_especificacion(ws, md)
+    if codigo == "P2437-HV-DTS-001":
+        insertar_graficos_dts001(ws, hoja.r)
     insertar_encabezado(ws, ws_enc, imagenes)
 
     wb.remove(ws_enc)  # orden final: PORTADA, ESPECIFICACIÓN

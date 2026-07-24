@@ -1,60 +1,46 @@
-# Plan: Auditoría y corrección de referencias y Apéndice D en INF-001
+# Plan: Mejora estética y de layout en DTS-002, DTS-003 e IC-DTS-001
 
 ## Contexto
-- **Objetivo:** Corregir los nombres de archivo, códigos de documento y rutas citadas en la bibliografía y el Apéndice D de `P2437-HV-INF-001 REV0` para que cumplan la codificación GP-N-09 y coincidan con los entregables emitidos en `Emisiones/`.
+- **Objetivo:** Corregir el desfase entre las tablas Markdown y el encabezado corporativo, separar las notas numeradas juntas (ej. 6.1, 6.2, 6.3) en párrafos individuales y mejorar la estética general de las hojas de datos DTS-002, DTS-003 e IC-DTS-001.
 - **Cliente / Proyecto:** P2437 — HVAC Laboratorio BRINSA, Cajicá.
-- **Normas aplicables:** GP-N-09 (codificación DML), ASHRAE 170, RETIE / NTC 2050.
+- **Normas aplicables:** GP-N-09, ASHRAE 52.2, ASHRAE 70, AMCA 500-D, RETIE / NTC 2050.
 
-## Auditoría detectada
+## Diagnóstico
 
-1. **Bibliografía (`references/bibliografia.bib`)**
-   - Las entradas `dml_informe_investigacion_2026`, `dml_listado_equipos_2026`, `dml_hd_vent_001`, `dml_hd_filt_001`, `dml_hd_rej_001` y `dml_hd_inst_001` citaban rutas de fuentes de trabajo (`Investigacion/Sistemas/*.md`) y códigos internos (`HD-VENT-001`, etc.).
-   - Los documentos oficiales ya están codificados GP-N-09 y emitidos en `Emisiones/` como `.pdf` (INF) o `.xlsx` (DTS, LIS, CAL).
-   - Faltaba una entrada para la memoria de cálculo `P2437-HV-CAL-001`.
-
-2. **Apéndice D (`sections/13_anexos.tex`)**
-   - El texto introductorio indicaba que los documentos se conservan en `Investigacion/Sistemas/`.
-   - La tabla `tab:project_docs` usaba códigos internos (`--`, `HD-VENT-001`, …) en lugar de códigos GP-N-09.
-   - No incluía la memoria de cálculo `P2437-HV-CAL-001`.
-
-3. **Referencias en el cuerpo del informe**
-   - Las claves de cita (`dml_hd_vent_001`, etc.) se mantuvieron para minimizar cambios; el contenido bibliográfico fue el corregido.
+1. **Ancho de tablas:** la plantilla `DTS.xlsx` usa 15 columnas (A:O) en el encabezado corporativo, pero `generar_dts.py` generaba las tablas en A:F (`N_COLS = 6`). Esto dejaba un hueco a la derecha y desalineaba el contenido.
+2. **Notas numeradas juntas:** en varios `.md` hay secuencias como `6.1. ... 6.2. ... 6.3. ...` en la misma línea; el parser las trataba como un solo párrafo y quedaban visualmente confusas.
+3. **Estética:** los párrafos de notas no se diferenciaban del texto principal; no había separación visual entre subpuntos de una sección.
 
 ## Supuestos clave
-- [x] El código oficial para gestión y entrega es GP-N-09 (`P2437-<ESP>-<TIPO>-<consecutivo>`), según `Codificacion/codificacion.md`.
-- [x] La ubicación canónica de los entregables es `Emisiones/`, regenerada por `scripts/emitir.py`.
-- [x] Las fuentes de trabajo (`Investigacion/Sistemas/*.md`) permanecen como soporte interno, pero no son el documento de entrega.
-- [x] No se renombraron archivos físicos; solo se corrigieron las citas textuales.
+- [x] Todas las tablas Markdown tienen ≤ 6 columnas, por lo que caben en el nuevo layout A:O (15 columnas) con distribución automática.
+- [x] Las notas numeradas que deben separarse siguen el patrón `N.N. ` (ej. `6.1. `, `5.2. `) dentro de la misma línea de texto.
+- [x] No se modificaron los archivos `.md` fuente; las mejoras se hicieron en el generador.
 
 ## Tareas
-- [x] **T1. Actualizar bibliografía.** En `Latex/02_informe_tex/references/bibliografia.bib`:
-  - Renombrar títulos a códigos GP-N-09.
-  - Actualizar `note` con la ruta de emisión.
-  - Añadir entrada `@misc{dml_cal_001, ...}` para `P2437-HV-CAL-001`.
-- [x] **T2. Actualizar Apéndice D.** En `Latex/02_informe_tex/sections/13_anexos.tex`:
-  - Cambiar el texto introductorio para indicar `Emisiones/`.
-  - Actualizar la tabla `tab:project_docs` con códigos GP-N-09.
-  - Añadir fila para `P2437-HV-CAL-001`.
-- [x] **T3. Verificar coherencia de citas.** Revisar que todas las `\cite{...}` del informe sigan resolviéndose correctamente.
-- [x] **T4. Recompilar y emitir.** Ejecutar pdflatex + bibtex + pdflatex ×2 y `python scripts/emitir.py`.
-- [x] **T5. Actualizar memoria del proyecto.** Actualizar `contexto.md`, `vault/01_Estado actual.md`, `vault/04_Bitácora/2026-07-24.md` y `task/todo.md`.
+- [x] **T1. Ampliar layout de tablas a A:O.** `N_COLS` cambiado de 6 a 15; `spans_tabla()` actualizada para distribución automática (base + residuo).
+- [x] **T2. Separar notas numeradas.** Añadida función `dividir_notas_numeradas()` y lógica en `parrafo()` para escribir cada nota como párrafo independiente.
+- [x] **T3. Mejorar estética de notas.** Añadido estilo `nota_font` (cursiva, gris oscuro `#404040`) para párrafos que empiecen con `\d+\.\d+\.`.
+- [x] **T4. Ajustar imágenes DTS-001.** Verificado que `insertar_graficos_dts001` sigue funcionando (las imágenes se insertan en columna A, sin depender de `N_COLS`).
+- [x] **T5. Recompilar y emitir.** `python scripts/generar_dts.py` OK; `python scripts/emitir.py` OK, 8 entregables actualizados.
+- [x] **T6. Verificación visual.** Confirmado con openpyxl que las tablas ocupan A:O y que las notas están separadas (7/7/9 notas numeradas en DTS-002/003/IC).
+- [x] **T7. Actualizar memoria.** `contexto.md`, `vault/01_Estado actual.md`, `vault/04_Bitácora/2026-07-24.md` y `task/todo.md` actualizados.
 
 ## Riesgos / Puntos de verificación
-- [x] **Referencias cruzadas:** BibTeX resolvió los nuevos `note` sin errores.
-- [x] **Consistencia con INF-002:** INF-002 no cita documentos de INF-001 con rutas obsoletas.
-- [x] **Cumplimiento GP-N-09:** los códigos mostrados en el Apéndice D coinciden con los nombres de archivo en `Emisiones/`.
-- [x] **No editar manualmente Emisiones/:** los cambios se hicieron en fuentes y se regeneraron con `emitir.py`.
+- [x] **Tablas de 2 columnas:** la distribución automática en 15 columnas funciona; el texto con `wrap_text` se ve correcto.
+- [x] **Regresión en DTS-001:** DTS-001 se regeneró correctamente con sus imágenes de referencia gráfica intactas.
+- [x] **No editar manualmente Emisiones/:** los cambios se hicieron en el generador y se regeneraron con `emitir.py`.
 
 ## Revisión
 
-- **Resumen:** se corrigió la bibliografía y el Apéndice D de `P2437-HV-INF-001 REV0` para que citen códigos GP-N-09 y rutas de `Emisiones/`. Se añadió la memoria de cálculo `P2437-HV-CAL-001` a ambos lugares. La recompilación fue exitosa (0 errores, 0 citas sin resolver) y la emisión generó 8 entregables.
+- **Resumen:** se mejoró el generador `scripts/generar_dts.py` para que las tablas Markdown ocupen el ancho completo A:O (coincidente con el encabezado corporativo), separar las notas numeradas en párrafos individuales y aplicar estilo cursivo/gris a las notas. Las 4 hojas de datos (DTS-001…003 e IC-DTS-001) se regeneraron y emitieron correctamente.
 - **Desviaciones respecto al plan:** ninguna.
-- **Limitaciones conocidas:** las claves BibTeX (`dml_*`) se mantuvieron para minimizar cambios; los nombres visibles al lector son los códigos GP-N-09.
-- **Trabajo futuro recomendado:** generar manualmente el PDF de `P2437-HV-DTS-001 REV0.xlsx`; confirmar disponibilidad comercial de equipos; validar presión diferencial en campo.
+- **Limitaciones conocidas:** la estimación de filas para párrafos es aproximada; algunos párrafos muy largos podrían requerir ajuste fino de altura en una revisión posterior.
+- **Trabajo futuro recomendado:** revisar visualmente los Excel generados para ajustar alturas de fila si es necesario; completar el PDF manual de DTS-001.
 - **Archivos entregables y rutas:**
-  - `Latex/02_informe_tex/references/bibliografia.bib`
-  - `Latex/02_informe_tex/sections/13_anexos.tex`
-  - `Latex/02_informe_tex/P2437-HV-INF-001 REV0.pdf`
-  - `Emisiones/1.0 HV-INFORMES/P2437-HV-INF-001 REV0.pdf`
-  - `Emisiones/MANIFIESTO_EMISION.md`
+  - `scripts/generar_dts.py` (actualizado)
+  - `build/dts/P2437-HV-DTS-001 REV0.xlsx`
+  - `build/dts/P2437-HV-DTS-002 REV0.xlsx`
+  - `build/dts/P2437-HV-DTS-003 REV0.xlsx`
+  - `build/dts/P2437-IC-DTS-001 REV0.xlsx`
+  - `Emisiones/3.0 HV-HOJAS DE DATOS/` (4 archivos actualizados)
   - `contexto.md`, `vault/01_Estado actual.md`, `vault/04_Bitácora/2026-07-24.md`, `task/todo.md`.
