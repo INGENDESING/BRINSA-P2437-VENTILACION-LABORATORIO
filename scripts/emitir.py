@@ -6,9 +6,10 @@ emitir.py — Genera/actualiza la carpeta Emisiones/ del proyecto P2437.
 En una sola orden:
   1. Regenera la memoria de cálculo Excel (generar_excel.py).
   2. Genera las hojas de datos DTS en Excel (scripts/generar_dts.py -> build/dts/).
-  3. Recompila los informes LaTeX INF-001 e INF-002 (pdflatex -> bibtex -> pdflatex x2).
-  4. Copia los entregables a Emisiones/ con nombres codificados GP-N-09 y retira obsoletos.
-  5. Escribe Emisiones/MANIFIESTO_EMISION.md con la trazabilidad de la emisión.
+  3. Genera el listado de equipos LIS en Excel (scripts/generar_lis.py -> build/lis/).
+  4. Recompila los informes LaTeX INF-001 e INF-002 (pdflatex -> bibtex -> pdflatex x2).
+  5. Copia los entregables a Emisiones/ con nombres codificados GP-N-09 y retira obsoletos.
+  6. Escribe Emisiones/MANIFIESTO_EMISION.md con la trazabilidad de la emisión.
 
 Regla de flujo: las FUENTES se editan (Latex/02_informe_tex, generar_excel.py,
 Investigacion/Sistemas); las EMISIONES se regeneran con este script. Nunca editar
@@ -37,7 +38,7 @@ ENTREGABLES = [
     ("build/dts/P2437-HV-DTS-002 REV0.xlsx", "3.0 HV-HOJAS DE DATOS", "P2437-HV-DTS-002 REV0.xlsx"),
     ("build/dts/P2437-HV-DTS-003 REV0.xlsx", "3.0 HV-HOJAS DE DATOS", "P2437-HV-DTS-003 REV0.xlsx"),
     ("build/dts/P2437-IC-DTS-001 REV0.xlsx", "3.0 HV-HOJAS DE DATOS", "P2437-IC-DTS-001 REV0.xlsx"),
-    ("Investigacion/Sistemas/listado_equipos.md", "4.0 HV-LISTADOS", "P2437-HV-LIS-001 REV0.md"),
+    ("build/lis/P2437-HV-LIS-001 REV0.xlsx", "4.0 HV-LISTADOS", "P2437-HV-LIS-001 REV0.xlsx"),
 ]
 
 # Versiones antiguas en formato .md que deben retirarse de la emisión
@@ -46,6 +47,7 @@ OBSOLETOS = [
     ("3.0 HV-HOJAS DE DATOS", "P2437-HV-DTS-002 REV0.md"),
     ("3.0 HV-HOJAS DE DATOS", "P2437-HV-DTS-003 REV0.md"),
     ("3.0 HV-HOJAS DE DATOS", "P2437-IC-DTS-001 REV0.md"),
+    ("4.0 HV-LISTADOS", "P2437-HV-LIS-001 REV0.md"),
 ]
 
 INFORMES = ["P2437-HV-INF-001 REV0", "P2437-HV-INF-002 REV0"]
@@ -91,29 +93,36 @@ def main():
     print("== EMISIÓN DE ENTREGABLES P2437 ==")
 
     # 1. Regenerar Excel
-    print("[1/5] Regenerando memoria de cálculo Excel")
+    print("[1/6] Regenerando memoria de cálculo Excel")
     r = run([sys.executable, "generar_excel.py"], ROOT)
     if r.returncode != 0:
         errores.append("generar_excel.py falló")
         print(r.stdout[-2000:])
 
     # 2. Generar hojas de datos DTS (build/dts/*.xlsx desde los .md)
-    print("[2/5] Generando hojas de datos DTS")
+    print("[2/6] Generando hojas de datos DTS")
     r = run([sys.executable, "scripts/generar_dts.py"], ROOT)
     if r.returncode != 0:
         errores.append("generar_dts.py falló")
         print(r.stdout[-2000:])
 
-    # 3. Compilar informes
-    print("[3/5] Compilando informes LaTeX")
+    # 3. Generar listado de equipos LIS (build/lis/*.xlsx desde el .md)
+    print("[3/6] Generando listado de equipos LIS")
+    r = run([sys.executable, "scripts/generar_lis.py"], ROOT)
+    if r.returncode != 0:
+        errores.append("generar_lis.py falló")
+        print(r.stdout[-2000:])
+
+    # 4. Compilar informes
+    print("[4/6] Compilando informes LaTeX")
     for job in INFORMES:
         if (TEX_DIR / f"{job}.tex").exists():
             compilar_informe(job)
         else:
             print(f"  (omito {job}: no existe el .tex)")
 
-    # 4. Copiar entregables
-    print("[4/5] Copiando entregables a Emisiones/")
+    # 5. Copiar entregables
+    print("[5/6] Copiando entregables a Emisiones/")
     copiados = []
     for src_rel, sub, nombre in ENTREGABLES:
         src = ROOT / src_rel
@@ -133,8 +142,8 @@ def main():
             viejo.unlink()
             print(f"  (retirado obsoleto: {sub}/{nombre})")
 
-    # 5. Manifiesto
-    print("[5/5] Escribiendo manifiesto")
+    # 6. Manifiesto
+    print("[6/6] Escribiendo manifiesto")
     ahora = datetime.now().strftime("%d/%m/%Y %H:%M")
     lineas = [
         "# Manifiesto de emisión — Proyecto P2437",

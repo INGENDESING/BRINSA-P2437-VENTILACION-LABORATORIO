@@ -1,10 +1,18 @@
 # Contexto del proyecto: HVAC Laboratorio Brinsa
 
 ## Estado actual
-- Última tarea completada (2026-07-23): Estructura de emisión `Emisiones/` (4 subcarpetas GP-N-09 + manifiesto) con script `scripts/emitir.py` que regenera Excel, recompila informes y copia entregables codificados; nuevo informe **P2437-HV-INF-002** (investigación del sistema, formato DML, 25 pp., 0 errores); bases de diseño completadas como sección de INF-001; codificación GP-N-09 de todos los documentos.
-- Tarea previa: Investigación exhaustiva del sistema (`Investigacion/Sistemas/`) y **recálculo completo para el sitio real Cajicá, Cundinamarca** (2 558 msnm, ρ = 0.88 kg/m³). El documento `memoriadescriptiva.*` fue eliminado (2026-07-23): su contenido vive en el informe DML, que es el documento canónico.
-- Tarea previa: Migración a `AGENTS.md` como único archivo director + vault de Obsidian en `vault/` con skill `obsidian-vault`.
-- Próxima tarea pendiente: Ejecutar el modelo CFD con las nuevas BC (pressure outlet); confirmar disponibilidad comercial de los equipos seleccionados.
+- Última tarea completada (2026-07-24): generación del listado de equipos en Excel
+  corporativo (`P2437-HV-LIS-001 REV0.xlsx`) a partir de `listado_equipos.md`, usando
+  la plantilla `FormatosDocumentos/LIS.xlsx` con exactamente 2 hojas (PORTADA + LISTA).
+  Se creó `scripts/generar_lis.py` y se actualizó `scripts/emitir.py`; emisión OK con
+  8 entregables y retiro del `.md` obsoleto de `Emisiones/4.0 HV-LISTADOS/`.
+- Tarea previa (2026-07-24): push del repositorio a GitHub (`origin/main`,
+  commit `2bc5b65`, 138 archivos).
+- Tarea previa (2026-07-23): estructura de emisión `Emisiones/`, informes
+  **P2437-HV-INF-001/002**, memoria Excel corporativo, investigación de sistemas,
+  vault de Obsidian y codificación GP-N-09.
+- Próxima tarea pendiente: Ejecutar el modelo CFD con las nuevas BC (pressure outlet);
+  confirmar disponibilidad comercial de los equipos seleccionados.
 - Fecha de última actualización: 2026-07-24
 
 ## Bases de diseño congeladas (actualizadas 2026-07-23 — sitio real)
@@ -36,6 +44,9 @@
 - `Investigacion/Sistemas/` — informe de investigación, listado de equipos y hojas de datos (HD-VENT/FILT/REJ/INST-001).
 - `docs/index.html` — dashboard web interactivo.
 - `vault/` — vault de Obsidian (memoria a largo plazo; ver skill `obsidian-vault`).
+- `scripts/generar_lis.py` — genera el listado de equipos BOQ en Excel corporativo.
+- `scripts/emitir.py` — regenera Excel, DTS, LIS, recompila INF-001/002 y copia a `Emisiones/`.
+- `Emisiones/4.0 HV-LISTADOS/P2437-HV-LIS-001 REV0.xlsx` — listado de equipos y materiales (BOQ).
 
 ## Preguntas abiertas / bloqueos
 - [x] ~~Confirmar si el laboratorio requiere HEPA~~ → Resuelto 2026-07-23: NO requiere (análisis industrial).
@@ -46,5 +57,5 @@
 ## Comandos / workflows útiles
 - Regenerar Excel: `python generar_excel.py`
 - Compilar informe DML (doble pasada para TOC/referencias; con bibtex si cambian citas): `cd Latex/02_informe_tex && pdflatex "P2437-HV-INF-001 REV0.tex"` (×2). Motor **pdflatex**, tipografía **NewTX**, `microtype`, `siunitx`. Si quedan restos de xelatex (`.toc` con `\xpg@aux`), borrar `.aux`/`.toc`/`.out` y recompilar.
-- **Emitir entregables (recomendado):** `python scripts/emitir.py` — regenera Excel, recompila INF-001 e INF-002 y copia todo a `Emisiones/` con nombres GP-N-09 + manifiesto. Ejecutar al cierre de cualquier sesión que toque fuentes de entregables.
+- **Emitir entregables (recomendado):** `python scripts/emitir.py` — regenera Excel, DTS, LIS, recompila INF-001 e INF-002 y copia todo a `Emisiones/` con nombres GP-N-09 + manifiesto. Ejecutar al cierre de cualquier sesión que toque fuentes de entregables.
 - Despliegue GitHub Pages: Settings > Pages > Deploy from branch (`master` o `main`) > carpeta `/docs`.

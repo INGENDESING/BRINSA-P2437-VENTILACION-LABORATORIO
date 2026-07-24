@@ -1,58 +1,46 @@
-# Plan: Investigación exhaustiva + recálculo del sistema para sitio Cajicá y actualización del proyecto Latex
+# Plan: Generar listado de equipos (LIS) en Excel corporativo
 
 ## Contexto
-- Objetivo: (1) investigación web (fuentes comerciales y académicas) en `Investigacion/Sistemas/` para especificar completamente el sistema de ventilación y presurización positiva del laboratorio de análisis industrial de BRINSA, Cajicá (Cundinamarca), y (2) recalcular todo el sistema con las condiciones reales del sitio y actualizar los entregables del proyecto, incluido `Latex/02_informe_tex`.
-- Cliente / Proyecto DML: BRINSA — P2437-HV-INF-001.
-- Normas aplicables: ASHRAE 62.1/170 (ref.), RETIE, NTC 2050, OSHA 29 CFR 1910.1450, ISO 12944/NACE (corrosión), AGENTS.md.
-
-## Cambios de bases de diseño aprobados por el cliente (se recalcula en esta etapa)
-1. Sitio: Cajicá, Cundinamarca (~2 550 msnm) — ρ ≈ 0.95 kg/m³, P_atm ≈ 75 kPa (a confirmar en T2).
-2. Sin HEPA — laboratorio de análisis industrial: diseño = MERV 13-14 cargado. Escenarios HEPA quedan como referencia.
-3. Ambiente altamente corrosivo (hipoclorito de calcio): criterio de materiales PRFV/inox 316/epóxico transversal.
-4. Objetivo: presión positiva (+25 Pa), exclusión de insectos, objetos extraños y polvo ambiental.
-
-## Tareas
-
-### Etapa A — Investigación
-- [x] T1. Crear estructura `Investigacion/Sistemas/` y `hojas_datos/`.
-- [x] T2. Condiciones ambientales de Cajicá (IDEAM, ASHRAE climatic, estaciones proxy) y densidad corregida. Con cita y fecha.
-- [x] T3. Investigación web por componente: ventilador PRFV/corrosivo, filtro MERV 13-14, rejillas ~353×336 mm con malla anti-insectos, damper de alivio barométrico, instrumentos ΔP (Dwyer/Setra/Siemens), accesorios inox 316.
-- [x] T4. Redactar `informe_investigacion.md` (estructura AGENTS.md, tablas comparativas, referencias URL + fecha).
-- [x] T5. Redactar `listado_equipos.md` (BOQ con candidatos comerciales y fuentes).
-
-### Etapa B — Recálculo con condiciones de Cajicá
-- [x] T6. Recalcular: densidad, ΔP orificio, potencia ventilador, corrección por altitud de curva de catálogo, escenarios MERV (sin HEPA). Verificación dimensional.
-- [x] T7. Actualizar `Latex/00_bases_diseno/bases_diseno.yaml` (ambiente, aire, recinto, ventilador, rejillas, nota sin-HEPA).
-
-### Etapa C — Actualización de entregables
-- [x] T8. Actualizar `generar_excel.py` y regenerar `memoriadecalculo.xlsx`; verificar fórmulas vivas.
-- [x] T9. Actualizar `memoriadescriptiva.md`/`.tex` y recompilar PDF (pdflatex ×2, 0 errores).
-- [x] T10. Actualizar `Latex/02_informe_tex/` (07, 09, 10, 12 y secciones que citen densidad/potencia/HEPA) y recompilar `P2437-HV-INF-001 REV0.pdf`.
-- [x] T11. Hojas de datos HD-VENT-001, HD-FILT-001, HD-REJ-001, HD-INST-001 (Markdown, valores recalculados).
-- [x] T12. Actualizar dashboard `docs/` solo si cambian sus valores base.
-
-### Etapa D — Verificación y cierre
-- [x] T13. Verificación cruzada: órdenes de magnitud, consistencia YAML/Excel/memoria/Latex/HD.
-- [x] T14. Cierre: sección Revisión aquí, `contexto.md`, vault (estado, bitácora, decisiones, `estructuraproyecto.md`).
+- Objetivo: Convertir `Investigacion/Sistemas/listado_equipos.md` (fuente canónica del BOQ) a un libro Excel con la plantilla corporativa `FormatosDocumentos/LIS.xlsx`, exactamente con 2 hojas: PORTADA y LISTA. El entregable emitido será `Emisiones/4.0 HV-LISTADOS/P2437-HV-LIS-001 REV0.xlsx`, reemplazando al `.md` actual.
+- Cliente / Proyecto DML: BRINSA — P2437-HV-LIS-001.
+- Normas / estándares: Plantilla corporativa DML (`LIS.xlsx`), codificación GP-N-09, patrón `scripts/generar_dts.py`.
 
 ## Supuestos clave
-- [ ] Altitud Cajicá ~2 550 msnm a confirmar con fuente (T2); P_atm ≈ 75 kPa, ρ ≈ 0.95 kg/m³ provisionales.
-- [ ] Hojas de datos en Markdown; Excel corporativo solo si se solicita.
-- [ ] El caudal (12 ACH, 3 840 m³/h) no cambia: el recálculo afecta presiones, potencias y selección.
-- [ ] Dashboard web solo si cambian sus números base.
+- [ ] La fuente del listado es `Investigacion/Sistemas/listado_equipos.md` (idem al `.md` ya emitido).
+- [ ] El Excel resultante debe tener exactamente 2 hojas: PORTADA y LISTA.
+- [ ] El layout de la hoja LISTA sigue el patrón DTS: encabezado corporativo en filas 1-7 (copiado de la hoja ENCABEZADO de la plantilla) y contenido Markdown desde la fila 9.
+- [ ] La tabla BOQ tiene 7 columnas Markdown; se mapean a columnas A:G en Excel, aplicando el estilo corporativo azul 1F4E78 con bordes thin.
+- [ ] `scripts/emitir.py` orquestará la generación y copia del LIS, retirando el `.md` obsoleto de `Emisiones/4.0 HV-LISTADOS/`.
+
+## Tareas
+- [ ] T1. Crear `scripts/generar_lis.py` a partir del patrón `scripts/generar_dts.py`, adaptado a 7 columnas (A:G) y a la plantilla `LIS.xlsx`. Salida: `build/lis/P2437-HV-LIS-001 REV0.xlsx`.
+- [ ] T2. Actualizar `scripts/emitir.py`: añadir paso `[x/5]` para ejecutar `generar_lis.py`, cambiar la fuente del LIS en `ENTREGABLES` al `.xlsx`, y añadir el `.md` obsoleto a `OBSOLETOS`.
+- [ ] T3. Ejecutar `python scripts/generar_lis.py` y verificar visualmente el Excel generado (PORTADA + LISTA, 7 columnas, estilos, encabezado corporativo).
+- [ ] T4. Ejecutar `python scripts/emitir.py` completo y verificar que el entregable aparezca en `Emisiones/4.0 HV-LISTADOS/P2437-HV-LIS-001 REV0.xlsx` y que el manifiesto lo registre correctamente.
+- [ ] T5. Actualizar `contexto.md`, vault (`01_Estado actual.md`, `04_Bitácora/2026-07-24.md`, `06_Archivos clave.md`) y hacer push a GitHub.
 
 ## Riesgos / Puntos de verificación
-- [ ] ¿1.0 HP sigue siendo la selección con ρ = 0.95? → justificar en hojas de datos.
-- [ ] Verificar que el ventilador de catálogo entregue el ΔP a 2 550 msnm.
-- [ ] Disponibilidad local de ventiladores PRFV → listar importadores/equivalentes.
-- [x] Toda cifra de catálogo cita URL y fecha de consulta.
-- [ ] Recompilaciones LaTeX limpias (0 errores, overfulls ≤ 5 pt).
+- [ ] Validación dimensional: la tabla Markdown tiene 7 columnas; el layout Excel debe ser A:G sin perder contenido.
+- [ ] Validación de estilos: encabezado corporativo, títulos Markdown, tabla BOQ y notas deben verse uniformes.
+- [ ] Validación de `emitir.py`: el `.md` debe retirarse de `Emisiones/4.0 HV-LISTADOS/` y no quedar huérfano.
+- [ ] Validación final: working tree limpio y push exitoso.
 
 ## Revisión
 
-- Resumen: investigación web exhaustiva (5 frentes) documentada en `Investigacion/Sistemas/` (informe + BOQ de 17 ítems + 4 hojas de datos); recálculo completo para el sitio real Cajicá (2 558 msnm, ρ = 0.88 kg/m³) propagado a YAML, Excel, memoria descriptiva, informe DML y dashboard; filtración cerrada en MERV 13-14 (sin HEPA).
-- Valores clave nuevos: ΔP rejillas 11 Pa, ΔP diseño 190 Pa en sitio (260 Pa catálogo), potencia 0.338 kW (0.45 HP), motor 1.0 HP TEFC, damper de alivio obligatorio.
-- Desviaciones respecto al plan: en `memoriadescriptiva` y el informe DML el escenario alto de 350 Pa se reemplazó por 285 Pa (+50 % sobre diseño) para conservar la estructura de 3 filas de la tabla de potencias.
-- Limitaciones: tensión/fases del motor por confirmar con el cliente; tamaño/RPM exactos del ventilador dependen del software del fabricante (CAPS Greenheck); valores ASHRAE de la edición 2009 (la tabla 2021/2025 no es extraíble por vía programática); disponibilidad y plazos comerciales por confirmar.
-- Verificación: valores derivados comprobados con Python; consistencia cruzada YAML ↔ Excel ↔ memorias ↔ hojas de datos; ambas compilaciones pdflatex con 0 errores.
-- Entregables: `Investigacion/Sistemas/informe_investigacion.md`, `Investigacion/Sistemas/listado_equipos.md`, `Investigacion/Sistemas/hojas_datos/HD-*.md`, `Latex/00_bases_diseno/bases_diseno.yaml`, `memoriadecalculo.xlsx`, `memoriadescriptiva.pdf`, `Latex/02_informe_tex/P2437-HV-INF-001 REV0.pdf`, `docs/index.html`, `contexto.md`, vault actualizado.
+- Resumen: se creó `scripts/generar_lis.py` para convertir `Investigacion/Sistemas/listado_equipos.md`
+  en un libro Excel corporativo (`P2437-HV-LIS-001 REV0.xlsx`) con exactamente 2 hojas
+  (PORTADA + LISTA). Se actualizó `scripts/emitir.py` para orquestar la generación,
+  emitir el `.xlsx` a `Emisiones/4.0 HV-LISTADOS/` y retirar el `.md` obsoleto. La
+  emisión completa fue exitosa (8 entregables, 0 errores LaTeX).
+- Desviaciones respecto al plan: ninguna; el layout A:G para 7 columnas BOQ fue el
+  previsto.
+- Limitaciones: los anchos de columna se heredan de la plantilla `LIS.xlsx`; el
+  contenido largo se visualiza con `wrap_text`, pero no se autoajustan filas
+  combinadas (misma limitación documentada para los DTS).
+- Entregables:
+  - `scripts/generar_lis.py`
+  - `scripts/emitir.py` (actualizado)
+  - `build/lis/P2437-HV-LIS-001 REV0.xlsx`
+  - `Emisiones/4.0 HV-LISTADOS/P2437-HV-LIS-001 REV0.xlsx`
+  - `Emisiones/MANIFIESTO_EMISION.md`
+  - `contexto.md` y vault actualizados.

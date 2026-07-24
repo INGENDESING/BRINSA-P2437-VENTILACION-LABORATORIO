@@ -21,7 +21,8 @@ python scripts/emitir.py
 
 Regenera `memoriadecalculo.xlsx` (formato corporativo CAL.xlsx, 2 hojas),
 convierte las hojas de datos .md a Excel corporativo (`scripts/generar_dts.py`
-→ `build/dts/`), recompila INF-001 e INF-002 (pdflatex → bibtex → pdflatex ×2) y
+→ `build/dts/`), genera el listado de equipos (`scripts/generar_lis.py` →
+`build/lis/`), recompila INF-001 e INF-002 (pdflatex → bibtex → pdflatex ×2) y
 copia los entregables a `Emisiones/` con sus nombres GP-N-09, dejando trazabilidad
 en `Emisiones/MANIFIESTO_EMISION.md`.
 **Regla:** al cierre de cualquier sesión que modifique fuentes de entregables

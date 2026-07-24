@@ -23,7 +23,9 @@ tags: [archivos]
 - `Latex/02_informe_tex/P2437-HV-INF-002 REV0.tex` — informe de investigación del
   sistema (formato DML; secciones en `sections_inf002/`).
 - `Emisiones/` — entregables codificados (copias generadas; no editar a mano).
-- `scripts/emitir.py` — regenera Excel, compila INF-001/002 y copia a `Emisiones/`.
+- `scripts/generar_lis.py` — genera el listado de equipos BOQ en Excel corporativo.
+- `scripts/emitir.py` — regenera Excel, DTS, LIS, compila INF-001/002 y copia a
+  `Emisiones/`.
 - `task/todo.md` — plan de tareas de la sesión (fase 1 de `AGENTS.md`).
 - `contexto.md` — resumen rápido de sesión; el detalle vive en este vault.
 - `.agents/skills/obsidian-vault/SKILL.md` — skill que mantiene este vault.
