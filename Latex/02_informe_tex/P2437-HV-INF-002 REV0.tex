@@ -1,0 +1,61 @@
+\documentclass[12pt,a4paper]{elsarticle}
+
+% ===================== METADATOS ESPECÍFICOS DE INF-002 =====================
+% Se definen ANTES de config/preamble.tex; config/datos_proyecto.tex usa
+% \providecommand, de modo que estos valores prevalecen solo en este documento.
+\newcommand{\documentcode}{P2437-HV-INF-002}
+\newcommand{\projecttitle}{INVESTIGACIÓN Y ESTADO DEL ARTE DEL SISTEMA DE VENTILACIÓN Y PRESURIZACIÓN DEL LABORATORIO}
+\newcommand{\documenttype}{INFORME DE INVESTIGACIÓN Y ESTADO DEL ARTE}
+\newcommand{\docFecha}{23/07/2026}
+\newcommand{\docFechaLarga}{23 de julio de 2026}
+\newcommand{\fechaElaboro}{23/07/2026}
+\newcommand{\fechaReviso}{23/07/2026}
+\newcommand{\fechaAprobo}{23/07/2026}
+\newcommand{\fechaRevCero}{23/07/2026}
+\newcommand{\descRevCero}{Emisión inicial}
+% Portada más compacta: el título de 3 líneas empujaba el Control de Revisiones
+\newcommand{\portadaVspaceA}{0.8cm}
+\newcommand{\portadaVspaceB}{1.0cm}
+
+% ===================== IMPORTAR CONFIGURACIÓN MODULAR =====================
+\input{config/preamble.tex}
+\input{config/header.tex}
+
+\journal{Revista de Ingeniería}
+
+\begin{document}
+
+% ===================== IMPORTAR SECCIONES MODULARES =====================
+\input{sections/00_hojafirmas.tex}
+\input{sections/00_portada.tex}
+\input{sections_inf002/inf002_01_frontmatter.tex}
+\input{sections_inf002/inf002_02_resumen.tex}
+\input{sections_inf002/inf002_03_nomenclatura.tex}
+
+% ===================== ÍNDICES CON MEMBRETE =====================
+\tableofcontents
+\listoftables
+\listoffigures
+\newpage
+
+% ===================== CONTENIDO PRINCIPAL =====================
+\input{sections_inf002/inf002_04_introduccion.tex}
+\input{sections_inf002/inf002_05_objetivos.tex}
+\input{sections_inf002/inf002_06_alcance.tex}
+\input{sections_inf002/inf002_07_bases_contexto.tex}
+\input{sections_inf002/inf002_08_metodologia.tex}
+\input{sections_inf002/inf002_09_sistema.tex}
+\input{sections_inf002/inf002_10_ventilador_filtracion.tex}
+\input{sections_inf002/inf002_11_rejillas_damper_instrumentos.tex}
+\input{sections_inf002/inf002_12_marco_normativo.tex}
+\input{sections_inf002/inf002_13_conclusiones.tex}
+\input{sections_inf002/inf002_14_recomendaciones.tex}
+
+% ===================== BIBLIOGRAFÍA =====================
+\bibliographystyle{elsarticle-num}
+\bibliography{references/bibliografia_inf002}
+
+% ===================== ANEXOS =====================
+\input{sections_inf002/inf002_15_anexos.tex}
+	
+\end{document}

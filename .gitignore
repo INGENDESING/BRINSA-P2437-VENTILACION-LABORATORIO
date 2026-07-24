@@ -24,3 +24,8 @@ Thumbs.db
 # Ignorar otras carpetas temporales o de caché
 .vscode/
 .idea/
+
+# Config local de Obsidian (las notas del vault SÍ se versionan)
+# El vault de Obsidian es la raíz del proyecto; vault/ es el subsistema de memoria
+/.obsidian/
+vault/.obsidian/

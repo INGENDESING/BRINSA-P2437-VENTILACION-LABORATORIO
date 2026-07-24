@@ -1,0 +1,52 @@
+% ===================== ANEXOS =====================
+\appendix
+\section{Equivalencias de Clasificación de Filtros}
+\label{appendix:inf002_equivalencias}
+
+La Tabla \ref{tab:inf002_equiv_filtros} resume las equivalencias aproximadas entre las clasificaciones MERV (ASHRAE 52.2), ePM1 (ISO 16890) y EN 779 utilizadas en la especificación de la etapa de filtración \cite{ashrae522_2017,camfil_durafil}.
+
+\begin{table}[htbp]
+	\centering
+	\caption{Equivalencias aproximadas de clasificación de filtros}
+	\label{tab:inf002_equiv_filtros}
+	\setcounter{itemcount}{0}
+	\begin{tabularx}{\textwidth}{@{}Nllll@{}}
+		\toprule
+		\multicolumn{1}{c}{\textbf{Item}} & \textbf{ASHRAE 52.2} & \textbf{ISO 16890} & \textbf{EN 779} & \textbf{Eficiencia Exigida} \\
+		\midrule
+		& MERV 13 & ePM1 50--60 \% & F7 & E2 $\geq$ 90 \%, E3 $\geq$ 90 \% \\
+		& MERV 14 & ePM1 60--70 \% & F8 & E1 $\geq$ 75 \%, E2 $\geq$ 90 \%, E3 $\geq$ 90 \% \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+\section{Disponibilidad Local de Proveedores}
+\label{appendix:inf002_proveedores}
+
+La Tabla \ref{tab:inf002_proveedores} consolida los canales comerciales identificados en Colombia para los componentes del sistema.
+
+\begin{table}[htbp]
+	\centering
+	\caption{Canales comerciales locales identificados (consulta 23/07/2026)}
+	\label{tab:inf002_proveedores}
+	\setcounter{itemcount}{0}
+	\begin{tabularx}{\textwidth}{@{}NlXc@{}}
+		\toprule
+		\multicolumn{1}{c}{\textbf{Item}} & \textbf{Componente / Marca} & \textbf{Canal Local} & \textbf{Fuente} \\
+		\midrule
+		& Ventiladores y dampers Greenheck & Prime Lines HVAC, Bogotá (representante oficial) & \cite{greenheck_rep_colombia} \\
+		& Ventiladores Sodeca & Filial Sodeca Colombia, catálogo 60 Hz & \cite{sodeca_catalogo_co} \\
+		& Ventiladores Soler \& Palau & Filial S\&P Colombia & \cite{solerpalau_industrial} \\
+		& Filtros AAF/Flanders & Filter Tech S.A.S. y Air Solutions Colombia, Bogotá & \cite{carvel_filtros,airsolutions} \\
+		& Filtros Camfil & ITECO y RGD Aire & \cite{iteco} \\
+		& Reemplazos de filtros compatibles & CARVEL S.A. / Workclean (fabricación nacional) & \cite{carvel_workclean} \\
+		& Instrumentos Dwyer & Vía Industrial (Bogotá/Cali), RS Importaciones y Suministros, SICO Global & \cite{viaindustrial_dwyer} \\
+		& Rejillas a medida & Laminaire y ProAire S.A.S (Bogotá) & \cite{laminaire,proaire} \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+\section{Puntos Pendientes de Confirmación Comercial}
+\label{appendix:inf002_pendientes}
+
+Los puntos marcados como por confirmar con proveedor en las hojas de datos del proyecto son: el tamaño y RPM exactos del ventilador, que se definen con el software del fabricante (CAPS de Greenheck o equivalente) a partir del punto de catálogo 3 840 m$^3$/h a 260 Pa, y las curvas $\Delta P$-caudal específicas del filtro final seleccionado. La tensión de la red (440 V, 3$\phi$, 60 Hz) y el plazo máximo de entrega ($\sim$3 meses) fueron confirmados por el cliente el 23/07/2026.

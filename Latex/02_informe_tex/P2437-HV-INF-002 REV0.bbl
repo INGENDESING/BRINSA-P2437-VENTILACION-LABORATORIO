@@ -1,0 +1,293 @@
+\begin{thebibliography}{10}
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+\expandafter\ifx\csname href\endcsname\relax
+  \def\href#1#2{#2} \def\path#1{#1}\fi
+
+\bibitem{dbcity_cajica}
+{DB-City}, Cajicá, cundinamarca, colombia,
+  \url{https://en.db-city.com/Colombia--Cundinamarca--Cajic%C3%A1}, consulta:
+  23/07/2026 (2026).
+
+\bibitem{flightaware_skbo}
+{FlightAware}, Aeropuerto internacional el dorado (skbo) --- condiciones
+  meteorológicas,
+  \url{https://es.flightaware.com/resources/airport/SKBO/weather}, consulta:
+  23/07/2026 (2026).
+
+\bibitem{captiveaire_ashrae2009}
+{CaptiveAire}, Design conditions for selected locations, ashrae 2009
+  (bogotá/el dorado),
+  \url{https://www.captiveaire.com/catalogcontent/fans/sup_mpu/doc/winter_summer_design_temps_us.pdf},
+  consulta: 23/07/2026 (2026).
+
+\bibitem{alcaldia_cajica}
+{Alcaldía de Cajicá}, Aspectos generales,
+  \url{https://www.cajica.gov.co/docdown/archi/2022/Cartografia/1.1.%20ASPECTOS%20GENERALES.pdf},
+  consulta: 23/07/2026 (2026).
+
+\bibitem{weatheratlas_cajica}
+{Weather Atlas}, Clima de cajicá,
+  \url{https://www.weather-atlas.com/en/colombia/cajica-climate}, consulta:
+  23/07/2026 (2026).
+
+\bibitem{tutiempo_cajica}
+{TuTiempo.net}, El tiempo en cajicá,
+  \url{https://en.tutiempo.net/cajica.html?data=last-24-hours}, consulta:
+  23/07/2026 (2026).
+
+\bibitem{tcf_fe1600}
+{Twin City Fan}, Fan engineering fe-1600 --- temperature \& altitude effects on
+  fans,
+  \url{http://eu.tcf.com/wp-content/uploads/sites/4/2018/06/Temperature-Altitude-Effects-on-Fans-FE-1600-1.pdf},
+  consulta: 23/07/2026 (2026).
+
+\bibitem{nema_mg1_derate}
+{Motors at Work}, The six times to derate your motor to save its life, part 2
+  (nema mg-1),
+  \url{https://www.motorsatwork.com/from-the-blog/the-six-times-to-derate-your-motor-to-save-its-life-part-2/},
+  consulta: 23/07/2026 (2026).
+
+\bibitem{silvertip_altitude}
+{ASHRAE / Silvertip Consultants}, High altitude hvac design considerations
+  (2023),
+  \url{https://silvertipconsultants.com/wp-content/uploads/2023/04/ASHRAE_High_Alt_Des_2023_04_28-Handout.pdf},
+  consulta: 23/07/2026 (2026).
+
+\bibitem{ineos_derakane}
+{INEOS Composites}, Derakane resin selection guide,
+  \url{http://www.ineos.com/globalassets/ineos-group/businesses/ineos-composites/markets/corrosion/derakane-resin-selection-guide.pdf},
+  consulta: 23/07/2026 (2026).
+
+\bibitem{systech_corrosive}
+{SysTech Design}, Ventilation of corrosive environments,
+  \url{https://www.systech-design.com/industrial-ventilation/ventilation-of-corrosive-environments/},
+  consulta: 23/07/2026 (2026).
+
+\bibitem{halton_brd}
+{Halton}, Brd datasheet 2024: barometric relief damper,
+  \url{https://www.halton.com/app/uploads/2020/08/Halton-BRD-datasheet-2024.pdf},
+  consulta: 23/07/2026 (2026).
+
+\bibitem{trane_apn003}
+{Trane}, Engineers newsletter adm-apn003: Managing commercial building
+  pressurization,
+  \url{https://www.trane.com/content/dam/Trane/Commercial/global/products-systems/education-training/engineers-newsletters/airside-design/admapn003en_0502.pdf},
+  consulta: 23/07/2026 (2026).
+
+\bibitem{ashrae522_2017}
+{ASHRAE}, Ansi/ashrae standard 52.2-2017, method of testing general ventilation
+  air-cleaning devices for removal efficiency by particle size,
+  \url{https://www.ashrae.org/File%20Library/Technical%20Resources/COVID-19/52_2_2017_COVID-19_20200401.pdf},
+  consulta: 23/07/2026 (2026).
+
+\bibitem{greenheck_bcsw}
+{Greenheck}, Catálogo bcsw-frp: ventiladores centrífugos en prfv,
+  \url{https://content.greenheck.com/public/DAMProd/Original/10002/BCSWFRP_catalog.pdf},
+  consulta: 23/07/2026 (2026).
+
+\bibitem{greenheck_rep_colombia}
+{Greenheck}, Representante en colombia (prime lines hvac),
+  \url{https://www.greenheck.com/find-my-rep/2973_southamerica_colombia},
+  consulta: 23/07/2026 (2026).
+
+\bibitem{nyb_frp}
+{New York Blower}, Frp fume exhauster,
+  \url{https://www.nyb.com/frp-fume-exhauster/}, consulta: 23/07/2026 (2026).
+
+\bibitem{hartzell_fiberglass}
+{Hartzell Air Movement}, Fiberglass ventilators \& centrifugal exhausters,
+  \url{https://hartzellairmovement.com/wp-content/uploads/2023/05/25377-Hartzell-Fiberglass-Ventilators_Centrifugal-Exhausters-Catalog-RA.pdf},
+  consulta: 23/07/2026 (2026).
+
+\bibitem{sodeca_cpv}
+{Sodeca}, Cpv: ventiladores centrífugos en polipropileno,
+  \url{https://www.sodeca.com/es/sistemas-de-ventilacion-extraccion/cpv-p1000000071},
+  consulta: 23/07/2026 (2026).
+
+\bibitem{sodeca_catalogo_co}
+{Sodeca Colombia}, Catálogo resumen colombia (ct18),
+  \url{https://www.sodeca.co/files/catalogs/es/SODECA_CT18_catalogo_resumen_CO.pdf},
+  consulta: 23/07/2026 (2026).
+
+\bibitem{plastec_series}
+{Plastec Ventilation}, Plastec series: ventiladores centrífugos en
+  polipropileno,
+  \url{https://www.plastecventilation.com/collections/plastec-series},
+  consulta: 23/07/2026 (2026).
+
+\bibitem{solerpalau_industrial}
+{Soler \& Palau}, Catálogo industrial (méxico),
+  \url{https://www.solerpalau.mx/ASW/recursos/cata/Industrial.pdf}, consulta:
+  23/07/2026 (2026).
+
+\bibitem{leeson_severe}
+{Leeson / Regal Rexnord}, Severe duty motors (catálogo 1050),
+  \url{https://www.regalrexnord.com/-/media/documents/brands/literature/industries/leeson_product_catalog_1050.pdf},
+  consulta: 23/07/2026 (2026).
+
+\bibitem{baldor_ieee841}
+{Baldor-Reliance}, Ieee 841xl severe duty motors,
+  \url{https://www.baldor.com/mvc/DownloadCenter/Files/9AKK108319}, consulta:
+  23/07/2026 (2026).
+
+\bibitem{camfil_durafil}
+{Camfil}, Ficha técnica durafil es2,
+  \url{https://cdn.lsicloud.net/pandhwhsal/documents/855080-003.pdf}, consulta:
+  23/07/2026 (2026).
+
+\bibitem{aaf_varicel}
+{AAF International}, Varicel vxl afp-1-162,
+  \url{https://aafterms.aafintl.com/-/media/files/aaf/commercial-and-industrial/us-products/box-filters/varicel-vxl/varicel-vxl_prod_mark_sht_afp-1-162.pdf},
+  consulta: 23/07/2026 (2026).
+
+\bibitem{freudenberg_maxipleat}
+{Freudenberg Filtration Technologies}, Viledon maxipleat (ficha menardi),
+  \url{https://menardifilters.se/wp-content/uploads/MaxiPleat_DS_02-CC-038-EN_low.pdf},
+  consulta: 23/07/2026 (2026).
+
+\bibitem{koch_green13}
+{Koch Filter}, Multi-pleat green13,
+  \url{https://www.airfilterplus.com/wp-content/uploads/2022/03/Multi-Pleat-Green-13-2021.pdf},
+  consulta: 23/07/2026 (2026).
+
+\bibitem{camfil_3030}
+{Camfil}, Ficha técnica prefiltro 30/30,
+  \url{https://cdn.lsicloud.net/pandhwhsal/documents/406331002-SPS.pdf},
+  consulta: 23/07/2026 (2026).
+
+\bibitem{camfil_magnaframe}
+{Camfil}, Portafiltros magnaframe ii,
+  \url{https://www.camfil.com/en-ca/products/housings-frames--louvers/filter-holding-frames/filter-holding-frames/magnaframe-ii-gasket-seal-_-47771},
+  consulta: 23/07/2026 (2026).
+
+\bibitem{carvel_filtros}
+{CARVEL S.A.}, Filtros de aire acondicionado,
+  \url{https://filtrosdeaireacondicionado.com/}, consulta: 23/07/2026 (2026).
+
+\bibitem{airsolutions}
+{Air Solutions Colombia}, Productos,
+  \url{https://www.airsolutionscolombia.com/productos}, consulta: 23/07/2026
+  (2026).
+
+\bibitem{iteco}
+{ITECO}, Nuestras marcas, \url{https://www.iteco.com.co/nuestras-marcas/},
+  consulta: 23/07/2026 (2026).
+
+\bibitem{carvel_workclean}
+{CARVEL S.A.}, Catálogo workclean: filtros de aire acondicionado tipo
+  cartucho,
+  \url{https://carvel.com.co/catalogo-workclean/filtros-de-aire-acondicionado-tipo-cartucho-fdcjm/},
+  consulta: 23/07/2026 (2026).
+
+\bibitem{airfoil_rcfcr5}
+{Airfoil}, Rc-fcr5: removable core fixing clip eggcrate grille,
+  \url{https://airfoil.com.au/product/removable-core-fixing-clip-eggcrate-grille-rc-fcr5/},
+  consulta: 23/07/2026 (2026).
+
+\bibitem{imm_malla}
+{Industrial Metal Mesh}, Tabla de especificaciones de malla inox 304/316l
+  (área abierta),
+  \url{https://www.industrialmetalmesh.com/sale-54819921-micron-304-316l-stainless-steel-wire-mesh-screen-filter-mesh.html},
+  consulta: 23/07/2026 (2026).
+
+\bibitem{bsc_ba0006}
+{Building Science Corporation}, Ba-0006: Discussion of the use of transfer
+  grilles,
+  \url{https://buildingscience.com/sites/default/files/migrate/pdf/BA-0006_Discuss_transfer_grilles.pdf},
+  consulta: 23/07/2026 (2026).
+
+\bibitem{titus_50f}
+{Titus}, 50f/50r: eggcrate return grilles,
+  \url{https://www.titus-hvac.com/file/1228/50F_50Rrprod_specialized_2017.pdf},
+  consulta: 23/07/2026 (2026).
+
+\bibitem{krueger_egc5}
+{Krueger}, Egc5: eggcrate return grille,
+  \url{https://www.krueger-hvac.com/Catalog%20Home/Grilles/Grilles%20-%20Return/EGC5},
+  consulta: 23/07/2026 (2026).
+
+\bibitem{laminaire}
+{Laminaire}, Fabricante colombiano de rejillas y difusores,
+  \url{https://laminaire.net/}, consulta: 23/07/2026 (2026).
+
+\bibitem{proaire}
+{ProAire S.A.S}, Rejillas y difusores (bogotá),
+  \url{https://www.proairecolombia.com/productos/rejillas-y-difusores.html},
+  consulta: 23/07/2026 (2026).
+
+\bibitem{greenheck_backdraft}
+{Greenheck}, Backdraft \& pressure relief dampers,
+  \url{https://content.greenheck.com/public/DAMProd/Original/10002/BackdraftDampers_catalog.pdf},
+  consulta: 23/07/2026 (2026).
+
+\bibitem{greenheck_sebr10}
+{Greenheck}, Sebr-10 submittal (severe environment barometric relief damper),
+  \url{https://content.greenheck.com/public/DAMProd/Original/10002/SEBR10Series_submittal.pdf},
+  consulta: 23/07/2026 (2026).
+
+\bibitem{ruskin_bd6}
+{Ruskin}, Bd6: backdraft damper, \url{https://www.ruskin.com/model/bd6},
+  consulta: 23/07/2026 (2026).
+
+\bibitem{nailor_1390cb}
+{Nailor Industries}, 1390cb: counterbalanced backdraft damper,
+  \url{https://nailor.com/sites/default/files/documents/1390CB_B_0_0.pdf},
+  consulta: 23/07/2026 (2026).
+
+\bibitem{skilltech_magnehelic}
+{Skilltech}, Tabla magnehelic serie 2000,
+  \url{https://skilltech.com.br/produto/manometro-para-pressao-diferencial-magnehelic-serie-2000/},
+  consulta: 23/07/2026 (2026).
+
+\bibitem{dwyer_ms}
+{Dwyer Instruments}, Catálogo serie ms magnesense (vía transcat),
+  \url{https://www.transcat.com/media/pdf/MS_cat.pdf}, consulta: 23/07/2026
+  (2026).
+
+\bibitem{setra_264}
+{Setra Systems}, Model 264 data sheet,
+  \url{https://www.setra.com/hubfs/Product_Data_Sheets/Setra_Model_264_Data_Sheet.pdf},
+  consulta: 23/07/2026 (2026).
+
+\bibitem{siemens_qbm2130}
+{Siemens}, Qbm2130-1u (industry mall),
+  \url{https://mall.industry.siemens.com/mall/en/WW/Catalog/Products/10510770},
+  consulta: 23/07/2026 (2026).
+
+\bibitem{photohelic_nci}
+{Northeast Controls}, Dwyer photohelic 3000mr: indicador con relés,
+  \url{https://nciweb.net/pressure1.htm}, consulta: 23/07/2026 (2026).
+
+\bibitem{aivc_7469}
+{AIVC}, airbase\_7469: control de presión diferencial,
+  \url{https://www.aivc.org/sites/default/files/airbase_7469.pdf}, consulta:
+  23/07/2026 (2026).
+
+\bibitem{viaindustrial_dwyer}
+{Vía Industrial}, Marca dwyer colombia,
+  \url{https://www.viaindustrial.com/dwyer/marca/}, consulta: 23/07/2026
+  (2026).
+
+\bibitem{marsh_fasteners}
+{Marsh Fasteners}, 304 vs 316 stainless steel bolts,
+  \url{https://marshfasteners.com/304-vs-316-stainless-steel-bolts/}, consulta:
+  23/07/2026 (2026).
+
+\bibitem{rtv_silicone}
+{Dow Corning}, Chemical resistance of rtv silicone sealants (tabla),
+  \url{https://irp.cdn-website.com/63168859/files/uploaded/Chemical%20Resistance%20of%20RTV%20Silicone%20Sealants%20Chart.pdf},
+  consulta: 23/07/2026 (2026).
+
+\bibitem{apache_pu}
+{Apache Pipeline}, Tabla de resistencia química de poliuretano,
+  \url{https://www.apachepipe.com/assets/chemical-resistance-table.pdf},
+  consulta: 23/07/2026 (2026).
+
+\bibitem{hardcast_hypalon}
+{Hardcast}, Hypalon flexible duct connectors,
+  \url{https://6c2bd45d09da3c66a408-2b16a407535c695c8a76f8b06a56f342.ssl.cf2.rackcdn.com/GWB%20%20eCatalog%2006-25-16.pdf},
+  consulta: 23/07/2026 (2026).
+
+\end{thebibliography}

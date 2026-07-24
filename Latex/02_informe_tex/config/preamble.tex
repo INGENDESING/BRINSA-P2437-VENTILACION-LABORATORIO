@@ -1,0 +1,75 @@
+% ===================== CONFIGURACIÓN DE PÁGINA =====================
+\pdfminorversion=7
+\usepackage[top=4.5cm, bottom=2.5cm, left=2.0cm, right=2.0cm,
+headheight=4cm, headsep=0.5cm]{geometry}
+
+% ===================== TIPOGRAFÍA Y CODIFICACIÓN =====================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage{tgtermes}
+\usepackage{microtype}
+
+% ===================== SANGRÍAS Y ESPACIADO =====================
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+% ===================== TÍTULOS =====================
+\usepackage{titlesec}
+\titleformat{\section}{\bfseries\fontsize{12}{14}\selectfont}{\thesection}{1em}{}
+\titleformat{\subsection}{\bfseries\fontsize{12}{14}\selectfont}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\bfseries\fontsize{12}{14}\selectfont}{\thesubsubsection}{1em}{}
+
+% ===================== MATEMÁTICAS =====================
+\usepackage{amsmath,amssymb,amsfonts,mathtools}
+\usepackage{textgreek,gensymb,siunitx}
+
+% ===================== QUÍMICA Y SÍMBOLOS =====================
+\usepackage[version=4]{mhchem}
+\usepackage{chemfig,textcomp}
+
+% ===================== COLOR (una sola carga, con soporte de tablas) =====================
+\usepackage[table]{xcolor} % Carga colortbl; necesario para \rowcolor
+
+% ===================== TABLAS Y FIGURAS =====================
+\usepackage{booktabs,array,longtable,multirow,tabularx}
+\usepackage{graphicx,float,subcaption}
+
+% ===================== OTROS PAQUETES =====================
+\usepackage{enumitem,listings,algorithm,algpseudocode}
+\usepackage{tocloft}
+\usepackage{appendix}
+\usepackage{eso-pic}
+\usepackage{lastpage}
+
+% ===================== ENLACES E HIPERVÍNCULOS (cargar cerca del final) =====================
+\usepackage{xurl}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue,breaklinks=true]{hyperref}
+
+% ===================== ENCABEZADO CORPORATIVO =====================
+\usepackage{fancyhdr}
+
+% ===================== INFORMACIÓN DEL DOCUMENTO =====================
+\input{config/datos_proyecto.tex}
+
+% Adaptaciones para el encabezado corporativo
+\newcommand{\documentrevision}{REV \docRevision}
+\newcommand{\documentdate}{\docFechaLarga}
+\newcommand{\elaboratedby}{\MakeUppercase{\firmaElaboro}}
+\newcommand{\reviewedby}{\MakeUppercase{\firmaReviso}}
+\newcommand{\approvedby}{\MakeUppercase{\firmaAprobo}}
+
+% ===================== AUTO-NUMERACIÓN DE TABLAS =====================
+\newcounter{itemcount}
+\newcolumntype{N}{>{\stepcounter{itemcount}\theitemcount}c}
+
+% ===================== CONFIGURACIÓN DE LISTINGS =====================
+\lstset{
+	basicstyle=\footnotesize\ttfamily,
+	breaklines=true,
+	frame=single,
+	language=Python,
+	showstringspaces=false
+}
+
+\journal{Revista de Ingeniería}

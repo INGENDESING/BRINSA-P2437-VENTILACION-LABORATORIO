@@ -1,0 +1,132 @@
+% ===================== ANEXOS =====================
+\appendix
+\section{Cálculos Detallados}
+\label{appendix:calculations}
+
+\subsection{Cálculo del Caudal de Ventilación}
+
+Aplicando la Ec. (\ref{eq:caudal}) con $V = 320$ m$^3$ y $N = 12$ ren/h:
+
+\begin{equation}
+	Q = \frac{320 \times 12}{60} = 64.0 \text{ m}^3/\text{min}
+\end{equation}
+
+La conversión a m$^3$/h y CFM es:
+
+\begin{equation}
+	Q = 64.0 \times 60 = 3\,840 \text{ m}^3/\text{h}
+\end{equation}
+
+\begin{equation}
+	Q = 64.0 \times 35.3147 = 2\,260.1 \text{ CFM}
+\end{equation}
+
+\subsection{Cálculo de la Potencia del Ventilador}
+
+El caudal en unidades SI es:
+
+\begin{equation}
+	Q_s = \frac{64.0}{60} = 1.0667 \text{ m}^3/\text{s}
+\end{equation}
+
+Para el escenario de diseño con $\Delta P = 190$ Pa (condiciones del sitio, $\rho$ = 0.88 kg/m$^3$) y $\eta = 0.60$:
+
+\begin{equation}
+	P = \frac{1.0667 \times 190}{0.60 \times 1000} = 0.338 \text{ kW}
+\end{equation}
+
+En unidades de caballos de fuerza:
+
+\begin{equation}
+	P = 0.338 \times 1.341 = 0.45 \text{ HP}
+\end{equation}
+
+\subsection{Cálculo del Área de Impulsión}
+
+Con $v_{vent} = 8$ m/s:
+
+\begin{equation}
+	A_{vent} = \frac{1.0667}{8} = 0.1333 \text{ m}^2
+\end{equation}
+
+\begin{equation}
+	D = \sqrt{\frac{4 \times 0.1333}{\pi}} = 0.412 \text{ m} = 412 \text{ mm}
+\end{equation}
+
+\begin{equation}
+	r = \frac{412}{2} = 206.0 \text{ mm}
+\end{equation}
+
+\subsection{Cálculo de las Rejillas de Exfiltración}
+
+Con $v_{salida} = 3.0$ m/s:
+
+\begin{equation}
+	A_{exfil} = \frac{1.0667}{3.0} = 0.3556 \text{ m}^2
+\end{equation}
+
+Para tres rejillas:
+
+\begin{equation}
+	A_{rejilla} = \frac{0.3556}{3} = 0.1185 \text{ m}^2
+\end{equation}
+
+Seleccionando una relación de aspecto $w/h = 0.95$:
+
+\begin{equation}
+	h = \sqrt{\frac{0.1185}{0.95}} = 0.3532 \text{ m} = 353.2 \text{ mm}
+\end{equation}
+
+\begin{equation}
+	w = \frac{0.1185}{0.3532} = 0.3355 \text{ m} = 335.5 \text{ mm}
+\end{equation}
+
+\subsection{Verificación del Balance de Masas}
+
+Caudal de entrada:
+
+\begin{equation}
+	Q_{entrada} = A_{vent} \cdot v_{vent} = \frac{Q_s}{v_{vent}} \cdot v_{vent} = Q_s = 1.0667 \text{ m}^3/\text{s}
+\end{equation}
+
+Caudal de salida:
+
+\begin{equation}
+	Q_{salida} = 3 \cdot A_{rejilla} \cdot v_{salida} = 3 \times 0.1185 \times 3.0 = 1.0665 \text{ m}^3/\text{s}
+\end{equation}
+
+La discrepancia entre entrada y salida es 0.02 \%, inferior al 0.1 \%, atribuible al redondeo de dimensiones.
+
+\section{Planos y Esquemas}
+\label{appendix:drawings}
+
+Los planos de ubicación del ventilador, rejillas de exfiltración y sensor de presión diferencial se incluirán en una entrega posterior, una vez validada la distribución de flujo mediante el modelo CFD.
+
+\section{Especificaciones Técnicas}
+\label{appendix:specs}
+
+Las especificaciones técnicas del ventilador, filtros y rejillas se definirán en la etapa de ingeniería de detalle, con base en los parámetros de diseño entregados en el presente informe.
+
+\section{Documentos de Ingeniería del Proyecto}
+\label{appendix:doclist}
+
+Los documentos internos que soportan la investigación y la selección de equipos del sistema de ventilación se listan en la Tabla \ref{tab:project_docs}; todos se conservan en la carpeta \texttt{Investigacion/Sistemas/} del proyecto.
+
+\begin{table}[htbp]
+	\centering
+	\caption{Documentos de ingeniería del proyecto P2437}
+	\label{tab:project_docs}
+	\setcounter{itemcount}{0}
+	\begin{tabularx}{\textwidth}{@{}NlX@{}}
+		\toprule
+		\multicolumn{1}{c}{\textbf{Item}} & \textbf{Código} & \textbf{Documento / Propósito} \\
+		\midrule
+		& -- & Informe de investigación del sistema de ventilación: condiciones del sitio y selección preliminar de equipos \cite{dml_informe_investigacion_2026} \\
+		& -- & Listado de equipos y accesorios del sistema (BOQ, 17 ítems) \cite{dml_listado_equipos_2026} \\
+		& HD-VENT-001 & Hoja de datos del ventilador de impulsión: centrífugo en PRFV, 3 840 m$^3$/h a 260 Pa (catálogo), motor 1.0 HP TEFC 440 V \cite{dml_hd_vent_001} \\
+		& HD-FILT-001 & Hoja de datos del sistema de filtración: prefiltro MERV 8 + filtro V-bank MERV 13-14 \cite{dml_hd_filt_001} \\
+		& HD-REJ-001 & Hoja de datos de las rejillas de exfiltración: 3 unidades de 353 mm $\times$ 336 mm, acero inoxidable 316L con malla anti-insectos \cite{dml_hd_rej_001} \\
+		& HD-INST-001 & Hoja de datos de los instrumentos de presión diferencial: indicador Magnehelic + transmisor MS-121, set-point +25 Pa \cite{dml_hd_inst_001} \\
+		\bottomrule
+	\end{tabularx}
+\end{table}

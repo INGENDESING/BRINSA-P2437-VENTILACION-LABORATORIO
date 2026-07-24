@@ -1,0 +1,194 @@
+\section{Bases de Diseño}
+
+\subsection{Condiciones Ambientales del Sitio}
+
+Las condiciones ambientales del sitio se presentan en la Tabla \ref{tab:environmental_conditions}. Estos valores corresponden a las condiciones del sitio de instalación en Cajicá, Cundinamarca (planta BRINSA) \cite{dml_informe_investigacion_2026} y se utilizan para la estimación de las propiedades del aire de impulsión.
+
+\begin{table}[htbp]
+	\centering
+	\caption{Condiciones ambientales del sitio de instalación}
+	\label{tab:environmental_conditions}
+	\setcounter{itemcount}{0}
+	\begin{tabularx}{\textwidth}{@{}NXclc@{}}
+		\toprule
+		\multicolumn{1}{c}{\textbf{Item}} & \textbf{Parámetro Ambiental} & \textbf{Valor} & \textbf{Unidad} & \textbf{Referencia} \\
+		\midrule
+		& Temperatura ambiente máxima & 21.0 & $^{\circ}$C & IDEAM 2023 \\
+		& Temperatura ambiente mínima & 3.0 & $^{\circ}$C & IDEAM 2023 \\
+		& Temperatura ambiente promedio & 14.0 & $^{\circ}$C & IDEAM 2023 \\
+		& Humedad relativa promedio & 84.0 & \% & IDEAM 2023 \\
+		& Presión atmosférica & 74.1 & kPa & NOAA 2022 \\
+		& Altitud sobre el nivel del mar & 2 558 & msnm & IGAC 2021 \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+\subsection{Propiedades del Aire de Impulsión}
+
+El aire de impulsión se considera a 21 $^{\circ}$C (condición de diseño de verano 0.4 \%) y 74.1 kPa (condiciones del sitio), con propiedades aproximadas presentadas en la Tabla \ref{tab:air_properties}.
+
+\begin{table}[htbp]
+	\centering
+	\caption{Propiedades del aire de impulsión}
+	\label{tab:air_properties}
+	\setcounter{itemcount}{0}
+	\begin{tabularx}{\textwidth}{@{}NXclc@{}}
+		\toprule
+		\multicolumn{1}{c}{\textbf{Item}} & \textbf{Propiedad} & \textbf{Valor} & \textbf{Unidad} & \textbf{Referencia} \\
+		\midrule
+		& Densidad & 0.88 & kg/m$^3$ & Gas ideal a condiciones del sitio \\
+		& Viscosidad dinámica & $1.81 \times 10^{-5}$ & Pa$\cdot$s & Cengel \& Ghajar (2020) \\
+		& Temperatura de impulsión & 14.0 & $^{\circ}$C & Criterio de diseño \\
+		& Calidad de filtración mínima & MERV 13-14 & -- & ASHRAE 52.2 \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+\subsection{Datos del Recinto y Criterios de Ventilación}
+
+La Tabla \ref{tab:room_data} resume las características geométricas y los criterios de ventilación del laboratorio. El laboratorio se ubica dentro de una planta de hipoclorito de calcio, cuyo ambiente exterior es altamente corrosivo; el ventilador, las rejillas, el damper de alivio y los soportes expuestos deben ser en PRFV, acero inoxidable 316 o acero con recubrimiento epóxico, y el motor debe ser TEFC anticorrosivo.
+
+\begin{table}[htbp]
+	\centering
+	\caption{Datos del recinto y criterios de ventilación}
+	\label{tab:room_data}
+	\setcounter{itemcount}{0}
+	\begin{tabularx}{\textwidth}{@{}N>{\hsize=0.9\hsize}X>{\hsize=1.2\hsize}Xc>{\hsize=0.9\hsize}X@{}}
+		\toprule
+		\multicolumn{1}{c}{\textbf{Item}} & \textbf{Parámetro} & \textbf{Valor} & \textbf{Unidad} & \textbf{Referencia} \\
+		\midrule
+		& Volumen efectivo del laboratorio & 320 & m$^3$ & Medición / modelo 3D \\
+		& Renovaciones de aire requeridas & 12 & ren/h & ASHRAE 170 / WHO / NIH \\
+		& Caudal de diseño & 3 840 (64.0 m$^3$/min; 2 260 CFM) & m$^3$/h & Memoria de cálculo \\
+		& Estrategia de ventilación & Ventilador directo + rejillas de exfiltración & -- & Criterio de diseño \\
+		& Presión diferencial objetivo & +25 & Pa & Criterio de diseño \\
+		& Presión diferencial mínima & +12.5 & Pa & Criterio de diseño \\
+		& Control de presurización & Damper de alivio calibrable (obligatorio) + sensor de $\Delta P$ & -- & Criterio de diseño \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+\subsection{Criterios de Diseño del Ventilador}
+
+La Tabla \ref{tab:fan_criteria} presenta los criterios de diseño del ventilador de impulsión. El punto de trabajo en el sitio corresponde al escenario de filtración cargada ($\Delta P$ filtro 154 Pa + 25 Pa de offset de presurización + 11 Pa de rejillas = 190 Pa total); dado que las curvas de catálogo se publican a densidad estándar ($\rho$ = 1.2 kg/m$^3$), la selección comercial se realiza en el punto equivalente de catálogo 3 840 m$^3$/h a 260 Pa \cite{dml_informe_investigacion_2026,dml_hd_vent_001}.
+
+\begin{table}[htbp]
+	\centering
+	\caption{Criterios de diseño del ventilador de impulsión}
+	\label{tab:fan_criteria}
+	\setcounter{itemcount}{0}
+	\begin{tabularx}{\textwidth}{@{}N>{\hsize=0.9\hsize}X>{\hsize=1.2\hsize}Xc>{\hsize=0.9\hsize}X@{}}
+		\toprule
+		\multicolumn{1}{c}{\textbf{Item}} & \textbf{Parámetro} & \textbf{Valor} & \textbf{Unidad} & \textbf{Referencia} \\
+		\midrule
+		& Caudal de diseño & 3 840 (1.0667 m$^3$/s) & m$^3$/h & Memoria de cálculo \\
+		& Presión total en el sitio (filtro cargado) & 190 & Pa & Memoria de cálculo \\
+		& Punto equivalente de catálogo ($\rho$ = 1.2 kg/m$^3$) & 260 & Pa & Corrección de densidad, $k$ = 0.733 \\
+		& Presión total en el sitio (filtro limpio) & 95 & Pa & Memoria de cálculo \\
+		& Punto equivalente de catálogo (limpio) & 130 & Pa & Corrección de densidad, $k$ = 0.733 \\
+		& Eficiencia total supuesta & 0.60 & -- & Criterio de diseño \\
+		& Potencia teórica de aire & 0.338 (0.45 HP) & kW & Ec. (\ref{eq:potencia}) \\
+		& Motor instalado & 1.0 HP TEFC anticorrosivo, 440 V, 3$\phi$, 60 Hz & -- & Criterio de diseño / cliente \\
+		& Velocidad de impulsión & 8.0 & m/s & Criterio de diseño \\
+		& Área de boca de impulsión & 0.1333 & m$^2$ & Ec. (\ref{eq:area_vent}) \\
+		& Diámetro equivalente (radio) & 412 (206.0) & mm & Ec. (\ref{eq:diametro}) \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+\subsection{Escenarios de Filtración}
+
+La calidad de filtración definitiva es MERV 13-14: el laboratorio es de análisis industrial y no de biocontención, por lo que la filtración HEPA quedó evaluada y descartada. La Tabla \ref{tab:filtration_scenarios} presenta los escenarios de filtración considerados en el diseño, con las caídas de presión corregidas a la densidad del sitio.
+
+\begin{table}[htbp]
+	\centering
+	\caption{Escenarios de filtración del sistema de impulsión}
+	\label{tab:filtration_scenarios}
+	\setcounter{itemcount}{0}
+	\begin{tabularx}{\textwidth}{@{}NXcccc@{}}
+		\toprule
+		\multicolumn{1}{c}{\textbf{Item}} & \textbf{Escenario} & \textbf{$\Delta P$ Filtro} & \textbf{$\Delta P$ Total} & \textbf{Potencia} & \textbf{Estado} \\
+		& & \textbf{(Pa)} & \textbf{(Pa)} & \textbf{(kW)} & \\
+		\midrule
+		& MERV 13-14 limpio & 59 & 95 & 0.169 & Operación inicial \\
+		& MERV 13-14 cargado (diseño) & 154 & 190 & 0.338 & Punto de selección \\
+		& HEPA H13 & 250--600 & 290--640 & 0.516--1.138 & Descartado (no aplica) \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+\subsection{Rejillas de Exfiltración}
+
+La Tabla \ref{tab:grille_criteria} presenta los criterios de diseño de las rejillas de exfiltración. A la densidad del sitio, el cierre de orificio ($C_d$ = 0.60) de las tres rejillas a 3.0 m/s sostiene naturalmente solo 11 Pa, por debajo del mínimo admisible de 12.5 Pa; el objetivo de +25 Pa se garantiza con el damper de alivio calibrable, componente obligatorio del sistema \cite{dml_hd_rej_001,dml_hd_inst_001}.
+
+\begin{table}[htbp]
+	\centering
+	\caption{Criterios de diseño de las rejillas de exfiltración}
+	\label{tab:grille_criteria}
+	\setcounter{itemcount}{0}
+	\begin{tabularx}{\textwidth}{@{}N>{\hsize=0.9\hsize}X>{\hsize=1.2\hsize}Xc>{\hsize=0.9\hsize}X@{}}
+		\toprule
+		\multicolumn{1}{c}{\textbf{Item}} & \textbf{Parámetro} & \textbf{Valor} & \textbf{Unidad} & \textbf{Referencia} \\
+		\midrule
+		& Número de rejillas & 3 & unidades & Criterio de diseño \\
+		& Dimensiones por rejilla & 353 $\times$ 336 & mm & Memoria de cálculo \\
+		& Velocidad facial & 3.0 & m/s & Criterio de diseño \\
+		& Área neta total (por rejilla) & 0.3556 (0.1185) & m$^2$ & Ec. (\ref{eq:area_exfil}) \\
+		& Presión sostenida natural ($C_d$ = 0.60) & 11 & Pa & Cierre de orificio, $\rho$ = 0.88 kg/m$^3$ \\
+		& Malla anti-insectos & Inox 316, 18$\times$18 (abertura $\approx$1 mm) & -- & Criterio de diseño \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+\subsection{Corrosividad del Ambiente y Criterio de Materiales}
+
+El laboratorio se ubica dentro de una planta de hipoclorito de calcio, cuyo ambiente exterior es altamente corrosivo (cloro, hipoclorito y humedad alta). La Tabla \ref{tab:material_criteria} resume el criterio de materiales adoptado para los componentes expuestos \cite{dml_informe_investigacion_2026}.
+
+\begin{table}[htbp]
+	\centering
+	\caption{Criterio de materiales para el ambiente corrosivo del sitio}
+	\label{tab:material_criteria}
+	\setcounter{itemcount}{0}
+	\begin{tabularx}{\textwidth}{@{}NlX@{}}
+		\toprule
+		\multicolumn{1}{c}{\textbf{Item}} & \textbf{Elemento} & \textbf{Criterio de Material} \\
+		\midrule
+		& Ventilador (carcasa y rueda) & PRFV con resina viniléster (primera opción) o polipropileno \\
+		& Rejillas, malla anti-insectos y ferretería & Acero inoxidable 316/316L (clase A4) \\
+		& Damper de alivio & Aluminio extruido 6063-T5 o línea severe-environment \\
+		& Soportes expuestos & PRFV, inox 316 o acero con recubrimiento epóxico (segunda línea, con inspección programada) \\
+		& Motor & TEFC anticorrosivo, ejecución severe duty \\
+		& Acero galvanizado & Descartado en la corriente y a la intemperie \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+\subsection{Normativas Aplicables}
+
+El número de 12 renovaciones de aire por hora se sustenta en los rangos recomendados por las normas y guías internacionales presentadas en la Tabla \ref{tab:applicable_norms}.
+
+\begin{table}[htbp]
+	\centering
+	\caption{Normativas y guías aplicables al diseño de ventilación}
+	\label{tab:applicable_norms}
+	\setcounter{itemcount}{0}
+	\begin{tabularx}{\textwidth}{@{}N>{\hsize=1.2\hsize}X>{\hsize=1.0\hsize}X>{\hsize=0.8\hsize}X@{}}
+		\toprule
+		\multicolumn{1}{c}{\textbf{Item}} & \textbf{Norma / Guía} & \textbf{Recomendación ACH} & \textbf{Referencia} \\
+		\midrule
+		& ASHRAE 170 — Ventilation of Health Care Facilities & 6–15 ACH según uso & ASHRAE (2021) \\
+		& ASHRAE 62.1 — Ventilation for Acceptable IAQ & Caudal por ocupación y área & ASHRAE (2022) \\
+		& NFPA 99 — Health Care Facilities Code & Criterios de ventilación de espacios de salud & NFPA (2021) \cite{nfpa99_2021} \\
+		& WHO Laboratory Biosafety Manual (BSL-2) & 6–12 ACH & WHO (2004) \\
+		& WHO Laboratory Biosafety Manual (BSL-3) & 12–15 ACH & WHO (2004) \\
+		& NIH Design Requirements Manual & 10–12 ACH & NIH (2023) \\
+		& OSHA 29 CFR 1910.1450 & Control de exposición por ventilación & OSHA (2012) \\
+		& ASHRAE Handbook Fundamentals & Coeficiente de descarga de orificios ($C_d$ = 0.60) & ASHRAE (2021) \\
+		& RETIE & Suministro y protección del motor & MinCIT (vigente) \\
+		& NTC 2050 — Código Eléctrico Colombiano & Circuitos y protecciones & ICONTEC (vigente) \\
+		& Resolución 0312 de 2019 & Habilitación de servicios de salud (si aplica) & MinSalud (2019) \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+La selección de 12 ACH cubre con holgura el rango superior establecido para laboratorios BSL-2 y el umbral inferior para laboratorios BSL-3, proporcionando un margen de seguridad respecto al mínimo de 6 ACH para espacios generales.

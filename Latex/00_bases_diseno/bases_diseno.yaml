@@ -1,0 +1,145 @@
+# =====================================================================
+# BASES DE DISEÑO — Fuente única de verdad
+# Proyecto: P2437-HV-INF-001 — Sistema de ventilación y presurización
+# Cliente: BRINSA
+# Actualizado 2026-07-23 — sitio real Cajicá, Cundinamarca (2 558 msnm),
+# ρ = 0.88 kg/m³; sin HEPA
+# =====================================================================
+
+proyecto:
+  codigo: "P2437-HV-INF-001"
+  nombre: "Diseño del sistema de ventilación y presurización del laboratorio"
+  cliente: "BRINSA"
+  revision: "0"
+  fecha_emision: "2026-07-15"
+
+# ---------------------------------------------------------------------
+# Condiciones del recinto
+# ---------------------------------------------------------------------
+recinto:
+  volumen_efectivo_m3: 320.0
+  renovaciones_aire_h: 12.0
+  presion_diferencial_objetivo_Pa: 25.0
+  presion_diferencial_minima_Pa: 12.5
+  presion_diferencial_sostenida_calculada_Pa: 11.0   # cierre orificio: dP = (rho/2)*(Q/(Cd*A))^2, rho = 0.88
+  coeficiente_descarga_orificio_Cd: 0.60             # orificio borde afilado, ASHRAE Handbook Fundamentals
+  control_presurizacion: "Damper de alivio calibrable (OBLIGATORIO) + sensor de presión diferencial (set-point +25 Pa)"
+  estrategia: "Ventilador de impulsión directa + rejillas de exfiltración controladas"
+
+# ---------------------------------------------------------------------
+# Condiciones ambientales del sitio (Cajicá, Cundinamarca — 2 558 msnm)
+# ---------------------------------------------------------------------
+ambiente:
+  sitio: "Cajicá, Cundinamarca"
+  entorno: "Planta de hipoclorito de calcio — ambiente altamente corrosivo"
+  temperatura_ambiente_max_C: 21.0
+  temperatura_ambiente_min_C: 3.0
+  temperatura_ambiente_promedio_C: 14.0
+  humedad_relativa_max_pct: 89.0
+  humedad_relativa_media_pct: 84.0
+  presion_atmosferica_kPa: 74.1
+  altitud_msnm: 2558.0
+
+# ---------------------------------------------------------------------
+# Aire de proceso / ventilación
+# ---------------------------------------------------------------------
+aire:
+  densidad_kg_m3: 0.88          # a 20 °C, Cajicá 2 558 msnm (P_atm = 74.1 kPa)
+  viscosidad_dinamica_Pa_s: 1.81e-5
+  temperatura_impulsion_C: 21.0     # condición de diseño de verano 0.4 % (coherente con rho = 0.88 kg/m³)
+  calidad_objetivo: "Filtración MERV 13-14 definitiva — laboratorio de análisis industrial; NO requiere HEPA"
+
+# ---------------------------------------------------------------------
+# Criterios de diseño del ventilador
+# ---------------------------------------------------------------------
+ventilador:
+  caudal_m3_min: 64.0
+  caudal_m3_h: 3840.0
+  caudal_cfm: 2260.1
+  presion_total_Pa: 190.0
+  eficiencia_total: 0.60
+  velocidad_boca_m_s: 8.0
+  area_boca_m2: 0.1333
+  diametro_equivalente_mm: 412.0
+  radio_equivalente_mm: 206.0
+  potencia_teorica_kW: 0.338
+  potencia_teorica_HP: 0.45
+  potencia_instalada_HP: 1.0
+  motor_instalado: "1.0 HP TEFC anticorrosivo (ambiente hipoclorito de calcio)"
+  escenario_filtracion_diseno: "MERV 13-14 cargado (ΔP filtro 154 Pa + 25 Pa offset + 11 Pa rejillas = 190 Pa total)"
+  punto_catalogo_estandar: "Punto equivalente a rho = 1.2 kg/m³ para selección de ventilador: 3 840 m³/h @ 260 Pa (diseño), 130 Pa (limpio)"
+  boca_geometria_modelo_cfd: "Círculo equivalente (equivalente hidráulico). Si el equipo es centrífugo de descarga rectangular, usar área 0.1333 m² con dimensiones reales del equipo."
+  escenarios_filtracion:
+    - nombre: "MERV 13-14 limpio"
+      dp_filtro_Pa: 59
+      dp_vent_total_Pa: 95
+      potencia_kW: 0.169
+      potencia_HP: 0.227
+      motor_HP: 0.75
+    - nombre: "MERV 13-14 cargado (diseño)"
+      dp_filtro_Pa: 154
+      dp_vent_total_Pa: 190
+      potencia_kW: 0.338
+      potencia_HP: 0.45
+      motor_HP: 1.0
+    - nombre: "HEPA H13 limpio (referencia histórica — descartado, no aplica)"
+      dp_filtro_Pa: 250
+      dp_vent_total_Pa: 290
+      potencia_kW: 0.516
+      potencia_HP: 0.692
+      motor_HP: 1.5
+    - nombre: "HEPA H13 cargado (referencia histórica — descartado, no aplica)"
+      dp_filtro_Pa: 600
+      dp_vent_total_Pa: 640
+      potencia_kW: 1.138
+      potencia_HP: 1.526
+      motor_HP: 2.0
+
+# ---------------------------------------------------------------------
+# Criterios de diseño de rejillas de exfiltración
+# ---------------------------------------------------------------------
+rejillas_exfiltracion:
+  numero: 3
+  velocidad_facial_m_s: 3.0
+  area_neta_total_m2: 0.3556
+  area_neta_por_rejilla_m2: 0.1185
+  altura_mm: 353.2
+  ancho_mm: 335.5
+  proporcion_ancho_alto: 0.95
+  presion_sostenida_natural_Pa: 11.0    # sin balancear (rho = 0.88); el objetivo de 25 Pa se garantiza con damper de alivio (obligatorio)
+  area_total_para_25Pa_m2: 0.236        # referencia: área que cerraría en 25 Pa sin damper (0.079 m²/rejilla ≈ 280×281 mm, v = 4.5 m/s)
+
+# ---------------------------------------------------------------------
+# Normas aplicables vigentes
+# ---------------------------------------------------------------------
+normas:
+  - codigo: "ASHRAE 170"
+    edicion: "2021"
+    alcance: "Ventilation of Health Care Facilities"
+  - codigo: "ASHRAE 62.1"
+    edicion: "2022"
+    alcance: "Ventilation for Acceptable Indoor Air Quality"
+  - codigo: "NFPA 99"
+    edicion: "2021"
+    alcance: "Health Care Facilities Code"
+  - codigo: "OSHA 29 CFR 1910.1450"
+    edicion: "2012"
+    alcance: "Occupational Exposure to Hazardous Chemicals in Laboratories"
+  - codigo: "WHO Laboratory Biosafety Manual"
+    edicion: "2004"
+    alcance: "Recomendaciones de renovaciones de aire para laboratorios BSL-2 y BSL-3"
+  - codigo: "NIH DRM"
+    edicion: "2023"
+    alcance: "Design Requirements Manual"
+  - codigo: "ASHRAE Handbook Fundamentals"
+    edicion: "2021"
+    alcance: "Coeficiente de descarga de orificios (mecánica de fluidos)"
+  - codigo: "RETIE"
+    edicion: "vigente"
+    alcance: "Reglamento Técnico de Instalaciones Eléctricas (Colombia) — suministro y protección del motor"
+  - codigo: "NTC 2050"
+    edicion: "vigente"
+    alcance: "Código eléctrico colombiano (equivalente NEC) — circuitos y protecciones"
+  - codigo: "Resolución 0312/2019 MinSalud"
+    edicion: "2019"
+    alcance: "Habilitación de servicios de salud (aplica si el laboratorio los presta)"
