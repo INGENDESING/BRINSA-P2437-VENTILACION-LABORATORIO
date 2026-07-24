@@ -9,6 +9,11 @@ El vault de Obsidian es la **raíz del proyecto** (`Calculos/`): todo el repo es
 navegable en Obsidian. Esta carpeta `vault/` es el subsistema de memoria a largo
 plazo; el resumen rápido de sesión vive en `../contexto.md`.
 
+## Inicio de sesión
+
+Siempre comenzar por [[inicializacion]]: protocolo de lectura del vault para
+recuperar contexto sin gastar tokens innecesarios.
+
 ## Secciones
 
 - [[01_Estado actual]] — dónde está el proyecto hoy

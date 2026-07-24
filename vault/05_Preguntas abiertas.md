@@ -14,6 +14,10 @@ tags: [preguntas, bloqueos]
       [[2026-07-22_presurizacion-damper-alivio]].
 - [ ] Ejecutar el modelo CFD con las BC pressure outlet. Ver
       [[2026-07-22_cfd-pressure-outlet]].
+- [ ] El usuario generará manualmente el PDF de `P2437-HV-DTS-001 REV0.xlsx`
+      (ambas hojas: PORTADA + ESPECIFICACIÓN) desde Excel para mantener la
+      plantilla corporativa idéntica. Una vez generado, comunicarlo para
+      registrarlo en el vault y copiarlo a `Emisiones/3.0 HV-HOJAS DE DATOS/`.
 
 ## Resueltas
 

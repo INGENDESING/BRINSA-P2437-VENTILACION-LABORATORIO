@@ -1,18 +1,25 @@
 # Contexto del proyecto: HVAC Laboratorio Brinsa
 
 ## Estado actual
-- Última tarea completada (2026-07-24): generación del listado de equipos en Excel
-  corporativo (`P2437-HV-LIS-001 REV0.xlsx`) a partir de `listado_equipos.md`, usando
-  la plantilla `FormatosDocumentos/LIS.xlsx` con exactamente 2 hojas (PORTADA + LISTA).
-  Se creó `scripts/generar_lis.py` y se actualizó `scripts/emitir.py`; emisión OK con
-  8 entregables y retiro del `.md` obsoleto de `Emisiones/4.0 HV-LISTADOS/`.
+- Última tarea completada (2026-07-24):
+  1. Generación del listado de equipos en Excel corporativo
+     (`P2437-HV-LIS-001 REV0.xlsx`) a partir de `listado_equipos.md`, usando la
+     plantilla `FormatosDocumentos/LIS.xlsx` con exactamente 2 hojas (PORTADA + LISTA).
+     Se creó `scripts/generar_lis.py` y se actualizó `scripts/emitir.py`; emisión OK
+     con 8 entregables y retiro del `.md` obsoleto de `Emisiones/4.0 HV-LISTADOS/`.
+  2. Creación de `vault/inicializacion.md` como protocolo de arranque para futuras
+     sesiones, reforzando el vault de Obsidian como memoria permanente del proyecto.
 - Tarea previa (2026-07-24): push del repositorio a GitHub (`origin/main`,
   commit `2bc5b65`, 138 archivos).
 - Tarea previa (2026-07-23): estructura de emisión `Emisiones/`, informes
   **P2437-HV-INF-001/002**, memoria Excel corporativo, investigación de sistemas,
   vault de Obsidian y codificación GP-N-09.
-- Próxima tarea pendiente: Ejecutar el modelo CFD con las nuevas BC (pressure outlet);
-  confirmar disponibilidad comercial de los equipos seleccionados.
+- Próxima tarea pendiente:
+  - El usuario generará manualmente el PDF de `P2437-HV-DTS-001 REV0.xlsx` (ambas
+    hojas: PORTADA + ESPECIFICACIÓN) desde Excel para conservar la plantilla
+    corporativa idéntica; comunicarlo para registrarlo en el vault y `Emisiones/`.
+  - Ejecutar el modelo CFD con las nuevas BC (pressure outlet).
+  - Confirmar disponibilidad comercial de los equipos seleccionados.
 - Fecha de última actualización: 2026-07-24
 
 ## Bases de diseño congeladas (actualizadas 2026-07-23 — sitio real)
@@ -44,6 +51,7 @@
 - `Investigacion/Sistemas/` — informe de investigación, listado de equipos y hojas de datos (HD-VENT/FILT/REJ/INST-001).
 - `docs/index.html` — dashboard web interactivo.
 - `vault/` — vault de Obsidian (memoria a largo plazo; ver skill `obsidian-vault`).
+- `vault/inicializacion.md` — protocolo de arranque para recuperar contexto en nuevas sesiones.
 - `scripts/generar_lis.py` — genera el listado de equipos BOQ en Excel corporativo.
 - `scripts/emitir.py` — regenera Excel, DTS, LIS, recompila INF-001/002 y copia a `Emisiones/`.
 - `Emisiones/4.0 HV-LISTADOS/P2437-HV-LIS-001 REV0.xlsx` — listado de equipos y materiales (BOQ).
@@ -52,6 +60,8 @@
 - [x] ~~Confirmar si el laboratorio requiere HEPA~~ → Resuelto 2026-07-23: NO requiere (análisis industrial).
 - [ ] Confirmar disponibilidad comercial local de los equipos seleccionados (Greenheck vía Prime Lines, Dwyer, rejillas fabricación local). Plazo máximo de entrega presupuestado: ~3 meses (dato cliente, 2026-07-23).
 - [ ] Confirmar la lectura de presión diferencial real tras el ensayo de balanceo.
+- [ ] El usuario generará manualmente el PDF de `P2437-HV-DTS-001 REV0.xlsx` (ambas
+  hojas) desde Excel y lo comunicará para registrarlo en el vault y `Emisiones/`.
 - [x] ~~Conectar el origen remoto para GitHub y ejecutar el `push`~~ → Resuelto 2026-07-24: commit `2bc5b65`, 138 archivos, push a `origin/main` OK.
 
 ## Comandos / workflows útiles
