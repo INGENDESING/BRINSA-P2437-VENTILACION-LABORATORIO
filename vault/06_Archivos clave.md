@@ -15,7 +15,8 @@ tags: [archivos]
   (datos + escenarios + normas).
 - `docs/index.html` — dashboard web interactivo (GitHub Pages).
 - `HojasDatos/P2437-PR-DT-001.xlsx` — hoja de datos del equipo.
-- `resultado simulaciones/` — capturas de resultados CFD (Case 1, Case 2).
+- `resultado simulaciones/` — capturas de resultados CFD (Case 1 … Case 4); fuente de las figuras del informe INF-001.
+- `Latex/02_informe_tex/figures/` — figuras del informe técnico, incluidas las 4 vistas CFD (`cfd_streamlines_3d.png`, `cfd_vectores_3d.png`, `cfd_planta_horizontal.png`, `cfd_vectores_corte.png`).
 - `Investigacion/Sistemas/` — informe de investigación del sistema, listado de
   equipos y hojas de datos (HD-VENT-001, HD-FILT-001, HD-REJ-001, HD-INST-001).
 - `Codificacion/codificacion.md` — codificación GP-N-09 de los documentos del

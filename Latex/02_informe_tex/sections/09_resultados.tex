@@ -1,4 +1,4 @@
-\section{Resultados}
+\section{Resultados}\label{sec:resultados}
 
 \subsection{Caudal de Ventilación}
 
@@ -100,31 +100,45 @@ La Tabla \ref{tab:cfd_boundaries} presenta las condiciones de contorno recomenda
 		\toprule
 		\multicolumn{1}{c}{\textbf{Item}} & \textbf{Elemento} & \textbf{Geometría} & \textbf{Dimensiones} & \textbf{Condición de Contorno} \\
 		\midrule
-		& Impulsión del ventilador & Círculo & $r$ = 206.0 mm & Velocity inlet, 8 m/s \\
-		& Rejilla de salida 1 & Rectángulo & 353 mm $\times$ 336 mm & Velocity outlet, 3 m/s \\
-		& Rejilla de salida 2 & Rectángulo & 353 mm $\times$ 336 mm & Velocity outlet, 3 m/s \\
-		& Rejilla de salida 3 & Rectángulo & 353 mm $\times$ 336 mm & Velocity outlet, 3 m/s \\
+		& Impulsión del ventilador & Círculo & $r$ = 206.0 mm & Velocity inlet, \SI{8}{m/s} \\
+		& Rejilla de salida 1 & Rectángulo & 353 mm $\times$ 336 mm & Pressure outlet, \SI{0}{Pa} gauge \\
+		& Rejilla de salida 2 & Rectángulo & 353 mm $\times$ 336 mm & Pressure outlet, \SI{0}{Pa} gauge \\
+		& Rejilla de salida 3 & Rectángulo & 353 mm $\times$ 336 mm & Pressure outlet, \SI{0}{Pa} gauge \\
 		& Paredes del laboratorio & Sólidas & Según geometría 3D & Wall, no slip \\
 		\bottomrule
 	\end{tabularx}
 \end{table}
 
-El balance de masas entre entrada y salida presenta una discrepancia inferior al 0.1 \%. El caudal de entrada es 1.0667 m$^3$/s, mientras que el caudal de salida es 3 $\times$ (0.3532 m $\times$ 0.3355 m) $\times$ 3 m/s = 1.0665 m$^3$/s. La diferencia (0.02 \%) se debe al redondeo de dimensiones.
+El balance de masas de diseño presenta una discrepancia inferior al 0.1 \%. El caudal de entrada es 1.0667 m$^3$/s, mientras que el caudal teórico de salida distribuido en tres rejillas a \SI{3}{m/s} es 3 $\times$ (0.3532 m $\times$ 0.3355 m) $\times$ \SI{3}{m/s} = 1.0665 m$^3$/s. La diferencia (0.02 \%) se debe al redondeo de dimensiones. Al imponer \texttt{pressure outlet} en las rejillas, el solver determina el caudal de exfiltración a partir del campo de presión; los resultados visuales confirman velocidades faciales del orden de \SI{3}{m/s} en las salidas.
 
 \subsection{Resultados de la simulación CFD}
 
-El modelo de dinámica de fluidos computacional (Autodesk CFD 2020) se resolvió con las condiciones de contorno de la Tabla \ref{tab:cfd_boundaries}. La Figura \ref{fig:cfd_vertical} presenta el campo de magnitud de velocidad en el plano vertical longitudinal; la Figura \ref{fig:cfd_horizontal}, en el plano horizontal. En ambos planos la velocidad máxima se sitúa en torno a \SI{8}{m/s}, consistente con la velocidad de impulsión de diseño, y se observa el patrón de recirculación en las zonas alejadas de la inyección.
+El modelo de dinámica de fluidos computacional se resolvió en Autodesk CFD con las condiciones de contorno de la Tabla \ref{tab:cfd_boundaries}: inyección como \texttt{velocity inlet} de \SI{8}{m/s} y las tres rejillas como \texttt{pressure outlet} a \SI{0}{Pa} gauge. Esta condición de salida evita la sobreespecificación del problema y permite que el caudal de exfiltración se determine a partir del campo de presión interior. Las Figuras \ref{fig:cfd_streamlines} a \ref{fig:cfd_vectores_corte} presentan los campos de velocidad resultantes. La velocidad máxima se sitúa en torno a \SI{8}{m/s}, coherente con la inyección de diseño, mientras que las salidas presentan velocidades del orden de \SI{3}{m/s}, compatibles con el dimensionamiento de las rejillas.
 
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=0.92\textwidth]{figures/cfd_caso1.png}
-	\caption{Campo de magnitud de velocidad en el plano vertical longitudinal (vista $-Y$). Simulación CFD (Autodesk CFD 2020); escala 0--8201~mm/s ($\approx$ \SI{8.2}{m/s} en el máximo), consistente con la velocidad de impulsión de diseño. Se aprecia la inyección lateral y la recirculación en las zonas periféricas del recinto.}
-	\label{fig:cfd_vertical}
+	\includegraphics[width=0.92\textwidth]{figures/cfd_streamlines_3d.png}
+	\caption{Líneas de corriente coloreadas por magnitud de velocidad. Vista isométrica del recinto; la inyección se localiza en el extremo derecho y la exfiltración se distribuye entre las tres rejillas del lado opuesto. Escala 0--8200~mm/s.}
+	\label{fig:cfd_streamlines}
 \end{figure}
 
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=0.92\textwidth]{figures/cfd_caso2.png}
-	\caption{Campo de magnitud de velocidad en el plano horizontal (vista $+Z$). Simulación CFD (Autodesk CFD 2020); escala 0--7973~mm/s. Flujo desde la impulsión inferior izquierda hacia las rejillas del lateral derecho, con vórtices en los recintos secundarios.}
-	\label{fig:cfd_horizontal}
+	\includegraphics[width=0.92\textwidth]{figures/cfd_vectores_3d.png}
+	\caption{Campo vectorial de velocidad en un corte vertical del recinto (vista isométrica). Se observa el flujo dirigido hacia las rejillas de exfiltración y la recirculación en la zona posterior.}
+	\label{fig:cfd_vectores_3d}
+\end{figure}
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.92\textwidth]{figures/cfd_planta_horizontal.png}
+	\caption{Campo de velocidad en plano horizontal (vista en planta). La inyección desde la derecha genera un flujo cruzado hacia las tres rejillas de la izquierda; las zonas periféricas presentan vórtices de baja velocidad.}
+	\label{fig:cfd_planta_horizontal}
+\end{figure}
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.92\textwidth]{figures/cfd_vectores_corte.png}
+	\caption{Campo vectorial de velocidad en un corte longitudinal. Se aprecia la inyección lateral, la difusión del chorro y el patrón de recirculación en la mitad opuesta del recinto.}
+	\label{fig:cfd_vectores_corte}
 \end{figure}

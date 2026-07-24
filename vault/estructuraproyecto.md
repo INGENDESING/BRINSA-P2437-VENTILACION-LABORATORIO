@@ -1,8 +1,9 @@
+arpeta c
+
 ---
 fecha: 2026-07-23
 tags: [estructura]
 ---
-
 # Estructura del proyecto
 
 Árbol de archivos y carpetas de `Calculos/` (raíz del proyecto HVAC Laboratorio Brinsa).
@@ -44,7 +45,9 @@ Calculos/
 │
 ├── resultado simulaciones/          # Capturas de resultados CFD
 │   ├── Case 1.png
-│   └── Case 2.png
+│   ├── Case 2.png
+│   ├── Case 3.png
+│   └── Case 4.png
 │
 ├── task/
 │   └── todo.md                      # Plan de tareas de la sesión (fase 1 de AGENTS.md)
@@ -62,14 +65,16 @@ Calculos/
 │
 ├── scripts/
 │   ├── emitir.py                    # Orquesta la emisión completa a Emisiones/
-│   └── generar_dts.py               # Convierte las HD .md a Excel corporativo (build/dts/)
+│   ├── generar_dts.py               # Convierte las HD .md a Excel corporativo (build/dts/)
+│   └── generar_lis.py               # Convierte listado_equipos.md a Excel corporativo (build/lis/)
 │
 ├── build/
 │   └── dts/                         # Intermedios .xlsx de las hojas de datos
 │
 ├── FormatosDocumentos/              # Plantillas corporativas obligatorias
 │   ├── CAL.xlsx                     #   (memorias de cálculo)
-│   └── DTS.xlsx                     #   (hojas de datos)
+│   ├── DTS.xlsx                     #   (hojas de datos)
+│   └── LIS.xlsx                     #   (listados de equipos)
 │
 ├── Investigacion/                   # Investigación de sistemas (2026-07-23)
 │   └── Sistemas/
@@ -100,7 +105,9 @@ Calculos/
     │   ├── sections/                # INF-001: 00_portada … 13_anexos (modular)
     │   ├── sections_inf002/         # INF-002: secciones del informe de investigación
     │   ├── references/              # bibliografia.bib (INF-001) + bibliografia_inf002.bib
-    │   ├── figures/                 # cfd_caso1.png, cfd_caso2.png
+    │   ├── figures/                 # Figuras del informe; CFD: cfd_streamlines_3d.png,
+│   │                            # cfd_vectores_3d.png, cfd_planta_horizontal.png,
+│   │                            # cfd_vectores_corte.png
     │   └── logos/
     ├── 03_dashboards_html/
     │   ├── build_dashboard.py

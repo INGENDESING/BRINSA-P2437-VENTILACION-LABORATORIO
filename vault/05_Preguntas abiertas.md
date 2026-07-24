@@ -12,8 +12,6 @@ tags: [preguntas, bloqueos]
 - [ ] Confirmar la lectura de presión diferencial real tras el ensayo de balanceo
       (validar el supuesto de rejillas como vía dominante). Ver
       [[2026-07-22_presurizacion-damper-alivio]].
-- [ ] Ejecutar el modelo CFD con las BC pressure outlet. Ver
-      [[2026-07-22_cfd-pressure-outlet]].
 - [ ] El usuario generará manualmente el PDF de `P2437-HV-DTS-001 REV0.xlsx`
       (ambas hojas: PORTADA + ESPECIFICACIÓN) desde Excel para mantener la
       plantilla corporativa idéntica. Una vez generado, comunicarlo para
@@ -21,6 +19,10 @@ tags: [preguntas, bloqueos]
 
 ## Resueltas
 
+- [x] ~~Ejecutar el modelo CFD con BC pressure outlet~~ → **Resuelto 2026-07-24**:
+      modelo ejecutado en Autodesk CFD; 4 gráficas integradas en `P2437-HV-INF-001
+      REV0` con análisis figura por figura. Ver
+      [[2026-07-22_cfd-pressure-outlet]].
 - [x] ¿El laboratorio requiere HEPA? → **No** (2026-07-23, laboratorio de análisis
       industrial). Ver [[2026-07-23_sin-hepa-laboratorio-industrial]].
 - [x] Condiciones ambientales del sitio → Cajicá, Cundinamarca (2 558 msnm,
