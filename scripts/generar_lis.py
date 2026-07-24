@@ -9,7 +9,8 @@ El libro resultante tiene EXACTAMENTE 2 hojas:
   - PORTADA: portada corporativa diligenciada (BO1 = código, Z5 = título).
   - LISTA: encabezado corporativo (filas 1-7, logos y fórmulas =PORTADA!...),
     título del documento en fila 8 y el contenido del .md apilado desde la
-    fila 9, con la tabla BOQ en el layout A:G (encabezado azul 1F4E78, bordes
+    fila 9, con la tabla BOQ distribuida en el ancho total del encabezado
+    (A:O, 15 columnas) para evitar huecos (encabezado azul 1F4E78, bordes
     thin, alineación por rol).
 
 Salida: build/lis/P2437-HV-LIS-001 REV0.xlsx (intermedio que scripts/emitir.py
@@ -34,7 +35,7 @@ ROOT = Path(__file__).resolve().parent.parent
 PLANTILLA = ROOT / "FormatosDocumentos" / "LIS.xlsx"
 SALIDA = ROOT / "build" / "lis"
 FILA_INICIO = 9  # contenido tras encabezado corporativo (1-7), título (8)
-N_COLS = 7       # layout BOQ: 7 columnas (A:G)
+N_COLS = 15      # ancho total del encabezado corporativo (A:O); la tabla BOQ se distribuye aquí
 
 # (archivo .md fuente, código del documento, título para PORTADA!Z5 y fila 8)
 DOCUMENTO = (
@@ -76,10 +77,13 @@ def parsear_linea_tabla(linea):
 
 
 def spans_tabla(n_cols):
-    """Distribuye n_cols columnas markdown en el layout A:G."""
+    """Distribuye n_cols columnas markdown en el ancho total del encabezado
+    corporativo (N_COLS columnas físicas). Reparte lo más uniformemente posible,
+    dando una columna extra a las primeras columnas Markdown cuando no sea divisible."""
     if n_cols > N_COLS:
-        raise ValueError(f"Tabla con {n_cols} columnas supera el layout A:G")
-    return [1] * (n_cols - 1) + [N_COLS - n_cols + 1]
+        raise ValueError(f"Tabla con {n_cols} columnas supera el layout A:{get_column_letter(N_COLS)}")
+    base, resto = divmod(N_COLS, n_cols)
+    return [base + 1] * resto + [base] * (n_cols - resto)
 
 
 # ===================== CONSTRUCCIÓN DE LA HOJA =====================
@@ -101,8 +105,8 @@ class HojaLIS:
         self.r += 1
 
     def parrafo(self, texto, negrita=False):
-        # Filas estimadas para el texto con wrap en el ancho A:G (~100 caracteres)
-        n = min(max(1, math.ceil(len(texto) / 95)), 15)
+        # Filas estimadas para el texto con wrap en el ancho A:O (~190 caracteres)
+        n = min(max(1, math.ceil(len(texto) / 190)), 15)
         cell = self.ws.cell(row=self.r, column=1, value=texto)
         cell.alignment = AL_PARRAFO
         if negrita:
