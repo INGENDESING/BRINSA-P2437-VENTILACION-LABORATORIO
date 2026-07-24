@@ -6,39 +6,42 @@
   \def\href#1#2{#2} \def\path#1{#1}\fi
 
 \bibitem{dml_informe_investigacion_2026}
-D.~Ingeniería, Informe de investigación del sistema de ventilación:
-  condiciones del sitio y selección preliminar de equipos, Documento de
-  ingeniería del proyecto P2437,
-  investigacion/Sistemas/informe\_investigacion.md (2026).
+D.~Ingeniería, P2437-hv-inf-002: Informe de investigación del sistema de
+  ventilación, Documento de ingeniería del proyecto P2437, emisiones/1.0
+  HV-INFORMES/P2437-HV-INF-002 REV0.pdf (2026).
 
 \bibitem{dml_hd_vent_001}
-D.~Ingeniería, Hd-vent-001: Hoja de datos del ventilador de impulsión,
-  Documento de ingeniería del proyecto P2437,
-  investigacion/Sistemas/hojas\_datos/HD-VENT-001\_ventilador.md (2026).
+D.~Ingeniería, P2437-hv-dts-001: Hoja de datos del ventilador de impulsión,
+  Documento de ingeniería del proyecto P2437, emisiones/3.0 HV-HOJAS DE
+  DATOS/P2437-HV-DTS-001 REV0.xlsx (2026).
 
 \bibitem{dml_hd_rej_001}
-D.~Ingeniería, Hd-rej-001: Hoja de datos de las rejillas de exfiltración,
-  Documento de ingeniería del proyecto P2437,
-  investigacion/Sistemas/hojas\_datos/HD-REJ-001\_rejillas.md (2026).
+D.~Ingeniería, P2437-hv-dts-003: Hoja de datos de las rejillas de
+  exfiltración, Documento de ingeniería del proyecto P2437, emisiones/3.0
+  HV-HOJAS DE DATOS/P2437-HV-DTS-003 REV0.xlsx (2026).
 
 \bibitem{dml_hd_inst_001}
-D.~Ingeniería, Hd-inst-001: Hoja de datos de los instrumentos de presión
-  diferencial, Documento de ingeniería del proyecto P2437,
-  investigacion/Sistemas/hojas\_datos/HD-INST-001\_instrumentos\_presion.md
-  (2026).
+D.~Ingeniería, P2437-ic-dts-001: Hoja de datos de los instrumentos de presión
+  diferencial, Documento de ingeniería del proyecto P2437, emisiones/3.0
+  HV-HOJAS DE DATOS/P2437-IC-DTS-001 REV0.xlsx (2026).
 
 \bibitem{nfpa99_2021}
 NFPA, NFPA 99, Health Care Facilities Code, National Fire Protection
   Association, Quincy, MA, 2021.
 
 \bibitem{dml_hd_filt_001}
-D.~Ingeniería, Hd-filt-001: Hoja de datos del sistema de filtración merv,
-  Documento de ingeniería del proyecto P2437,
-  investigacion/Sistemas/hojas\_datos/HD-FILT-001\_filtro\_merv.md (2026).
+D.~Ingeniería, P2437-hv-dts-002: Hoja de datos del sistema de filtración
+  merv, Documento de ingeniería del proyecto P2437, emisiones/3.0 HV-HOJAS DE
+  DATOS/P2437-HV-DTS-002 REV0.xlsx (2026).
 
 \bibitem{dml_listado_equipos_2026}
-D.~Ingeniería, Listado de equipos y accesorios del sistema de ventilación
-  (boq), Documento de ingeniería del proyecto P2437,
-  investigacion/Sistemas/listado\_equipos.md (2026).
+D.~Ingeniería, P2437-hv-lis-001: Listado de equipos y accesorios del sistema
+  de ventilación (boq), Documento de ingeniería del proyecto P2437,
+  emisiones/4.0 HV-LISTADOS/P2437-HV-LIS-001 REV0.xlsx (2026).
+
+\bibitem{dml_cal_001}
+D.~Ingeniería, P2437-hv-cal-001: Memoria de cálculo del sistema de
+  ventilación, Documento de ingeniería del proyecto P2437, emisiones/2.0
+  HV-MEMORIAS DE CALCULO/P2437-HV-CAL-001 REV0.xlsx (2026).
 
 \end{thebibliography}
