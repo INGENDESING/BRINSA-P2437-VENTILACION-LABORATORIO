@@ -80,6 +80,54 @@ Fuentes: [ANSI/ASHRAE 52.2-2017 (PDF)](https://www.ashrae.org/File%20Library/Tec
 
 6.2. La especificación se congela en términos MERV 13-14 / ePM1 50-70 % + 24×24 in para habilitar segunda fuente. Se incluye en la compra inicial un juego de repuestos (un prefiltro y un filtro final). Cantidades y plazos: por confirmar con proveedor.
 
-## 7. Normas aplicables
+## 7. Acoplamiento mecánico e hidráulico al ventilador axial DTS-001
 
-7.1. ANSI/ASHRAE 52.2-2017 (ensayo y clasificación MERV); ISO 16890 (ePM1, exigible como informe alternativo); EN 779:2012 (referencia heredada F7/F8). El estado de carga del filtro se sigue por programa de mantenimiento basado en la ΔP esperada (59 Pa limpio / 154 Pa cargado en el sitio) y en la carga de polvo observada en operación (dato típico de operación).
+7.1. El ventilador seleccionado es un axial tubeaxial de impulsión (HD-VENT-001, DTS-001) con punto de trabajo 3 840 m³/h a 165 Pa en el sitio (equivalente 225 Pa en catálogo a ρ = 1,2 kg/m³). El banco de filtración FILT-001 se instala aguas arriba del ventilador, de modo que el flujo es: toma exterior → malla anti-insectos → prefiltro MERV 8 → filtro final MERV 13-14 → transición a boca del ventilador → ventilador axial → descarga al recinto (HD-VENT-001 §8.1).
+
+**Tabla 6.** Verificación hidráulica del filtro final en el punto de trabajo del ventilador.
+
+| Parámetro | Valor | Fuente / cálculo |
+|---|---|---|
+| Caudal de diseño | 3 840 m³/h ≡ 2 260 CFM | Memoria de cálculo, HD-VENT-001 §3 |
+| Área facial del filtro 24×24 in | 0,372 m² ≡ 4,00 ft² | 610 mm × 610 mm |
+| Velocidad facial en el filtro | 2,87 m/s ≡ 565 fpm | Q / A |
+| Velocidad máxima usable (Durafil ES3) | 625 fpm | [Product Sheet Durafil ES3 (PDF)](https://www.camfil.com/dam/files/290/1590002/Product-Sheet-Durafil-ES3-ENG-US.pdf) |
+| ΔP inicial catálogo MERV 14 @ 500 fpm | 0,31 in c.a. ≡ 77 Pa | [Drawing Durafil ES3 (PDF)](https://www.camfil.com/dam/files/1165/1676816/Drawing-Durafil-ES3.pdf) |
+| ΔP inicial estimado @ 565 fpm (catálogo) | 98 Pa | Escalado cuadrático: 77 Pa × (565/500)² |
+| ΔP inicial estimado en el sitio (ρ = 0,88 kg/m³) | 72 Pa | 98 Pa × 0,733 |
+| ΔP final de diseño (catálogo) | 210 Pa | Valor congelado de la memoria de cálculo |
+| ΔP final estimado en el sitio | 154 Pa | 210 Pa × 0,733 |
+| ΔP disponible para filtro + rejillas en el ventilador | 165 Pa sitio | HD-VENT-001 §3 |
+
+7.2. El filtro final opera dentro del rango hidráulico permitido: la velocidad facial (565 fpm) es inferior al límite de 625 fpm del Durafil ES3, y la caída de presión final de diseño (154 Pa en el sitio) deja un margen de 11 Pa para las rejillas de descarga, coincidente con el punto de trabajo declarado del ventilador. El caudal de 2 260 CFM supera el caudal nominal (rated airflow) de 2 000 CFM del Durafil ES3 24×24×12, pero se encuentra dentro del máximo operativo dado por 625 fpm (≈2 500 CFM); por tanto, la selección requiere confirmación del fabricante de que no se excede el límite de uso continuo. El Durafil ES2 (referencia original) tiene caudal nominal 3 000 CFM, por lo que también es técnicamente válido y puede ofrecerse como alternativa equivalente.
+
+7.3. Desde el punto de vista mecánico, el filtro V-bank de 24×24 in y profundidad 12 in se monta en un portafiltros (holding frame) independiente de la bancada del ventilador. El ventilador axial tubeaxial tiene boca circular; se requiere una caja de transición cuadrado/circular con longitud mínima recomendada de 1,5 veces el diámetro de salida para recuperación del perfil de velocidad y minimizar pérdidas por turbulencia (dato típico de diseño de ductos). La caja de filtración, el portafiltros y la transición deben construirse en inoxidable 316L o en PRFV con resina viniléster, siguiendo el mismo criterio anticorrosivo del ventilador.
+
+**Tabla 7.** Accesorios y periféricos necesarios para el acoplamiento al ventilador axial.
+
+| Ítem | Función | Material / especificación | Nota de compatibilidad |
+|---|---|---|---|
+| Portafiltros (holding frame) | Sujeción y sellado del prefiltro y filtro final | Inox 316L, junta de poliuretano continua | Debe aceptar módulo 24×24 in y admitir carga del filtro (≈5 kg) |
+| Malla anti-insectos | Protección contra insectos y objetos gruesos | Inox 316, tejido 18×18, marco desmontable | Montada aguas arriba del prefiltro (listado_equipos.md ítem 7) |
+| Caja/housing de filtración | Alojar portafiltros, malla y transición | Inox 316L o PRFV viniléster, tapas de inspección | Dimensionada para 24×24 in facial; altura de piso ≥3,0 m con acceso por plataforma |
+| Transición cuadrado/circular | Adaptar la salida 24×24 in del filtro a la boca circular del ventilador axial | Mismo material que la caja; ángulos ≤15° | Longitud ≥1,5 D para minimizar pérdidas |
+| Conexión flexible | Aislamiento vibratorio entre caja de filtración y ventilador | Hipalón (CSM), bandas inox 316, longitud ≥100 mm | HD-VENT-001 §6.1 |
+| Clips de prefiltro | Fijar el prefiltro MERV 8 a la cara del filtro final | Plástico o inox 316 (Camfil C-84-2 / C-84-4 para ES3) | El Durafil ES3 incluye ranuras para clips; confirmar si se suministran con el filtro |
+| Soportes estructurales | Transmitir cargas de la caja de filtración al muro, independientes del ventilador | Perfiles inox 316 / anclajes inox A4 | Evitar que el peso del banco de filtración cargue la bancada del ventilador |
+| Guarda de seguridad | Protección del lado de aspiración accesible | Inox 316 o PRFV | Según configuración final de montaje |
+
+7.4. Incongruencias y puntos de verificación en campo. La principal incógnita es el diámetro de boca del ventilador axial seleccionado: si es menor de aproximadamente 450 mm, las pérdidas de la transición cuadrado/circular podrían superar el margen de 11 Pa asignado a las rejillas, y debería revisarse el punto de trabajo del ventilador. Si el diámetro es mayor de 610 mm, una sola celda 24×24 in no cubre el área frontal y se requiere agrandar la toma o usar múltiples celdas. La altura de montaje de 3,0 m sobre el piso exige plataforma o escalera industrial para el cambio de filtros; el peso del conjunto filtro+prefiltro (≈7 kg) es manejable manualmente. El sentido de flujo puede ser en cualquier dirección en el Durafil ES2/ES3; se recomienda orientar la flecha del filtro hacia el ventilador para aprovechar la succión y mantener el elemento asentado contra el portafiltros.
+
+## 8. Foto comercial de referencia
+
+8.1. La Figura 1 presenta la imagen comercial del filtro V-bank Camfil Durafil ES (familia que incluye ES2 y ES3). La configuración mostrada corresponde a un filtro de banco tipo V con marco plástico ABS, juntas planas y ranuras para clips de prefiltro, equivalente en forma y dimensiones al especificado.
+
+**Figura 1.** Filtro V-bank Camfil Durafil ES de referencia (24×24×12 in, MERV 13-14). Fuente: Camfil.
+
+![Filtro Camfil Durafil ES V-bank](https://www.camfil.com/dam/images/878/144420/Durafil-ES-V-bank-air-filter.png?width=470&height=470&bgcolor=white)
+
+8.2. Enlace directo a la ficha del distribuidor con especificaciones del SKU 855080-009 (Durafil ES2 24×24×12 in, MERV-14/14A): [Capris — CAMFIL 855080009 Filtro tipo V (4V) con cejilla MERV-14/14A 24"×24"×12" Durafil ES2](https://www.capris.cr/es/camfil-855080009-filtro-tipo-v-4v-con-cejilla-merv-14-14a-24u0022x24u0022x12u0022-durafil-es2-k50086.html).
+
+## 9. Normas aplicables
+
+9.1. ANSI/ASHRAE 52.2-2017 (ensayo y clasificación MERV); ISO 16890 (ePM1, exigible como informe alternativo); EN 779:2012 (referencia heredada F7/F8). El estado de carga del filtro se sigue por programa de mantenimiento basado en la ΔP esperada (59 Pa limpio / 154 Pa cargado en el sitio) y en la carga de polvo observada en operación (dato típico de operación).

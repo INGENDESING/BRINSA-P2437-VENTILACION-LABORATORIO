@@ -255,3 +255,40 @@
   - `Emisiones/3.0 HV-HOJAS DE DATOS/P2437-HV-DTS-001.xlsx`
   - `Emisiones/3.0 HV-HOJAS DE DATOS/P2437-HV-DTS-001.pdf`
   - `contexto.md` y notas del vault (`vault/01_Estado actual.md`, `vault/04_Bitácora/2026-07-27.md`, `vault/03_Decisiones/2026-07-27_montaje-ventilador-muro.md`)
+
+
+---
+
+# Plan: DTS-002 — Sistema de filtración MERV 13-14 acoplado al ventilador axial DTS-001 (P2437)
+
+## Contexto
+- Objetivo: Actualizar `Investigacion/Sistemas/hojas_datos/HD-FILT-001_filtro_merv.md` (DTS-002) para que el sistema de filtración MERV 13-14 quede coherentemente acoplado al ventilador axial tubeaxial PRFV del DTS-001 (3 840 m³/h, 165 Pa sitio / 225 Pa catálogo, motor 0,75 HP). Incluir accesorios y periféricos (prefiltro MERV 8, portafiltros, juntas, marcos, sellado).
+- Cliente / Proyecto DML: P2437 — HVAC Laboratorio BRINSA.
+- Normas aplicables: ASHRAE 52.2-2017 (MERV), ISO 16890 (ePM1), AMCA 210/211 (compatibilidad hidráulica con ventilador).
+- Archivos fuente: `Investigacion/Sistemas/hojas_datos/HD-FILT-001_filtro_merv.md`, `Investigacion/Sistemas/hojas_datos/HD-VENT-001_ventilador.md`, `Investigacion/Sistemas/listado_equipos.md`, `Investigacion/Sistemas/informe_investigacion.md`.
+
+## Supuestos clave
+- [ ] El punto de diseño del ventilador axial (DTS-001) es 3 840 m³/h @ 225 Pa catálogo (165 Pa sitio), con ΔP filtro cargado 154 Pa sitio / 210 Pa catálogo.
+- [ ] La etapa de filtración es de dos pasos: prefiltro MERV 8 + filtro final V-bank MERV 13-14, ambos en formato 24×24 in.
+- [ ] El filtro final debe tener marco 100 % plástico (ABS/HIPS) para evitar corrosión por cloro/hipoclorito.
+- [ ] Se buscará al menos una opción principal con foto/imagen comercial y dos alternativas.
+
+## Tareas
+- [ ] T1. Revisar datos actuales de DTS-002, DTS-001 y listado de equipos.
+- [ ] T2. Investigar en web filtros MERV 13-14 compatibles con 3 840 m³/h y ΔP 80/210 Pa catálogo; verificar portafiltros y accesorios.
+- [ ] T3. Analizar compatibilidad hidráulica y mecánica del filtro con el ventilador axial.
+- [ ] T4. Actualizar `HD-FILT-001_filtro_merv.md` con: selección recomendada, tabla comparativa ampliada, accesorios/periféricos, foto comercial, referencias.
+- [ ] T5. Actualizar `listado_equipos.md` si cambian ítems o especificaciones.
+- [ ] T6. Regenerar DTS-002 Excel (`scripts/generar_dts.py`) y PDF alternativo si aplica.
+- [ ] T7. Copiar entregables actualizados a `Emisiones/` y actualizar manifiesto.
+- [ ] T8. Actualizar `contexto.md` y vault de Obsidian.
+- [ ] T9. Commit y push con confirmación del usuario.
+
+## Riesgos / Puntos de verificación
+- [ ] El filtro final debe soportar el caudal sin exceder la ΔP total disponible del ventilador.
+- [ ] Las dimensiones 24×24 in deben ser compatibles con el marco/portafiltros seleccionado.
+- [ ] El material del marco debe ser resistente al ambiente clorado de la planta.
+- [ ] Verificar que las URL de fotos comerciales sean públicas y estables.
+
+## Revisión
+- (Pendiente al cierre de la tarea)

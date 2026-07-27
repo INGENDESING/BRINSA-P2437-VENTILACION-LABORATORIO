@@ -31,10 +31,11 @@
 | 10 | Selladores | Sellado de pasamuros, marcos y empalmes | Silicona RTV neutra (no acetoxi); PU solo en zonas sin cloro gaseoso directo | Lote | Sikaflex / silicona neutra grado industrial (suministro nacional) | [RTV silicone (PDF)](https://irp.cdn-website.com/63168859/files/uploaded/Chemical%20Resistance%20of%20RTV%20Silicone%20Sealants%20Chart.pdf); [Tabla PU (PDF)](https://www.apachepipe.com/assets/chemical-resistance-table.pdf) |
 | 11 | Protecciones eléctricas y tablero | Guardamotor, contactor, seccionador, puesta a tierra; tablero IP55/IP66 según ubicación | Gabinete con tratamiento anticorrosivo; prensaestopas niquelados o inox | 1 | Fabricación local certificada RETIE; componentes Siemens/ABB/WEG | Requisito RETIE / NTC 2050 (normativo, no de catálogo) |
 | 12 | Cableado y canalización | Circuito de alimentación del motor 0.75 HP | Canalización PVC Schedule 80 o conduit inox; no conduit galvanizado expuesto | Lote | Suministro nacional certificado RETIE | Requisito RETIE / NTC 2050 |
+| 13 | Caja/housing de filtración y transición | Alojar portafiltros, malla anti-insectos y adaptar la boca cuadrada 24×24 in del filtro a la boca circular del ventilador axial | Inox 316L o PRFV viniléster (mismo criterio anticorrosivo del ventilador); tapas de inspección, juntas PU | 1 | Fabricación local a partir de planos del submittal del ventilador | Derivado de HD-FILT-001 §7.3 |
 
 ## 3. Notas de suministro
 
-3.1. Los ítems 1 y 4 requieren cotización formal con submittal: la selección final de tamaño/RPM del ventilador (ítem 1) y la potencia definitiva del motor (ítem 2) se confirman con el software del fabricante sobre el punto 3 840 m³/h @ 225 Pa aire estándar.
+3.1. Los ítems 1, 4 y 13 requieren cotización formal con submittal: la selección final de tamaño/RPM del ventilador (ítem 1), la potencia definitiva del motor (ítem 2) y las dimensiones de la caja de filtración/transición cuadrado-circular (ítem 13) se confirman con el software o planos del fabricante sobre el punto 3 840 m³/h @ 225 Pa aire estándar.
 
 3.2. Ítems 3 y 4 son consumibles: se recomienda incluir en la compra inicial un juego de repuestos (un prefiltro y un filtro final) y congelar la especificación en términos MERV/ePM1 + 24×24 in para habilitar segunda fuente nacional (CARVEL S.A./Workclean; [carvel.com.co](https://carvel.com.co/catalogo-workclean/filtros-de-aire-acondicionado-tipo-cartucho-fdcjm/), consulta 2026-07-23).
 
