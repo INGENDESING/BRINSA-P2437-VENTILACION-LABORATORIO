@@ -116,3 +116,99 @@
   - `Emisiones/3.0 HV-HOJAS DE DATOS/P2437-HV-DTS-001 REV1.pdf`
   - `Emisiones/MANIFIESTO_EMISION.md`
   - `contexto.md` y notas del vault (`vault/01_Estado actual.md`, `vault/05_Preguntas abiertas.md`, `vault/03_Decisiones/2026-07-27_pdf-alternativo-dts001.md`, `vault/04_Bitácora/2026-07-27.md`, `vault/06_Archivos clave.md`, `vault/07_Workflows.md`)
+
+
+---
+
+# Plan: Mejorar curva ilustrativa del ventilador axial P2437-HV-DTS-001
+
+## Contexto
+- Objetivo: Actualizar la imagen `build/dts/img/curva_ventilador_dts001.png` con una curva ilustrativa más representativa de un ventilador axial tubeaxial PRFV, basada en los datos y documentos investigados (punto de diseño 3 840 m³/h @ 225 Pa catálogo / 165 Pa sitio, ρ = 0.88 kg/m³, η = 0.55 provisional).
+- Cliente / Proyecto DML: P2437 — HVAC Laboratorio BRINSA.
+- Normas aplicables: AMCA 210/211 (curvas de desempeño), leyes de los ventiladores (P ∝ ρ, Q constante, potencia ∝ ρ).
+- Archivos fuente: `scripts/generar_img_dts001.py`, `Investigacion/Sistemas/hojas_datos/HD-VENT-001_ventilador.md`, `Investigacion/Sistemas/informe_investigacion.md`.
+
+## Supuestos clave
+- [ ] La curva es ilustrativa/provisional; no reemplaza la curva de catálogo del fabricante seleccionado.
+- [ ] Se mantiene el punto de diseño congelado: 3 840 m³/h @ 225 Pa (catálogo, ρ = 1.2 kg/m³) ≡ 165 Pa (sitio, ρ = 0.88 kg/m³).
+- [ ] Se usa eficiencia axial provisional η = 0.55 para la curva de potencia de aire.
+- [ ] La forma de la curva Q-ΔP se aproxima con ley parabólica típica de ventiladores axiales (P = P_bloqueo·(1 - (Q/Q_libre)²)), ajustando P_bloqueo y Q_libre para que pase por el punto de diseño y sea físicamente razonable para un axial tubeaxial.
+
+## Tareas
+- [ ] T1. Revisar `scripts/generar_img_dts001.py` y los datos investigados del punto de trabajo.
+- [ ] T2. Ajustar la curva Q-ΔP para que sea más representativa: incluir zona de operación estable, punto de diseño, punto en sitio, y líneas de referencia.
+- [ ] T3. Añadir curva de potencia de eje teórica (P_eje = Q·ΔP/(η·ρ·...)) o potencia de aire vs. caudal, marcando la potencia de diseño ~0.32 kW.
+- [ ] T4. Mejorar estética: colores corporativos (#1F4E78, #C00000, #2E75B6), leyenda, título, anotaciones.
+- [ ] T5. Ejecutar `python scripts/generar_img_dts001.py` y verificar la imagen generada.
+- [ ] T6. Si cambia el entregable, regenerar DTS-001 y su PDF alternativo; actualizar `Emisiones/` y manifiesto.
+- [ ] T7. Actualizar `contexto.md` y vault de Obsidian con la decisión de curva ilustrativa.
+- [ ] T8. Commit y push con confirmación del usuario.
+
+## Riesgos / Puntos de verificación
+- [ ] La curva es ilustrativa; debe quedar claro que el tamaño/RPM/potencia final se confirma con el fabricante.
+- [ ] Verificar que el punto de diseño esté sobre la curva y que la curva de potencia sea coherente con η = 0.55.
+- [ ] Asegurar que la imagen se vea bien en la hoja de datos DTS-001 y en el PDF alternativo.
+
+## Revisión
+- **Resumen:** se reescribió `scripts/generar_img_dts001.py` para generar una curva Q-ΔP ilustrativa del ventilador axial tubeaxial PRFV basada en los datos investigados. Se añadieron: curva catálogo (ρ = 1,2 kg/m³), curva en sitio (ρ = 0,88 kg/m³, k = 0,733), zona de operación recomendada sombreada, curva de potencia de eje teórica con η = 0,55 provisional, anotaciones de punto de diseño (3 840 m³/h @ 225 Pa) y punto en sitio (3 840 m³/h @ 165 Pa), y nota de validez. Se regeneraron Excel y PDF de DTS-001; el Excel de `Emisiones/` estuvo transitoriamente bloqueado por otro proceso y se copió tras cerrar el archivo manualmente.
+- **Desviaciones respecto al plan:** la curva de potencia de eje teórica se graficó en un eje Y secundario en lugar de superponerse directamente sobre la presión; esto mejora la legibilidad. La potencia de diseño mostrada es ~0,44 kW (potencia de eje) en lugar de ~0,32 kW (potencia de aire), lo cual es más útil para la selección del motor.
+- **Limitaciones conocidas:** la curva es ilustrativa/provisional y no reemplaza la curva del fabricante; los parámetros P_bloqueo = 380 Pa y Q_libre = 6 000 m³/h se eligieron para que la parábola pase por el punto de diseño y sean físicamente razonables para un axial tubeaxio medio, pero no provienen de un catálogo específico.
+- **Trabajo futuro recomendado:** reemplazar la curva ilustrativa por la curva real del fabricante seleccionado (Aerovent FBD, Greenheck VAB, Sodeca HCT/HGT, etc.) con su tamaño/RPM/potencia definitivos; verificar caudal en balanceo.
+- **Archivos entregables y rutas:**
+  - `scripts/generar_img_dts001.py`
+  - `build/dts/img/curva_ventilador_dts001.png`
+  - `build/dts/img/ventilador_referencia_dts001.png`
+  - `build/dts/P2437-HV-DTS-001 REV0.xlsx`
+  - `build/dts/P2437-HV-DTS-001 REV1.pdf`
+  - `Emisiones/3.0 HV-HOJAS DE DATOS/P2437-HV-DTS-001 REV1.xlsx`
+  - `Emisiones/3.0 HV-HOJAS DE DATOS/P2437-HV-DTS-001 REV1.pdf`
+  - `contexto.md` y notas del vault (`vault/01_Estado actual.md`, `vault/04_Bitácora/2026-07-27.md`, `vault/03_Decisiones/2026-07-27_curva-ilustrativa-axial.md`, `vault/07_Workflows.md`)
+
+
+---
+
+# Plan: Excepción de nomenclatura — entregables sin "REV1" en nombre (P2437)
+
+## Contexto
+- El cliente/proyecto P2437 aplica una excepción a la codificación GP-N-09: los nombres de archivo de los entregables no incluyen la revisión (`REV1`) al final. La revisión se documenta dentro del archivo (portada, metadatos) y en el control de versiones de git.
+- Aplica a todos los entregables: INF-001/002, CAL-001, DTS-001/002/003, LIS-001.
+
+## Supuestos clave
+- [ ] La revisión vigente sigue siendo REV1; solo cambia el nombre del archivo.
+- [ ] Los archivos fuente en `Latex/`, `generar_excel.py`, `Investigacion/Sistemas/` conservan su etiquetado interno (REV0/REV1 según corresponda).
+- [ ] `scripts/emitir.py` debe generar nombres de salida sin " REV1" para que futuras emisiones sean consistentes.
+- [ ] Se actualiza `Codificacion/codificacion.md` para registrar la excepción.
+
+## Tareas
+- [ ] T1. Renombrar todos los entregables en `Emisiones/` eliminando " REV1" del nombre.
+- [ ] T2. Actualizar `scripts/emitir.py`: lista `ENTREGABLES` y `OBSOLETOS` con nombres sin " REV1".
+- [ ] T3. Actualizar `Emisiones/MANIFIESTO_EMISION.md` con los nuevos nombres.
+- [ ] T4. Actualizar `Codificacion/codificacion.md` con la excepción documentada.
+- [ ] T5. Actualizar `contexto.md` y vault de Obsidian con la decisión de nomenclatura.
+- [ ] T6. Verificar que no queden referencias duras a nombres " REV1..." en scripts o documentación clave (salvo histórico).
+- [ ] T7. Commit y push con confirmación del usuario.
+
+## Riesgos / Puntos de verificación
+- [ ] Asegurar que la codificación interna de los documentos (portadas, revisiones) siga indicando REV1.
+- [ ] No perder archivos ni romper enlaces en `MANIFIESTO_EMISION.md`.
+- [ ] Comunicar claramente que la excepción es para este proyecto/cliente, no una modificación general de GP-N-09.
+
+## Revisión
+- **Resumen:** se aplicó la excepción de nomenclatura solicitada: todos los entregables en `Emisiones/` pasaron a nombres sin sufijo ` REV1`. Se actualizaron `scripts/emitir.py` (ENTREGABLES y OBSOLETOS), `scripts/pdf_dts001.py` (nombre de salida), `Emisiones/MANIFIESTO_EMISION.md`, `Codificacion/codificacion.md` (§4.3.1 y desviaciones), `contexto.md` y el vault de Obsidian (`vault/01_Estado actual.md`, `vault/04_Bitácora/2026-07-27.md`, `vault/03_Decisiones/2026-07-27_nomenclatura-sin-rev1.md`, `vault/07_Workflows.md`). Se regeneró el PDF alternativo con el nuevo nombre `P2437-HV-DTS-001.pdf`.
+- **Desviaciones respecto al plan:** ninguna sustancial. Se decidió conservar el sufijo ` REV0` en los archivos fuente de `Latex/` y `build/` porque son intermedios y no entregables finos; solo los nombres de `Emisiones/` se normalizaron sin ` REV1`.
+- **Limitaciones conocidas:** cualquier referencia histórica en bitácoras anteriores puede seguir mostrando nombres antiguos con ` REV1`; se actualizaron las bitácoras del 2026-07-27 y el contexto actual.
+- **Trabajo futuro recomendado:** ejecutar `python scripts/emitir.py` en la próxima sesión que toque fuentes de entregables para validar que la emisión genera nombres correctos; confirmar curva/catálogo del ventilador y verificar caudal en balanceo.
+- **Archivos entregables y rutas:**
+  - `scripts/emitir.py`
+  - `scripts/pdf_dts001.py`
+  - `Codificacion/codificacion.md`
+  - `Emisiones/MANIFIESTO_EMISION.md`
+  - `Emisiones/1.0 HV-INFORMES/P2437-HV-INF-001.pdf`
+  - `Emisiones/1.0 HV-INFORMES/P2437-HV-INF-002.pdf`
+  - `Emisiones/2.0 HV-MEMORIAS DE CALCULO/P2437-HV-CAL-001.xlsx`
+  - `Emisiones/3.0 HV-HOJAS DE DATOS/P2437-HV-DTS-001.xlsx`
+  - `Emisiones/3.0 HV-HOJAS DE DATOS/P2437-HV-DTS-001.pdf`
+  - `Emisiones/3.0 HV-HOJAS DE DATOS/P2437-HV-DTS-002.xlsx`
+  - `Emisiones/3.0 HV-HOJAS DE DATOS/P2437-HV-DTS-003.xlsx`
+  - `Emisiones/4.0 HV-LISTADOS/P2437-HV-LIS-001.xlsx`
+  - `contexto.md` y notas del vault

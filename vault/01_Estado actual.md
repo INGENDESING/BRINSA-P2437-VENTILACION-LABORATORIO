@@ -5,8 +5,10 @@ tags: [estado]
 
 # Estado actual
 
-- **Última tarea completada (2026-07-27):** generación de PDF alternativo de `P2437-HV-DTS-001 REV1` con `scripts/pdf_dts001.py` (reportlab), dado que el entorno no dispone de Excel/LibreOffice. El PDF incluye portada corporativa, especificación completa, tablas con estilo DML, fuente Times New Roman y las imágenes de curva/referencia. Se copió a `Emisiones/3.0 HV-HOJAS DE DATOS/` y se actualizó el manifiesto.
-- **Tarea previa (2026-07-27):** mejora de presentación de los documentos Excel generados — layout unificado A:O, fuente Times New Roman, colores corporativos, bordes thin y ajuste de alturas en `generar_excel.py`, `scripts/generar_dts.py` y `scripts/generar_lis.py`. Se reemitieron 7 entregables REV1 con `scripts/emitir.py`.
+- **Última tarea completada (2026-07-27):** excepción de nomenclatura para entregables — se eliminó el sufijo ` REV1` de los nombres de archivo en `Emisiones/` y en `scripts/emitir.py`. La revisión vigente sigue documentándose en la portada/metadatos de cada archivo y en git. Se renombraron INF, CAL, DTS y LIS; se actualizaron `Codificacion/codificacion.md`, `Emisiones/MANIFIESTO_EMISION.md`, `scripts/pdf_dts001.py` y las referencias en contexto/vault.
+- **Tarea previa (2026-07-27):** mejora de la curva ilustrativa del ventilador axial en `scripts/generar_img_dts001.py` y regeneración de Excel/PDF de DTS-001.
+- **Tarea previa (2026-07-27):** generación de PDF alternativo de `P2437-HV-DTS-001` con `scripts/pdf_dts001.py`.
+- **Tarea previa (2026-07-27):** mejora de presentación de los documentos Excel generados y emisión REV1 con `scripts/emitir.py`.
 - **Tarea previa (2026-07-27):** cambio de alcance del cliente — sin presurización, ventilador axial tubeaxial PRFV, sin instrumentación ΔP; emisión REV1.
 - **Próxima tarea pendiente:**
   - Confirmar disponibilidad comercial local del ventilador axial seleccionado (Aerovent FBD / alternativas Greenheck, Sodeca, NYB) y fijar tamaño/RPM/potencia definitiva con la curva de catálogo.
@@ -16,4 +18,5 @@ tags: [estado]
 Relacionado: [[inicializacion]], [[02_Bases de diseño congeladas]],
 [[05_Preguntas abiertas]], [[2026-07-27_sin-presurizacion-ventilador-axial]],
 [[2026-07-27_presentacion-excel-a-o-times-new-roman]], [[2026-07-27_mejora-presentacion-excel]],
-[[2026-07-27_pdf-alternativo-dts001]]
+[[2026-07-27_pdf-alternativo-dts001]], [[2026-07-27_curva-ilustrativa-axial]],
+[[2026-07-27_nomenclatura-sin-rev1]]

@@ -8,7 +8,7 @@ tags: [decision, dts001, pdf, entregable]
 
 ## Decisión
 
-Dado que el entorno de trabajo no dispone de Excel ni LibreOffice para exportar manualmente la hoja de datos `P2437-HV-DTS-001 REV1.xlsx` a PDF, se generó un PDF alternativo con `reportlab` desde el markdown fuente `Investigacion/Sistemas/hojas_datos/HD-VENT-001_ventilador.md`.
+Dado que el entorno de trabajo no dispone de Excel ni LibreOffice para exportar manualmente la hoja de datos `P2437-HV-DTS-001.xlsx` a PDF, se generó un PDF alternativo con `reportlab` desde el markdown fuente `Investigacion/Sistemas/hojas_datos/HD-VENT-001_ventilador.md`.
 
 ## Motivo
 

@@ -34,4 +34,4 @@ tags: [bitacora]
 ## Pendientes
 
 - Revisión visual final de los Excel en Microsoft Excel.
-- Generación manual del PDF de `P2437-HV-DTS-001 REV1.xlsx` si aún no se ha hecho.
+- Generación manual del PDF de `P2437-HV-DTS-001.xlsx` si aún no se ha hecho.

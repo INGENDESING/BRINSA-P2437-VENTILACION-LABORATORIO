@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-pdf_dts001.py — Genera un PDF alternativo de P2437-HV-DTS-001 REV1
+pdf_dts001.py — Genera un PDF alternativo de P2437-HV-DTS-001
 (ventilador axial tubeaxial PRFV) a partir del markdown fuente.
 
 Dado que este entorno no dispone de Excel/LibreOffice para la exportación
@@ -9,7 +9,7 @@ manual, este script produce un PDF con layout corporativo DML equivalente:
 portada + especificación (títulos, párrafos, tablas, notas e imágenes).
 
 Uso:  .venv/Scripts/python scripts/pdf_dts001.py
-Salida: build/dts/P2437-HV-DTS-001 REV1.pdf
+Salida: build/dts/P2437-HV-DTS-001.pdf
 """
 
 import math
@@ -40,7 +40,7 @@ from reportlab.platypus import (
 ROOT = Path(__file__).resolve().parent.parent
 MD_FUENTE = ROOT / "Investigacion" / "Sistemas" / "hojas_datos" / "HD-VENT-001_ventilador.md"
 IMG_DIR = ROOT / "build" / "dts" / "img"
-SALIDA = ROOT / "build" / "dts" / "P2437-HV-DTS-001 REV1.pdf"
+SALIDA = ROOT / "build" / "dts" / "P2437-HV-DTS-001.pdf"
 
 # Colores corporativos
 AZUL = colors.HexColor("#1F4E78")

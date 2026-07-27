@@ -1,8 +1,10 @@
 # Contexto del proyecto: HVAC Laboratorio Brinsa
 
 ## Estado actual
-- Última tarea completada (2026-07-27): generación de PDF alternativo de `P2437-HV-DTS-001 REV1` con `scripts/pdf_dts001.py` (reportlab), dado que el entorno no dispone de Excel/LibreOffice. El PDF incluye portada corporativa, especificación completa, tablas con estilo DML, fuente Times New Roman y las imágenes de curva/referencia. Se copió a `Emisiones/3.0 HV-HOJAS DE DATOS/` y se actualizó el manifiesto.
-- Tarea previa (2026-07-27): mejora de presentación de los documentos Excel generados (layout A:O, Times New Roman, bordes thin, colores corporativos) y emisión REV1 con `scripts/emitir.py`.
+- Última tarea completada (2026-07-27): excepción de nomenclatura para entregables — se eliminó el sufijo ` REV1` de los nombres de archivo en `Emisiones/` y en `scripts/emitir.py`. La revisión vigente sigue documentándose en la portada/metadatos de cada archivo y en git. Se renombraron INF, CAL, DTS y LIS; se actualizaron `Codificacion/codificacion.md`, `Emisiones/MANIFIESTO_EMISION.md`, `scripts/pdf_dts001.py` y las referencias en contexto/vault.
+- Tarea previa (2026-07-27): mejora de la curva ilustrativa del ventilador axial en `scripts/generar_img_dts001.py` y regeneración de Excel/PDF de DTS-001.
+- Tarea previa (2026-07-27): generación de PDF alternativo de `P2437-HV-DTS-001` con `scripts/pdf_dts001.py`.
+- Tarea previa (2026-07-27): mejora de presentación de los documentos Excel generados y emisión REV1.
 - Próxima tarea pendiente:
   - Confirmar disponibilidad comercial local del ventilador axial seleccionado (Aerovent FBD / alternativas Greenheck, Sodeca, NYB) y fijar tamaño/RPM/potencia definitiva con la curva de catálogo.
   - Verificar el caudal real en el ensayo de balanceo (anemometría en rejillas).
@@ -20,7 +22,9 @@
 - Filtración: MERV 13-14 definitivo — SIN HEPA (laboratorio de análisis industrial)
 
 ## Decisiones de diseño clave
-- **PDF alternativo DTS-001 (2026-07-27):** como el entorno carece de Excel/LibreOffice, se generó un PDF equivalente con `reportlab` desde el markdown fuente. Se registró Times New Roman desde `C:/Windows/Fonts`, se aplicó layout de portada + especificación con encabezado/pie corporativos, tablas con encabezado azul `#1F4E78` y bordes thin, e inserción de imágenes de curva y referencia. El PDF es funcionalmente equivalente al Excel; cuando se disponga de Excel, puede reemplazarse por la exportación manual de la plantilla corporativa.
+- **Curva ilustrativa axial (2026-07-27):** se mejoró `scripts/generar_img_dts001.py` para generar una curva Q-ΔP basada en los datos investigados: punto de diseño 3 840 m³/h @ 225 Pa catálogo / 165 Pa sitio, factor de densidad k = 0,733, eficiencia η = 0,55 provisional y forma parabólica típica de ventiladores axiales tubeaxial. Se añadieron curva en sitio, curva de potencia de eje teórica, zona de operación recomendada y nota de validez. La curva es ilustrativa y requiere validación contra el catálogo del fabricante seleccionado.
+- **Nomenclatura de entregables sin REV1 (2026-07-27):** excepción acordada para el proyecto P2437. Los archivos emitidos en `Emisiones/` no llevan el sufijo ` REV1` en el nombre; la revisión consta en la portada/metadatos del documento y en el control de versiones de git. Se actualizaron `scripts/emitir.py`, `Codificacion/codificacion.md` y `Emisiones/MANIFIESTO_EMISION.md`.
+- **PDF alternativo DTS-001 (2026-07-27):** como el entorno carece de Excel/LibreOffice, se generó un PDF equivalente con `reportlab` desde el markdown fuente. Se registró Times New Roman desde `C:/Windows/Fonts`, se aplicó layout de portada + especificación con encabezado/pie corporativos, tablas con encabezado azul `#1F4E78` y bordes thin, e inserción de imágenes de curva y referencia. El PDF es funcionalmente equivalente al Excel.
 - Sistema sin ductos de impulsión: ventilador axial directo + descarga libre por 3 rejillas (353×336 mm) con malla anti-insectos inox.
 - **Sin presurización / axial (2026-07-27):** el cliente eliminó la presurización y solicitó ventilador axial. Se descartan damper de alivio barométrico, transmisor ΔP Dwyer MS-121, Magnehelic 2000-00 y controlador de alarmas. Punto de diseño recalculado: 165 Pa sitio / 225 Pa catálogo; motor provisional 0.75 HP.
 - **Sitio Cajicá (2026-07-23):** recálculo con ρ = 0.88 kg/m³; ΔP rejillas 11 Pa (ahora pérdida de descarga libre).
@@ -42,13 +46,13 @@
 - `vault/inicializacion.md` — protocolo de arranque para recuperar contexto en nuevas sesiones.
 - `scripts/generar_lis.py` — genera el listado de equipos BOQ en Excel corporativo.
 - `scripts/emitir.py` — regenera Excel, DTS, LIS, recompila INF-001/002 y copia a `Emisiones/`.
-- `scripts/pdf_dts001.py` — genera el PDF alternativo de `P2437-HV-DTS-001 REV1` desde el markdown fuente (reportlab).
-- `Emisiones/4.0 HV-LISTADOS/P2437-HV-LIS-001 REV1.xlsx` — listado de equipos y materiales (BOQ).
-- `Emisiones/3.0 HV-HOJAS DE DATOS/P2437-HV-DTS-001 REV1.pdf` — hoja de datos del ventilador axial en PDF (alternativo a Excel).
+- `scripts/pdf_dts001.py` — genera el PDF alternativo de `P2437-HV-DTS-001` desde el markdown fuente (reportlab).
+- `Emisiones/4.0 HV-LISTADOS/P2437-HV-LIS-001.xlsx` — listado de equipos y materiales (BOQ).
+- `Emisiones/3.0 HV-HOJAS DE DATOS/P2437-HV-DTS-001.pdf` — hoja de datos del ventilador axial en PDF (alternativo a Excel).
 
 ## Preguntas abiertas / bloqueos
 - [ ] Confirmar disponibilidad comercial local del ventilador axial seleccionado (Aerovent FBD vía importación, Greenheck VAB/VAD vía Prime Lines, Sodeca HCT/HGT, NYB FRP). Fijar tamaño/RPM/potencia definitiva con curva de catálogo. Plazo máximo de entrega presupuestado: ~3 meses (dato cliente, 2026-07-23).
-- [x] ~~Generar PDF de `P2437-HV-DTS-001 REV1.xlsx`~~ → Resuelto 2026-07-27: se generó PDF alternativo con `scripts/pdf_dts001.py` y se copió a `Emisiones/3.0 HV-HOJAS DE DATOS/`. Puede reemplazarse por exportación manual desde Excel cuando se disponga de Excel local.
+- [x] ~~Generar PDF de `P2437-HV-DTS-001.xlsx`~~ → Resuelto 2026-07-27: se generó PDF alternativo con `scripts/pdf_dts001.py` y se copió a `Emisiones/3.0 HV-HOJAS DE DATOS/P2437-HV-DTS-001.pdf`. Puede reemplazarse por exportación manual desde Excel cuando se disponga de Excel local.
 - [ ] Verificar el caudal real en el ensayo de balanceo mediante anemometría en las tres rejillas de descarga.
 - [x] ~~Confirmar si el laboratorio requiere HEPA~~ → Resuelto 2026-07-23: NO requiere (análisis industrial).
 - [x] ~~Tensión/fases del motor~~ → 440 V, 3φ, 60 Hz (cliente, 2026-07-23).

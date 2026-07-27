@@ -115,6 +115,13 @@ los entregables con sus nombres codificados), con trazabilidad en
 `Emisiones/MANIFIESTO_EMISION.md`. Regla: las fuentes se editan, las emisiones se
 regeneran; nunca se edita a mano un archivo emitido.
 
+**Excepción de nomenclatura (2026-07-27):** por solicitud del cliente/proyecto,
+los nombres de archivo de los entregables emitidos **no incluyen la revisión**
+(`REV1`) al final. El código GP-N-09 del documento se conserva sin sufijo de
+revisión; la revisión vigente se indica en la portada/metadatos del documento y
+en el control de versiones de git. Ejemplo: el informe se emite como
+`P2437-HV-INF-001.pdf` (no `P2437-HV-INF-001 REV1.pdf`).
+
 Formatos corporativos obligatorios (carpeta `FormatosDocumentos/`): la memoria
 CAL-001 y las hojas de datos DTS se generan como libros Excel de **2 hojas**
 (PORTADA + especificación única) desde las plantillas `CAL.xlsx` y `DTS.xlsx`,
@@ -143,7 +150,11 @@ mediante `generar_excel.py` y `scripts/generar_dts.py` respectivamente.
    HD-INST-001 por ser instrumentación de medición; las demás DTS quedan en HV por
    ser equipos del sistema de ventilación. Si DML prefiere concentrar todo en la
    especialidad líder (HV), el consecutivo sería P2437-HV-DTS-004.
-4. **Revisiones**: todos los documentos del proyecto están en Revisión CERO (0),
+4. **Excepción de nomenclatura para entregables (2026-07-27):** los archivos
+   emitidos en `Emisiones/` no llevan sufijo ` REV1` en el nombre, aunque la
+   revisión vigente sea REV1. La revisión se documenta en la portada del archivo
+   y en git. Ver §4.3.1.
+5. **Revisiones**: todos los documentos del proyecto están en Revisión CERO (0),
    conforme a la norma. Las rutas `Latex/06_entregables/REV0/` ya reflejan este
    criterio.
 

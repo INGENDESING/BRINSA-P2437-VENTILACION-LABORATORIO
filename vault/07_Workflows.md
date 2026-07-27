@@ -44,6 +44,16 @@ Motor **pdflatex**, tipografía **NewTX** (`newtxtext` + `newtxmath`), `microtyp
 Si quedan restos de una compilación xelatex previa (`.toc` con `\xpg@aux`), borrar
 los `.aux` / `.toc` / `.out` y recompilar.
 
+## Generar imágenes auxiliares de DTS-001
+
+```bash
+. .venv/Scripts/activate
+python scripts/generar_img_dts001.py
+```
+
+Salida: `build/dts/img/curva_ventilador_dts001.png` y
+`build/dts/img/ventilador_referencia_dts001.png`.
+
 ## Generar PDF alternativo de DTS-001
 
 Requiere el entorno virtual `.venv/` con `reportlab` instalado.
@@ -53,8 +63,12 @@ Requiere el entorno virtual `.venv/` con `reportlab` instalado.
 python scripts/pdf_dts001.py
 ```
 
-Salida: `build/dts/P2437-HV-DTS-001 REV1.pdf`. Copiar manualmente a
-`Emisiones/3.0 HV-HOJAS DE DATOS/` y actualizar `Emisiones/MANIFIESTO_EMISION.md`.
+Salida: `build/dts/P2437-HV-DTS-001.pdf`. Copiar manualmente a
+`Emisiones/3.0 HV-HOJAS DE DATOS/P2437-HV-DTS-001.pdf` y actualizar
+`Emisiones/MANIFIESTO_EMISION.md`.
+
+**Nota:** por excepción de nomenclatura del proyecto, los entregables no llevan
+sufijo ` REV1` en el nombre de archivo.
 
 ## Despliegue del dashboard (GitHub Pages)
 
