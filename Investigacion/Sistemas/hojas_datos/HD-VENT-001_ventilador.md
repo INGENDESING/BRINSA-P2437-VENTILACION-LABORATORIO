@@ -95,6 +95,16 @@ Referencias de especificación: [Leeson/Regal Severe Duty (PDF)](https://www.reg
 | New York Blower FRP tubeaxial | PRFV | Importación (plazo máx. ~3 meses, dato cliente 2026-07-23) | [NYB](https://www.nyb.com/) |
 | Plastec | Polipropileno | Importación directa (despacho 48 h declarado) | [Plastec](https://www.plastecventilation.com/collections/plastec-series) |
 
-## 8. Normas aplicables
+## 8. Montaje
 
-8.1. AMCA 210/211 (desempeño y certificación), AMCA 99 (Spark A), ASTM C582 y ASTM D4167 (laminados PRFV), NEMA MG-1 / IEC 60034-1 (motores y derateo por altitud), IEEE 841 (ejecución severe duty de referencia), RETIE y NTC 2050 (instalación eléctrica), ISO 12944 / prácticas NACE-AMPP (protección anticorrosiva del entorno de instalación).
+8.1. El ventilador se instalará en **muro/pasamuros**, con el eje horizontal y a una cota aproximada de **3,0 m sobre el piso terminado** del laboratorio. El sentido de flujo es: aspiración de aire exterior filtrado, descarga directa al interior del recinto.
+
+8.2. La transmisión por bandas ubica el **motor fuera de la corriente de aire corrosivo**. La altura de 3,0 m exige garantizar el acceso para mantenimiento periódico de bandas, lubricación e inspección del motor (plataforma fija o escalera industrial).
+
+8.3. La carcasa tubular se apoyará en una bancada/soporte anclado a la estructura del muro con ferretería inox 316 (A4) y aislamiento dieléctrico frente a estructuras galvanizadas. El pasamuros se sellará con silicona RTV neutra.
+
+8.4. La toma de aire exterior debe ubicarse a sotavento y alejada de las fuentes de cloro de la planta, conforme a la recomendación de la investigación del sistema.
+
+## 9. Normas aplicables
+
+9.1. AMCA 210/211 (desempeño y certificación), AMCA 99 (Spark A), ASTM C582 y ASTM D4167 (laminados PRFV), NEMA MG-1 / IEC 60034-1 (motores y derateo por altitud), IEEE 841 (ejecución severe duty de referencia), RETIE y NTC 2050 (instalación eléctrica), ISO 12944 / prácticas NACE-AMPP (protección anticorrosiva del entorno de instalación).

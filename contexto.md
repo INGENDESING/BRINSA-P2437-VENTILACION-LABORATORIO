@@ -1,8 +1,9 @@
 # Contexto del proyecto: HVAC Laboratorio Brinsa
 
 ## Estado actual
-- Última tarea completada (2026-07-27): excepción de nomenclatura para entregables — se eliminó el sufijo ` REV1` de los nombres de archivo en `Emisiones/` y en `scripts/emitir.py`. La revisión vigente sigue documentándose en la portada/metadatos de cada archivo y en git. Se renombraron INF, CAL, DTS y LIS; se actualizaron `Codificacion/codificacion.md`, `Emisiones/MANIFIESTO_EMISION.md`, `scripts/pdf_dts001.py` y las referencias en contexto/vault.
-- Tarea previa (2026-07-27): mejora de la curva ilustrativa del ventilador axial en `scripts/generar_img_dts001.py` y regeneración de Excel/PDF de DTS-001.
+- Última tarea completada (2026-07-27): imagen de referencia de montaje del ventilador axial en muro/pasamuros a ~3,0 m de altura. Se reemplazó el placeholder textual por un esquema técnico en `scripts/generar_img_dts001.py` que muestra carcasa tubular, rodete, motor TEFC fuera del aire corrosivo, guarda, flujo de aire y cota de montaje. Se añadió la sección 8 (Montaje) en `Investigacion/Sistemas/hojas_datos/HD-VENT-001_ventilador.md` y se regeneraron Excel/PDF de DTS-001.
+- Tarea previa (2026-07-27): excepción de nomenclatura para entregables sin ` REV1` en nombre de archivo.
+- Tarea previa (2026-07-27): mejora de la curva ilustrativa del ventilador axial y regeneración de Excel/PDF de DTS-001.
 - Tarea previa (2026-07-27): generación de PDF alternativo de `P2437-HV-DTS-001` con `scripts/pdf_dts001.py`.
 - Tarea previa (2026-07-27): mejora de presentación de los documentos Excel generados y emisión REV1.
 - Próxima tarea pendiente:
@@ -23,7 +24,8 @@
 
 ## Decisiones de diseño clave
 - **Curva ilustrativa axial (2026-07-27):** se mejoró `scripts/generar_img_dts001.py` para generar una curva Q-ΔP basada en los datos investigados: punto de diseño 3 840 m³/h @ 225 Pa catálogo / 165 Pa sitio, factor de densidad k = 0,733, eficiencia η = 0,55 provisional y forma parabólica típica de ventiladores axiales tubeaxial. Se añadieron curva en sitio, curva de potencia de eje teórica, zona de operación recomendada y nota de validez. La curva es ilustrativa y requiere validación contra el catálogo del fabricante seleccionado.
-- **Nomenclatura de entregables sin REV1 (2026-07-27):** excepción acordada para el proyecto P2437. Los archivos emitidos en `Emisiones/` no llevan el sufijo ` REV1` en el nombre; la revisión consta en la portada/metadatos del documento y en el control de versiones de git. Se actualizaron `scripts/emitir.py`, `Codificacion/codificacion.md` y `Emisiones/MANIFIESTO_EMISION.md`.
+- **Montaje del ventilador en muro/pasamuros a ~3,0 m (2026-07-27):** se definió que el ventilador axial tubeaxial PRFV se instalará en muro/pasamuros (no en pared libre), con eje a ~3,0 m sobre piso, motor fuera de la corriente de aire corrosivo mediante transmisión por bandas, y acceso para mantenimiento de bandas. Se actualizó la imagen de referencia en `scripts/generar_img_dts001.py` y se añadió la sección 8 de montaje en `HD-VENT-001_ventilador.md`.
+- **Nomenclatura de entregables sin REV1 (2026-07-27):** excepción acordada para el proyecto P2437. Los archivos emitidos en `Emisiones/` no llevan el sufijo ` REV1` en el nombre; la revisión consta en la portada/metadatos del documento y en el control de versiones de git.
 - **PDF alternativo DTS-001 (2026-07-27):** como el entorno carece de Excel/LibreOffice, se generó un PDF equivalente con `reportlab` desde el markdown fuente. Se registró Times New Roman desde `C:/Windows/Fonts`, se aplicó layout de portada + especificación con encabezado/pie corporativos, tablas con encabezado azul `#1F4E78` y bordes thin, e inserción de imágenes de curva y referencia. El PDF es funcionalmente equivalente al Excel.
 - Sistema sin ductos de impulsión: ventilador axial directo + descarga libre por 3 rejillas (353×336 mm) con malla anti-insectos inox.
 - **Sin presurización / axial (2026-07-27):** el cliente eliminó la presurización y solicitó ventilador axial. Se descartan damper de alivio barométrico, transmisor ΔP Dwyer MS-121, Magnehelic 2000-00 y controlador de alarmas. Punto de diseño recalculado: 165 Pa sitio / 225 Pa catálogo; motor provisional 0.75 HP.

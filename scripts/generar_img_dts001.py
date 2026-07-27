@@ -11,11 +11,13 @@ Salida: build/dts/img/curva_ventilador_dts001.png
 Uso:  python scripts/generar_img_dts001.py
 """
 
+import math
 from pathlib import Path
 
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+from matplotlib.patches import Circle, FancyArrowPatch, FancyBboxPatch, Rectangle
 from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -142,47 +144,131 @@ def generar_curva():
 
 
 def generar_referencia():
-    """Imagen de referencia del ventilador (placeholder)."""
-    W, H = 600, 400
-    img = Image.new("RGB", (W, H), "white")
-    draw = ImageDraw.Draw(img)
-    draw.rectangle([2, 2, W - 3, H - 3], outline="#1F4E78", width=3)
+    """Esquema de referencia del ventilador axial tubeaxial PRFV montado en
+    muro/pasamuros, con motor fuera de la corriente de aire (transmisión por
+    bandas). La imagen es una ilustración técnica propia, no una fotografía."""
 
-    # Preferir Times New Roman para consistencia con los documentos corporativos
-    fonts = []
-    for name in ["times.ttf", "C:/Windows/Fonts/times.ttf"]:
-        try:
-            fonts.append(ImageFont.truetype(name, 28))
-            fonts.append(ImageFont.truetype(name, 20))
-            fonts.append(ImageFont.truetype(name, 16))
-            break
-        except OSError:
-            fonts = []
-    if not fonts:
-        try:
-            fonts = [
-                ImageFont.truetype("arial.ttf", 28),
-                ImageFont.truetype("arial.ttf", 20),
-                ImageFont.truetype("arial.ttf", 16),
-            ]
-        except OSError:
-            fonts = [ImageFont.load_default()] * 3
+    fig, ax = plt.subplots(figsize=(9, 5.5), dpi=120)
+    ax.set_xlim(0, 9)
+    ax.set_ylim(0, 5.5)
+    ax.set_aspect("equal")
+    ax.axis("off")
 
-    font_title, font_sub, font_note = fonts
+    # Colores corporativos
+    azul = "#1F4E78"
+    gris = "#E7E6E6"
+    rojo = "#C00000"
+    verde = "#70AD47"
 
-    def centrar(texto, y, fuente, color="#1F4E78"):
-        bbox = draw.textbbox((0, 0), texto, font=fuente)
-        w = bbox[2] - bbox[0]
-        draw.text(((W - w) / 2, y), texto, font=fuente, fill=color)
+    # Muro / pared (grueso)
+    muro_x = 4.0
+    muro_ancho = 0.6
+    muro_altura = 4.5
+    muro = Rectangle((muro_x, 0.5), muro_ancho, muro_altura,
+                     facecolor=gris, edgecolor="#666666", linewidth=1.5, hatch="//")
+    ax.add_patch(muro)
+    ax.text(muro_x + muro_ancho / 2, 0.25, "MURO/PASAMUROS", ha="center",
+            va="top", fontsize=9, color="#333333")
 
-    centrar("VENTILADOR AXIAL TUBEAXIAL PRFV", 110, font_title)
-    centrar("Aerovent FBD (primera opción — de referencia,", 160, font_sub, "#000000")
-    centrar("por confirmar en cotización)", 190, font_sub, "#000000")
-    centrar("3 840 m³/h @ 225 Pa catálogo", 230, font_sub, "#000000")
-    centrar("Imagen de referencia por confirmar con proveedor", 310, font_note, "#666666")
+    # Carcasa tubular del ventilador (PRFV)
+    carcasa_y = 2.8
+    carcasa_largo = 2.2
+    carcasa_diam = 0.9
+    carcasa = FancyBboxPatch(
+        (muro_x - carcasa_largo / 2 + muro_ancho / 2, carcasa_y - carcasa_diam / 2),
+        carcasa_largo, carcasa_diam,
+        boxstyle="round,pad=0.02,rounding_size=0.15",
+        facecolor="#B4C6E7", edgecolor=azul, linewidth=2.5
+    )
+    ax.add_patch(carcasa)
 
+    # Rodete axial (lado interior)
+    rodete_x = muro_x + muro_ancho / 2 + 0.35
+    rodete = Circle((rodete_x, carcasa_y), 0.28, facecolor=azul, edgecolor="white", linewidth=1)
+    ax.add_patch(rodete)
+    # Álabes
+    for angle in range(0, 360, 45):
+        rad = math.radians(angle)
+        x1 = rodete_x + 0.10 * math.cos(rad)
+        y1 = carcasa_y + 0.10 * math.sin(rad)
+        x2 = rodete_x + 0.26 * math.cos(rad)
+        y2 = carcasa_y + 0.26 * math.sin(rad)
+        ax.plot([x1, x2], [y1, y2], color="white", lw=1.5)
+
+    # Guarda de seguridad (lado exterior)
+    guarda_x = muro_x - carcasa_largo / 2 + muro_ancho / 2 - 0.15
+    guarda = Circle((guarda_x, carcasa_y), 0.42, fill=False,
+                    edgecolor=azul, linewidth=2, linestyle="--")
+    ax.add_patch(guarda)
+    ax.text(guarda_x, carcasa_y + 0.55, "Guarda", ha="center",
+            fontsize=8, color=azul)
+
+    # Motor fuera de la corriente de aire (arriba, con bandas)
+    motor_x = muro_x + muro_ancho / 2 + 0.35
+    motor_y = carcasa_y + 1.1
+    motor = FancyBboxPatch(
+        (motor_x - 0.35, motor_y - 0.20), 0.70, 0.40,
+        boxstyle="round,pad=0.02,rounding_size=0.05",
+        facecolor="#FFC000", edgecolor="#333333", linewidth=1.5
+    )
+    ax.add_patch(motor)
+    ax.text(motor_x, motor_y, "MOTOR\nTEFC", ha="center", va="center",
+            fontsize=8, color="#333333")
+
+    # Poleas y bandas
+    polea_motor = Circle((motor_x, motor_y - 0.30), 0.08, facecolor="#666666")
+    polea_vent = Circle((motor_x, carcasa_y + 0.45), 0.08, facecolor="#666666")
+    ax.add_patch(polea_motor)
+    ax.add_patch(polea_vent)
+    ax.plot([motor_x, motor_x], [motor_y - 0.30, carcasa_y + 0.45],
+            color="#333333", lw=2)
+    ax.text(motor_x + 0.25, carcasa_y + 0.75, "Bandas", fontsize=8, color="#333333")
+
+    # Eje del ventilador
+    ax.plot([muro_x + muro_ancho / 2 - 0.3, motor_x],
+            [carcasa_y, carcasa_y], color="#333333", lw=3)
+
+    # Flechas de flujo de aire
+    # Exterior → interior
+    ax.annotate("", xy=(rodete_x - 0.6, carcasa_y),
+                xytext=(muro_x - 1.8, carcasa_y),
+                arrowprops=dict(arrowstyle="->", color=verde, lw=2))
+    ax.text(muro_x - 1.3, carcasa_y + 0.25, "Aire exterior", fontsize=9,
+            color=verde, ha="center")
+
+    ax.annotate("", xy=(muro_x + muro_ancho + 1.2, carcasa_y),
+                xytext=(rodete_x + 0.3, carcasa_y),
+                arrowprops=dict(arrowstyle="->", color=rojo, lw=2))
+    ax.text(muro_x + muro_ancho + 0.8, carcasa_y + 0.25, "Descarga al\nlaboratorio",
+            fontsize=9, color=rojo, ha="center")
+
+    # Indicación de altura ~3 m
+    ax.annotate("", xy=(muro_x + muro_ancho + 2.3, carcasa_y),
+                xytext=(muro_x + muro_ancho + 2.3, 0.5),
+                arrowprops=dict(arrowstyle="<->", color="#333333", lw=1))
+    ax.text(muro_x + muro_ancho + 2.4, carcasa_y / 2 + 0.4,
+            "~3,0 m\n(eje a piso)", fontsize=9, color="#333333", va="center")
+
+    # Línea de piso
+    ax.plot([0, 9], [0.5, 0.5], color="#333333", lw=1.5)
+
+    # Título y notas
+    ax.set_title("Esquema de montaje referencial — Ventilador axial tubeaxial PRFV\n"
+                 "Aerovent FBD / equivalente (transmisión por bandas, motor fuera del aire corrosivo)",
+                 fontsize=12, color=azul, pad=15)
+
+    notas = (
+        "Notas: 1) Montaje en muro/pasamuros; no en pared libre. "
+        "2) El acceso para mantenimiento de bandas debe garantizarse a ~3,0 m de altura. "
+        "3) Imagen ilustrativa; confirmar detalles con el fabricante seleccionado."
+    )
+    fig.text(0.5, 0.02, notas, ha="center", fontsize=8,
+             style="italic", color="#666666")
+
+    fig.tight_layout(rect=[0, 0.06, 1, 1])
     out = IMG_DIR / "ventilador_referencia_dts001.png"
-    img.save(out)
+    fig.savefig(out)
+    plt.close(fig)
     return out
 
 

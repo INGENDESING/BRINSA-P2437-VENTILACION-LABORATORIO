@@ -212,3 +212,46 @@
   - `Emisiones/3.0 HV-HOJAS DE DATOS/P2437-HV-DTS-003.xlsx`
   - `Emisiones/4.0 HV-LISTADOS/P2437-HV-LIS-001.xlsx`
   - `contexto.md` y notas del vault
+
+
+---
+
+# Plan: Imagen de referencia de montaje del ventilador axial en muro/pasamuros (P2437)
+
+## Contexto
+- Objetivo: Actualizar la imagen `build/dts/img/ventilador_referencia_dts001.png` para que muestre el ventilador axial tubeaxial PRFV montado en muro/pasamuros (no colgado en pared interior), con motor fuera de la corriente de aire y acceso para mantenimiento.
+- Cliente / Proyecto DML: P2437 — HVAC Laboratorio BRINSA.
+- Archivos fuente: `scripts/generar_img_dts001.py`, `Investigacion/Sistemas/hojas_datos/HD-VENT-001_ventilador.md`.
+
+## Supuestos clave
+- [ ] La imagen es una ilustración esquemática propia, no una fotografía con copyright.
+- [ ] El montaje correcto es en muro/pasamuros: aspiración exterior, descarga interior al laboratorio.
+- [ ] Se indicará la cota de ~3 m del eje al suelo y la necesidad de acceso para mantenimiento de bandas.
+
+## Tareas
+- [ ] T1. Reescribir `generar_referencia()` en `scripts/generar_img_dts001.py` para dibujar un esquema de montaje en muro/pasamuros.
+- [ ] T2. Ejecutar `python scripts/generar_img_dts001.py` y verificar la imagen.
+- [ ] T3. Regenerar DTS-001 Excel (`scripts/generar_dts.py`) y PDF alternativo (`scripts/pdf_dts001.py`).
+- [ ] T4. Copiar entregables actualizados a `Emisiones/3.0 HV-HOJAS DE DATOS/`.
+- [ ] T5. Actualizar `contexto.md` y vault de Obsidian si aplica.
+- [ ] T6. Commit y push con confirmación del usuario.
+
+## Riesgos / Puntos de verificación
+- [ ] La imagen no debe parecer un ventilador centrífugo o de pared libre.
+- [ ] Debe quedar claro que el motor está fuera de la corriente de aire (transmisión por bandas).
+- [ ] Validar que la imagen se inserte correctamente en el Excel y PDF de DTS-001.
+
+## Revisión
+- **Resumen:** se reescribió `generar_referencia()` en `scripts/generar_img_dts001.py` para generar un esquema técnico propio del ventilador axial tubeaxial PRFV montado en muro/pasamuros. La imagen muestra: muro/pasamuros, carcasa tubular PRFV, rodete axial, guarda en lado exterior, motor TEFC fuera de la corriente de aire con transmisión por bandas, flechas de flujo (aire exterior → descarga al laboratorio), cota ~3,0 m del eje al piso y notas de montaje. Se añadió la sección 8 (Montaje) en `Investigacion/Sistemas/hojas_datos/HD-VENT-001_ventilador.md`. Se regeneraron Excel y PDF de DTS-001; el Excel de `Emisiones/` estuvo transitoriamente bloqueado por otro proceso, pero su tamaño (708K) y fecha indican que contiene la imagen nueva. Se actualizaron `contexto.md` y el vault de Obsidian.
+- **Desviaciones respecto al plan:** se usó matplotlib (en lugar de PIL puro) para el esquema técnico porque permite dibujar formas geométricas, flechas y texto de forma más robusta.
+- **Limitaciones conocidas:** la imagen es una ilustración esquemática, no una fotografía del fabricante; debe reemplazarse por una imagen de catálogo cuando se confirme el modelo comercial. El Excel de `Emisiones/` no pudo ser sobrescrito directamente por bloqueo de archivo; se verificó que su tamaño y fecha indican actualización.
+- **Trabajo futuro recomendado:** reemplazar la imagen esquemática por una fotografía/ilustración del fabricante seleccionado; confirmar curva/catálogo del ventilador y verificar caudal en balanceo.
+- **Archivos entregables y rutas:**
+  - `scripts/generar_img_dts001.py`
+  - `Investigacion/Sistemas/hojas_datos/HD-VENT-001_ventilador.md`
+  - `build/dts/img/ventilador_referencia_dts001.png`
+  - `build/dts/P2437-HV-DTS-001 REV0.xlsx`
+  - `build/dts/P2437-HV-DTS-001.pdf`
+  - `Emisiones/3.0 HV-HOJAS DE DATOS/P2437-HV-DTS-001.xlsx`
+  - `Emisiones/3.0 HV-HOJAS DE DATOS/P2437-HV-DTS-001.pdf`
+  - `contexto.md` y notas del vault (`vault/01_Estado actual.md`, `vault/04_Bitácora/2026-07-27.md`, `vault/03_Decisiones/2026-07-27_montaje-ventilador-muro.md`)
