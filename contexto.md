@@ -1,8 +1,8 @@
 # Contexto del proyecto: HVAC Laboratorio Brinsa
 
 ## Estado actual
-- Última tarea completada (2026-07-27): cambio de alcance del cliente — se eliminó la presurización del cuarto (+25 Pa, damper de alivio barométrico, instrumentación ΔP) y se cambió el ventilador de centrífugo a axial tubeaxial PRFV. Se actualizaron las fuentes (`Latex/00_bases_diseno/bases_diseno.yaml`, `generar_excel.py`, `Investigacion/Sistemas/`, `Latex/02_informe_tex/`, `docs/index.html`, `scripts/emitir.py`) y se emitieron 7 entregables como REV1: P2437-HV-INF-001/002, CAL-001, DTS-001/002/003 y LIS-001.
-- Tarea previa (2026-07-24): mejora DTS, curva DTS-001, corrección INF-001, integración CFD, LIS Excel, vault; push a GitHub.
+- Última tarea completada (2026-07-27): mejora de presentación de los documentos Excel generados (`generar_excel.py`, `scripts/generar_dts.py`, `scripts/generar_lis.py`). Se unificó el ancho de todas las tablas a 15 columnas (A:O), se forzó Times New Roman en todo el documento (incluyendo encabezado corporativo copiado y portada), se aplicaron bordes thin, colores corporativos y ajuste automático de alturas de fila. Se mantuvieron los cálculos y valores numéricos intactos; las referencias de fórmulas en la memoria CAL se recalcularon para el layout A:O. Se volvió a emitir con `scripts/emitir.py`: 7 entregables REV1 correctos.
+- Tarea previa (2026-07-27): cambio de alcance del cliente — sin presurización, ventilador axial tubeaxial PRFV, sin instrumentación ΔP.
 - Próxima tarea pendiente:
   - Confirmar disponibilidad comercial local del ventilador axial seleccionado (Aerovent FBD / alternativas Greenheck, Sodeca, NYB) y fijar tamaño/RPM/potencia definitiva con la curva de catálogo.
   - Generar manualmente el PDF de `P2437-HV-DTS-001 REV1.xlsx` (ambas hojas) desde Excel para conservar la plantilla corporativa idéntica; comunicarlo para registrarlo en el vault y `Emisiones/`.
@@ -21,6 +21,7 @@
 - Filtración: MERV 13-14 definitivo — SIN HEPA (laboratorio de análisis industrial)
 
 ## Decisiones de diseño clave
+- **Presentación Excel (2026-07-27):** layout unificado A:O (15 columnas) en CAL/DTS/LIS; fuente Times New Roman forzada en todo el documento; colores corporativos (azul `#1F4E78`, verde `#C6EFCE`, amarillo `#FFF2CC`, gris `#E7E6E6`) y bordes thin; ajuste automático de alturas de fila para evitar texto cortado. No se modificaron las plantillas `FormatosDocumentos/*.xlsx` ni los cálculos.
 - Sistema sin ductos de impulsión: ventilador axial directo + descarga libre por 3 rejillas (353×336 mm) con malla anti-insectos inox.
 - **Sin presurización / axial (2026-07-27):** el cliente eliminó la presurización y solicitó ventilador axial. Se descartan damper de alivio barométrico, transmisor ΔP Dwyer MS-121, Magnehelic 2000-00 y controlador de alarmas. Punto de diseño recalculado: 165 Pa sitio / 225 Pa catálogo; motor provisional 0.75 HP.
 - **Sitio Cajicá (2026-07-23):** recálculo con ρ = 0.88 kg/m³; ΔP rejillas 11 Pa (ahora pérdida de descarga libre).

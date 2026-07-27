@@ -33,9 +33,11 @@ recuperar contexto sin gastar tokens innecesarios.
 ## Decisiones de diseño (2026-07-27)
 
 - [[2026-07-27_sin-presurizacion-ventilador-axial]]
+- [[2026-07-27_presentacion-excel-a-o-times-new-roman]]
 
 ## Bitácora
 
+- [[2026-07-27_mejora-presentacion-excel]] — mejora de presentación Excel: A:O, Times New Roman, colores y bordes corporativos; emisión REV1
 - [[2026-07-27]] — cambio de alcance: sin presurización, ventilador axial, sin instrumentación ΔP; emisión REV1
 - [[2026-07-23]] — creación del vault, skill `obsidian-vault`, migración a AGENTS.md,
   investigación del sistema y recálculo para sitio Cajicá

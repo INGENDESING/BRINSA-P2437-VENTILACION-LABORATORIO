@@ -26,16 +26,17 @@ from io import BytesIO
 from pathlib import Path
 
 from openpyxl import load_workbook
+from openpyxl.cell.cell import MergedCell
 from openpyxl.drawing.image import Image as XLImage
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
-from openpyxl.utils import get_column_letter
+from openpyxl.utils import get_column_letter, range_boundaries
 from PIL import Image as PILImage
 
 ROOT = Path(__file__).resolve().parent.parent
 PLANTILLA = ROOT / "FormatosDocumentos" / "LIS.xlsx"
 SALIDA = ROOT / "build" / "lis"
 FILA_INICIO = 9  # contenido tras encabezado corporativo (1-7), título (8)
-N_COLS = 15      # ancho total del encabezado corporativo (A:O); la tabla BOQ se distribuye aquí
+N_COLS = 15      # ancho total del encabezado corporativo (A:O)
 
 # (archivo .md fuente, código del documento, título para PORTADA!Z5 y fila 8)
 DOCUMENTO = (
@@ -44,36 +45,30 @@ DOCUMENTO = (
     "LISTADO DE EQUIPOS Y MATERIALES (BOQ): SISTEMA DE VENTILACIÓN DEL LABORATORIO",
 )
 
-# ===================== ESTILOS (idénticos a generar_dts.py) =====================
+# ===================== ESTILOS CORPORATIVOS =====================
+# Fuente obligatoria para todo el documento: Times New Roman.
 header_fill = PatternFill(start_color="1F4E78", end_color="1F4E78", fill_type="solid")
-header_font = Font(color="FFFFFF", bold=True, size=11)
-title_font = Font(bold=True, size=14, color="1F4E78")        # títulos #
-section_font = Font(bold=True, size=12, color="1F4E78")      # títulos ##
-subtitle_font = Font(bold=True, size=11, color="1F4E78")     # títulos ###
-caption_font = Font(bold=True, size=11)                      # leyendas **Tabla N.**
+header_font = Font(name="Times New Roman", color="FFFFFF", bold=True, size=11)
+title_font = Font(name="Times New Roman", bold=True, size=14, color="1F4E78")        # títulos #
+section_font = Font(name="Times New Roman", bold=True, size=12, color="1F4E78")      # títulos ##
+subtitle_font = Font(name="Times New Roman", bold=True, size=11, color="1F4E78")     # títulos ###
+caption_font = Font(name="Times New Roman", bold=True, size=11)                      # leyendas **Tabla N.**
+body_font = Font(name="Times New Roman", size=11)
 thin_border = Border(
     left=Side(style='thin'), right=Side(style='thin'),
     top=Side(style='thin'), bottom=Side(style='thin')
 )
-AL_TEXTO = Alignment(horizontal='left', vertical='center', wrap_text=True)
+AL_TEXTO = Alignment(horizontal='left', vertical='top', wrap_text=True)
 AL_HEADER = Alignment(horizontal='center', vertical='center', wrap_text=True)
 AL_PARRAFO = Alignment(horizontal='left', vertical='top', wrap_text=True)
 
-
-# ===================== PARSEO MARKDOWN =====================
-def limpiar_md(texto):
-    """Quita sintaxis markdown: **negrita**, [texto](url) -> 'texto (url)', `código`."""
-    texto = re.sub(r'\[([^\]]+)\]\(([^)]+)\)', r'\1 (\2)', texto)
-    return texto.replace('**', '').replace('`', '').strip()
+CHAR_POR_UNIDAD_ANCHO = 2.3
+ANCHO_COLUMNAS = [30.6, 12, 12, 6, 6, 6, 6, 6, 6, 8, 8, 8, 10, 10, 10]
 
 
-def es_separador_tabla(celdas):
-    return all(re.fullmatch(r':?-{2,}:?', c.strip()) for c in celdas if c.strip()) \
-        and any(c.strip() for c in celdas)
-
-
-def parsear_linea_tabla(linea):
-    return [limpiar_md(c) for c in linea.strip().strip('|').split('|')]
+def aplicar_ancho_columnas(ws):
+    for i, w in enumerate(ANCHO_COLUMNAS, 1):
+        ws.column_dimensions[get_column_letter(i)].width = w
 
 
 def spans_tabla(n_cols):
@@ -91,6 +86,69 @@ def spans_tabla(n_cols):
         return [1, 2, 3, 2, 1, 3, 3]
     base, resto = divmod(N_COLS, n_cols)
     return [base + 1] * resto + [base] * (n_cols - resto)
+
+
+def forzar_times_new_roman(ws, min_row=1, max_row=None, min_col=1, max_col=N_COLS):
+    """Sobrescribe el nombre de fuente conservando tamaño, negrita, cursiva, color y subrayado."""
+    for row in ws.iter_rows(min_row=min_row, max_row=max_row, min_col=min_col, max_col=max_col):
+        for cell in row:
+            f = cell.font
+            cell.font = Font(
+                name="Times New Roman",
+                size=f.size,
+                bold=f.bold,
+                italic=f.italic,
+                underline=f.underline,
+                color=f.color,
+            )
+
+
+def ajustar_alturas_filas(ws, primera, ultima):
+    """Ajusta alturas de fila estimando líneas de texto con wrap."""
+    for r in range(primera, ultima + 1):
+        max_lineas = 1
+        for c in range(1, N_COLS + 1):
+            cell = ws.cell(row=r, column=c)
+            if isinstance(cell, MergedCell):
+                continue
+            val = cell.value
+            if not val:
+                continue
+            rng = None
+            for m in ws.merged_cells.ranges:
+                if cell.coordinate in m:
+                    rng = m
+                    break
+            if rng:
+                _, sc, _, ec = range_boundaries(str(rng))
+                ancho = sum(ws.column_dimensions[get_column_letter(col)].width or 8.43
+                            for col in range(sc, ec + 1))
+                _, sr, _, _ = range_boundaries(str(rng))
+                filas_combinadas = r - sr + 1
+            else:
+                ancho = ws.column_dimensions[get_column_letter(c)].width or 8.43
+                filas_combinadas = 1
+            chars_linea = max(1.0, ancho / CHAR_POR_UNIDAD_ANCHO)
+            lineas_totales = math.ceil(len(str(val)) / chars_linea)
+            lineas_por_fila = math.ceil(lineas_totales / filas_combinadas)
+            max_lineas = max(max_lineas, lineas_por_fila)
+        ws.row_dimensions[r].height = max(15, max_lineas * 15)
+
+
+# ===================== PARSEO MARKDOWN =====================
+def limpiar_md(texto):
+    """Quita sintaxis markdown: **negrita**, [texto](url) -> 'texto (url)', `código`."""
+    texto = re.sub(r'\[([^\]]+)\]\(([^)]+)\)', r'\1 (\2)', texto)
+    return texto.replace('**', '').replace('`', '').strip()
+
+
+def es_separador_tabla(celdas):
+    return all(re.fullmatch(r':?-{2,}:?', c.strip()) for c in celdas if c.strip()) \
+        and any(c.strip() for c in celdas)
+
+
+def parsear_linea_tabla(linea):
+    return [limpiar_md(c) for c in linea.strip().strip('|').split('|')]
 
 
 # ===================== CONSTRUCCIÓN DE LA HOJA =====================
@@ -112,12 +170,16 @@ class HojaLIS:
         self.r += 1
 
     def parrafo(self, texto, negrita=False):
-        # Filas estimadas para el texto con wrap en el ancho A:O (~190 caracteres)
-        n = min(max(1, math.ceil(len(texto) / 190)), 15)
+        # Filas estimadas para el texto con wrap en el ancho total A:O
+        ancho_total = sum(ANCHO_COLUMNAS)
+        chars_linea = max(1.0, ancho_total / CHAR_POR_UNIDAD_ANCHO)
+        n = min(max(1, math.ceil(len(texto) / chars_linea)), 15)
         cell = self.ws.cell(row=self.r, column=1, value=texto)
         cell.alignment = AL_PARRAFO
         if negrita:
             cell.font = caption_font
+        else:
+            cell.font = body_font
         if n > 1:
             self._combinar(self.r, self.r + n - 1)
         self.r += n
@@ -145,13 +207,14 @@ class HojaLIS:
             col = 1
             for texto, n in zip(fila, spans):
                 cell = self.ws.cell(row=self.r, column=col, value=texto)
+                cell.font = body_font
                 cell.alignment = AL_TEXTO
                 if n > 1:
                     self.ws.merge_cells(start_row=self.r, start_column=col,
                                         end_row=self.r, end_column=col + n - 1)
                 col += n
             self.r += 1
-        # Bordes thin en todo el rango A:G (incluye MergedCell, persiste al guardar)
+        # Bordes thin en todo el rango A:O
         for row in self.ws.iter_rows(min_row=hdr, max_row=self.r - 1, min_col=1, max_col=N_COLS):
             for cell in row:
                 cell.border = thin_border
@@ -197,10 +260,13 @@ def insertar_encabezado(ws, ws_enc, imagenes, titulo_documento):
     for m in ws_enc.merged_cells.ranges:
         if m.min_row <= 7:
             ws.merge_cells(str(m))
-    # Anchos de columna
-    for cc in range(1, 16):
-        letra = get_column_letter(cc)
-        ws.column_dimensions[letra].width = ws_enc.column_dimensions[letra].width
+
+    # Anchos proporcionales para todo el documento
+    aplicar_ancho_columnas(ws)
+
+    # Fuente corporativa en el encabezado copiado
+    forzar_times_new_roman(ws, min_row=1, max_row=7)
+
     # Imágenes del encabezado
     for blob, anchor in imagenes:
         img = XLImage(PILImage.open(BytesIO(blob)))
@@ -210,9 +276,11 @@ def insertar_encabezado(ws, ws_enc, imagenes, titulo_documento):
     # Fila 8: título del documento (sin el merge grande de la plantilla)
     ws.row_dimensions[8].height = ws_enc.row_dimensions[8].height
     cell = ws.cell(row=8, column=1, value=titulo_documento)
-    cell.font = Font(bold=True, size=12, color="1F4E78")
+    cell.font = Font(name="Times New Roman", bold=True, size=12, color="1F4E78")
     cell.alignment = Alignment(horizontal='left', vertical='center', wrap_text=True)
     ws.merge_cells(start_row=8, start_column=1, end_row=8, end_column=N_COLS)
+    # Fuente corporativa también en la fila de título
+    forzar_times_new_roman(ws, min_row=8, max_row=8)
 
 
 def generar_libro(md_rel, codigo, titulo):
@@ -233,6 +301,12 @@ def generar_libro(md_rel, codigo, titulo):
     ws = wb.create_sheet("LISTA")
     insertar_encabezado(ws, ws_enc, imagenes, titulo)
     construir_lista(ws, md)
+
+    # Fuente corporativa en toda la portada
+    forzar_times_new_roman(ws_portada)
+
+    # Ajustar alturas de filas de contenido para evitar texto cortado
+    ajustar_alturas_filas(ws, FILA_INICIO, ws.max_row)
 
     wb.remove(ws_enc)  # orden final: PORTADA, LISTA
     wb.calculation.calcMode = "auto"
