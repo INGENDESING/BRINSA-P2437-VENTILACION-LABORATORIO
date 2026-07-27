@@ -44,6 +44,18 @@ Motor **pdflatex**, tipografía **NewTX** (`newtxtext` + `newtxmath`), `microtyp
 Si quedan restos de una compilación xelatex previa (`.toc` con `\xpg@aux`), borrar
 los `.aux` / `.toc` / `.out` y recompilar.
 
+## Generar PDF alternativo de DTS-001
+
+Requiere el entorno virtual `.venv/` con `reportlab` instalado.
+
+```bash
+. .venv/Scripts/activate
+python scripts/pdf_dts001.py
+```
+
+Salida: `build/dts/P2437-HV-DTS-001 REV1.pdf`. Copiar manualmente a
+`Emisiones/3.0 HV-HOJAS DE DATOS/` y actualizar `Emisiones/MANIFIESTO_EMISION.md`.
+
 ## Despliegue del dashboard (GitHub Pages)
 
 Settings → Pages → Deploy from branch (`master` o `main`) → carpeta `/docs`.

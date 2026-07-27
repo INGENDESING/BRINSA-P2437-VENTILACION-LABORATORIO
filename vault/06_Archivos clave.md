@@ -31,6 +31,8 @@ tags: [archivos]
   corporativo (sin IC-DTS a partir de REV1).
 - `scripts/generar_img_dts001.py` — genera la curva ilustrativa y el placeholder
   de la hoja DTS-001 (axial a partir de REV1).
+- `scripts/pdf_dts001.py` — genera el PDF alternativo de `P2437-HV-DTS-001 REV1`
+  desde el markdown fuente usando reportlab (REV1).
 - `scripts/generar_lis.py` — genera el listado de equipos BOQ en Excel corporativo.
 - `scripts/emitir.py` — regenera Excel, DTS, LIS, compila INF-001/002 y copia a
   `Emisiones/` con nombres REV1.

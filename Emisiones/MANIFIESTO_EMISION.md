@@ -9,6 +9,7 @@ Generado automáticamente por `scripts/emitir.py`. No editar a mano.
 | 1.0 HV-INFORMES | P2437-HV-INF-002 REV1.pdf | `Latex/02_informe_tex/P2437-HV-INF-002 REV0.pdf` |
 | 2.0 HV-MEMORIAS DE CALCULO | P2437-HV-CAL-001 REV1.xlsx | `memoriadecalculo.xlsx` |
 | 3.0 HV-HOJAS DE DATOS | P2437-HV-DTS-001 REV1.xlsx | `build/dts/P2437-HV-DTS-001 REV0.xlsx` |
+| 3.0 HV-HOJAS DE DATOS | P2437-HV-DTS-001 REV1.pdf | `build/dts/P2437-HV-DTS-001 REV1.pdf` (PDF alternativo generado con reportlab) |
 | 3.0 HV-HOJAS DE DATOS | P2437-HV-DTS-002 REV1.xlsx | `build/dts/P2437-HV-DTS-002 REV0.xlsx` |
 | 3.0 HV-HOJAS DE DATOS | P2437-HV-DTS-003 REV1.xlsx | `build/dts/P2437-HV-DTS-003 REV0.xlsx` |
 | 4.0 HV-LISTADOS | P2437-HV-LIS-001 REV1.xlsx | `build/lis/P2437-HV-LIS-001 REV0.xlsx` |
