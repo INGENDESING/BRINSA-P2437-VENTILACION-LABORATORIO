@@ -3,8 +3,8 @@
 | Campo | Valor |
 |---|---|
 | Código | HD-FILT-001 |
-| Revisión | 0 |
-| Fecha | 2026-07-23 |
+| Revisión | 1 |
+| Fecha | 2026-07-27 |
 | Proyecto | P2437-HV-INF-001 — BRINSA, laboratorio de análisis industrial, Cajicá |
 | Etiqueta de equipo | FILT-001 (banco de filtración de la impulsión) |
 
@@ -12,7 +12,7 @@
 
 ## 1. Servicio
 
-1.1. Filtración del aire exterior de impulsión (3 840 m³/h) para exclusión de polvo, insectos y objetos extraños, aguas arriba del laboratorio presurizado a +25 Pa. No es un servicio de biocontención: no se requiere HEPA. Ambiente exterior corrosivo (atmósfera clorada de planta de hipoclorito de calcio, HR media 84 %).
+1.1. Filtración del aire exterior de impulsión (3 840 m³/h) para exclusión de polvo, insectos y objetos extraños, aguas arriba del laboratorio. No es un servicio de biocontención: no se requiere HEPA. Ambiente exterior corrosivo (atmósfera clorada de planta de hipoclorito de calcio, HR media 84 %).
 
 ## 2. Especificación de eficiencia
 
@@ -82,4 +82,4 @@ Fuentes: [ANSI/ASHRAE 52.2-2017 (PDF)](https://www.ashrae.org/File%20Library/Tec
 
 ## 7. Normas aplicables
 
-7.1. ANSI/ASHRAE 52.2-2017 (ensayo y clasificación MERV); ISO 16890 (ePM1, exigible como informe alternativo); EN 779:2012 (referencia heredada F7/F8). El ΔP del conjunto se monitorea con el manómetro de sala (HD-INST-001) como indicación de ensuciamiento (dato típico de operación).
+7.1. ANSI/ASHRAE 52.2-2017 (ensayo y clasificación MERV); ISO 16890 (ePM1, exigible como informe alternativo); EN 779:2012 (referencia heredada F7/F8). El estado de carga del filtro se sigue por programa de mantenimiento basado en la ΔP esperada (59 Pa limpio / 154 Pa cargado en el sitio) y en la carga de polvo observada en operación (dato típico de operación).

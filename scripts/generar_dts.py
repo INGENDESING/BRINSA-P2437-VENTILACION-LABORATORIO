@@ -40,16 +40,13 @@ N_COLS = 15      # layout unificado: todas las tablas abarcan A:O
 DOCUMENTOS = [
     ("Investigacion/Sistemas/hojas_datos/HD-VENT-001_ventilador.md",
      "P2437-HV-DTS-001",
-     "HOJA DE DATOS Y ESPECIFICACIONES TÉCNICAS DEL VENTILADOR CENTRÍFUGO PRFV"),
+     "HOJA DE DATOS Y ESPECIFICACIONES TÉCNICAS DEL VENTILADOR AXIAL TUBEAXIAL PRFV"),
     ("Investigacion/Sistemas/hojas_datos/HD-FILT-001_filtro_merv.md",
      "P2437-HV-DTS-002",
      "HOJA DE DATOS Y ESPECIFICACIONES TÉCNICAS DEL SISTEMA DE FILTRACIÓN MERV 13-14"),
     ("Investigacion/Sistemas/hojas_datos/HD-REJ-001_rejillas.md",
      "P2437-HV-DTS-003",
      "HOJA DE DATOS Y ESPECIFICACIONES TÉCNICAS DE LAS REJILLAS DE EXFILTRACIÓN"),
-    ("Investigacion/Sistemas/hojas_datos/HD-INST-001_instrumentos_presion.md",
-     "P2437-IC-DTS-001",
-     "HOJA DE DATOS Y ESPECIFICACIONES TÉCNICAS DE LOS INSTRUMENTOS DE PRESIÓN DIFERENCIAL"),
 ]
 
 # ===================== ESTILOS (idénticos a la memoria de cálculo) =====================
@@ -298,7 +295,7 @@ def main():
         out = generar_libro(md_rel, codigo, titulo)
         print(f"  {codigo}  <-  {md_rel}")
         print(f"       ->  {out.relative_to(ROOT)}")
-    print("OK: 4 libros DTS generados en build/dts/")
+    print("OK: 3 libros DTS generados en build/dts/")
 
 
 if __name__ == "__main__":

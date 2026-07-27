@@ -30,8 +30,13 @@ recuperar contexto sin gastar tokens innecesarios.
 - [[2026-07-22_escenarios-filtracion-merv-hepa]]
 - [[2026-07-22_cfd-pressure-outlet]]
 
+## Decisiones de diseño (2026-07-27)
+
+- [[2026-07-27_sin-presurizacion-ventilador-axial]]
+
 ## Bitácora
 
+- [[2026-07-27]] — cambio de alcance: sin presurización, ventilador axial, sin instrumentación ΔP; emisión REV1
 - [[2026-07-23]] — creación del vault, skill `obsidian-vault`, migración a AGENTS.md,
   investigación del sistema y recálculo para sitio Cajicá
 

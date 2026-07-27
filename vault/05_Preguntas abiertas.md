@@ -1,27 +1,28 @@
 ---
-fecha: 2026-07-23
+fecha: 2026-07-27
 tags: [preguntas, bloqueos]
 ---
 
 # Preguntas abiertas / bloqueos
 
-- [ ] Confirmar disponibilidad comercial local de los equipos seleccionados
-      (Greenheck BCSW-FRP vía Prime Lines, instrumentos Dwyer, rejillas fabricación
-      local). Plazo máximo de entrega presupuestado: ~3 meses (dato cliente,
-      2026-07-23). Ver [[listado_equipos]].
-- [ ] Confirmar la lectura de presión diferencial real tras el ensayo de balanceo
-      (validar el supuesto de rejillas como vía dominante). Ver
-      [[2026-07-22_presurizacion-damper-alivio]].
-- [ ] El usuario generará manualmente el PDF de `P2437-HV-DTS-001 REV0.xlsx`
+- [ ] Confirmar disponibilidad comercial local del ventilador axial seleccionado
+      (Aerovent FBD vía importación, Greenheck VAB/VAD vía Prime Lines, Sodeca
+      HCT/HGT, New York Blower FRP). Fijar tamaño, RPM y potencia definitiva con
+      la curva de catálogo del fabricante. Plazo máximo de entrega presupuestado:
+      ~3 meses (dato cliente, 2026-07-23). Ver [[listado_equipos]] y
+      [[2026-07-27_sin-presurizacion-ventilador-axial]].
+- [ ] El usuario generará manualmente el PDF de `P2437-HV-DTS-001 REV1.xlsx`
       (ambas hojas: PORTADA + ESPECIFICACIÓN) desde Excel para mantener la
       plantilla corporativa idéntica. Una vez generado, comunicarlo para
       registrarlo en el vault y copiarlo a `Emisiones/3.0 HV-HOJAS DE DATOS/`.
+- [ ] Verificar el caudal real en el ensayo de balanceo mediante anemometría en
+      las tres rejillas de descarga (ya no hay presión diferencial que medir).
 
 ## Resueltas
 
 - [x] ~~Ejecutar el modelo CFD con BC pressure outlet~~ → **Resuelto 2026-07-24**:
-      modelo ejecutado en Autodesk CFD; 4 gráficas integradas en `P2437-HV-INF-001
-      REV0` con análisis figura por figura. Ver
+      modelo ejecutado en Autodesk CFD; 4 gráficas integradas en `P2437-HV-INF-001`
+      REV0/REV1 con análisis figura por figura. Ver
       [[2026-07-22_cfd-pressure-outlet]].
 - [x] ¿El laboratorio requiere HEPA? → **No** (2026-07-23, laboratorio de análisis
       industrial). Ver [[2026-07-23_sin-hepa-laboratorio-industrial]].
@@ -31,3 +32,6 @@ tags: [preguntas, bloqueos]
 - [x] Plazos de entrega de equipos → máximo ~3 meses (cliente, 2026-07-23).
 - [x] Push a GitHub → **Completado** (2026-07-24, commit `2bc5b65`, 138 archivos,
       push a `origin/main` OK).
+- [x] ~~Lectura de presión diferencial real tras ensayo de balanceo~~ → **Ya no aplica**
+      (2026-07-27, REV1: sistema sin presurización ni instrumentación ΔP). La
+      verificación se hará por anemometría de caudal en rejillas.

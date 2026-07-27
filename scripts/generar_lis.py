@@ -41,7 +41,7 @@ N_COLS = 15      # ancho total del encabezado corporativo (A:O); la tabla BOQ se
 DOCUMENTO = (
     "Investigacion/Sistemas/listado_equipos.md",
     "P2437-HV-LIS-001",
-    "LISTADO DE EQUIPOS Y MATERIALES (BOQ): SISTEMA DE VENTILACIÓN Y PRESURIZACIÓN POSITIVA",
+    "LISTADO DE EQUIPOS Y MATERIALES (BOQ): SISTEMA DE VENTILACIÓN DEL LABORATORIO",
 )
 
 # ===================== ESTILOS (idénticos a generar_dts.py) =====================

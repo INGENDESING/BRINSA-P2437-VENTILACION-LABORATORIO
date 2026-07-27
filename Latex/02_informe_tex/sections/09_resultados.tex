@@ -23,7 +23,7 @@ Aplicando la Ec. (\ref{eq:caudal}) con un volumen efectivo de 320 m$^3$ y 12 ren
 
 \subsection{Potencia del Ventilador}
 
-La Tabla \ref{tab:fan_power} resume los resultados de potencia para diferentes escenarios de presión total a las condiciones del sitio (Cajicá, $\rho$ = 0.88 kg/m$^3$). El escenario de diseño corresponde a 190 Pa, que incluye pérdidas por filtración MERV 13-14 cargada, el offset de presurización y las rejillas de exfiltración; el punto equivalente de catálogo (densidad estándar 1.2 kg/m$^3$) es 3 840 m$^3$/h a 260 Pa \cite{dml_hd_vent_001,dml_hd_filt_001}.
+La Tabla \ref{tab:fan_power} resume los resultados de potencia para diferentes escenarios de presión total a las condiciones del sitio (Cajicá, $\rho$ = 0.88 kg/m$^3$). El escenario de diseño corresponde a 165 Pa, que incluye las pérdidas por filtración MERV 13-14 cargada y la pérdida de descarga libre de las rejillas; el punto equivalente de catálogo (densidad estándar 1.2 kg/m$^3$) es 3 840 m$^3$/h a 225 Pa \cite{dml_hd_vent_001,dml_hd_filt_001}.
 
 \begin{table}[htbp]
 	\centering
@@ -35,10 +35,11 @@ La Tabla \ref{tab:fan_power} resume los resultados de potencia para diferentes e
 		\multicolumn{1}{c}{\textbf{Item}} & \textbf{Escenario} & \textbf{Presión Total} & \textbf{Potencia} & \textbf{Referencia} \\
 		& & \textbf{(Pa)} & \textbf{(kW)} & \\
 		\midrule
-		& MERV limpio & 95 & 0.169 & Ec. (\ref{eq:potencia}) \\
-		& Diseño (MERV cargado) & 190 & 0.338 & Ec. (\ref{eq:potencia}) \\
-		& Alto (+50 \% sobre diseño) & 285 & 0.507 & Ec. (\ref{eq:potencia}) \\
-		& Motor recomendado & -- & 1.0 HP & Criterio de diseño \\
+		& MERV limpio & 70 & 0.136 & Ec. (\ref{eq:potencia}) \\
+		& Diseño (MERV cargado) & 165 & 0.320 & Ec. (\ref{eq:potencia}) \\
+		& HEPA limpio (referencia histórica) & 261 & 0.506 & Ec. (\ref{eq:potencia}) \\
+		& HEPA cargado (referencia histórica) & 611 & 1.185 & Ec. (\ref{eq:potencia}) \\
+		& Motor provisional & -- & 0.75 HP & Criterio de diseño \\
 		\bottomrule
 	\end{tabularx}
 \end{table}
@@ -113,7 +114,7 @@ El balance de masas de diseño presenta una discrepancia inferior al 0.1 \%. El 
 
 \subsection{Resultados de la simulación CFD}
 
-El modelo de dinámica de fluidos computacional se resolvió en Autodesk CFD con las condiciones de contorno de la Tabla \ref{tab:cfd_boundaries}: inyección como \texttt{velocity inlet} de \SI{8}{m/s} y las tres rejillas como \texttt{pressure outlet} a \SI{0}{Pa} gauge. Esta condición de salida evita la sobreespecificación del problema y permite que el caudal de exfiltración se determine a partir del campo de presión interior. Las Figuras \ref{fig:cfd_streamlines} a \ref{fig:cfd_vectores_corte} presentan los campos de velocidad resultantes. La velocidad máxima se sitúa en torno a \SI{8}{m/s}, coherente con la inyección de diseño, mientras que las salidas presentan velocidades del orden de \SI{3}{m/s}, compatibles con el dimensionamiento de las rejillas.
+El modelo de dinámica de fluidos computacional se resolvió en Autodesk CFD con las condiciones de contorno de la Tabla \ref{tab:cfd_boundaries}: inyección como \texttt{velocity inlet} de \SI{8}{m/s} y las tres rejillas como \texttt{pressure outlet} a \SI{0}{Pa} gauge, condición que representa la descarga libre real a la atmósfera. Esta condición de salida evita la sobreespecificación del problema y permite que el caudal de descarga se determine a partir del campo de presión interior. En el régimen incompresible del modelo, los resultados se interpretan como la distribución de flujo y la ventilación del recinto. Las Figuras \ref{fig:cfd_streamlines} a \ref{fig:cfd_vectores_corte} presentan los campos de velocidad resultantes. La velocidad máxima se sitúa en torno a \SI{8}{m/s}, coherente con la inyección de diseño, mientras que las salidas presentan velocidades del orden de \SI{3}{m/s}, compatibles con el dimensionamiento de las rejillas.
 
 \begin{figure}[htbp]
 	\centering

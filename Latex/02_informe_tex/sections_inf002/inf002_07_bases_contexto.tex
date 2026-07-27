@@ -53,18 +53,17 @@ En consecuencia, todo equipo seleccionado por catálogo a densidad estándar ent
 		& Caudal & 3 840 m$^3$/h (1.0667 m$^3$/s; 2 260 CFM) & 3 840 m$^3$/h (sin cambio) \\
 		& $\Delta P$ filtro MERV 13-14 cargado (diseño) & 154 Pa & 210 Pa \\
 		& $\Delta P$ filtro MERV 13-14 limpio & 59 Pa & 80 Pa \\
-		& Offset de presurización & 25 Pa & 34 Pa \\
 		& $\Delta P$ rejillas (3 m/s, $C_d$ = 0.60) & 11 Pa & 15 Pa \\
-		& \textbf{$\Delta P$ total escenario cargado (selección)} & \textbf{190 Pa} & \textbf{260 Pa} \\
-		& $\Delta P$ total escenario limpio & 95 Pa & 130 Pa \\
-		& Potencia teórica de aire ($\eta$ = 0.60) & 0.338 kW (0.45 HP) & -- \\
+		& \textbf{$\Delta P$ total escenario cargado (selección)} & \textbf{165 Pa} & \textbf{225 Pa} \\
+		& $\Delta P$ total escenario limpio & 70 Pa & 95 Pa \\
+		& Potencia al eje ($\eta$ = 0.55, provisional) & 0.320 kW (0.43 HP) & -- \\
 		\bottomrule
 	\end{tabularx}
 \end{table}
 
-La corrección tiene una consecuencia directa sobre la exfiltración: la configuración alternativa sin damper (rejillas a 4 m/s) ya no alcanza los 25 Pa de consigna a esta altitud, pues solo sostiene 19.6 Pa; para cerrar el balance en 25 Pa sin damper se requeriría un área total de 0.236 m$^2$ (0.079 m$^2$ por rejilla, aproximadamente 280 mm $\times$ 281 mm, a 4.5 m/s). En consecuencia, el damper de alivio barométrico pasa de opción a componente obligatorio del sistema.
+El sistema descarga libremente a la atmósfera a través de las tres rejillas de exfiltración, cuya caída de presión es de 11 Pa en el sitio; sin carga adicional sobre el recinto, el punto de trabajo del ventilador queda definido únicamente por la etapa de filtración y las rejillas.
 
-Sobre el motor, la potencia teórica corregida al sitio es 0.338 kW (0.45 HP); se instala un motor de 1.0 HP TEFC con tratamiento anticorrosivo, lo que deja un margen superior al 100 \% sobre el eje, suficiente para absorber el derateo por altitud (regla práctica NEMA MG-1: 3 \% por cada 500 m sobre 1 000 msnm, es decir, aproximadamente 9 \% a 2 558 msnm \cite{nema_mg1_derate,silvertip_altitude}) y el factor de servicio exigido por el ambiente corrosivo.
+Sobre el motor, la potencia al eje corregida al sitio es 0.320 kW (0.43 HP); se instala provisionalmente un motor de 0.75 HP TEFC con tratamiento anticorrosivo, lo que deja un margen del orden del 70 \% sobre el eje, suficiente para absorber el derateo por altitud (regla práctica NEMA MG-1: 3 \% por cada 500 m sobre 1 000 msnm, es decir, aproximadamente 9 \% a 2 558 msnm \cite{nema_mg1_derate,silvertip_altitude}) y el factor de servicio exigido por el ambiente corrosivo. La potencia definitiva del motor se confirma con la curva de catálogo del ventilador seleccionado.
 
 \subsection{Corrosividad del Ambiente Exterior}
 
@@ -85,11 +84,9 @@ La regla de especificación adoptada para todo el sistema se resume en la Tabla 
 		& Máquina de impulsión & PRFV viniléster o PP \\
 		& Marcos de filtro y portafiltros & Marcos plásticos; portafiltros inox 304/316 \\
 		& Rejillas y malla anti-insectos & Inox 316L \\
-		& Damper de alivio & Aluminio extruido 6063-T5 o línea severe-environment \\
 		& Ferretería y soportes & Inox 316 (A4) con aislamiento dieléctrico frente a estructura galvanizada \\
 		& Sellantes & Silicona RTV neutra \\
 		& Conexión flexible & Hipalón (CSM) \\
-		& Instrumentos hacia el exterior & Gabinete IP66 \\
 		\bottomrule
 	\end{tabularx}
 \end{table}

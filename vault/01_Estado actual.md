@@ -1,36 +1,17 @@
 ---
-fecha: 2026-07-23
+fecha: 2026-07-27
 tags: [estado]
 ---
 
 # Estado actual
 
-- **Última tarea completada (2026-07-24):**
-  1. Mejora estética y de layout en las 4 hojas de datos DTS: `scripts/generar_dts.py` actualizado para que las tablas ocupen el ancho A:O (coincidente con el encabezado corporativo), separar notas numeradas en párrafos individuales y aplicar estilo cursivo/gris a las notas. Emisión OK con 8 entregables.
-  2. Inserción de imagen de referencia y curva de operación en `P2437-HV-DTS-001`: se creó `scripts/generar_img_dts001.py` y se modificó `scripts/generar_dts.py` para añadir una sección "Referencia gráfica" al final de la hoja ESPECIFICACIÓN. La curva marca el punto de diseño (3 840 m³/h @ 260 Pa catálogo / 190 Pa en sitio). Emisión OK con 8 entregables.
-  3. Corrección de referencias y Apéndice D de `P2437-HV-INF-001 REV0`: bibliografía actualizada con códigos GP-N-09 (`P2437-HV-INF-002`, `P2437-HV-LIS-001`, `P2437-HV-DTS-001…003`, `P2437-IC-DTS-001`, `P2437-HV-CAL-001`) y rutas de emisión en `Emisiones/`; Apéndice D actualizado con los mismos códigos y adición de la memoria de cálculo. Recompilación OK; emisión OK con 8 entregables.
-  4. Actualización del informe técnico `P2437-HV-INF-001 REV0` con los resultados del modelo CFD (`pressure outlet` 0 Pa gauge en las rejillas): 4 figuras nuevas integradas en `Latex/02_informe_tex/figures/`, tabla de condiciones de contorno corregida, análisis gráfico figura por figura, y secciones de alcance, resumen, conclusiones y recomendaciones actualizadas. Recompilación OK; emisión OK con 8 entregables.
-  5. Generación del listado de equipos en Excel corporativo
-     (`P2437-HV-LIS-001 REV0.xlsx`) a partir de `Investigacion/Sistemas/listado_equipos.md`,
-     usando la plantilla `FormatosDocumentos/LIS.xlsx` con exactamente 2 hojas
-     (PORTADA + LISTA). Se creó `scripts/generar_lis.py` y se actualizó
-     `scripts/emitir.py`; emisión OK con 8 entregables y retiro del `.md` obsoleto
-     de `Emisiones/4.0 HV-LISTADOS/`.
-  6. Creación de `vault/inicializacion.md` como protocolo de arranque para futuras
-     sesiones, reforzando el vault de Obsidian como memoria permanente del proyecto.
-- **Tarea previa (2026-07-24):** push del repositorio a GitHub (`origin/main`,
-  commit `2bc5b65`, 138 archivos).
-- **Tarea previa (2026-07-23):** estructura de emisión `Emisiones/`, informes
-  **P2437-HV-INF-001/002**, memoria Excel corporativo, investigación de sistemas,
-  vault de Obsidian y codificación GP-N-09.
+- **Última tarea completada (2026-07-27):** cambio de alcance del cliente — se eliminó la presurización del cuarto (+25 Pa, damper de alivio barométrico, instrumentación de presión diferencial) y se cambió el ventilador de centrífugo a axial tubeaxial PRFV. Se actualizaron las fuentes (`Latex/00_bases_diseno/bases_diseno.yaml`, `generar_excel.py`, `Investigacion/Sistemas/`, `Latex/02_informe_tex/`, `docs/index.html`, `scripts/emitir.py`) y se emitieron 7 entregables como REV1: P2437-HV-INF-001/002, CAL-001, DTS-001/002/003 y LIS-001.
+- **Tarea previa (2026-07-24):** mejora DTS, curva DTS-001, corrección INF-001, integración CFD, LIS Excel, vault; push a GitHub.
 - **Próxima tarea pendiente:**
-  - El usuario generará manualmente el PDF de `P2437-HV-DTS-001 REV0.xlsx` (ambas
-    hojas) desde Excel y lo comunicará para registrarlo en el vault y `Emisiones/`.
-  - Confirmar disponibilidad comercial de los equipos seleccionados (plazo máx.
-    ~3 meses según cliente).
-  - Confirmar la lectura de presión diferencial real tras el ensayo de balanceo.
-- **Fecha de última actualización:** 2026-07-24
+  - Confirmar disponibilidad comercial local del ventilador axial seleccionado (Aerovent FBD / alternativas Greenheck, Sodeca, NYB) y fijar tamaño/RPM/potencia definitiva con la curva de catálogo.
+  - Generar manualmente el PDF de `P2437-HV-DTS-001 REV1.xlsx` (ambas hojas) desde Excel y registrarlo en `Emisiones/`.
+  - Verificar el caudal real en el ensayo de balanceo mediante anemometría en las tres rejillas de descarga.
+- **Fecha de última actualización:** 2026-07-27
 
 Relacionado: [[inicializacion]], [[02_Bases de diseño congeladas]],
-[[05_Preguntas abiertas]], [[2026-07-23_recalculo-sitio-cajica]],
-[[2026-07-23_sin-hepa-laboratorio-industrial]]
+[[05_Preguntas abiertas]], [[2026-07-27_sin-presurizacion-ventilador-axial]]

@@ -30,19 +30,28 @@ TEX_DIR = ROOT / "Latex" / "02_informe_tex"
 EMISIONES = ROOT / "Emisiones"
 
 # (origen relativo a ROOT, subcarpeta de Emisiones, nombre emitido)
+# REV1 (2026-07-27): cambio de alcance — sin presurización, ventilador axial, sin instrumentación ΔP.
+# Los archivos fuente siguen etiquetados REV0; la emisión los renombra a REV1.
 ENTREGABLES = [
-    ("Latex/02_informe_tex/P2437-HV-INF-001 REV0.pdf", "1.0 HV-INFORMES", "P2437-HV-INF-001 REV0.pdf"),
-    ("Latex/02_informe_tex/P2437-HV-INF-002 REV0.pdf", "1.0 HV-INFORMES", "P2437-HV-INF-002 REV0.pdf"),
-    ("memoriadecalculo.xlsx", "2.0 HV-MEMORIAS DE CALCULO", "P2437-HV-CAL-001 REV0.xlsx"),
-    ("build/dts/P2437-HV-DTS-001 REV0.xlsx", "3.0 HV-HOJAS DE DATOS", "P2437-HV-DTS-001 REV0.xlsx"),
-    ("build/dts/P2437-HV-DTS-002 REV0.xlsx", "3.0 HV-HOJAS DE DATOS", "P2437-HV-DTS-002 REV0.xlsx"),
-    ("build/dts/P2437-HV-DTS-003 REV0.xlsx", "3.0 HV-HOJAS DE DATOS", "P2437-HV-DTS-003 REV0.xlsx"),
-    ("build/dts/P2437-IC-DTS-001 REV0.xlsx", "3.0 HV-HOJAS DE DATOS", "P2437-IC-DTS-001 REV0.xlsx"),
-    ("build/lis/P2437-HV-LIS-001 REV0.xlsx", "4.0 HV-LISTADOS", "P2437-HV-LIS-001 REV0.xlsx"),
+    ("Latex/02_informe_tex/P2437-HV-INF-001 REV0.pdf", "1.0 HV-INFORMES", "P2437-HV-INF-001 REV1.pdf"),
+    ("Latex/02_informe_tex/P2437-HV-INF-002 REV0.pdf", "1.0 HV-INFORMES", "P2437-HV-INF-002 REV1.pdf"),
+    ("memoriadecalculo.xlsx", "2.0 HV-MEMORIAS DE CALCULO", "P2437-HV-CAL-001 REV1.xlsx"),
+    ("build/dts/P2437-HV-DTS-001 REV0.xlsx", "3.0 HV-HOJAS DE DATOS", "P2437-HV-DTS-001 REV1.xlsx"),
+    ("build/dts/P2437-HV-DTS-002 REV0.xlsx", "3.0 HV-HOJAS DE DATOS", "P2437-HV-DTS-002 REV1.xlsx"),
+    ("build/dts/P2437-HV-DTS-003 REV0.xlsx", "3.0 HV-HOJAS DE DATOS", "P2437-HV-DTS-003 REV1.xlsx"),
+    ("build/lis/P2437-HV-LIS-001 REV0.xlsx", "4.0 HV-LISTADOS", "P2437-HV-LIS-001 REV1.xlsx"),
 ]
 
-# Versiones antiguas en formato .md que deben retirarse de la emisión
+# Versiones antiguas que deben retirarse de la emisión (REV0 afectados + .md obsoletos)
 OBSOLETOS = [
+    ("1.0 HV-INFORMES", "P2437-HV-INF-001 REV0.pdf"),
+    ("1.0 HV-INFORMES", "P2437-HV-INF-002 REV0.pdf"),
+    ("2.0 HV-MEMORIAS DE CALCULO", "P2437-HV-CAL-001 REV0.xlsx"),
+    ("3.0 HV-HOJAS DE DATOS", "P2437-HV-DTS-001 REV0.xlsx"),
+    ("3.0 HV-HOJAS DE DATOS", "P2437-HV-DTS-002 REV0.xlsx"),
+    ("3.0 HV-HOJAS DE DATOS", "P2437-HV-DTS-003 REV0.xlsx"),
+    ("3.0 HV-HOJAS DE DATOS", "P2437-IC-DTS-001 REV0.xlsx"),
+    ("4.0 HV-LISTADOS", "P2437-HV-LIS-001 REV0.xlsx"),
     ("3.0 HV-HOJAS DE DATOS", "P2437-HV-DTS-001 REV0.md"),
     ("3.0 HV-HOJAS DE DATOS", "P2437-HV-DTS-002 REV0.md"),
     ("3.0 HV-HOJAS DE DATOS", "P2437-HV-DTS-003 REV0.md"),

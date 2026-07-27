@@ -46,7 +46,7 @@ El aire de impulsión se considera a 21 $^{\circ}$C (condición de diseño de ve
 
 \subsection{Datos del Recinto y Criterios de Ventilación}
 
-La Tabla \ref{tab:room_data} resume las características geométricas y los criterios de ventilación del laboratorio. El laboratorio se ubica dentro de una planta de hipoclorito de calcio, cuyo ambiente exterior es altamente corrosivo; el ventilador, las rejillas, el damper de alivio y los soportes expuestos deben ser en PRFV, acero inoxidable 316 o acero con recubrimiento epóxico, y el motor debe ser TEFC anticorrosivo.
+La Tabla \ref{tab:room_data} resume las características geométricas y los criterios de ventilación del laboratorio. El laboratorio se ubica dentro de una planta de hipoclorito de calcio, cuyo ambiente exterior es altamente corrosivo; el ventilador, las rejillas y los soportes expuestos deben ser en PRFV, acero inoxidable 316 o acero con recubrimiento epóxico, y el motor debe ser TEFC anticorrosivo.
 
 \begin{table}[htbp]
 	\centering
@@ -60,17 +60,15 @@ La Tabla \ref{tab:room_data} resume las características geométricas y los crit
 		& Volumen efectivo del laboratorio & 320 & m$^3$ & Medición / modelo 3D \\
 		& Renovaciones de aire requeridas & 12 & ren/h & ASHRAE 170 / WHO / NIH \\
 		& Caudal de diseño & 3 840 (64.0 m$^3$/min; 2 260 CFM) & m$^3$/h & Memoria de cálculo \\
-		& Estrategia de ventilación & Ventilador directo + rejillas de exfiltración & -- & Criterio de diseño \\
-		& Presión diferencial objetivo & +25 & Pa & Criterio de diseño \\
-		& Presión diferencial mínima & +12.5 & Pa & Criterio de diseño \\
-		& Control de presurización & Damper de alivio calibrable (obligatorio) + sensor de $\Delta P$ & -- & Criterio de diseño \\
+		& Estrategia de ventilación & Ventilador directo + rejillas de descarga libre & -- & Criterio de diseño \\
+		& Descarga de rejillas & Libre a la atmósfera (sin contrapresión) & -- & Criterio de diseño \\
 		\bottomrule
 	\end{tabularx}
 \end{table}
 
 \subsection{Criterios de Diseño del Ventilador}
 
-La Tabla \ref{tab:fan_criteria} presenta los criterios de diseño del ventilador de impulsión. El punto de trabajo en el sitio corresponde al escenario de filtración cargada ($\Delta P$ filtro 154 Pa + 25 Pa de offset de presurización + 11 Pa de rejillas = 190 Pa total); dado que las curvas de catálogo se publican a densidad estándar ($\rho$ = 1.2 kg/m$^3$), la selección comercial se realiza en el punto equivalente de catálogo 3 840 m$^3$/h a 260 Pa \cite{dml_informe_investigacion_2026,dml_hd_vent_001}.
+La Tabla \ref{tab:fan_criteria} presenta los criterios de diseño del ventilador de impulsión, de tipo axial tubeaxial en PRFV con transmisión por bandas, configuración que mantiene el motor fuera de la corriente corrosiva; la referencia preliminar es Aerovent FBD (primera opción, por confirmar con catálogo). El punto de trabajo en el sitio corresponde al escenario de filtración cargada ($\Delta P$ filtro 154 Pa + 11 Pa de pérdida en las rejillas de descarga libre = 165 Pa total); dado que las curvas de catálogo se publican a densidad estándar ($\rho$ = 1.2 kg/m$^3$), la selección comercial se realiza en el punto equivalente de catálogo 3 840 m$^3$/h a 225 Pa \cite{dml_informe_investigacion_2026,dml_hd_vent_001}.
 
 \begin{table}[htbp]
 	\centering
@@ -81,14 +79,15 @@ La Tabla \ref{tab:fan_criteria} presenta los criterios de diseño del ventilador
 		\toprule
 		\multicolumn{1}{c}{\textbf{Item}} & \textbf{Parámetro} & \textbf{Valor} & \textbf{Unidad} & \textbf{Referencia} \\
 		\midrule
+		& Tipo de ventilador & Axial tubeaxial PRFV, transmisión por bandas (ref. Aerovent FBD, por confirmar) & -- & Criterio de diseño \\
 		& Caudal de diseño & 3 840 (1.0667 m$^3$/s) & m$^3$/h & Memoria de cálculo \\
-		& Presión total en el sitio (filtro cargado) & 190 & Pa & Memoria de cálculo \\
-		& Punto equivalente de catálogo ($\rho$ = 1.2 kg/m$^3$) & 260 & Pa & Corrección de densidad, $k$ = 0.733 \\
-		& Presión total en el sitio (filtro limpio) & 95 & Pa & Memoria de cálculo \\
-		& Punto equivalente de catálogo (limpio) & 130 & Pa & Corrección de densidad, $k$ = 0.733 \\
-		& Eficiencia total supuesta & 0.60 & -- & Criterio de diseño \\
-		& Potencia teórica de aire & 0.338 (0.45 HP) & kW & Ec. (\ref{eq:potencia}) \\
-		& Motor instalado & 1.0 HP TEFC anticorrosivo, 440 V, 3$\phi$, 60 Hz & -- & Criterio de diseño / cliente \\
+		& Presión total en el sitio (filtro cargado) & 165 & Pa & Memoria de cálculo \\
+		& Punto equivalente de catálogo ($\rho$ = 1.2 kg/m$^3$) & 225 & Pa & Corrección de densidad, $k$ = 0.733 \\
+		& Presión total en el sitio (filtro limpio) & 70 & Pa & Memoria de cálculo \\
+		& Punto equivalente de catálogo (limpio) & 95 & Pa & Corrección de densidad, $k$ = 0.733 \\
+		& Eficiencia total supuesta & 0.55 & -- & Criterio de diseño (provisional) \\
+		& Potencia teórica de aire & 0.320 (0.43 HP) & kW & Ec. (\ref{eq:potencia}) \\
+		& Motor provisional & 0.75 HP TEFC anticorrosivo, 440 V, 3$\phi$, 60 Hz (margen de servicio 1.5, a confirmar con catálogo) & -- & Criterio de diseño / cliente \\
 		& Velocidad de impulsión & 8.0 & m/s & Criterio de diseño \\
 		& Área de boca de impulsión & 0.1333 & m$^2$ & Ec. (\ref{eq:area_vent}) \\
 		& Diámetro equivalente (radio) & 412 (206.0) & mm & Ec. (\ref{eq:diametro}) \\
@@ -110,16 +109,17 @@ La calidad de filtración definitiva es MERV 13-14: el laboratorio es de anális
 		\multicolumn{1}{c}{\textbf{Item}} & \textbf{Escenario} & \textbf{$\Delta P$ Filtro} & \textbf{$\Delta P$ Total} & \textbf{Potencia} & \textbf{Estado} \\
 		& & \textbf{(Pa)} & \textbf{(Pa)} & \textbf{(kW)} & \\
 		\midrule
-		& MERV 13-14 limpio & 59 & 95 & 0.169 & Operación inicial \\
-		& MERV 13-14 cargado (diseño) & 154 & 190 & 0.338 & Punto de selección \\
-		& HEPA H13 & 250--600 & 290--640 & 0.516--1.138 & Descartado (no aplica) \\
+		& MERV 13-14 limpio & 59 & 70 & 0.136 & Operación inicial \\
+		& MERV 13-14 cargado (diseño) & 154 & 165 & 0.320 & Punto de selección \\
+		& HEPA H13 limpio & 250 & 261 & 0.506 & Referencia histórica (no aplica) \\
+		& HEPA H13 cargado & 600 & 611 & 1.185 & Referencia histórica (no aplica) \\
 		\bottomrule
 	\end{tabularx}
 \end{table}
 
 \subsection{Rejillas de Exfiltración}
 
-La Tabla \ref{tab:grille_criteria} presenta los criterios de diseño de las rejillas de exfiltración. A la densidad del sitio, el cierre de orificio ($C_d$ = 0.60) de las tres rejillas a 3.0 m/s sostiene naturalmente solo 11 Pa, por debajo del mínimo admisible de 12.5 Pa; el objetivo de +25 Pa se garantiza con el damper de alivio calibrable, componente obligatorio del sistema \cite{dml_hd_rej_001,dml_hd_inst_001}.
+La Tabla \ref{tab:grille_criteria} presenta los criterios de diseño de las rejillas de descarga. Las rejillas descargan libremente a la atmósfera: a la densidad del sitio, el cierre de orificio ($C_d$ = 0.60) de las tres rejillas a 3.0 m/s representa una pérdida de descarga de 11 Pa, sin set-point de presión en el recinto \cite{dml_hd_rej_001}.
 
 \begin{table}[htbp]
 	\centering
@@ -134,7 +134,7 @@ La Tabla \ref{tab:grille_criteria} presenta los criterios de diseño de las reji
 		& Dimensiones por rejilla & 353 $\times$ 336 & mm & Memoria de cálculo \\
 		& Velocidad facial & 3.0 & m/s & Criterio de diseño \\
 		& Área neta total (por rejilla) & 0.3556 (0.1185) & m$^2$ & Ec. (\ref{eq:area_exfil}) \\
-		& Presión sostenida natural ($C_d$ = 0.60) & 11 & Pa & Cierre de orificio, $\rho$ = 0.88 kg/m$^3$ \\
+		& Presión de descarga libre ($C_d$ = 0.60) & 11 & Pa & Cierre de orificio, $\rho$ = 0.88 kg/m$^3$ \\
 		& Malla anti-insectos & Inox 316, 18$\times$18 (abertura $\approx$1 mm) & -- & Criterio de diseño \\
 		\bottomrule
 	\end{tabularx}
@@ -155,7 +155,6 @@ El laboratorio se ubica dentro de una planta de hipoclorito de calcio, cuyo ambi
 		\midrule
 		& Ventilador (carcasa y rueda) & PRFV con resina viniléster (primera opción) o polipropileno \\
 		& Rejillas, malla anti-insectos y ferretería & Acero inoxidable 316/316L (clase A4) \\
-		& Damper de alivio & Aluminio extruido 6063-T5 o línea severe-environment \\
 		& Soportes expuestos & PRFV, inox 316 o acero con recubrimiento epóxico (segunda línea, con inspección programada) \\
 		& Motor & TEFC anticorrosivo, ejecución severe duty \\
 		& Acero galvanizado & Descartado en la corriente y a la intemperie \\

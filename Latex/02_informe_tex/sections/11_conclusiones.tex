@@ -2,9 +2,9 @@
 
 \begin{enumerate}
 	\item El caudal de ventilación requerido para alcanzar 12 renovaciones de aire por hora en el laboratorio de 320 m$^3$ es 64.0 m$^3$/min, equivalente a 3 840 m$^3$/h o 2 260 CFM.
-	\item La potencia teórica del ventilador es 0.338 kW para una presión total de 190 Pa a las condiciones del sitio (equivalente de catálogo: 260 Pa a densidad estándar) y una eficiencia del 60 \%. Se recomienda un motor de 1.0 HP para incluir márgenes de operación y degradación de filtros.
+	\item La potencia teórica del ventilador es 0.320 kW para una presión total de 165 Pa a las condiciones del sitio (equivalente de catálogo: 225 Pa a densidad estándar) y una eficiencia del 55 \%. Se recomienda provisionalmente un motor de 0.75 HP para incluir márgenes de operación y degradación de filtros, a confirmar con la curva de catálogo del axial seleccionado.
 	\item El área de impulsión del ventilador es 0.1333 m$^2$, correspondiente a un diámetro equivalente de 412 mm y un radio de 206.0 mm, con una velocidad de impulsión de 8 m/s.
-	\item Las rejillas de exfiltración se dimensionan en tres unidades de 353 mm $\times$ 336 mm cada una, operando a una velocidad facial de 3.0 m/s, lo cual permite mantener la presión positiva sin generar ruido excesivo.
+	\item Las rejillas de descarga se dimensionan en tres unidades de 353 mm $\times$ 336 mm cada una, operando a una velocidad facial de 3.0 m/s en descarga libre a la atmósfera, lo cual mantiene una pérdida de presión baja sin generar ruido excesivo.
 	\item El valor de 12 renovaciones de aire por hora se sustenta en ASHRAE 170, WHO Laboratory Biosafety Manual y NIH DRM, cubriendo el rango superior de laboratorios BSL-2 y el umbral inferior de laboratorios BSL-3.
-	\item El modelo CFD, resuelto con inyección a \SI{8}{m/s} y salidas tipo \texttt{pressure outlet} a \SI{0}{Pa} gauge, confirma el campo de velocidades esperado: velocidad máxima de \SI{8}{m/s} en la inyección, velocidades faciales del orden de \SI{3}{m/s} en las rejillas y flujo general de salida sin retornos hacia el interior.
+	\item El modelo CFD, resuelto con inyección a \SI{8}{m/s} y salidas tipo \texttt{pressure outlet} a \SI{0}{Pa} gauge (descarga libre a la atmósfera), confirma el campo de velocidades esperado: velocidad máxima de \SI{8}{m/s} en la inyección, velocidades faciales del orden de \SI{3}{m/s} en las rejillas y flujo general de salida sin retornos hacia el interior, lo que evidencia una ventilación efectiva del recinto.
 \end{enumerate}

@@ -2,51 +2,48 @@
 
 \subsection{Ventilador de Impulsión}
 
-El punto de selección es 3 840 m$^3$/h (2 260 CFM) a 260 Pa a densidad estándar, equivalente a 190 Pa en el sitio en el escenario de filtro cargado. El punto exige un centrífugo de álabes curvados hacia atrás: los axiales de PRFV son máquinas de baja presión (inferior a 1 in c.a. en la mayoría de líneas) y quedan descartados con la carga de un MERV 13-14; los centrífugos de álabes hacia atrás ofrecen eficiencia alta, potencia no sobrecargante y mejor comportamiento frente al ensuciamiento progresivo del filtro. La Tabla \ref{tab:inf002_ventiladores} presenta la comparativa de candidatos.
+El punto de selección es 3 840 m$^3$/h (2 260 CFM) a 225 Pa a densidad estándar, equivalente a 165 Pa en el sitio en el escenario de filtro cargado. El cliente decidió explícitamente un ventilador axial para este servicio; la decisión es técnicamente viable porque el punto de catálogo, del orden de 0.9 in c.a., queda plenamente dentro del rango de los axiales tubulares en PRFV (hasta 370 Pa de presión estática en la línea de referencia \cite{aerovent_fbd}). Frente al centrífugo, el axial tubular ofrece una máquina más compacta y económica, de montaje en línea sin envolvente espiral, y en su ejecución de transmisión por bandas mantiene el motor fuera de la corriente corrosiva y permite ajustar las RPM en balanceo mediante el cambio de poleas; a cambio, el centrífugo de álabes curvados hacia atrás ofrece mayor capacidad de presión y eficiencia más alta, ventajas que no se requieren a 225 Pa. La eficiencia total provisional adoptada para la estimación de potencia es 0.55, valor típico de axiales tubulares de transmisión por bandas en este rango (dato típico). La Tabla \ref{tab:inf002_ventiladores} presenta la comparativa de candidatos.
 
 \begin{table}[htbp]
-	\centering
-	\caption{Comparativa de ventiladores candidatos (consulta 23/07/2026)}
-	\label{tab:inf002_ventiladores}
-	\setcounter{itemcount}{0}
-	\footnotesize
-	\begin{tabularx}{\textwidth}{@{}NXXXXc@{}}
-		\toprule
-		\multicolumn{1}{c}{\textbf{It.}} & \textbf{Fabricante / Línea} & \textbf{Tipo y Material} & \textbf{Pros} & \textbf{Contras} & \textbf{Fuente} \\
-		\midrule
-		& Greenheck BCSW-FRP & Centrífugo álabes curvados atrás, PRFV poliéster ignífugo, opción velo Nexus para oxidantes; AMCA Spark A; ASTM C582/D4167 & Certificación AMCA; representante oficial en Bogotá (Prime Lines HVAC); amplio rango (300--150 000 CFM) & Selección exacta vía software CAPS (por confirmar tamaño/RPM con proveedor) & \cite{greenheck_bcsw,greenheck_rep_colombia} \\
-		& New York Blower FRP Fume Exhauster & Centrífugo BI, rueda viniléster PRFV, buje/eje encapsulados & La rueda de viniléster es la especificación ideal para cloro; sello AMCA & Sin filial en Colombia; importación (plazo máx. $\sim$3 meses, dato cliente 23/07/2026) & \cite{nyb_frp} \\
-		& Hartzell Series 41 FRP & Centrífugo curvado atrás, rueda FA de PRFV de una pieza & Sin juntas que atrapen corrosivos; guía de selección anticorrosiva del fabricante & Sobredimensionado en gama; sin canal local confirmado & \cite{hartzell_fiberglass} \\
-		& Sodeca CPV & Centrífugo simple aspiración, envolvente y turbina PP & Filial Sodeca Colombia con catálogo 60 Hz local; plazos y repuestos simples & PP inferior al viniléster en oxidantes fuertes; verificar curva en el punto & \cite{sodeca_cpv,sodeca_catalogo_co} \\
-		& Plastec 25/30 & Centrífugo PP directo, sin metal en la corriente & El polipropileno ofrece la mejor resistencia a ácidos y corrosión según el fabricante; despacho 48 h desde EE. UU. & Álabes hacia adelante = mayor ruido; sin canal local & \cite{plastec_series} \\
-		& Soler \& Palau línea PP & Centrífugo PP anticorrosivo & Filial S\&P Colombia; vida útil declarada 3--4 veces la del metálico & Modelo exacto por confirmar con la filial & \cite{solerpalau_industrial} \\
-		& Acero + epóxico (p. ej. Greenheck USF/CSW) & Centrífugo acero con polvo epóxico horneado & Opción económica & El cloro ataca cualquier defecto del recubrimiento; solo segunda línea con inspección programada & \cite{greenheck_bcsw} \\
-		\bottomrule
-	\end{tabularx}
+\centering
+\caption{Comparativa de ventiladores axiales candidatos (consulta julio de 2026)}
+\label{tab:inf002_ventiladores}
+\setcounter{itemcount}{0}
+\footnotesize
+\begin{tabularx}{\textwidth}{@{}NXXXXc@{}}
+\toprule
+\multicolumn{1}{c}{\textbf{It.}} & \textbf{Fabricante / Línea} & \textbf{Tipo y Material} & \textbf{Pros} & \textbf{Contras} & \textbf{Fuente} \\
+\midrule
+& Aerovent FBD (Twin City Fan) & Tubeaxial PRFV de transmisión por bandas; impulsores 355--1 525 mm, hasta 370 Pa estática (Catálogo 185) & Primera opción: motor fuera de la corriente corrosiva; ajuste de RPM por poleas; cubre el punto con margen & Sin canal local confirmado; importación & \cite{aerovent_fbd} \\
+& Greenheck VAB/VAD & Vaneaxial de acero con recubrimiento epóxico, transmisión directa o por bandas & Canal local en Bogotá (Prime Lines HVAC); línea industrial amplia & El acero epóxico es segunda línea en ambiente clorado; exige inspección programada del recubrimiento & \cite{greenheck_vaneaxial,greenheck_rep_colombia} \\
+& Sodeca HCT/HGT & Tubeaxial PRFV & Filial Sodeca Colombia con catálogo 60 Hz local; plazos y repuestos simples & Verificar curva en el punto & \cite{sodeca_catalogo_co} \\
+& New York Blower FRP tubeaxial & Tubeaxial PRFV viniléster & El viniléster es la especificación ideal para cloro; sello AMCA & Sin filial en Colombia; importación (plazo máx. $\sim$3 meses, dato cliente 23/07/2026) & \cite{nyb_frp} \\
+\bottomrule
+\end{tabularx}
 \end{table}
 
-El motor es de 1.0 HP TEFC, 1 800 RPM (4 polos, 60 Hz), clase de aislamiento F, IP55 mínimo, ejecución severe duty con pintura epóxica y protección interna anticorrosiva \cite{leeson_severe,baldor_ieee841}. El motor se monta fuera de la corriente de aire, configuración estándar en todos los centrífugos PRFV citados. Tensión y fases: 440 V, 3$\phi$, 60 Hz (confirmado por el cliente, 23/07/2026).
+El motor provisional es de 0.75 HP TEFC, 1 800 RPM (4 polos, 60 Hz), clase de aislamiento F, IP55 mínimo, ejecución severe duty con pintura epóxica y protección interna anticorrosiva \cite{leeson_severe,baldor_ieee841}; la potencia definitiva se confirma con la curva de catálogo una vez seleccionado el tamaño. Con la transmisión por bandas el motor se monta fuera de la corriente de aire. Tensión y fases: 440 V, 3$\phi$, 60 Hz (confirmado por el cliente, 23/07/2026).
 
 \subsection{Filtración}
 
 La clasificación MERV de ASHRAE 52.2 se basa en la eficiencia mínima compuesta en tres rangos: E1 (0.3-1.0 \textmu m), E2 (1-3 \textmu m) y E3 (3-10 \textmu m) \cite{ashrae522_2017}. MERV 13 exige E2 $\geq$ 90 \% y E3 $\geq$ 90 \%; MERV 14 añade E1 $\geq$ 75 \%. Para el objetivo declarado (insectos, objetos extraños, polvo) MERV 13 basta; MERV 14 da margen ante la carga de polvo de la planta. Las equivalencias aproximadas son: MERV 13 $\equiv$ ePM1 50-60 \% (ISO 16890) $\equiv$ F7 (EN 779); MERV 14 $\equiv$ ePM1 60-70 \% $\equiv$ F8, confirmadas por la ficha del propio fabricante \cite{camfil_durafil}. La Tabla \ref{tab:inf002_filtros} presenta la comparativa de filtros finales candidatos.
 
 \begin{table}[htbp]
-	\centering
-	\caption{Comparativa de filtros finales MERV 13-14 (velocidad frontal de catálogo 500 fpm = 2.54 m/s; consulta 23/07/2026)}
-	\label{tab:inf002_filtros}
-	\setcounter{itemcount}{0}
-	\footnotesize
-	\begin{tabularx}{\textwidth}{@{}NXlXXc@{}}
-		\toprule
-		\multicolumn{1}{c}{\textbf{It.}} & \textbf{Fabricante / Modelo} & \textbf{Clase} & \textbf{Marco} & \textbf{$\Delta P$ Inicial / Final} & \textbf{Fuente} \\
-		\midrule
-		& Camfil Durafil ES2 & MERV 14 / ePM1 70 & 100 \% plástico (ABS/poliestireno), junta en cabezal & $\leq$ 0.32 in c.a. $\approx$ 80 Pa / 375 Pa máx. (cambiar al duplicar $\Delta P$ inicial) & \cite{camfil_durafil} \\
-		& AAF VariCel VXL & MERV 14 & Plástico HIPS + ABS, sin metal & $\approx$ 0.40--0.45 in c.a. $\approx$ 100--112 Pa (dato típico, leído de curva) / 500 Pa máx. & \cite{aaf_varicel} \\
-		& Freudenberg Viledon MaxiPleat MX 85 & F8 / ePM1 65 \% ($\approx$ MERV 14) & Plástico, paquete fundido estanco & 135--180 Pa (familia MaxiPleat) / $\approx$ 450 Pa (dato típico clase F) & \cite{freudenberg_maxipleat} \\
-		& Koch Multi-Pleat Green13 & MERV 13 & Cartón hidrófugo + rejilla acero galvanizado & $\approx$ 0.30--0.40 in c.a. (dato típico plisados MERV 13) / $\approx$ 250 Pa (dato típico) & \cite{koch_green13} \\
-		\bottomrule
-	\end{tabularx}
+\centering
+\caption{Comparativa de filtros finales MERV 13-14 (velocidad frontal de catálogo 500 fpm = 2.54 m/s; consulta 23/07/2026)}
+\label{tab:inf002_filtros}
+\setcounter{itemcount}{0}
+\footnotesize
+\begin{tabularx}{\textwidth}{@{}NXlXXc@{}}
+\toprule
+\multicolumn{1}{c}{\textbf{It.}} & \textbf{Fabricante / Modelo} & \textbf{Clase} & \textbf{Marco} & \textbf{$\Delta P$ Inicial / Final} & \textbf{Fuente} \\
+\midrule
+& Camfil Durafil ES2 & MERV 14 / ePM1 70 & 100 \% plástico (ABS/poliestireno), junta en cabezal & $\leq$ 0.32 in c.a. $\approx$ 80 Pa / 375 Pa máx. (cambiar al duplicar $\Delta P$ inicial) & \cite{camfil_durafil} \\
+& AAF VariCel VXL & MERV 14 & Plástico HIPS + ABS, sin metal & $\approx$ 0.40--0.45 in c.a. $\approx$ 100--112 Pa (dato típico, leído de curva) / 500 Pa máx. & \cite{aaf_varicel} \\
+& Freudenberg Viledon MaxiPleat MX 85 & F8 / ePM1 65 \% ($\approx$ MERV 14) & Plástico, paquete fundido estanco & 135--180 Pa (familia MaxiPleat) / $\approx$ 450 Pa (dato típico clase F) & \cite{freudenberg_maxipleat} \\
+& Koch Multi-Pleat Green13 & MERV 13 & Cartón hidrófugo + rejilla acero galvanizado & $\approx$ 0.30--0.40 in c.a. (dato típico plisados MERV 13) / $\approx$ 250 Pa (dato típico) & \cite{koch_green13} \\
+\bottomrule
+\end{tabularx}
 \end{table}
 
 La decisión de diseño es: etapa 1, prefiltro plisado MERV 8 ($\Delta P$ limpio 50-75 Pa, final 250 Pa \cite{camfil_3030}); etapa 2, filtro final V-bank MERV 13-14 con marco plástico. Los valores de diseño congelados para la etapa final son $\Delta P$ limpio 80 Pa estándar (59 Pa en el sitio) y $\Delta P$ final 210 Pa estándar (154 Pa en el sitio), coherentes con el Durafil ES2 y conservadores frente al criterio de 375 Pa de catálogo. El prefiltro retiene la fracción gruesa (polvo, insectos, fibras) y multiplica la vida útil del filtro final; los V-bank citados integran fijación frontal para el prefiltro. Se evita el marco galvanizado en la corriente (Koch Green13) y se especifican portafiltros inox 304/316 con junta continua de poliuretano \cite{camfil_magnaframe}.

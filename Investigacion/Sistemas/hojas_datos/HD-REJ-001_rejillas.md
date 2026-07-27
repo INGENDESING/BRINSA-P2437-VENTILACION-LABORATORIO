@@ -1,18 +1,18 @@
-# Hoja de datos: rejillas de exfiltración con malla anti-insectos
+# Hoja de datos: rejillas de descarga con malla anti-insectos
 
 | Campo | Valor |
 |---|---|
 | Código | HD-REJ-001 |
-| Revisión | 0 |
-| Fecha | 2026-07-23 |
+| Revisión | 1 |
+| Fecha | 2026-07-27 |
 | Proyecto | P2437-HV-INF-001 — BRINSA, laboratorio de análisis industrial, Cajicá |
-| Etiqueta de equipo | REJ-001 a REJ-003 (rejillas de exfiltración) |
+| Etiqueta de equipo | REJ-001 a REJ-003 (rejillas de descarga) |
 
 ---
 
 ## 1. Servicio
 
-1.1. Descarga del caudal de exfiltración del laboratorio presurizado (+25 Pa) hacia el exterior, a través de la envolvente del recinto. Las rejillas son la trayectoria de salida permanente del aire y, con el sistema detenido, una vía potencial de ingreso: por ello incorporan malla anti-insectos. Ambiente exterior corrosivo (atmósfera clorada de planta de hipoclorito de calcio).
+1.1. Descarga libre a la atmósfera del caudal de ventilación del laboratorio, a través de la envolvente del recinto. Las rejillas son la trayectoria de salida permanente del aire y, con el sistema detenido, una vía potencial de ingreso: por ello incorporan malla anti-insectos. Ambiente exterior corrosivo (atmósfera clorada de planta de hipoclorito de calcio).
 
 ## 2. Condiciones de operación y desempeño
 
@@ -22,13 +22,13 @@
 |---|---|
 | Cantidad | 3 unidades |
 | Dimensiones faciales (unitarias) | 353×336 mm (área facial 0.1187 m²) |
-| Caudal total de exfiltración | 3 840 m³/h (1.0667 m³/s) |
+| Caudal total de descarga | 3 840 m³/h (1.0667 m³/s) |
 | Velocidad facial | 3 m/s |
 | ΔP unitaria (cierre de orificio, C_d = 0.60, en el sitio) | 11 Pa |
 | ΔP equivalente a densidad estándar (ρ = 1.2 kg/m³) | 15 Pa |
 | Densidad del aire de diseño | 0.88 kg/m³ (2 558 msnm, 74.1 kPa) |
 
-2.1. Nota de contexto: la configuración sin damper de alivio (rejillas a 4 m/s) solo alcanzaría 19.6 Pa de presurización a esta altitud; cerrar el balance a 25 Pa sin damper requeriría un área total de 0.236 m² (0.079 m² por rejilla ≈ 280×281 mm a 4.5 m/s). El sistema adoptado conserva las tres rejillas de 353×336 mm y cierra el balance con el damper barométrico (componente obligatorio; ver HD-INST-001 e informe_investigacion.md §3.2.4).
+2.1. Nota de contexto: la ΔP unitaria de 11 Pa (cierre de orificio, C_d = 0.60, a 3 m/s) es la pérdida de descarga libre a la atmósfera y se suma a la caída de presión de la etapa filtrante para definir el punto de trabajo del ventilador; no existe consigna de presión interior que sostener.
 
 ## 3. Construcción y áreas netas
 
@@ -58,7 +58,7 @@
 | Krueger EGC5 | Eggcrate ½ in; aluminio | Amplia gama de tamaños (6×4 in a 96×96 in) | Sin ejecución inox | [Krueger EGC5](https://www.krueger-hvac.com/Catalog%20Home/Grilles/Grilles%20-%20Return/EGC5) |
 | ProAire S.A.S (Bogotá) | Fabricación a medida con corte láser, inox 316 | Medida exacta 353×336 y ejecución inox 316L local; vía recomendada | Submittal y Ak por confirmar con proveedor | [proairecolombia.com](https://www.proairecolombia.com/productos/rejillas-y-difusores.html) |
 | Laminaire (Colombia) | Rejillas y difusores en aluminio a pedido | Fabricación local con software de selección; marco para malla a pedido | Confirmar ejecución inox | [laminaire.net](https://laminaire.net/) |
-| CL Ingeniería (Bogotá) | Rejillas, dampers y accesorios HVAC | Canal local adicional | Catálogo genérico | [clingenieria.co](https://clingenieria.co/) |
+| CL Ingeniería (Bogotá) | Rejillas y accesorios HVAC | Canal local adicional | Catálogo genérico | [clingenieria.co](https://clingenieria.co/) |
 
 ## 5. Instalación
 

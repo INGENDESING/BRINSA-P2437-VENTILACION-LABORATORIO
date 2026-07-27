@@ -26,7 +26,7 @@ ENC_IMAGENES = [(im._data(), deepcopy(im.anchor)) for im in ws_enc._images]
 # Diligenciar PORTADA (BO2..BO6, Z1, Z3 y N6 ya vienen correctos en la plantilla)
 ws_portada = wb["PORTADA"]
 ws_portada["BO1"] = "P2437-HV-CAL-001"
-ws_portada["Z5"] = "MEMORIA DE CÁLCULO DEL SISTEMA DE VENTILACIÓN Y PRESURIZACIÓN DEL LABORATORIO"
+ws_portada["Z5"] = "MEMORIA DE CÁLCULO DEL SISTEMA DE VENTILACIÓN DEL LABORATORIO"
 
 # Estilos base
 header_fill = PatternFill(start_color="1F4E78", end_color="1F4E78", fill_type="solid")
@@ -107,7 +107,7 @@ ws = wb.create_sheet("MEMORIA DE CÁLCULO")
 r = FILA_INICIO
 
 # ---------- SECCIÓN 1: DATOS GENERALES ----------
-titulo_seccion(ws, r, "1. DATOS GENERALES — MEMORIA DE CÁLCULO, SISTEMA DE VENTILACIÓN Y PRESURIZACIÓN")
+titulo_seccion(ws, r, "1. DATOS GENERALES — MEMORIA DE CÁLCULO, SISTEMA DE VENTILACIÓN")
 r += 2  # fila en blanco
 subtitulo(ws, r, "Información del proyecto")
 r += 1
@@ -115,12 +115,12 @@ hdr = r
 encabezados_tabla(ws, r, [("Concepto", 1), ("Valor", 1), ("Unidad", 1), ("Observación", 3)])
 r += 1
 info = [
-    ["Nombre del proyecto", "Laboratorio Brinsa", "-", "Ventilación por impulsión con presión positiva"],
+    ["Nombre del proyecto", "Laboratorio Brinsa", "-", "Ventilación por impulsión directa, descarga libre a atmósfera"],
     ["Ubicación", "C:\\Users\\ingen\\OneDrive\\Escritorio\\HVAC\\Calculos", "-", "Carpeta de cálculos del proyecto"],
     ["Volumen efectivo del laboratorio (V)", "320", "m³", "Medición / modelo 3D"],
     ["Renovaciones de aire (N)", "12", "ren/h", "Sustentado normativamente"],
-    ["Objetivo", "Presurización positiva", "-", "Evitar ingreso de contaminantes"],
-    ["Estrategia", "Ventilador directo + rejillas de exfiltración", "-", "Sin ductos de impulsión"],
+    ["Objetivo", "Ventilación y filtración", "-", "12 ACH, MERV 13-14; sin presurización (REV1)"],
+    ["Estrategia", "Ventilador axial directo + rejillas de exfiltración", "-", "Sin ductos de impulsión"],
 ]
 for row in info:
     escribir_fila(ws, r, [(row[0], 1), (row[1], 1), (row[2], 1), (row[3], 3)],
@@ -132,9 +132,9 @@ subtitulo(ws, r, "Objetivo del documento")
 r += 1
 texto_largo(ws, r, r + 2,
     "Presentar de forma atómica, funcional y verificable el cálculo del caudal de aire, "
-    "potencia del ventilador, área de impulsión del ventilador (sin ductos), "
-    "área/dimensiones de las rejillas de exfiltración para modelado CFD, y el cierre "
-    "presión–caudal que sustenta la presurización, con sustentación normativa.")
+    "potencia del ventilador axial, área de impulsión del ventilador (sin ductos) y "
+    "área/dimensiones de las rejillas de exfiltración para modelado CFD, con "
+    "sustentación normativa.")
 r += 4  # texto (3 filas) + fila en blanco
 
 # ---------- SECCIÓN 2: ENTRADAS ----------
@@ -153,19 +153,17 @@ e_nrej = r + 6   # Número de rejillas
 e_prop = r + 7   # Proporción ancho/alto
 e_rho = r + 8    # Densidad del aire
 e_Cd = r + 9     # Coeficiente de descarga
-e_dPpos = r + 10 # Set-point presión diferencial
 entradas = [
     ["Volumen efectivo del laboratorio", "V", 320, "m³", "Medición directa o del modelo"],
     ["Renovaciones de aire", "N", 12, "ren/h", "Ver sección 5. NORMATIVA"],
-    ["Presión total estimada del ventilador", "ΔP", 190, "Pa", "Escenario MERV cargado (ver sección 6. ESCENARIOS DE FILTRACIÓN)"],
-    ["Eficiencia total del ventilador", "η", 0.60, "-", "Centrífugo/axial típico"],
+    ["Presión total estimada del ventilador", "ΔP", 165, "Pa", "Escenario MERV cargado (ver sección 6. ESCENARIOS DE FILTRACIÓN)"],
+    ["Eficiencia total del ventilador", "η", 0.55, "-", "Axial típico (provisional; confirmar con catálogo)"],
     ["Velocidad en boca del ventilador", "v_vent", 8.0, "m/s", "Para CFD, rango 6–12 m/s"],
     ["Velocidad de exfiltración en rejillas", "v_sal", 3.0, "m/s", "Rango recomendado 2.5–4.0 m/s"],
     ["Número de rejillas de salida", "n_rej", 3, "unid.", "Distribución propuesta"],
     ["Proporción ancho/alto rejilla", "prop", 0.95, "-", "353 mm × 336 mm ≈ 0.95"],
     ["Densidad del aire", "rho", 0.88, "kg/m³", "Bases de diseño (Cajicá, 2 558 msnm, P_atm = 74.1 kPa, aire 20 °C)"],
     ["Coeficiente de descarga orificio", "Cd", 0.60, "-", "Orificio borde afilado, ASHRAE Handbook Fundamentals"],
-    ["Set-point presión diferencial", "ΔP_pos", 25, "Pa", "Presión positiva vs zona adyacente"],
 ]
 for row in entradas:
     escribir_fila(ws, r, [(row[0], 1), (row[1], 1), (row[2], 1), (row[3], 1), (row[4], 2)],
@@ -208,8 +206,7 @@ c_h = r + 12     # 13 Altura rejilla
 c_w = r + 13     # 14 Ancho rejilla
 c_hmm = r + 14   # 15 Altura mm
 c_wmm = r + 15   # 16 Ancho mm
-c_dPorif = r + 16 # 17 ΔP sostenida (orificio)
-c_A25 = r + 17   # 18 Área requerida para 25 Pa
+c_dPrej = r + 16 # 17 Pérdida de presión en rejillas (descarga libre)
 calculos = [
     ["1", "Caudal de aire volumétrico", "Q = V × N / 60", f"=C{e_V}*C{e_N}/60", "m³/min"],
     ["2", "Caudal de aire en m³/h", "Q_h = Q × 60", f"=D{c_Q}*60", "m³/h"],
@@ -227,8 +224,7 @@ calculos = [
     ["14", "Ancho de rejilla", "w = A_rej / h", f"=D{c_Arej}/D{c_h}", "m"],
     ["15", "Altura de rejilla en mm", "h_mm = h × 1000", f"=D{c_h}*1000", "mm"],
     ["16", "Ancho de rejilla en mm", "w_mm = w × 1000", f"=D{c_w}*1000", "mm"],
-    ["17", "Presión diferencial sostenida (orificio)", "dP = (rho/2)×(Q_s/(Cd×A_exfil))²", f"=C{e_rho}/2*(D{c_Qs}/(C{e_Cd}*D{c_Aexfil}))^2", "Pa"],
-    ["18", "Área total requerida para 25 Pa", "A_25 = Q_s/(Cd×√(2×25/rho))", f"=D{c_Qs}/(C{e_Cd}*SQRT(2*25/C{e_rho}))", "m²"],
+    ["17", "Pérdida de presión en rejillas (descarga libre)", "dP = (rho/2)×(Q_s/(Cd×A_exfil))²", f"=C{e_rho}/2*(D{c_Qs}/(C{e_Cd}*D{c_Aexfil}))^2", "Pa"],
 ]
 for row in calculos:
     paso_fila = r
@@ -252,9 +248,9 @@ resultados = [
     ["Caudal de diseño", f"=D{c_Q}", "m³/min", "Caudal de impulsión requerido"],
     ["Caudal de diseño", f"=D{c_Qh}", "m³/h", "Equivalente en metros cúbicos por hora"],
     ["Caudal de diseño", f"=D{c_Qcfm}", "CFM", "Equivalente en pies cúbicos por minuto"],
-    ["Potencia teórica del ventilador", f"=D{c_P}", "kW", "Escenario MERV cargado a 190 Pa y η=0.60"],
+    ["Potencia teórica del ventilador", f"=D{c_P}", "kW", "Escenario MERV cargado a 165 Pa y η=0.55 (axial)"],
     ["Potencia teórica del ventilador", f"=D{c_HP}", "HP", "Unidades imperiales"],
-    ["Potencia instalada recomendada", f"=ROUNDUP(D{c_HP},0)", "HP", "Motor comercial con margen (escenario MERV)"],
+    ["Potencia instalada recomendada", f"=CEILING(D{c_HP}*1.5,0.25)", "HP", "×1.5 margen de servicio, redondeo 0.25 HP (provisional; confirmar con catálogo)"],
     ["Área de impulsión del ventilador", f"=D{c_Avent}", "m²", "Boca del ventilador"],
     ["Diámetro equivalente del ventilador", f"=D{c_D}", "m", "Para referencia"],
     ["Radio del ventilador (CFD)", f"=D{c_rmm}", "mm", "Círculo de inyección"],
@@ -265,8 +261,7 @@ resultados = [
     ["Altura de rejilla de salida", f"=D{c_hmm}", "mm", "Dimensiones para CFD"],
     ["Ancho de rejilla de salida", f"=D{c_wmm}", "mm", "Dimensiones para CFD"],
     ["Velocidad de exfiltración", f"=C{e_vsal}", "m/s", "Condición de salida CFD (pressure outlet)"],
-    ["Presión diferencial sostenida (sin balancear)", f"=D{c_dPorif}", "Pa", "Cierre orificio, Cd=0.6"],
-    ["Presión diferencial objetivo", 25, "Pa", "Con damper de alivio + control"],
+    ["Pérdida de presión en rejillas", f"=D{c_dPrej}", "Pa", "Descarga libre a atmósfera, Cd=0.6"],
 ]
 for row in resultados:
     escribir_fila(ws, r, [(row[0], 1), (row[1], 1), (row[2], 1), (row[3], 3)],
@@ -319,14 +314,14 @@ r += 4  # texto (3 filas) + fila en blanco
 titulo_seccion(ws, r, "6. ESCENARIOS DE FILTRACIÓN Y MOTOR RECOMENDADO")
 r += 1
 texto_largo(ws, r, r,
-    f"ΔP_vent total = ΔP_filtro + ΔP_offset (25 Pa) + ΔP_rejillas (11 Pa). El caudal Q_s "
-    f"se toma del paso 4 de la sección 3 (celda D{c_Qs}). Sitio: Cajicá, Cundinamarca "
-    f"(2 558 msnm, ρ = 0.88 kg/m³).")
+    f"ΔP_vent total = ΔP_filtro + ΔP_rejillas (11 Pa). Sin presurización (REV1: cambio "
+    f"de alcance del cliente). El caudal Q_s se toma del paso 4 de la sección 3 "
+    f"(celda D{c_Qs}). Sitio: Cajicá, Cundinamarca (2 558 msnm, ρ = 0.88 kg/m³).")
 r += 2  # fila en blanco
 hdr = r
 encabezados_tabla(ws, r, [("Escenario de filtración", 1), ("ΔP filtro (Pa)", 1), ("ΔP vent total (Pa)", 1), ("P teórica (kW)", 1), ("P teórica (HP)", 1), ("Motor recomendado (HP)", 1)])
 r += 1
-# dp_vent_total en columna C (filtro + 25 + 11); P(kW)=Q_s*dp/(0.6*1000); P(HP)=P(kW)*1.341
+# dp_vent_total en columna C (filtro + 11); P(kW)=Q_s*dp/(0.55*1000); P(HP)=P(kW)*1.341
 escenarios = [
     ["MERV 13-14 limpio", 59],
     ["MERV 13-14 cargado (diseño)", 154],
@@ -335,9 +330,9 @@ escenarios = [
 ]
 for nombre, dp_filtro in escenarios:
     i = r
-    escribir_fila(ws, i, [(nombre, 1), (dp_filtro, 1), (f"=B{i}+25+11", 1),
-                          (f"=D{c_Qs}*C{i}/(0.6*1000)", 1), (f"=D{i}*1.341", 1),
-                          (f"=ROUNDUP(E{i},0)", 1)],
+    escribir_fila(ws, i, [(nombre, 1), (dp_filtro, 1), (f"=B{i}+11", 1),
+                          (f"=D{c_Qs}*C{i}/(0.55*1000)", 1), (f"=D{i}*1.341", 1),
+                          (f"=CEILING(E{i}*1.5,0.25)", 1)],
                   alineaciones={2: AL_CENTRO, 3: AL_CENTRO, 4: AL_CENTRO, 5: AL_CENTRO, 6: AL_CENTRO})
     ws.cell(row=i, column=2).number_format = '0'
     ws.cell(row=i, column=3).number_format = '0'
@@ -353,12 +348,13 @@ r += 1  # fila en blanco
 subtitulo(ws, r, "Nota:")
 r += 1
 texto_largo(ws, r, r + 2,
-    "El motor instalado de 1.0 HP TEFC anticorrosivo corresponde al escenario MERV 13-14 "
-    "cargado, que es el punto de diseño. Los escenarios HEPA son solo referencia histórica: "
-    "el laboratorio de análisis industrial NO requiere HEPA. Para selección de ventilador "
-    "en catálogo (ρ = 1.2 kg/m³), usar el punto equivalente 3 840 m³/h @ 260 Pa (diseño) o "
-    "130 Pa (limpio). La potencia se recalcula automáticamente si cambia el caudal en la "
-    "sección 3. DESARROLLO DE CÁLCULOS.")
+    "El motor provisional de 0.75 HP TEFC anticorrosivo corresponde al escenario MERV 13-14 "
+    "cargado (punto de diseño), con margen de servicio 1.5 sobre la potencia teórica; la "
+    "potencia definitiva se fija con la curva del ventilador axial seleccionado. Los "
+    "escenarios HEPA son solo referencia histórica: el laboratorio de análisis industrial "
+    "NO requiere HEPA. Para selección de ventilador en catálogo (ρ = 1.2 kg/m³), usar el "
+    "punto equivalente 3 840 m³/h @ 225 Pa (diseño) o 95 Pa (limpio). La potencia se "
+    "recalcula automáticamente si cambia el caudal en la sección 3. DESARROLLO DE CÁLCULOS.")
 r += 4  # texto (3 filas) + fila en blanco
 
 # ---------- SECCIÓN 7: VISTA RÁPIDA ----------
@@ -371,9 +367,9 @@ vista_rapida = [
     ["Caudal de diseño", f"=D{c_Q}", "m³/min", "Caudal de impulsión requerido"],
     ["Caudal de diseño", f"=D{c_Qh}", "m³/h", "Equivalente en metros cúbicos por hora"],
     ["Caudal de diseño", f"=D{c_Qcfm}", "CFM", "Equivalente en pies cúbicos por minuto"],
-    ["Potencia teórica del ventilador", f"=D{c_P}", "kW", "Escenario MERV cargado a 190 Pa"],
+    ["Potencia teórica del ventilador", f"=D{c_P}", "kW", "Escenario MERV cargado a 165 Pa (axial)"],
     ["Potencia teórica del ventilador", f"=D{c_HP}", "HP", "Unidades imperiales"],
-    ["Potencia instalada recomendada", f"=ROUNDUP(D{c_HP},0)", "HP", "Motor comercial con margen"],
+    ["Potencia instalada recomendada", f"=CEILING(D{c_HP}*1.5,0.25)", "HP", "×1.5 margen de servicio (provisional)"],
     ["Área de impulsión del ventilador", f"=D{c_Avent}", "m²", "Boca del ventilador"],
     ["Diámetro equivalente del ventilador", f"=D{c_D}", "m", "Para referencia"],
     ["Radio del ventilador (CFD)", f"=D{c_rmm}", "mm", "Círculo de inyección"],
@@ -384,8 +380,7 @@ vista_rapida = [
     ["Altura de rejilla de salida", f"=D{c_hmm}", "mm", "Dimensiones para CFD"],
     ["Ancho de rejilla de salida", f"=D{c_wmm}", "mm", "Dimensiones para CFD"],
     ["Velocidad de exfiltración", f"=C{e_vsal}", "m/s", "Condición de salida CFD"],
-    ["Presión diferencial sostenida (sin balancear)", f"=D{c_dPorif}", "Pa", "Cierre orificio, Cd=0.6"],
-    ["Presión diferencial objetivo", 25, "Pa", "Con damper de alivio + control"],
+    ["Pérdida de presión en rejillas", f"=D{c_dPrej}", "Pa", "Descarga libre a atmósfera, Cd=0.6"],
 ]
 for row in vista_rapida:
     escribir_fila(ws, r, [(row[0], 1), (row[1], 1), (row[2], 1), (row[3], 3)],

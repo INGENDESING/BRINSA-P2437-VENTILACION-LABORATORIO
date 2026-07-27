@@ -1,5 +1,15 @@
 \documentclass[12pt,a4paper]{elsarticle}
 
+% ===================== METADATOS ESPECÍFICOS DE INF-001 (REV1) =====================
+% Se definen ANTES de config/preamble.tex; config/datos_proyecto.tex usa
+% \providecommand, de modo que estos valores prevalecen solo en este documento.
+\newcommand{\projecttitle}{DISEÑO DEL SISTEMA DE VENTILACIÓN DEL LABORATORIO}
+\newcommand{\docRevision}{1}
+\newcommand{\docFecha}{27/07/2026}
+\newcommand{\docFechaLarga}{27 de julio de 2026}
+\newcommand{\fechaRevUno}{27/07/2026}
+\newcommand{\descRevUno}{Cambio de alcance del cliente: sistema sin presurización, ventilador axial, sin instrumentación de presión diferencial}
+
 % ===================== IMPORTAR CONFIGURACIÓN MODULAR =====================
 \input{config/preamble.tex}
 \input{config/header.tex}
@@ -11,6 +21,15 @@
 % ===================== IMPORTAR SECCIONES MODULARES =====================
 \input{sections/00_hojafirmas.tex}
 \input{sections/00_portada.tex}
+
+% ===================== NOTA DE REVISIÓN =====================
+\section*{Nota de Revisión}
+\addcontentsline{toc}{section}{Nota de Revisión}
+
+REV1 (27/07/2026) --- cambio de alcance del cliente: sistema sin presurización, ventilador axial, sin instrumentación de presión diferencial; se mantienen caudal, filtración y rejillas.
+
+\newpage
+
 \input{sections/01_frontmatter.tex}
 \input{sections/02_resumen.tex}
 \input{sections/03_nomenclatura.tex}

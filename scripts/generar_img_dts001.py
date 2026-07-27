@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 """
 generar_img_dts001.py — Genera las imágenes auxiliares para la hoja de datos
-P2437-HV-DTS-001 (ventilador): curva característica ilustrativa y referencia
-del equipo.
+P2437-HV-DTS-001 (ventilador axial tubeaxial PRFV): curva característica
+ilustrativa y referencia del equipo.
 
 Salida: build/dts/img/curva_ventilador_dts001.png
         build/dts/img/ventilador_referencia_dts001.png
@@ -24,15 +24,18 @@ IMG_DIR.mkdir(parents=True, exist_ok=True)
 
 
 def generar_curva():
-    """Curva característica ilustrativa de un ventilador centrífugo."""
+    """Curva característica ilustrativa de un ventilador axial tubular."""
     Q = list(range(0, 6201, 100))
-    Q_max = 6000
-    P_max = 420  # Pa
-    P = [P_max * (1 - (q / Q_max) ** 2) for q in Q]
+    Q_libre = 6000   # m³/h, caudal a presión nula
+    P_bloqueo = 380  # Pa, presión a caudal nulo
+    # Forma parabólica típica de axial tubular (caída pronunciada de presión
+    # con el caudal); pasa por el punto de catálogo:
+    # 3 840 m³/h -> 380*(1-0.64^2) = 224 Pa ≈ 225 Pa
+    P = [P_bloqueo * (1 - (q / Q_libre) ** 2) for q in Q]
 
     Q_d = 3840
-    P_d_catalogo = 260
-    P_d_sitio = 190
+    P_d_catalogo = 225
+    P_d_sitio = 165
 
     fig, ax = plt.subplots(figsize=(8, 5), dpi=100)
     ax.plot(Q, P, color="#1F4E78", lw=2.5, label="Curva característica (ilustrativa)")
@@ -60,7 +63,7 @@ def generar_curva():
     ax.set_ylim(0, 450)
     ax.set_xlabel("Caudal $Q$ [m³/h]")
     ax.set_ylabel("Presión total $\\Delta P$ [Pa]")
-    ax.set_title("Curva característica ilustrativa del ventilador\n(punto de selección 3 840 m³/h @ 260 Pa catálogo)")
+    ax.set_title("Curva característica ilustrativa del ventilador axial\n(punto de selección 3 840 m³/h @ 225 Pa catálogo)")
     ax.grid(True, alpha=0.3)
     ax.legend(loc="upper right", fontsize=8)
     fig.tight_layout()
@@ -91,9 +94,10 @@ def generar_referencia():
         w = bbox[2] - bbox[0]
         draw.text(((W - w) / 2, y), texto, font=fuente, fill=color)
 
-    centrar("VENTILADOR CENTRÍFUGO PRFV", 120, font_title)
-    centrar("Greenheck BCSW-FRP (primera opción)", 170, font_sub, "#000000")
-    centrar("3 840 m³/h @ 260 Pa catálogo", 210, font_sub, "#000000")
+    centrar("VENTILADOR AXIAL TUBEAXIAL PRFV", 110, font_title)
+    centrar("Aerovent FBD (primera opción — de referencia,", 160, font_sub, "#000000")
+    centrar("por confirmar en cotización)", 190, font_sub, "#000000")
+    centrar("3 840 m³/h @ 225 Pa catálogo", 230, font_sub, "#000000")
     centrar("Imagen de referencia por confirmar con proveedor", 310, font_note, "#666666")
 
     out = IMG_DIR / "ventilador_referencia_dts001.png"

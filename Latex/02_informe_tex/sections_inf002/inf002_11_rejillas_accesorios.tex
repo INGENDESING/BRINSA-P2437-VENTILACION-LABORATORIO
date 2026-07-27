@@ -1,0 +1,33 @@
+\section{Análisis por Componente: Rejillas y Accesorios}
+
+\subsection{Rejillas de Exfiltración}
+
+Tres rejillas de 353 mm $\times$ 336 mm (área facial unitaria 0.1187 m$^2$) descargan libremente a la atmósfera a velocidad facial de 3 m/s con $\Delta P$ de 11 Pa en el sitio (cierre de orificio, $C_d$ = 0.60). El tipo indicado para máxima área libre es eggcrate (panal) 1/2$\times$1/2$\times$1/2 in, con área libre de aproximadamente 90 \% según catálogo \cite{airfoil_rcfcr5}; la malla anti-insectos inox 316 de 18$\times$18 aporta aproximadamente 48-51 \% de área abierta \cite{imm_malla}. El área neta combinada ($\approx$45 \% del área facial, dato típico) es la base del cálculo de la memoria; el comportamiento de las rejillas de transferencia como elementos de descarga está documentado en la literatura técnica \cite{bsc_ba0006}. La Tabla \ref{tab:inf002_rejillas} presenta la comparativa de candidatas.
+
+\begin{table}[htbp]
+	\centering
+	\caption{Comparativa de rejillas candidatas (consulta 23/07/2026)}
+	\label{tab:inf002_rejillas}
+	\setcounter{itemcount}{0}
+	\footnotesize
+	\begin{tabularx}{\textwidth}{@{}NXlXXXc@{}}
+		\toprule
+		\multicolumn{1}{c}{\textbf{It.}} & \textbf{Producto} & \textbf{Tipo} & \textbf{Área Libre} & \textbf{Materiales} & \textbf{Pros / Contras} & \textbf{Fuente} \\
+		\midrule
+		& Titus 50F / 50R & Eggcrate retorno 1/2 in & La mayor área libre de su categoría ($\sim$90 \%, dato típico) & Aluminio; versión íntegramente inox disponible & Única con ejecución inox de fábrica; importación & \cite{titus_50f} \\
+		& Krueger EGC5 & Eggcrate 1/2 in & Maximiza el área libre & Aluminio & Amplia gama de tamaños; no inox & \cite{krueger_egc5} \\
+		& Laminaire (Colombia) & Rejillas y difusores a pedido & Según diseño & Aluminio; fabricación local a medida & Permite 353 mm $\times$ 336 mm exacto y marco para malla; confirmar ejecución inox & \cite{laminaire} \\
+		& ProAire S.A.S (Bogotá) & Rejillas con corte láser a medida & Según diseño & Inox 316 fabricable bajo pedido & Vía más robusta para inox 316L local & \cite{proaire} \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+La decisión es: rejilla eggcrate inox 316L (o aluminio anodizado como alternativa interior) con malla anti-insectos inox 316 18$\times$18 montada en marco desmontable para limpieza; aislamiento del par galvánico malla-inox/marco-aluminio si se mezclan materiales (dato típico de ingeniería).
+
+\subsection{Accesorios de Montaje}
+
+La ferretería y los soportes se especifican en inox AISI 316 / clase A4 como mínimo: el molibdeno mejora la resistencia a picadura y corrosión por rendija frente a cloruros \cite{marsh_fasteners}, con aislamiento dieléctrico frente a estructura galvanizada. Los soportes estándar zincados se sustituyen por fabricación local en inox 316; los elementos de aluminio no se montan a la intemperie sin protección.
+
+Los sellantes se especifican en silicona RTV neutra como primera opción, compatible con hipoclorito \cite{rtv_silicone}; se evita la silicona acetoxi (libera ácido acético corrosivo) y el poliuretano en exposición directa a cloro gaseoso \cite{apache_pu}.
+
+La conexión flexible del ventilador se especifica en hipalón (CSM), material recomendado para exterior por resistencia química, ozono y envejecimiento \cite{hardcast_hypalon}, con bandas de amarre inox 316 en lugar del galvanizado estándar.
