@@ -2,7 +2,8 @@
 # -*- coding: utf-8 -*-
 """
 pdf_dts001.py — Genera un PDF alternativo de P2437-HV-DTS-001
-(ventilador axial tubeaxial PRFV) a partir del markdown fuente.
+(ventilador axial mural Ø560 mm, transmisión directa) a partir del markdown
+fuente.
 
 Dado que este entorno no dispone de Excel/LibreOffice para la exportación
 manual, este script produce un PDF con layout corporativo DML equivalente:
@@ -256,7 +257,7 @@ class PDFDTS001:
         self.elements.append(Paragraph("Referencia gráfica", ESTILOS["Titulo2"]))
         self.elements.append(Spacer(1, 8))
         for img_path, caption in [(curva, "Figura 1. Curva característica ilustrativa."),
-                                   (ref, "Figura 2. Imagen de referencia del ventilador axial tubeaxial PRFV.")]:
+                                   (ref, "Figura 2. Montaje típico de planta — ventilador axial mural Ø560 mm (inyección 2 260 CFM).")]:
             with PILImage.open(img_path) as im:
                 w, h = im.size
             max_width = 16 * cm

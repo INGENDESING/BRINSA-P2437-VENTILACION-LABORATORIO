@@ -3,10 +3,12 @@
 | Campo | Valor |
 |---|---|
 | Código | HD-FILT-001 |
-| Revisión | 1 |
+| Revisión | 2 |
 | Fecha | 2026-07-27 |
 | Proyecto | P2437-HV-INF-001 — BRINSA, laboratorio de análisis industrial, Cajicá |
-| Etiqueta de equipo | FILT-001 (banco de filtración de la impulsión) |
+| Etiqueta de equipo | FILT-001 (banco de filtración de la impulsión, alojado en la cubierta intemperie) |
+
+**Nota de revisión REV2 — 2026-07-27:** actualización por uniformidad con el montaje típico instalado en la planta (`Montaje/DISENOFINAL.png`): el banco de filtración se aloja dentro de la **cubierta intemperie** del ventilador axial mural Ø560 mm, sin caja/housing separado ni transición cuadrado/circular. Se conservan clases MERV 8 + MERV 13-14, módulo 24×24 in y las caídas de presión de diseño.
 
 ---
 
@@ -80,9 +82,9 @@ Fuentes: [ANSI/ASHRAE 52.2-2017 (PDF)](https://www.ashrae.org/File%20Library/Tec
 
 6.2. La especificación se congela en términos MERV 13-14 / ePM1 50-70 % + 24×24 in para habilitar segunda fuente. Se incluye en la compra inicial un juego de repuestos (un prefiltro y un filtro final). Cantidades y plazos: por confirmar con proveedor.
 
-## 7. Acoplamiento mecánico e hidráulico al ventilador axial DTS-001
+## 7. Integración en la cubierta intemperie del ventilador mural DTS-001
 
-7.1. El ventilador seleccionado es un axial tubeaxial de impulsión (HD-VENT-001, DTS-001) con punto de trabajo 3 840 m³/h a 165 Pa en el sitio (equivalente 225 Pa en catálogo a ρ = 1,2 kg/m³). El banco de filtración FILT-001 se instala aguas arriba del ventilador, de modo que el flujo es: toma exterior → malla anti-insectos → prefiltro MERV 8 → filtro final MERV 13-14 → transición a boca del ventilador → ventilador axial → descarga al recinto (HD-VENT-001 §8.1).
+7.1. El ventilador seleccionado es un axial mural (placa mural) Ø560 mm de transmisión directa (HD-VENT-001 REV2, DTS-001) con punto de trabajo 3 840 m³/h a 165 Pa en el sitio (equivalente 225 Pa en catálogo a ρ = 1,2 kg/m³). Por uniformidad con el montaje típico de la planta, el banco de filtración FILT-001 se aloja **dentro de la cubierta intemperie** del ventilador, sin caja/housing separado ni transición cuadrado/circular. La secuencia de flujo es: toma exterior (boca de la cubierta) → malla anti-insectos → prefiltro MERV 8 → filtro final MERV 13-14 → ventilador axial mural → paso por muro → malla de protección interior → descarga al recinto (HD-VENT-001 §8.1).
 
 **Tabla 6.** Verificación hidráulica del filtro final en el punto de trabajo del ventilador.
 
@@ -101,22 +103,19 @@ Fuentes: [ANSI/ASHRAE 52.2-2017 (PDF)](https://www.ashrae.org/File%20Library/Tec
 
 7.2. El filtro final opera dentro del rango hidráulico permitido: la velocidad facial (565 fpm) es inferior al límite de 625 fpm del Durafil ES3, y la caída de presión final de diseño (154 Pa en el sitio) deja un margen de 11 Pa para las rejillas de descarga, coincidente con el punto de trabajo declarado del ventilador. El caudal de 2 260 CFM supera el caudal nominal (rated airflow) de 2 000 CFM del Durafil ES3 24×24×12, pero se encuentra dentro del máximo operativo dado por 625 fpm (≈2 500 CFM); por tanto, la selección requiere confirmación del fabricante de que no se excede el límite de uso continuo. El Durafil ES2 (referencia original) tiene caudal nominal 3 000 CFM, por lo que también es técnicamente válido y puede ofrecerse como alternativa equivalente.
 
-7.3. Desde el punto de vista mecánico, el filtro V-bank de 24×24 in y profundidad 12 in se monta en un portafiltros (holding frame) independiente de la bancada del ventilador. El ventilador axial tubeaxial tiene boca circular; se requiere una caja de transición cuadrado/circular con longitud mínima recomendada de 1,5 veces el diámetro de salida para recuperación del perfil de velocidad y minimizar pérdidas por turbulencia (dato típico de diseño de ductos). La caja de filtración, el portafiltros y la transición deben construirse en inoxidable 316L o en PRFV con resina viniléster, siguiendo el mismo criterio anticorrosivo del ventilador.
+7.3. La cubierta intemperie reemplaza funcionalmente a la caja de filtración: protege contra lluvia, radiación solar e ingreso directo de agua, y aloja en su interior el portafiltros con la malla anti-insectos, el prefiltro y el filtro final. Se especifica con acceso frontal o superior para el cambio de filtros desde la plataforma, boca de entrada con área libre suficiente para no añadir pérdida significativa (la pérdida de la boca se consigna como margen menor dentro de los 165 Pa; confirmar en submittal), y embridado directo a la placa mural del ventilador. Material: PRFV con resina viniléster o acero galvanizado G90 con pintura electrostática epóxica; alternativa inox 316L, siguiendo el mismo criterio anticorrosivo del ventilador.
 
-**Tabla 7.** Accesorios y periféricos necesarios para el acoplamiento al ventilador axial.
+**Tabla 7.** Accesorios y periféricos del banco de filtración en la cubierta.
 
 | Ítem | Función | Material / especificación | Nota de compatibilidad |
 |---|---|---|---|
-| Portafiltros (holding frame) | Sujeción y sellado del prefiltro y filtro final | Inox 316L, junta de poliuretano continua | Debe aceptar módulo 24×24 in y admitir carga del filtro (≈5 kg) |
-| Malla anti-insectos | Protección contra insectos y objetos gruesos | Inox 316, tejido 18×18, marco desmontable | Montada aguas arriba del prefiltro (listado_equipos.md ítem 7) |
-| Caja/housing de filtración | Alojar portafiltros, malla y transición | Inox 316L o PRFV viniléster, tapas de inspección | Dimensionada para 24×24 in facial; altura de piso ≥3,0 m con acceso por plataforma |
-| Transición cuadrado/circular | Adaptar la salida 24×24 in del filtro a la boca circular del ventilador axial | Mismo material que la caja; ángulos ≤15° | Longitud ≥1,5 D para minimizar pérdidas |
-| Conexión flexible | Aislamiento vibratorio entre caja de filtración y ventilador | Hipalón (CSM), bandas inox 316, longitud ≥100 mm | HD-VENT-001 §6.1 |
+| Portafiltros (holding frame) | Sujeción y sellado del prefiltro y filtro final dentro de la cubierta | Inox 316L, junta de poliuretano continua | Debe aceptar módulo 24×24 in y admitir carga del filtro (≈5 kg) |
+| Malla anti-insectos | Protección contra insectos y objetos gruesos en la boca de la cubierta | Inox 316, tejido 18×18, marco desmontable | Aguas arriba del prefiltro (listado_equipos.md ítem 7) |
+| Cubierta intemperie | Aloja el banco de filtración; protección de intemperie; embridado a placa mural | PRFV viniléster o galvanizado G90 + pintura epóxica; alternativa inox 316L | Acceso frontal/superior para cambio de filtros; drenaje inferior |
 | Clips de prefiltro | Fijar el prefiltro MERV 8 a la cara del filtro final | Plástico o inox 316 (Camfil C-84-2 / C-84-4 para ES3) | El Durafil ES3 incluye ranuras para clips; confirmar si se suministran con el filtro |
-| Soportes estructurales | Transmitir cargas de la caja de filtración al muro, independientes del ventilador | Perfiles inox 316 / anclajes inox A4 | Evitar que el peso del banco de filtración cargue la bancada del ventilador |
-| Guarda de seguridad | Protección del lado de aspiración accesible | Inox 316 o PRFV | Según configuración final de montaje |
+| Fijación de la cubierta | Anclaje de la cubierta a la placa mural y/o estructura de unión | Pernos inox 316 (A4) con aislamiento dieléctrico | La estructura de unión del ventilador (HD-VENT-001 §8.2) soporta el conjunto |
 
-7.4. Incongruencias y puntos de verificación en campo. La principal incógnita es el diámetro de boca del ventilador axial seleccionado: si es menor de aproximadamente 450 mm, las pérdidas de la transición cuadrado/circular podrían superar el margen de 11 Pa asignado a las rejillas, y debería revisarse el punto de trabajo del ventilador. Si el diámetro es mayor de 610 mm, una sola celda 24×24 in no cubre el área frontal y se requiere agrandar la toma o usar múltiples celdas. La altura de montaje de 3,0 m sobre el piso exige plataforma o escalera industrial para el cambio de filtros; el peso del conjunto filtro+prefiltro (≈7 kg) es manejable manualmente. El sentido de flujo puede ser en cualquier dirección en el Durafil ES2/ES3; se recomienda orientar la flecha del filtro hacia el ventilador para aprovechar la succión y mantener el elemento asentado contra el portafiltros.
+7.4. Puntos de verificación en campo. La boca de la cubierta debe tener área libre igual o mayor al área facial del filtro (0,372 m²) para no incrementar la pérdida de entrada; la profundidad interior de la cubierta debe acomodar la profundidad del conjunto (malla 30 mm + prefiltro 50 mm + filtro final 300 mm + holguras). La altura de montaje de 3,0 m sobre el piso exige plataforma o escalera industrial para el cambio de filtros; el peso del conjunto filtro+prefiltro (≈7 kg) es manejable manualmente. El sentido de flujo puede ser en cualquier dirección en el Durafil ES2/ES3; se recomienda orientar la flecha del filtro hacia el ventilador para aprovechar la succión y mantener el elemento asentado contra el portafiltros. Programa de mantenimiento: prefiltro 3-6 meses y filtro final 6-12 meses según ΔP o condición (criterio de la descripción técnica de planta).
 
 ## 8. Foto comercial de referencia
 

@@ -1,30 +1,32 @@
 # Contexto del proyecto: HVAC Laboratorio Brinsa
 
 ## Estado actual
-- Última tarea completada (2026-07-27): priorización de DTS-002 — adaptación del sistema de filtración MERV 13-14 al ventilador axial DTS-001. Se actualizó `Investigacion/Sistemas/hojas_datos/HD-FILT-001_filtro_merv.md` con verificación hidráulica (v_facial = 2,87 m/s, ΔP inicial/final compatibles), lista de accesorios/periféricos (portafiltros, housing, transición cuadrado/circular, conexión flexible, clips, malla anti-insectos), análisis de incongruencias y foto comercial del filtro Camfil Durafil ES. Se actualizó el BOQ en `Investigacion/Sistemas/listado_equipos.md` (ítem 13: caja/housing de filtración y transición) y se regeneraron DTS-002 y LIS-001. La emisión parcial dejó `P2437-HV-DTS-003.xlsx` bloqueado por Excel; requiere reejecutar `scripts/emitir.py` tras cerrarlo.
+- Última tarea completada (2026-07-27): **REV2 — actualización integral por uniformidad con el montaje típico de planta** (`Montaje/DISENOFINAL.png`). El ventilador pasa de axial tubeaxial con bandas a **axial mural (placa mural) Ø560 mm de transmisión directa**; el banco de filtración MERV 8 + MERV 13-14 se aloja dentro de la **cubierta intemperie** (sin caja/housing ni transición cuadrado/circular); se agregan **estructura de unión pernada al muro** y **malla de protección interior**; se eliminan conexión flexible y persiana. Actualizados: HD-VENT-001, HD-FILT-001, listado_equipos.md, bases_diseno.yaml, generar_excel.py, INF-001/INF-002 LaTeX, imagen de referencia DTS-001 (ahora es la del montaje de planta), docs/index.html. Emitidos los 7 entregables + PDF alternativo DTS-001. Se conservan: caudal 3 840 m³/h, ΔP 165 Pa sitio / 225 Pa catálogo, filtración MERV, rejillas, 12 ACH, sin presurización, cota ~3,0 m.
+- Tarea previa (2026-07-27): priorización de DTS-002 — adaptación del sistema de filtración MERV 13-14 al ventilador axial (configuración con caja/housing y transición, superada por REV2).
 - Tarea previa (2026-07-27): imagen de referencia de montaje del ventilador axial en muro/pasamuros a ~3,0 m de altura.
 - Tarea previa (2026-07-27): excepción de nomenclatura para entregables sin ` REV1` en nombre de archivo.
-- Tarea previa (2026-07-27): mejora de la curva ilustrativa del ventilador axial y regeneración de Excel/PDF de DTS-001.
-- Tarea previa (2026-07-27): generación de PDF alternativo de `P2437-HV-DTS-001` con `scripts/pdf_dts001.py`.
-- Tarea previa (2026-07-27): mejora de presentación de los documentos Excel generados y emisión REV1.
 - Próxima tarea pendiente:
-  - Confirmar disponibilidad comercial local del ventilador axial seleccionado (Aerovent FBD / alternativas Greenheck, Sodeca, NYB) y fijar tamaño/RPM/potencia definitiva con la curva de catálogo; obtener diámetro de boca para dimensionar la transición filtro-ventilador.
-  - Confirmar con Camfil (o distribuidor local) que el Durafil ES3 24×24×12 soporta 2 260 CFM de forma continua, o mantener ES2 como referencia principal.
+  - Confirmar modelo/RPM/potencia definitiva del ventilador mural Ø560 mm con el fabricante (Sodeca HQD/HGT mural anticorrosivo como primera opción por canal local; punto 3 840 m³/h @ 225 Pa catálogo).
+  - Definir dimensiones de la cubierta intemperie y estructura de unión con los planos del submittal.
+  - Confirmar con Camfil/distribuidor el uso continuo del Durafil ES3 24×24 a 2 260 CFM, o mantener ES2.
   - Verificar el caudal real en el ensayo de balanceo (anemometría en rejillas).
 - Fecha de última actualización: 2026-07-27
 
-## Bases de diseño congeladas (actualizadas 2026-07-27 — REV1)
+## Bases de diseño congeladas (actualizadas 2026-07-27 — REV2)
 - Sitio: BRINSA, Cajicá, Cundinamarca — 2 558 msnm, P_atm = 74.1 kPa, T 21/3/14 °C (máx/mín/media), HR media 84 %
 - Ambiente exterior altamente corrosivo (planta de hipoclorito de calcio) → PRFV/inox 316/epóxicos
 - Densidad del aire ρ: 0.88 kg/m³ (a 20 °C); coeficiente de descarga de orificio C_d: 0.60
 - Volumen efectivo: 320 m³; renovación: 12 ACH (3 840 m³/h)
 - **SIN presurización** del cuarto; descarga libre a atmósfera por 3 rejillas 353×336 mm
 - Presión total del ventilador: 165 Pa en sitio (escenario MERV 13-14 cargado); punto de catálogo 3 840 m³/h @ 225 Pa (ρ = 1.2)
-- Eficiencia axial provisional: 0.55; potencia teórica 0.320 kW (0.43 HP); motor provisional 0.75 HP TEFC anticorrosivo, 440 V, 3φ, 60 Hz (confirmar con catálogo)
-- Velocidad inyección: 8.0 m/s; velocidad exfiltración: 3.0 m/s
-- Filtración: MERV 13-14 definitivo — SIN HEPA (laboratorio de análisis industrial)
+- **Ventilador: axial mural (placa mural) Ø560 mm, transmisión directa** (uniformidad con montaje típico de planta); velocidad real en boca 4,33 m/s
+- Eficiencia axial provisional: 0.55; potencia teórica 0.320 kW (0.43 HP); motor provisional 0.75 HP TEFC encapsulado anticorrosivo (en la corriente de aire), 440 V, 3φ, 60 Hz
+- **Montaje: cubierta intemperie con banco de filtración + estructura de unión pernada al muro + malla de protección interior**; sin ductos
+- Velocidad exfiltración: 3.0 m/s
+- Filtración: MERV 8 + MERV 13-14 definitivo — SIN HEPA (laboratorio de análisis industrial)
 
 ## Decisiones de diseño clave
+- **REV2: ventilador axial mural Ø560 mm por uniformidad con planta (2026-07-27):** el montaje típico instalado en la planta (`Montaje/DISENOFINAL.png`) fija: axial mural (placa mural) Ø560 mm de transmisión directa, banco de filtración MERV 8 + MERV 13-14 alojado en la cubierta intemperie, estructura de unión pernada al muro y malla de protección interior. Se eliminan la transición cuadrado/circular, la caja/housing, la conexión flexible y la persiana de la configuración REV1. El motor va dentro de la corriente corrosiva (transmisión directa) → se exige ejecución encapsulada severe duty IP56/IP66 con eje inox; la alternativa de bandas queda documentada como opción. Se mantienen los materiales anticorrosivos del proyecto (PRFV/inox 316) como upgrade sobre el galvanizado+pintura de planta. La imagen de referencia de DTS-001 pasa a ser la del montaje típico de planta.
 - **Curva ilustrativa axial (2026-07-27):** se mejoró `scripts/generar_img_dts001.py` para generar una curva Q-ΔP basada en los datos investigados: punto de diseño 3 840 m³/h @ 225 Pa catálogo / 165 Pa sitio, factor de densidad k = 0,733, eficiencia η = 0,55 provisional y forma parabólica típica de ventiladores axiales tubeaxial. Se añadieron curva en sitio, curva de potencia de eje teórica, zona de operación recomendada y nota de validez. La curva es ilustrativa y requiere validación contra el catálogo del fabricante seleccionado.
 - **Montaje del ventilador en muro/pasamuros a ~3,0 m (2026-07-27):** se definió que el ventilador axial tubeaxial PRFV se instalará en muro/pasamuros (no en pared libre), con eje a ~3,0 m sobre piso, motor fuera de la corriente de aire corrosivo mediante transmisión por bandas, y acceso para mantenimiento de bandas. Se actualizó la imagen de referencia en `scripts/generar_img_dts001.py` y se añadió la sección 8 de montaje en `HD-VENT-001_ventilador.md`.
 - **Nomenclatura de entregables sin REV1 (2026-07-27):** excepción acordada para el proyecto P2437. Los archivos emitidos en `Emisiones/` no llevan el sufijo ` REV1` en el nombre; la revisión consta en la portada/metadatos del documento y en el control de versiones de git.
@@ -38,6 +40,8 @@
 - Dashboard web estático (Vanilla HTML/CSS/JS) en `docs/` para GitHub Pages.
 
 ## Archivos clave y su propósito
+- `Montaje/DISENOFINAL.png` — imagen del montaje típico de planta (fuente de la REV2); también es la imagen de referencia de DTS-001.
+- `Montaje/Descripcion_Tecnica_Sistema_Ventilacion_Inyeccion_2260CFM_v2.md` — descripción técnica del montaje típico de planta.
 - `Latex/02_informe_tex/P2437-HV-INF-001 REV0.tex` / `.pdf` — informe técnico DML REV1 (documento canónico; emisión como REV1).
 - `Latex/02_informe_tex/P2437-HV-INF-002 REV0.tex` / `.pdf` — informe de investigación del sistema REV1.
 - `Codificacion/codificacion.md` — codificación GP-N-09 de los documentos del proyecto.
@@ -58,9 +62,9 @@
 - `Emisiones/3.0 HV-HOJAS DE DATOS/P2437-HV-DTS-002.xlsx` — hoja de datos DTS-002 emitida (REV1 en metadatos, sin sufijo en nombre).
 
 ## Preguntas abiertas / bloqueos
-- [ ] Confirmar disponibilidad comercial local del ventilador axial seleccionado (Aerovent FBD vía importación, Greenheck VAB/VAD vía Prime Lines, Sodeca HCT/HGT, NYB FRP). Fijar tamaño/RPM/potencia definitiva con curva de catálogo y obtener diámetro de boca para dimensionar la transición filtro-ventilador. Plazo máximo de entrega presupuestado: ~3 meses (dato cliente, 2026-07-23).
+- [ ] Confirmar modelo/RPM/potencia definitiva del ventilador mural Ø560 mm con el fabricante (Sodeca HQD/HGT mural anticorrosivo primera opción; Greenheck mural, Aerovent/Twin City mural FRP, NYB FRP mural alternativas). Punto: 3 840 m³/h @ 225 Pa catálogo. Plazo máx. ~3 meses (dato cliente, 2026-07-23).
+- [ ] Definir dimensiones de la cubierta intemperie y de la estructura de unión con los planos del submittal del ventilador.
 - [ ] Confirmar con Camfil/distribuidor local (ITECO, RGD Aire, Filter Tech) que el Durafil ES3 24×24×12 in soporta 2 260 CFM de forma continua, o mantener ES2 como referencia principal.
-- [ ] Resolver bloqueo de `Emisiones/3.0 HV-HOJAS DE DATOS/P2437-HV-DTS-003.xlsx` (archivo abierto en Excel) y reejecutar `python scripts/emitir.py` para sincronizarlo.
 - [x] ~~Generar PDF de `P2437-HV-DTS-001.xlsx`~~ → Resuelto 2026-07-27: se generó PDF alternativo con `scripts/pdf_dts001.py` y se copió a `Emisiones/3.0 HV-HOJAS DE DATOS/P2437-HV-DTS-001.pdf`. Puede reemplazarse por exportación manual desde Excel cuando se disponga de Excel local.
 - [ ] Verificar el caudal real en el ensayo de balanceo mediante anemometría en las tres rejillas de descarga.
 - [x] ~~Confirmar si el laboratorio requiere HEPA~~ → Resuelto 2026-07-23: NO requiere (análisis industrial).

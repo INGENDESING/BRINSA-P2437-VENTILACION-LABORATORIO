@@ -224,7 +224,7 @@ info = [
     ["Volumen efectivo del laboratorio (V)", "320", "m³", "Medición / modelo 3D"],
     ["Renovaciones de aire (N)", "12", "ren/h", "Sustentado normativamente"],
     ["Objetivo", "Ventilación y filtración", "-", "12 ACH, MERV 13-14; sin presurización (REV1)"],
-    ["Estrategia", "Ventilador axial directo + rejillas de exfiltración", "-", "Sin ductos de impulsión"],
+    ["Estrategia", "Ventilador axial mural Ø560 mm + cubierta intemperie con filtración + rejillas de exfiltración", "-", "Sin ductos de impulsión; montaje uniforme con la planta (REV2)"],
 ]
 for row in info:
     escribir_fila(ws, r, row, alineaciones={3: AL_CENTRO})
@@ -370,8 +370,11 @@ resultados = [
     ["Potencia teórica del ventilador", f"={C6(4)}{c_HP}", "HP", "Unidades imperiales"],
     ["Potencia instalada recomendada", f"=CEILING({C6(4)}{c_HP}*1.5,0.25)", "HP", "×1.5 margen de servicio, redondeo 0.25 HP (provisional; confirmar con catálogo)"],
     ["Área de impulsión del ventilador", f"={C6(4)}{c_Avent}", "m²", "Boca del ventilador"],
-    ["Diámetro equivalente del ventilador", f"={C6(4)}{c_D}", "m", "Para referencia"],
-    ["Radio del ventilador (CFD)", f"={C6(4)}{c_rmm}", "mm", "Círculo de inyección"],
+    ["Diámetro equivalente del ventilador", f"={C6(4)}{c_D}", "m", "Para referencia (BC del CFD, histórica)"],
+    ["Radio del ventilador (CFD)", f"={C6(4)}{c_rmm}", "mm", "Círculo de inyección (BC del CFD, histórica)"],
+    ["Diámetro del impulsor seleccionado", 0.56, "m", "Ø560 mm — uniformidad con montaje típico de planta (REV2)"],
+    ["Área de boca real (Ø560 mm)", f"=PI()*(0.56/2)^2", "m²", "π × (D/2)²"],
+    ["Velocidad real en boca (Ø560 mm)", f"={C6(4)}{c_Qs}/(PI()*(0.56/2)^2)", "m/s", "Q_s / A_boca real ≈ 4,33 m/s"],
     ["Velocidad de impulsión", f"={C5(3)}{e_vvent}", "m/s", "Condición de entrada CFD"],
     ["Área neta total de rejillas de salida", f"={C6(4)}{c_Aexfil}", "m²", "A v=3 m/s"],
     ["Número de rejillas de salida", f"={C5(3)}{e_nrej}", "unid.", "Distribución propuesta"],
@@ -471,7 +474,9 @@ r += 1  # fila en blanco
 subtitulo(ws, r, "Nota:")
 r += 1
 texto_largo(ws, r, r + 2,
-    "El motor provisional de 0.75 HP TEFC anticorrosivo corresponde al escenario MERV 13-14 "
+    "El motor provisional de 0.75 HP TEFC encapsulado anticorrosivo (en la corriente de "
+    "aire, transmisión directa del ventilador mural Ø560 mm — uniformidad con el montaje "
+    "típico de planta, REV2) corresponde al escenario MERV 13-14 "
     "cargado (punto de diseño), con margen de servicio 1.5 sobre la potencia teórica; la "
     "potencia definitiva se fija con la curva del ventilador axial seleccionado. Los "
     "escenarios HEPA son solo referencia histórica: el laboratorio de análisis industrial "
@@ -496,8 +501,11 @@ vista_rapida = [
     ["Potencia teórica del ventilador", f"={C6(4)}{c_HP}", "HP", "Unidades imperiales"],
     ["Potencia instalada recomendada", f"=CEILING({C6(4)}{c_HP}*1.5,0.25)", "HP", "×1.5 margen de servicio (provisional)"],
     ["Área de impulsión del ventilador", f"={C6(4)}{c_Avent}", "m²", "Boca del ventilador"],
-    ["Diámetro equivalente del ventilador", f"={C6(4)}{c_D}", "m", "Para referencia"],
-    ["Radio del ventilador (CFD)", f"={C6(4)}{c_rmm}", "mm", "Círculo de inyección"],
+    ["Diámetro equivalente del ventilador", f"={C6(4)}{c_D}", "m", "Para referencia (BC del CFD, histórica)"],
+    ["Radio del ventilador (CFD)", f"={C6(4)}{c_rmm}", "mm", "Círculo de inyección (BC del CFD, histórica)"],
+    ["Diámetro del impulsor seleccionado", 0.56, "m", "Ø560 mm — uniformidad con montaje típico de planta (REV2)"],
+    ["Área de boca real (Ø560 mm)", f"=PI()*(0.56/2)^2", "m²", "π × (D/2)²"],
+    ["Velocidad real en boca (Ø560 mm)", f"={C6(4)}{c_Qs}/(PI()*(0.56/2)^2)", "m/s", "Q_s / A_boca real ≈ 4,33 m/s"],
     ["Velocidad de impulsión", f"={C5(3)}{e_vvent}", "m/s", "Condición de entrada CFD"],
     ["Área neta total de rejillas de salida", f"={C6(4)}{c_Aexfil}", "m²", "A v=3 m/s"],
     ["Número de rejillas de salida", f"={C5(3)}{e_nrej}", "unid.", "Distribución propuesta"],

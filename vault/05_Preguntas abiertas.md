@@ -5,23 +5,19 @@ tags: [preguntas, bloqueos]
 
 # Preguntas abiertas / bloqueos
 
-- [ ] Confirmar disponibilidad comercial local del ventilador axial seleccionado
-      (Aerovent FBD vía importación, Greenheck VAB/VAD vía Prime Lines, Sodeca
-      HCT/HGT, New York Blower FRP). Fijar tamaño, RPM, potencia definitiva y,
-      críticamente, el **diámetro de boca** del ventilador para dimensionar la
-      transición cuadrado/circular desde el filtro 24×24 in. Plazo máximo de
-      entrega presupuestado: ~3 meses (dato cliente, 2026-07-23). Ver
-      [[listado_equipos]] y [[2026-07-27_sin-presurizacion-ventilador-axial]].
-- [ ] Confirmar con Camfil o distribuidor local (ITECO, RGD Aire, Filter Tech)
-      que el filtro **Durafil ES3 24×24×12 in, MERV-14/14A** soporta **2 260 CFM**
-      (3 840 m³/h) de forma continua. El caudal nominal (rated airflow) del ES3
-      es 2 000 CFM, aunque la velocidad máxima usable (625 fpm) permite hasta
-      ~2 500 CFM. Si el fabricante no valida uso continuo a 2 260 CFM, se
-      mantendrá el **Durafil ES2** como referencia principal (3 000 CFM nominal).
+- [ ] Confirmar modelo/RPM/potencia definitiva del ventilador mural Ø560 mm con el fabricante
+      (Sodeca HQD/HGT mural anticorrosivo primera opción por canal local; Greenheck mural,
+      Aerovent/Twin City mural FRP, NYB FRP mural alternativas). Punto de selección: 3 840 m³/h
+      @ 225 Pa catálogo. Plazo máximo de entrega presupuestado: ~3 meses (dato cliente,
+      2026-07-23). Ver [[listado_equipos]] y [[2026-07-27_montaje-mural-planta]].
+- [ ] Definir dimensiones de la cubierta intemperie y de la estructura de unión con los planos
+      del submittal del ventilador.
+- [ ] Confirmar con Camfil o distribuidor local (ITECO, RGD Aire, Filter Tech) que el filtro
+      **Durafil ES3 24×24×12 in, MERV-14/14A** soporta **2 260 CFM** (3 840 m³/h) de forma
+      continua. El caudal nominal (rated airflow) del ES3 es 2 000 CFM, aunque la velocidad
+      máxima usable (625 fpm) permite hasta ~2 500 CFM. Si el fabricante no valida uso continuo
+      a 2 260 CFM, se mantendrá el **Durafil ES2** como referencia principal (3 000 CFM nominal).
       Ver [[2026-07-27_filtro-ventilador-axial]].
-- [ ] Resolver bloqueo de `Emisiones/3.0 HV-HOJAS DE DATOS/P2437-HV-DTS-003.xlsx`
-      (archivo destino abierto en Excel). Cerrarlo y reejecutar
-      `python scripts/emitir.py` para sincronizar la emisión completa.
 - [ ] Verificar el caudal real en el ensayo de balanceo mediante anemometría en
       las tres rejillas de descarga (ya no hay presión diferencial que medir).
 

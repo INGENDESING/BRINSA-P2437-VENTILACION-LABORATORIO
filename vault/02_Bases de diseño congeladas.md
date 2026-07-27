@@ -33,4 +33,4 @@ Estos valores NO se revisan sin aprobación explícita. Fuente única de verdad:
 | Instrumentación ΔP | NINGUNA (eliminada) | Decisión cliente 2026-07-27 |
 | Damper de alivio | NINGUNO (eliminado) | Decisión cliente 2026-07-27 |
 
-Configuración base: sistema sin ductos de impulsión — ventilador axial tubeaxial PRFV de transmisión por bandas + descarga libre por 3 rejillas de 353×336 mm con malla anti-insectos.
+Configuración base: sistema sin ductos de impulsión — ventilador axial mural (placa mural) Ø560 mm de transmisión directa, con banco de filtración en cubierta intemperie, estructura de unión pernada al muro y malla de protección interior (uniformidad con montaje típico de planta, REV2) + descarga libre por 3 rejillas de 353×336 mm con malla anti-insectos.

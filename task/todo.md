@@ -291,4 +291,55 @@
 - [ ] Verificar que las URL de fotos comerciales sean públicas y estables.
 
 ## Revisión
-- (Pendiente al cierre de la tarea)
+- **Resumen:** DTS-002 quedó adaptada al ventilador axial con verificación hidráulica (velocidad facial 2,87 m/s dentro del límite 625 fpm del Durafil ES3; ΔP final 154 Pa sitio compatible con los 165 Pa del ventilador), accesorios/periféricos, foto comercial Camfil y enlace de distribuidor. Se actualizó el BOQ y se regeneraron DTS-002 y LIS-001. (Nota: la configuración de caja/housing con transición cuadrado/circular de esta revisión quedó superada por la REV2 — banco de filtración dentro de la cubierta intemperie, ver plan siguiente.)
+- **Desviaciones respecto al plan:** se mantuvo el Durafil ES2 como referencia principal además del ES3, por su mayor caudal nominal (3 000 CFM vs. 2 000 CFM).
+- **Limitaciones conocidas:** curva ΔP del filtro es ilustrativa (ley cuadrática desde el punto de catálogo); el caudal de 2 260 CFM en el ES3 24×24 requiere confirmación de uso continuo del fabricante.
+- **Archivos entregables y rutas:** `Investigacion/Sistemas/hojas_datos/HD-FILT-001_filtro_merv.md`, `Investigacion/Sistemas/listado_equipos.md`, `Emisiones/3.0 HV-HOJAS DE DATOS/P2437-HV-DTS-002.xlsx`, `Emisiones/4.0 HV-LISTADOS/P2437-HV-LIS-001.xlsx`, `build/dts/img/curva_filtro_dts002.png`, `build/dts/img/croquis_filtro_ventilador_dts002.png`, `scripts/generar_curva_filtro_dts002.py`, `scripts/generar_croquis_filtro_ventilador.py`, `contexto.md` y notas del vault.
+
+
+---
+
+# Plan: Actualización integral REV2 — ventilador axial mural Ø560 mm por uniformidad con montaje típico de planta (P2437)
+
+## Contexto
+- Objetivo: alinear TODA la documentación del proyecto P2437 con el montaje típico real de la planta, documentado en `Montaje/DISENOFINAL.png` y `Montaje/Descripcion_Tecnica_Sistema_Ventilacion_Inyeccion_2260CFM_v2.md`: ventilador axial mural (placa mural) Ø560 mm de transmisión directa, banco de filtración alojado en la cubierta intemperie, estructura de unión pernada al muro y malla de protección interior.
+- Cliente / Proyecto DML: P2437 — HVAC Laboratorio BRINSA.
+- Normas aplicables: ASHRAE 52.2, ISO 16890, AMCA 210/211/300, ASHRAE 62.1, SMACNA, RETIE, NTC 2050.
+
+## Supuestos clave
+- [x] Ø560 mm es el tamaño instalado/uniforme de planta (fuente: DISENOFINAL.png).
+- [x] El punto de trabajo 3 840 m³/h @ 165 Pa sitio (225 Pa catálogo) sigue vigente; RPM final por confirmar con proveedor.
+- [x] El banco de filtración en la cubierta conserva módulo 24×24 in (velocidad facial 2,87 m/s).
+- [x] Se conservan los materiales anticorrosivos del proyecto (PRFV / inox 316 / motor encapsulado) como upgrade sobre los materiales de planta (galvanizado + pintura electrostática).
+- [x] Altura de montaje ~3,0 m y rejillas DTS-003 sin cambios.
+
+## Tareas
+- [x] T1. `HD-VENT-001_ventilador.md`: tipo mural Ø560 mm transmisión directa; §8 montaje (estructura de unión, cubierta, malla protección, cota 3,0 m); §6 accesorios; nota de motor encapsulado en corriente; candidatos ajustados a mural.
+- [x] T2. `HD-FILT-001_filtro_merv.md`: §7 reemplazada por integración en cubierta intemperie; eliminadas transición cuadrado/circular, housing y conexión flexible; conservadas tablas de eficiencia, ΔP, candidatos y foto comercial.
+- [x] T3. `listado_equipos.md`: ítem 1 mural Ø560; agregados cubierta intemperie (9), estructura de unión (8) y malla de protección interior (10); eliminados flexible (antiguo 9) y caja/housing (antiguo 13); notas actualizadas.
+- [x] T4. `bases_diseno.yaml`: tipo mural, Ø560 mm, velocidad real en boca 4,33 m/s, descripción de montaje; revisión 2.
+- [x] T5. `generar_excel.py`: estrategia y nota de motor; filas de ventilador seleccionado (Ø560, área real 0,2463 m², velocidad real) en secciones 4 y 7 sin romper fórmulas.
+- [x] T6. INF-001 LaTeX: `sections/07_bases_disenio.tex`, `12_recomendaciones.tex`, `02_resumen.tex`, `13_anexos.tex`, `01_frontmatter.tex`.
+- [x] T7. INF-002 LaTeX: `inf002_10_ventilador_filtracion.tex`, `inf002_14_recomendaciones.tex`, `inf002_02_resumen.tex`, `inf002_01_frontmatter.tex`, `inf002_05_objetivos.tex`, `inf002_13_conclusiones.tex`, `inf002_11_rejillas_accesorios.tex`.
+- [x] T8. Imagen de referencia DTS-001: `Montaje/DISENOFINAL.png` copiada a `build/dts/img/ventilador_referencia_dts001.png`; `scripts/generar_img_dts001.py` actualizado (copia la imagen de planta; curva retitulada a mural).
+- [x] T9. `docs/index.html`: tipo axial mural Ø560 y datos reales de boca (0,246 m², 4,33 m/s); CFD 8 m/s marcado como referencia histórica.
+- [x] T10. Registrar este plan en `task/todo.md`.
+- [ ] T11. Regenerar entregables con `python scripts/emitir.py` (Excel, DTS, LIS, INF-001/002, copias a `Emisiones/`, manifiesto) y PDF alternativo DTS-001 con `scripts/pdf_dts001.py`.
+- [ ] T12. Actualizar `contexto.md` y vault (estado, preguntas, decisión `2026-07-27_montaje-mural-planta`, bitácora).
+- [ ] T13. Commit y push con confirmación del usuario.
+
+## Riesgos / Puntos de verificación
+- [ ] Consistencia hidráulica: Ø560 mm @ 3 840 m³/h → v_boca ≈ 4,33 m/s; verificar en memoria y bases de diseño.
+- [ ] ΔP total 165 Pa sitio se mantiene; la boca de la cubierta se consigna como margen menor, a confirmar en submittal.
+- [ ] Compilación LaTeX INF-001/002 con 0 errores.
+- [ ] `scripts/emitir.py` completo sin errores; manifiesto actualizado.
+- [ ] Revisión cruzada: ningún documento debe seguir diciendo "tubeaxial" ni "transmisión por bandas" salvo en notas históricas/de comparativa marcadas como REV1.
+
+## Revisión
+- **Resumen:** proyecto actualizado integralmente a REV2 (uniformidad con montaje típico de planta): ventilador axial mural (placa mural) Ø560 mm de transmisión directa; banco de filtración MERV 8 + MERV 13-14 dentro de la cubierta intemperie; estructura de unión pernada al muro; malla de protección interior; eliminados caja/housing, transición cuadrado/circular, conexión flexible y persiana. Actualizados: HD-VENT-001, HD-FILT-001, listado_equipos.md, bases_diseno.yaml (rev 2), generar_excel.py, INF-001/INF-002 LaTeX, imagen de referencia DTS-001 (= DISENOFINAL.png), docs/index.html. Emitidos los 7 entregables + PDF alternativo DTS-001 (26 páginas INF-001, 0 errores LaTeX).
+- **Desviaciones respecto al plan:** ninguna sustancial. La primera corrida de `emitir.py` falló en las pasadas finales de INF-001 porque el PDF estaba abierto en un visor; al cerrarse, la recompilación y la emisión completaron sin errores. El PDF alternativo requiere el Python de `.venv` (reportlab): `.venv/Scripts/python.exe scripts/pdf_dts001.py`.
+- **Limitaciones conocidas:** el riesgo del motor dentro de la corriente corrosiva (transmisión directa) se mitiga con ejecución encapsulada severe duty e inspección semestral; la configuración de bandas queda como opción documentada. La pérdida de la boca de la cubierta se consigna como margen menor dentro de los 165 Pa; confirmar en submittal. RPM/potencia definitivas pendientes de curva del fabricante.
+- **Archivos entregables y rutas:**
+  - Fuentes: `Investigacion/Sistemas/hojas_datos/HD-VENT-001_ventilador.md`, `HD-FILT-001_filtro_merv.md`, `Investigacion/Sistemas/listado_equipos.md`, `Latex/00_bases_diseno/bases_diseno.yaml`, `generar_excel.py`, `Latex/02_informe_tex/sections*/`, `scripts/generar_img_dts001.py`, `docs/index.html`, `task/todo.md`.
+  - Emitidos: `Emisiones/1.0 HV-INFORMES/P2437-HV-INF-001.pdf`, `P2437-HV-INF-002.pdf`, `Emisiones/2.0 HV-MEMORIAS DE CALCULO/P2437-HV-CAL-001.xlsx`, `Emisiones/3.0 HV-HOJAS DE DATOS/P2437-HV-DTS-001.xlsx` (+ `.pdf`), `P2437-HV-DTS-002.xlsx`, `P2437-HV-DTS-003.xlsx`, `Emisiones/4.0 HV-LISTADOS/P2437-HV-LIS-001.xlsx`, `Emisiones/MANIFIESTO_EMISION.md`.
+  - Memoria: `contexto.md`, `vault/01_Estado actual.md`, `vault/05_Preguntas abiertas.md`, `vault/03_Decisiones/2026-07-27_montaje-mural-planta.md`, `vault/04_Bitácora/2026-07-27_rev2_montaje_mural.md`, `vault/00_Inicio.md`.

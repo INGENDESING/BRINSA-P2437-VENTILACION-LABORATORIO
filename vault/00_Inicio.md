@@ -32,12 +32,14 @@ recuperar contexto sin gastar tokens innecesarios.
 
 ## Decisiones de diseño (2026-07-27)
 
+- [[2026-07-27_montaje-mural-planta]] — REV2: ventilador axial mural Ø560 mm por uniformidad con planta
 - [[2026-07-27_sin-presurizacion-ventilador-axial]]
 - [[2026-07-27_presentacion-excel-a-o-times-new-roman]]
-- [[2026-07-27_filtro-ventilador-axial]] — acoplamiento del filtro MERV 13-14 al ventilador axial
+- [[2026-07-27_filtro-ventilador-axial]] — acoplamiento del filtro MERV 13-14 al ventilador axial (superada parcialmente por REV2)
 
 ## Bitácora
 
+- [[2026-07-27_rev2_montaje_mural]] — REV2: actualización integral al montaje típico de planta
 - [[2026-07-27_dts002_filtro_axial]] — priorización de DTS-002: adaptación del filtro MERV 13-14 al ventilador axial
 - [[2026-07-27_mejora-presentacion-excel]] — mejora de presentación Excel: A:O, Times New Roman, colores y bordes corporativos; emisión REV1
 - [[2026-07-27]] — cambio de alcance: sin presurización, ventilador axial, sin instrumentación ΔP; emisión REV1
