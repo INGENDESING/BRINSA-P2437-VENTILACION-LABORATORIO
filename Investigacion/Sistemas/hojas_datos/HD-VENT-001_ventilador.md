@@ -3,14 +3,10 @@
 | Campo | Valor |
 |---|---|
 | Código | HD-VENT-001 |
-| Revisión | 2 |
+| Revisión | 0 |
 | Fecha | 2026-07-27 |
 | Proyecto | P2437-HV-INF-001 — BRINSA, laboratorio de análisis industrial, Cajicá |
 | Etiqueta de equipo | VENT-001 (ventilador axial mural de inyección) |
-
-**Nota de revisión REV2 — 2026-07-27:** actualización por uniformidad con el montaje típico instalado en la planta (`Montaje/DISENOFINAL.png` y `Montaje/Descripcion_Tecnica_Sistema_Ventilacion_Inyeccion_2260CFM_v2.md`): ventilador axial mural (placa mural) Ø560 mm, transmisión directa, con cubierta intemperie que aloja el banco de filtración, estructura de unión pernada al muro y malla de protección interior. Se conservan caudal, ΔP de diseño, filtración MERV 8 + MERV 13-14, rejillas y ausencia de presurización.
-
-**Nota de revisión REV1 — 2026-07-27:** cambio de alcance del cliente — sistema sin presurización, ventilador axial en lugar de centrífugo, sin instrumentación de presión diferencial.
 
 ---
 
@@ -69,7 +65,7 @@
 
 Justificación de materiales: las resinas viniléster tipo Derakane se especifican expresamente para cloro e hipoclorito ([INEOS — Derakane Resin Selection Guide](http://www.ineos.com/globalassets/ineos-group/businesses/ineos-composites/markets/corrosion/derakane-resin-selection-guide.pdf), consulta 2026-07-23); el polipropileno ofrece alta resistencia a cloruros e hipoclorito a temperatura ambiente ([Plastec](https://www.plastecventilation.com/collections/plastec-series), consulta 2026-07-23). El montaje típico de la planta usa acero galvanizado y pintura electrostática; para este servicio se eleva la especificación a PRFV o epóxico anticorrosivo por la atmósfera clorada.
 
-**Nota de ingeniería (REV2).** La adopción del montaje mural de transmisión directa deja el motor dentro de la corriente de aire corrosivo, a diferencia de la configuración de transmisión por bandas evaluada en REV1. El riesgo se mitiga con la ejecución encapsulada severe duty de la Tabla 4 y con el programa de inspección semestral de la Tabla de mantenimiento de la descripción técnica de planta; la alternativa de transmisión por bandas queda documentada como opción si la vida del motor en servicio resultara inferior a la esperada.
+**Nota de ingeniería.** La adopción del montaje mural de transmisión directa deja el motor dentro de la corriente de aire corrosivo, a diferencia de una configuración de transmisión por bandas con el motor fuera de la corriente. El riesgo se mitiga con la ejecución encapsulada severe duty de la Tabla 4 y con el programa de inspección semestral de la Tabla de mantenimiento de la descripción técnica de planta; la alternativa de transmisión por bandas queda documentada como opción si la vida del motor en servicio resultara inferior a la esperada.
 
 ## 5. Motor
 

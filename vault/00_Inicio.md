@@ -33,6 +33,7 @@ recuperar contexto sin gastar tokens innecesarios.
 ## Decisiones de diseño (2026-07-28)
 
 - [[2026-07-28_formato-excel-a3-tnr28-verde]] — formato Excel: A3 horizontal, TNR 28, verde claro DML, módulo único `estilos_excel.py`
+- [[2026-07-28_rev0-unica-revision-cero]] — REV0 única: todos los entregables en Revisión CERO (0); geometría Excel 35/50
 
 ## Decisiones de diseño (2026-07-27)
 

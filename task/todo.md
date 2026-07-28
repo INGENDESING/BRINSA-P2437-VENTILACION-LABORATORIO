@@ -84,19 +84,19 @@
 - [ ] T2. Verificar disponibilidad de fuente Times New Roman en el sistema; definir política de reserva.
 
 ### Desarrollo
-- [ ] T3. Crear `scripts/pdf_dts001.py` que lea el markdown fuente y/o el Excel emitido y genere el PDF.
-- [ ] T4. Implementar portada corporativa con: logo placeholder, código `P2437-HV-DTS-001`, título, subtítulo de proyecto, tabla de revisiones y bloque de firmas.
-- [ ] T5. Implementar sección de especificación con: encabezado corporativo simplificado, títulos markdown `#`, `##`, `###`, párrafos con ajuste de línea, tablas markdown con estilo corporativo, notas numeradas en cursiva, e imágenes de curva/referencia.
-- [ ] T6. Aplicar estilos corporativos: Times New Roman (o reserva), colores `#1F4E78`, `#C6EFCE`, `#FFF2CC`, bordes thin, alineación top, márgenes coherentes.
+- [x] T3. Crear `scripts/pdf_dts001.py` que lea el markdown fuente y/o el Excel emitido y genere el PDF.
+- [x] T4. Implementar portada corporativa con: logo placeholder, código `P2437-HV-DTS-001`, título, subtítulo de proyecto, tabla de revisiones y bloque de firmas.
+- [x] T5. Implementar sección de especificación con: encabezado corporativo simplificado, títulos markdown `#`, `##`, `###`, párrafos con ajuste de línea, tablas markdown con estilo corporativo, notas numeradas en cursiva, e imágenes de curva/referencia.
+- [x] T6. Aplicar estilos corporativos: Times New Roman (o reserva), colores `#1F4E78`, `#C6EFCE`, `#FFF2CC`, bordes thin, alineación top, márgenes coherentes.
 
 ### Verificación
-- [ ] T7. Ejecutar `python scripts/pdf_dts001.py` sin errores.
-- [ ] T8. Abrir/inspeccionar el PDF generado (`build/dts/P2437-HV-DTS-001 REV1.pdf`) para confirmar que contiene portada, especificación, tablas e imágenes.
-- [ ] T9. Verificar que el contenido técnico coincide con el markdown/Excel fuente (caudal, presiones, materiales, normas, candidatos comerciales).
+- [x] T7. Ejecutar `python scripts/pdf_dts001.py` sin errores.
+- [x] T8. Abrir/inspeccionar el PDF generado (`build/dts/P2437-HV-DTS-001 REV1.pdf`) para confirmar que contiene portada, especificación, tablas e imágenes.
+- [x] T9. Verificar que el contenido técnico coincide con el markdown/Excel fuente (caudal, presiones, materiales, normas, candidatos comerciales).
 
 ### Emisión
-- [ ] T10. Copiar el PDF a `Emisiones/3.0 HV-HOJAS DE DATOS/P2437-HV-DTS-001 REV1.pdf` y actualizar `Emisiones/MANIFIESTO_EMISION.md`.
-- [ ] T11. Actualizar `contexto.md` y el vault de Obsidian con el nuevo entregable.
+- [x] T10. Copiar el PDF a `Emisiones/3.0 HV-HOJAS DE DATOS/P2437-HV-DTS-001 REV1.pdf` y actualizar `Emisiones/MANIFIESTO_EMISION.md`.
+- [x] T11. Actualizar `contexto.md` y el vault de Obsidian con el nuevo entregable.
 - [ ] T12. Ejecutar `git add -A && git commit -m "..." && git push origin main` con confirmación del usuario.
 
 ## Riesgos / Puntos de verificación
@@ -326,7 +326,7 @@
 - [x] T10. Registrar este plan en `task/todo.md`.
 - [ ] T11. Regenerar entregables con `python scripts/emitir.py` (Excel, DTS, LIS, INF-001/002, copias a `Emisiones/`, manifiesto) y PDF alternativo DTS-001 con `scripts/pdf_dts001.py`.
 - [ ] T12. Actualizar `contexto.md` y vault (estado, preguntas, decisión `2026-07-27_montaje-mural-planta`, bitácora).
-- [ ] T13. Commit y push con confirmación del usuario.
+- [x] T13. Commit y push con confirmación del usuario.
 
 ## Riesgos / Puntos de verificación
 - [ ] Consistencia hidráulica: Ø560 mm @ 3 840 m³/h → v_boca ≈ 4,33 m/s; verificar en memoria y bases de diseño.
@@ -410,3 +410,57 @@
   - `Emisiones/4.0 HV-LISTADOS/P2437-HV-LIS-001.xlsx`
   - `Emisiones/1.0 HV-INFORMES/P2437-HV-INF-001.pdf`, `P2437-HV-INF-002.pdf` (sin cambios de contenido)
   - `contexto.md` y notas del vault
+
+
+---
+
+# Plan: Revisión CERO (0) única + geometría fija (columnas 35, filas 50) en Excel (P2437)
+
+## Contexto
+- Objetivo 1 (revisiones): como al cliente no se le ha entregado nada, todos los documentos quedan en **Revisión CERO (0)**. Eliminar toda referencia a REV1/REV2 de los documentos entregables y sus fuentes, conservando el contenido técnico.
+- Objetivo 2 (geometría): en todos los libros Excel generados, ancho de columna 35 y alto de fila 50 para el contenido; las PORTADAS quedan exactamente como están (plantilla).
+- Cliente / Proyecto DML: P2437 — HVAC Laboratorio BRINSA.
+- Normas aplicables: GP-N-09 (los documentos inician en Revisión CERO (0), codificacion.md §reglas).
+
+## Supuestos clave
+- [ ] Las referencias a REV1/REV2 dentro del TEXTO de los documentos (memoria, hojas de datos, informes, listado, dashboard) se eliminan reescribiendo la frase para conservar el hecho técnico sin la etiqueta de revisión (p. ej. "la conexión flexible especificada en REV1 ya no aplica" → "no aplica conexión flexible: la cubierta se embrida directamente al ventilador").
+- [x] La memoria interna del proyecto (bitácoras y planes históricos en `task/todo.md`, `vault/04_Bitácora/`) conserva su registro histórico; solo se actualizan las notas de ESTADO actual (contexto.md, vault/01, 02, 06, codificacion.md) (confirmado por el usuario, 2026-07-28).
+- [x] En la tabla de control de revisiones de los informes LaTeX (`00_hojafirmas.tex`) queda solo la fila REV0; se eliminan las filas REV1-REV4 y sus macros \descRevUno… (confirmado por el usuario, 2026-07-28).
+- [ ] El encabezado corporativo (filas 1-7) de los Excel mantiene las alturas de plantilla; el alto de fila 50 aplica al contenido (fila 8/9+). El ancho 35 aplica a las 15 columnas A:O de las hojas de contenido.
+- [ ] Las plantillas `FormatosDocumentos/*.xlsx` NO se modifican (ya dicen "CERO (0)" en PORTADA!BO2).
+
+## Tareas
+
+### Geometría Excel (módulo único)
+- [x] T1. `scripts/estilos_excel.py`: `ANCHO_COLUMNAS = [35]*15` (uniforme), `ALTURA_LINEA = 50`, `ALTURA_MINIMA = 50`. Reserva de imágenes de DTS-001 ya es dinámica (`ceil(300/ALTURA_LINEA)+1` = 7 filas); no requirió cambio.
+
+### REV0 en fuentes de entregables
+- [x] T2. `generar_excel.py`: eliminar "(REV1)" / "(REV2)" de los textos de la memoria (secciones 1, 4, 6 y 7). — Quedó hecho antes del cierre accidental; verificado con grep (0 coincidencias).
+- [ ] T3. `Investigacion/Sistemas/hojas_datos/HD-VENT-001_ventilador.md`, `HD-FILT-001_filtro_merv.md` y `HD-REJ-001_rejillas.md`: eliminar notas de revisión REV1/REV2 y menciones inline; reescribir frases afectadas.
+- [ ] T4. `Investigacion/Sistemas/listado_equipos.md` e `informe_investigacion.md`: idem (notas de revisión, §6.1.1, Tabla 3 leyenda, §6.4.3, §8.1, nota de URL).
+- [ ] T5. LaTeX INF-001: metadatos (`P2437-HV-INF-001 REV0.tex` líneas 3 y 29), `sections/00_hojafirmas.tex` (solo fila REV0), `sections/07_bases_disenio.tex` ("(REV2)"), y macros en `config/datos_proyecto.tex` si quedan huérfanas.
+- [ ] T6. LaTeX INF-002: `sections_inf002/inf002_10_ventilador_filtracion.tex` y `inf002_11_rejillas_accesorios.tex` (prosa con "REV1"/"REV2"); revisar frontmatter/metadatos de INF-002.
+- [ ] T7. `scripts/pdf_dts001.py`: "REV1" → "REV0" (tabla de portada y pie de página).
+- [ ] T8. `scripts/emitir.py`: actualizar comentarios de cabecera (emisión REV0); conservar OBSOLETOS con nombres " REV1" (limpian legados si reaparecen).
+- [ ] T9. `Codificacion/codificacion.md`: actualizar a revisión vigente CERO (0) (líneas ~120, 123, 154-157).
+- [ ] T10. `docs/index.html`: "REV1" del subtítulo y menciones "(REV1)"/"(REV2)" de las tarjetas → REV0 / sin etiqueta.
+- [ ] T11. `Latex/00_bases_diseno/bases_diseno.yaml`: comentarios REV1/REV2 → neutros (fuente de verdad).
+
+### Regeneración y verificación
+- [x] T12. Ejecutar los 3 generadores + `scripts/verificar_formato_excel.py` (pasó OK en los 5 libros; el verificador ya importa `ALTURA_MINIMA` del módulo, sin hardcodeo). Chequeo puntual openpyxl: contenido A:O = 35, filas ≥ 50; portadas conservan geometría de plantilla.
+- [ ] T13. Compilar INF-001/002 (0 errores) y regenerar PDF alternativo DTS-001 (`.venv`).
+- [x] T14. Ejecutar `python scripts/emitir.py` (7 entregables) y verificar con openpyxl/grep que ningún entregable emitido contiene "REV1"/"REV2".
+- [x] T15. Actualizar memoria: `contexto.md`, `vault/01_Estado actual.md`, `vault/02_Bases de diseño congeladas.md` (encabezado REV0), bitácora 2026-07-28, sección Revisión de este plan.
+
+## Riesgos / Puntos de verificación
+- [ ] Las reescrituras de prosa no deben alterar ningún valor técnico (caudales, presiones, materiales, normas).
+- [ ] `00_hojafirmas.tex`: si las macros \descRevUno… se usan en otro lugar, eliminar también allí; compilar para confirmar 0 errores.
+- [ ] El ancho 35 uniforme cambia la distribución de la BOQ de LIS (spans específicos [1,2,3,2,1,3,3]): verificar que no se estrangule la columna Ítem/Cant. (con 35 pt de ancho todas las columnas quedan iguales; es la instrucción del cliente).
+- [ ] Verificación final: grep "REV1|REV2" sobre fuentes de entregables = 0 coincidencias (salvo OBSOLETOS de emitir.py y memoria histórica).
+
+## Revisión
+- Resumen: geometría Excel fijada en ancho 35 / alto 50 (contenido; portadas y encabezado intactos) en `scripts/estilos_excel.py`; todos los entregables pasaron a Revisión CERO (0) eliminando referencias REV1/REV2 de 15 archivos fuente (hojas de datos, listado, informe investigación, LaTeX INF-001/002, pdf_dts001, emitir, codificacion, dashboard, yaml, generar_img_dts001).
+- Desviaciones respecto al plan: la reserva de imágenes de DTS-001 ya era dinámica (no requirió cambio); también se neutralizó un comentario en `generar_img_dts001.py` y se actualizó la tabla de revisiones de `00_portada.tex` (no listada explícitamente en T5 pero compilada en ambos informes).
+- Verificación: `verificar_formato_excel.py` OK en los 5 libros; openpyxl confirma A:O = 35 y filas ≥ 50 en contenido y plantilla intacta en portadas; pdflatex 0 errores en INF-001/002; grep automatizado sobre `Emisiones/` (xlsx + pdf): 0 coincidencias REV1/REV2.
+- Limitación conocida: `Emisiones/2.0 HV-MEMORIAS DE CALCULO/P2437-HV-CAL-001.pdf` es una exportación manual obsoleta (texto "(REV1)", geometría anterior); pendiente retiro o re-exportación desde Excel local. Los PDF manuales DTS-002 y LIS-001 pueden estar obsoletos en geometría.
+- Entregables: 7 emitidos en `Emisiones/` + `P2437-HV-DTS-001.pdf` alternativo; memoria actualizada en `contexto.md`, `vault/01`, `vault/02`, bitácora 2026-07-28 y decisión `2026-07-28_rev0-unica-revision-cero`.

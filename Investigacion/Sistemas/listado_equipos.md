@@ -1,13 +1,9 @@
 # Listado de equipos y materiales (BOQ): sistema de ventilación del laboratorio
 
 **Proyecto:** P2437-HV-INF-001 — BRINSA, laboratorio de análisis industrial, Cajicá (Cundinamarca)
-**Documento:** listado_equipos.md — Revisión 1
+**Documento:** listado_equipos.md — Revisión 0
 **Fecha:** 2026-07-27 (fuentes consultadas el 2026-07-23; frente de ventiladores axiales ampliado el 2026-07-27)
 **Base:** informe_investigacion.md (misma revisión); punto de diseño 3 840 m³/h @ 165 Pa en el sitio (225 Pa equivalente de catálogo, ρ = 1.2 kg/m³).
-
-**Nota de revisión REV2 — 2026-07-27:** actualización por uniformidad con el montaje típico instalado en la planta (`Montaje/DISENOFINAL.png`): ventilador axial mural Ø560 mm de transmisión directa, banco de filtración alojado en la cubierta intemperie, estructura de unión pernada al muro y malla de protección interior. Se eliminan la conexión flexible y la caja/housing con transición cuadrado/circular (REV1).
-
-**Nota de revisión REV1 — 2026-07-27:** cambio de alcance del cliente — sistema sin presurización, ventilador axial, sin instrumentación de presión diferencial.
 
 ---
 

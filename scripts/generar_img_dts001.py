@@ -148,7 +148,7 @@ def generar_curva():
 
 def generar_referencia():
     """Copia la imagen del montaje típico de planta (Montaje/DISENOFINAL.png)
-    como referencia del equipo para DTS-001 (REV2: ventilador axial mural
+    como referencia del equipo para DTS-001 (ventilador axial mural
     Ø560 mm, transmisión directa, cubierta intemperie con banco de filtración,
     estructura de unión y malla de protección interior)."""
 

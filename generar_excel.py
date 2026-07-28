@@ -139,8 +139,8 @@ info = [
     ["Ubicación", "C:\\Users\\ingen\\OneDrive\\Escritorio\\HVAC\\Calculos", "-", "Carpeta de cálculos del proyecto"],
     ["Volumen efectivo del laboratorio (V)", "320", "m³", "Medición / modelo 3D"],
     ["Renovaciones de aire (N)", "12", "ren/h", "Sustentado normativamente"],
-    ["Objetivo", "Ventilación y filtración", "-", "12 ACH, MERV 13-14; sin presurización (REV1)"],
-    ["Estrategia", "Ventilador axial mural Ø560 mm + cubierta intemperie con filtración + rejillas de exfiltración", "-", "Sin ductos de impulsión; montaje uniforme con la planta (REV2)"],
+    ["Objetivo", "Ventilación y filtración", "-", "12 ACH, MERV 13-14; sin presurización"],
+    ["Estrategia", "Ventilador axial mural Ø560 mm + cubierta intemperie con filtración + rejillas de exfiltración", "-", "Sin ductos de impulsión; montaje uniforme con la planta"],
 ]
 for row in info:
     escribir_fila(ws, r, row, alineaciones={3: AL_CENTRO})
@@ -288,7 +288,7 @@ resultados = [
     ["Área de impulsión del ventilador", f"={C6(4)}{c_Avent}", "m²", "Boca del ventilador"],
     ["Diámetro equivalente del ventilador", f"={C6(4)}{c_D}", "m", "Para referencia (BC del CFD, histórica)"],
     ["Radio del ventilador (CFD)", f"={C6(4)}{c_rmm}", "mm", "Círculo de inyección (BC del CFD, histórica)"],
-    ["Diámetro del impulsor seleccionado", 0.56, "m", "Ø560 mm — uniformidad con montaje típico de planta (REV2)"],
+    ["Diámetro del impulsor seleccionado", 0.56, "m", "Ø560 mm — uniformidad con montaje típico de planta"],
     ["Área de boca real (Ø560 mm)", f"=PI()*(0.56/2)^2", "m²", "π × (D/2)²"],
     ["Velocidad real en boca (Ø560 mm)", f"={C6(4)}{c_Qs}/(PI()*(0.56/2)^2)", "m/s", "Q_s / A_boca real ≈ 4,33 m/s"],
     ["Velocidad de impulsión", f"={C5(3)}{e_vvent}", "m/s", "Condición de entrada CFD"],
@@ -350,8 +350,8 @@ r += 4  # texto (3 filas) + fila en blanco
 titulo_seccion(ws, r, "6. ESCENARIOS DE FILTRACIÓN Y MOTOR RECOMENDADO")
 r += 1
 texto_largo(ws, r, r,
-    f"ΔP_vent total = ΔP_filtro + ΔP_rejillas (11 Pa). Sin presurización (REV1: cambio "
-    f"de alcance del cliente). El caudal Q_s se toma del paso 4 de la sección 3 "
+    f"ΔP_vent total = ΔP_filtro + ΔP_rejillas (11 Pa). Sin presurización. "
+    f"El caudal Q_s se toma del paso 4 de la sección 3 "
     f"(celda {C6(4)}{c_Qs}). Sitio: Cajicá, Cundinamarca (2 558 msnm, ρ = 0.88 kg/m³).")
 r += 2  # fila en blanco
 hdr = r
@@ -392,7 +392,7 @@ r += 1
 texto_largo(ws, r, r + 2,
     "El motor provisional de 0.75 HP TEFC encapsulado anticorrosivo (en la corriente de "
     "aire, transmisión directa del ventilador mural Ø560 mm — uniformidad con el montaje "
-    "típico de planta, REV2) corresponde al escenario MERV 13-14 "
+    "típico de planta) corresponde al escenario MERV 13-14 "
     "cargado (punto de diseño), con margen de servicio 1.5 sobre la potencia teórica; la "
     "potencia definitiva se fija con la curva del ventilador axial seleccionado. Los "
     "escenarios HEPA son solo referencia histórica: el laboratorio de análisis industrial "
@@ -419,7 +419,7 @@ vista_rapida = [
     ["Área de impulsión del ventilador", f"={C6(4)}{c_Avent}", "m²", "Boca del ventilador"],
     ["Diámetro equivalente del ventilador", f"={C6(4)}{c_D}", "m", "Para referencia (BC del CFD, histórica)"],
     ["Radio del ventilador (CFD)", f"={C6(4)}{c_rmm}", "mm", "Círculo de inyección (BC del CFD, histórica)"],
-    ["Diámetro del impulsor seleccionado", 0.56, "m", "Ø560 mm — uniformidad con montaje típico de planta (REV2)"],
+    ["Diámetro del impulsor seleccionado", 0.56, "m", "Ø560 mm — uniformidad con montaje típico de planta"],
     ["Área de boca real (Ø560 mm)", f"=PI()*(0.56/2)^2", "m²", "π × (D/2)²"],
     ["Velocidad real en boca (Ø560 mm)", f"={C6(4)}{c_Qs}/(PI()*(0.56/2)^2)", "m/s", "Q_s / A_boca real ≈ 4,33 m/s"],
     ["Velocidad de impulsión", f"={C5(3)}{e_vvent}", "m/s", "Condición de entrada CFD"],

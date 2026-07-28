@@ -68,12 +68,12 @@ AL_PARRAFO = Alignment(horizontal='left', vertical='top', wrap_text=True)
 # ===================== GEOMETRÍA (A3 horizontal, TNR 28) =====================
 N_COLS = 15                     # layout unificado: todas las tablas abarcan A:O
 CHAR_POR_UNIDAD_ANCHO = 0.9     # caracteres TNR 28 por unidad de ancho Excel
-ALTURA_LINEA = 38               # altura de fila por línea de texto 28 pt (pt)
-ALTURA_MINIMA = 38              # altura mínima de cualquier fila de contenido
+ALTURA_LINEA = 50               # altura de fila por línea de texto (pt)
+ALTURA_MINIMA = 50              # altura mínima de cualquier fila de contenido
 
-# Anchos de columna proporcionales (texto > valor > unidad) para A3 horizontal.
-# Total ≈ 234 unidades ≈ ancho imprimible A3 apaisado con fitToWidth = 1.
-ANCHO_COLUMNAS = [49, 19, 19, 10, 10, 10, 10, 10, 10, 13, 13, 13, 16, 16, 16]
+# Ancho de columna uniforme (instrucción del cliente, 2026-07-28): 35 en las
+# 15 columnas A:O de las hojas de contenido. Las portadas conservan la plantilla.
+ANCHO_COLUMNAS = [35] * N_COLS
 
 
 def aplicar_ancho_columnas(ws):

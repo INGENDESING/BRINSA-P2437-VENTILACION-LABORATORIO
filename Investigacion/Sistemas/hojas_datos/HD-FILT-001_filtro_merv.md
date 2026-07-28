@@ -3,12 +3,10 @@
 | Campo | Valor |
 |---|---|
 | Código | HD-FILT-001 |
-| Revisión | 2 |
+| Revisión | 0 |
 | Fecha | 2026-07-27 |
 | Proyecto | P2437-HV-INF-001 — BRINSA, laboratorio de análisis industrial, Cajicá |
 | Etiqueta de equipo | FILT-001 (banco de filtración de la impulsión, alojado en la cubierta intemperie) |
-
-**Nota de revisión REV2 — 2026-07-27:** actualización por uniformidad con el montaje típico instalado en la planta (`Montaje/DISENOFINAL.png`): el banco de filtración se aloja dentro de la **cubierta intemperie** del ventilador axial mural Ø560 mm, sin caja/housing separado ni transición cuadrado/circular. Se conservan clases MERV 8 + MERV 13-14, módulo 24×24 in y las caídas de presión de diseño.
 
 ---
 
@@ -84,7 +82,7 @@ Fuentes: [ANSI/ASHRAE 52.2-2017 (PDF)](https://www.ashrae.org/File%20Library/Tec
 
 ## 7. Integración en la cubierta intemperie del ventilador mural DTS-001
 
-7.1. El ventilador seleccionado es un axial mural (placa mural) Ø560 mm de transmisión directa (HD-VENT-001 REV2, DTS-001) con punto de trabajo 3 840 m³/h a 165 Pa en el sitio (equivalente 225 Pa en catálogo a ρ = 1,2 kg/m³). Por uniformidad con el montaje típico de la planta, el banco de filtración FILT-001 se aloja **dentro de la cubierta intemperie** del ventilador, sin caja/housing separado ni transición cuadrado/circular. La secuencia de flujo es: toma exterior (boca de la cubierta) → malla anti-insectos → prefiltro MERV 8 → filtro final MERV 13-14 → ventilador axial mural → paso por muro → malla de protección interior → descarga al recinto (HD-VENT-001 §8.1).
+7.1. El ventilador seleccionado es un axial mural (placa mural) Ø560 mm de transmisión directa (HD-VENT-001, DTS-001) con punto de trabajo 3 840 m³/h a 165 Pa en el sitio (equivalente 225 Pa en catálogo a ρ = 1,2 kg/m³). Por uniformidad con el montaje típico de la planta, el banco de filtración FILT-001 se aloja **dentro de la cubierta intemperie** del ventilador, sin caja/housing separado ni transición cuadrado/circular. La secuencia de flujo es: toma exterior (boca de la cubierta) → malla anti-insectos → prefiltro MERV 8 → filtro final MERV 13-14 → ventilador axial mural → paso por muro → malla de protección interior → descarga al recinto (HD-VENT-001 §8.1).
 
 **Tabla 6.** Verificación hidráulica del filtro final en el punto de trabajo del ventilador.
 

@@ -8,8 +8,11 @@ tags: [bases-de-diseno]
 Estos valores NO se revisan sin aprobación explícita. Fuente única de verdad:
 `Latex/00_bases_diseno/bases_diseno.yaml`.
 
-**Actualizadas el 2026-07-27 (REV1) — cambio de alcance del cliente: sin presurización, ventilador axial.** Ver
-[[2026-07-27_sin-presurizacion-ventilador-axial]].
+**Revisión documental vigente: CERO (0) en todos los entregables** (decisión
+2026-07-28; ver [[2026-07-28_rev0-unica-revision-cero]]). Configuración técnica
+actualizada el 2026-07-27 por cambio de alcance del cliente: sin presurización,
+ventilador axial mural. Ver [[2026-07-27_sin-presurizacion-ventilador-axial]] y
+[[2026-07-27_montaje-mural-planta]].
 
 | Parámetro | Valor | Fuente |
 | --- | --- | --- |

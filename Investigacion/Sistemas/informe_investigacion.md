@@ -2,12 +2,8 @@
 # Informe de investigación: sistema de ventilación del laboratorio de análisis industrial
 
 **Proyecto:** P2437-HV-INF-001 — BRINSA, planta Cajicá (Cundinamarca, Colombia)
-**Documento:** informe_investigacion.md — Revisión 2
-**Fecha de consulta de fuentes:** 2026-07-23 (REV0); revisión 1 emitida el 2026-07-27; revisión 2 emitida el 2026-07-27
-
-**Nota de revisión REV2 — 2026-07-27:** actualización por uniformidad con el montaje típico instalado en la planta (`Montaje/DISENOFINAL.png`): ventilador axial mural (placa mural) Ø560 mm de transmisión directa, banco de filtración alojado en la cubierta intemperie, estructura de unión pernada al muro y malla de protección interior; se eliminan la caja/housing con transición, la conexión flexible y la persiana de REV1.
-
-**Nota de revisión REV1 — 2026-07-27:** cambio de alcance del cliente — sistema sin presurización, ventilador axial, sin instrumentación de presión diferencial.
+**Documento:** informe_investigacion.md — Revisión 0
+**Fecha de consulta de fuentes:** 2026-07-23; frente de ventiladores axiales ampliado el 2026-07-27
 
 ---
 
@@ -90,9 +86,9 @@
 
 ### 6.1. Ventilador de impulsión
 
-6.1.1. Punto de selección: 3 840 m³/h (2 260 CFM) @ 225 Pa a densidad estándar (equivalente a 165 Pa en el sitio, escenario filtro cargado). El punto corresponde a ≈0.9 in c.a., plenamente cubierto por ventiladores axiales murales y tubulares de PRFV (el catálogo 185 de Aerovent cubre 355-1 525 mm y hasta 370 Pa estática en su línea tubular de referencia; [Aerovent Catálogo 185 (PDF)](https://www.aerovent.com/wp-content/uploads/sites/2/2024/07/Fiberglass-Fans-Axial-Flow-Model-FBD-FDP-FRV-TFBD-VTFBD-Catalog-185.pdf), consulta 2026-07-27). En REV0, con el punto anterior más exigente, los axiales quedaron descartados frente al centrífugo de álabes curvados hacia atrás; el cambio de alcance del cliente reduce la presión de selección y hace viable el axial. En REV2 (2026-07-27) el tipo se concreta por uniformidad con el montaje típico instalado en la planta (`Montaje/DISENOFINAL.png`): **axial mural (placa mural) Ø560 mm de transmisión directa**, con el banco de filtración alojado en la cubierta intemperie, estructura de unión pernada al muro y malla de protección interior; ventajas: menor costo de equipo e instalación (montaje directo en muro, sin ductos), mantenimiento simple y uniformidad de repuestos con la planta. La contrapartida —menor eficiencia (η provisional 0.55), mayor sensibilidad de la curva a la carga del filtro y motor dentro de la corriente corrosiva (mitigado con ejecución encapsulada severe duty)— es aceptable dada la potencia involucrada (0.320 kW teóricos); la configuración de transmisión por bandas evaluada en REV1 queda documentada como alternativa.
+6.1.1. Punto de selección: 3 840 m³/h (2 260 CFM) @ 225 Pa a densidad estándar (equivalente a 165 Pa en el sitio, escenario filtro cargado). El punto corresponde a ≈0.9 in c.a., plenamente cubierto por ventiladores axiales murales y tubulares de PRFV (el catálogo 185 de Aerovent cubre 355-1 525 mm y hasta 370 Pa estática en su línea tubular de referencia; [Aerovent Catálogo 185 (PDF)](https://www.aerovent.com/wp-content/uploads/sites/2/2024/07/Fiberglass-Fans-Axial-Flow-Model-FBD-FDP-FRV-TFBD-VTFBD-Catalog-185.pdf), consulta 2026-07-27). En una primera evaluación, con un punto de selección más exigente, los axiales quedaron descartados frente al centrífugo de álabes curvados hacia atrás; el cambio de alcance del cliente (sistema sin presurización) reduce la presión de selección y hace viable el axial. El tipo se concreta por uniformidad con el montaje típico instalado en la planta (`Montaje/DISENOFINAL.png`): **axial mural (placa mural) Ø560 mm de transmisión directa**, con el banco de filtración alojado en la cubierta intemperie, estructura de unión pernada al muro y malla de protección interior; ventajas: menor costo de equipo e instalación (montaje directo en muro, sin ductos), mantenimiento simple y uniformidad de repuestos con la planta. La contrapartida —menor eficiencia (η provisional 0.55), mayor sensibilidad de la curva a la carga del filtro y motor dentro de la corriente corrosiva (mitigado con ejecución encapsulada severe duty)— es aceptable dada la potencia involucrada (0.320 kW teóricos); la configuración de transmisión por bandas queda documentada como alternativa.
 
-**Tabla 3.** Comparativa de ventiladores axiales candidatos (consulta 2026-07-23, ampliada 2026-07-27; ajustada a tipo mural en REV2).
+**Tabla 3.** Comparativa de ventiladores axiales candidatos (consulta 2026-07-23, ampliada 2026-07-27; tipo mural por uniformidad con la planta).
 
 | Fabricante / línea | Tipo y material | Pros | Contras | Fuente |
 |---|---|---|---|---|
@@ -142,7 +138,7 @@
 
 6.4.2. Sellantes: silicona RTV neutra como primera opción (compatible con hipoclorito según [Chemical Resistance of RTV Silicone Sealants (PDF)](https://irp.cdn-website.com/63168859/files/uploaded/Chemical%20Resistance%20of%20RTV%20Silicone%20Sealants%20Chart.pdf), consulta 2026-07-23); se evita la silicona acetoxi (libera ácido acético corrosivo) y el poliuretano en exposición directa a cloro gaseoso (clasificación «X» en [Apache Pipeline — tabla PU (PDF)](https://www.apachepipe.com/assets/chemical-resistance-table.pdf), consulta 2026-07-23).
 
-6.4.3. Montaje del ventilador (REV2): sigue el montaje típico de la planta — estructura de unión en perfiles ASTM A36 galvanizados en caliente con pintura epóxica, pernada al muro con anclajes inox 316 (A4) y aislamiento dieléctrico; cubierta intemperie en PRFV o galvanizado G90 con pintura electrostática epóxica, embridada directamente a la placa mural del ventilador, que aloja el banco de filtración y dispone de acceso frontal para cambio de filtros; y malla de protección interior desmontable en la descarga. La conexión flexible de hipalón especificada en REV1 ([Hardcast Hypalon (PDF)](https://6c2bd45d09da3c66a408-2b16a407535c695c8a76f8b06a56f342.ssl.cf2.rackcdn.com/GWB%20%20eCatalog%2006-25-16.pdf)) ya no aplica: la cubierta se embrida directamente al ventilador.
+6.4.3. Montaje del ventilador: sigue el montaje típico de la planta — estructura de unión en perfiles ASTM A36 galvanizados en caliente con pintura epóxica, pernada al muro con anclajes inox 316 (A4) y aislamiento dieléctrico; cubierta intemperie en PRFV o galvanizado G90 con pintura electrostática epóxica, embridada directamente a la placa mural del ventilador, que aloja el banco de filtración y dispone de acceso frontal para cambio de filtros; y malla de protección interior desmontable en la descarga. No aplica conexión flexible de hipalón ([Hardcast Hypalon (PDF)](https://6c2bd45d09da3c66a408-2b16a407535c695c8a76f8b06a56f342.ssl.cf2.rackcdn.com/GWB%20%20eCatalog%2006-25-16.pdf)): la cubierta se embrida directamente al ventilador.
 
 ## 7. Marco normativo
 
@@ -160,7 +156,7 @@
 
 ## 8. Conclusiones y selección recomendada
 
-8.1. La corrección de densidad por altitud (k = 0.733) sigue siendo el factor que gobierna la selección: reduce la presión disponible del ventilador y la ΔP de todos los elementos, y obliga a seleccionar en el punto equivalente de catálogo 3 840 m³/h @ 225 Pa. Ese punto, ≈0.9 in c.a., queda dentro del rango de los axiales murales y tubulares de PRFV, lo que habilita la configuración adoptada por el cliente en REV2 por uniformidad con la planta: ventilador axial mural Ø560 mm de transmisión directa montado directamente en el muro, sin ductos de impulsión.
+8.1. La corrección de densidad por altitud (k = 0.733) sigue siendo el factor que gobierna la selección: reduce la presión disponible del ventilador y la ΔP de todos los elementos, y obliga a seleccionar en el punto equivalente de catálogo 3 840 m³/h @ 225 Pa. Ese punto, ≈0.9 in c.a., queda dentro del rango de los axiales murales y tubulares de PRFV, lo que habilita la configuración adoptada por el cliente por uniformidad con la planta: ventilador axial mural Ø560 mm de transmisión directa montado directamente en el muro, sin ductos de impulsión.
 
 8.2. Selección recomendada: (i) ventilador axial mural (placa mural) Ø560 mm PRFV/epóxico de transmisión directa, Sodeca HQD/HGT mural anticorrosivo como primera opción por canal local, con Greenheck mural, Aerovent/Twin City mural FRP, NYB FRP mural y Plastec PP como alternativas, motor 0.75 HP TEFC encapsulado severe duty epóxico en la corriente (provisional); (ii) filtración en dos etapas alojada en la cubierta intemperie, prefiltro MERV 8 + filtro final V-bank MERV 13-14 de marco plástico (Camfil Durafil ES2/ES3 MERV 14 como referencia de diseño; AAF VariCel VXL y Freudenberg MaxiPleat MX 85 como alternativas), portafiltros inox 304/316; (iii) tres rejillas eggcrate inox 316L de 353×336 mm con malla anti-insectos inox 316 18×18 desmontable, fabricación local a medida (ProAire/Laminaire); (iv) estructura de unión ASTM A36 galvanizada + pintura epóxica con ferretería inox 316, malla de protección interior y sellante silicona RTV neutra.
 
@@ -168,7 +164,7 @@
 
 ## 9. Referencias
 
-Las URL de REV0 fueron consultadas el 2026-07-23; las incorporadas en REV1, el 2026-07-27.
+Las URL fueron consultadas el 2026-07-23; las del frente de ventiladores axiales, el 2026-07-27.
 
 1. Twin City Fan, *Fan Engineering FE-1600 — Temperature & Altitude Effects on Fans*: http://eu.tcf.com/wp-content/uploads/sites/4/2018/06/Temperature-Altitude-Effects-on-Fans-FE-1600-1.pdf
 2. CaptiveAire, *Design Conditions for Selected Locations, ASHRAE 2009* (Bogotá/El Dorado): https://www.captiveaire.com/catalogcontent/fans/sup_mpu/doc/winter_summer_design_temps_us.pdf

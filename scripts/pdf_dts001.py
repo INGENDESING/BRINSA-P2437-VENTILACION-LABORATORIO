@@ -315,9 +315,9 @@ class PDFDTS001:
             [Paragraph("Revisión", ESTILOS["TablaHeader"]),
              Paragraph("Fecha", ESTILOS["TablaHeader"]),
              Paragraph("Descripción", ESTILOS["TablaHeader"])],
-            [Paragraph("REV1", ESTILOS["TablaCeldaCenter"]),
+            [Paragraph("REV0", ESTILOS["TablaCeldaCenter"]),
              Paragraph("2026-07-27", ESTILOS["TablaCeldaCenter"]),
-             Paragraph("Cambio de alcance: sistema sin presurización, ventilador axial, sin instrumentación ΔP.",
+             Paragraph("Emisión inicial.",
                        ESTILOS["TablaCelda"])],
         ]
         rev_table = Table(rev_data, colWidths=[3 * cm, 3 * cm, 10 * cm])
@@ -384,7 +384,7 @@ class PDFDTS001:
                                  "P2437-HV-DTS-001 — HOJA DE DATOS VENTILADOR AXIAL TUBEAXIAL PRFV")
         # Pie
         canvas.drawCentredString(letter[0] / 2, 1 * cm,
-                                 f"Página {doc.page} — Documento generado automáticamente — REV1")
+                                 f"Página {doc.page} — Documento generado automáticamente — REV0")
         canvas.restoreState()
 
 

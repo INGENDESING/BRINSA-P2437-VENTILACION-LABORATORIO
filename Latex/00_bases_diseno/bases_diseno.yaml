@@ -2,12 +2,12 @@
 # BASES DE DISEÑO — Fuente única de verdad
 # Proyecto: P2437-HV-INF-001 — Sistema de ventilación del laboratorio
 # Cliente: BRINSA
-# Actualizado 2026-07-27 (REV2) — uniformidad con montaje típico de planta:
+# Actualizado 2026-07-27 — uniformidad con montaje típico de planta:
 # ventilador axial MURAL (placa mural) Ø560 mm, transmisión directa,
 # filtración en cubierta intemperie, estructura de unión, malla de
 # protección interior (fuente: Montaje/DISENOFINAL.png).
-# (REV1: SIN presurización, ventilador AXIAL, sin instrumentación ΔP ni
-# damper de alivio. Se mantienen caudal, filtración MERV y rejillas.)
+# SIN presurización, ventilador AXIAL, sin instrumentación ΔP ni
+# damper de alivio.
 # Sitio real Cajicá, Cundinamarca (2 558 msnm), ρ = 0.88 kg/m³; sin HEPA
 # =====================================================================
 
@@ -54,8 +54,8 @@ aire:
 # Criterios de diseño del ventilador
 # ---------------------------------------------------------------------
 ventilador:
-  tipo: "Axial mural (placa mural) anticorrosivo PRFV o epóxico, transmisión directa"   # REV2: uniformidad montaje típico de planta (Montaje/DISENOFINAL.png)
-  diametro_seleccionado_mm: 560.0   # Ø560 mm (22 in) — tamaño uniforme de planta (REV2)
+  tipo: "Axial mural (placa mural) anticorrosivo PRFV o epóxico, transmisión directa"   # uniformidad montaje típico de planta (Montaje/DISENOFINAL.png)
+  diametro_seleccionado_mm: 560.0   # Ø560 mm (22 in) — tamaño uniforme de planta
   montaje: "Mural en pasamuros con estructura de unión pernada al muro; cubierta intemperie que aloja el banco de filtración (MERV 8 + MERV 13-14); malla de protección interior en la descarga; cota ~3,0 m sobre piso"
   caudal_m3_min: 64.0
   caudal_m3_h: 3840.0
@@ -66,13 +66,13 @@ ventilador:
   area_boca_m2: 0.1333
   diametro_equivalente_mm: 412.0  # BC del CFD (referencia histórica); la descarga real es Ø560 mm
   radio_equivalente_mm: 206.0
-  area_boca_real_m2: 0.2463       # π × 0.28², impulsor Ø560 mm (REV2)
-  velocidad_boca_real_m_s: 4.33   # Q / A_boca real = 1.0667 / 0.2463 (REV2)
+  area_boca_real_m2: 0.2463       # π × 0.28², impulsor Ø560 mm
+  velocidad_boca_real_m_s: 4.33   # Q / A_boca real = 1.0667 / 0.2463
   potencia_teorica_kW: 0.320
   potencia_teorica_HP: 0.43
   potencia_instalada_HP: 0.75     # provisional; fijar con la selección de catálogo
   motor_instalado: "0.75 HP TEFC encapsulado anticorrosivo, en la corriente de aire (transmisión directa) — provisional, confirmar con catálogo"
-  escenario_filtracion_diseno: "MERV 13-14 cargado (ΔP filtro 154 Pa + 11 Pa rejillas = 165 Pa total; sin presurización, REV1)"
+  escenario_filtracion_diseno: "MERV 13-14 cargado (ΔP filtro 154 Pa + 11 Pa rejillas = 165 Pa total; sin presurización)"
   punto_catalogo_estandar: "Punto equivalente a rho = 1.2 kg/m³ para selección de ventilador: 3 840 m³/h @ 225 Pa (diseño), 95 Pa (limpio)"
   boca_geometria_modelo_cfd: "Círculo equivalente (equivalente hidráulico). La descarga real del axial queda definida por el diámetro del equipo seleccionado."
   escenarios_filtracion:
@@ -112,7 +112,7 @@ rejillas_exfiltracion:
   altura_mm: 353.2
   ancho_mm: 335.5
   proporcion_ancho_alto: 0.95
-  perdida_descarga_Pa: 11.0       # pérdida a 3 m/s con C_d = 0.60 (rho = 0.88); descarga libre a atmósfera (REV1: sin presurización)
+  perdida_descarga_Pa: 11.0       # pérdida a 3 m/s con C_d = 0.60 (rho = 0.88); descarga libre a atmósfera (sin presurización)
 
 # ---------------------------------------------------------------------
 # Normas aplicables vigentes
