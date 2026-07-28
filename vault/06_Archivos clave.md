@@ -34,6 +34,11 @@ tags: [archivos]
 - `scripts/pdf_dts001.py` — genera el PDF alternativo de `P2437-HV-DTS-001 REV1`
   desde el markdown fuente usando reportlab (REV1).
 - `scripts/generar_lis.py` — genera el listado de equipos BOQ en Excel corporativo.
+- `scripts/estilos_excel.py` — módulo ÚNICO de formato corporativo DML de los
+  Excel (A3 horizontal, TNR 28, verde claro, paleta, anchos, alturas). Cualquier
+  cambio de formato se edita solo aquí (2026-07-28).
+- `scripts/verificar_formato_excel.py` — verificación read-back del formato de
+  los 5 libros Excel generados, sin Excel instalado (2026-07-28).
 - `scripts/emitir.py` — regenera Excel, DTS, LIS, compila INF-001/002 y copia a
   `Emisiones/` con nombres REV1.
 - `task/todo.md` — plan de tareas de la sesión (fase 1 de `AGENTS.md`).

@@ -343,3 +343,70 @@
   - Fuentes: `Investigacion/Sistemas/hojas_datos/HD-VENT-001_ventilador.md`, `HD-FILT-001_filtro_merv.md`, `Investigacion/Sistemas/listado_equipos.md`, `Latex/00_bases_diseno/bases_diseno.yaml`, `generar_excel.py`, `Latex/02_informe_tex/sections*/`, `scripts/generar_img_dts001.py`, `docs/index.html`, `task/todo.md`.
   - Emitidos: `Emisiones/1.0 HV-INFORMES/P2437-HV-INF-001.pdf`, `P2437-HV-INF-002.pdf`, `Emisiones/2.0 HV-MEMORIAS DE CALCULO/P2437-HV-CAL-001.xlsx`, `Emisiones/3.0 HV-HOJAS DE DATOS/P2437-HV-DTS-001.xlsx` (+ `.pdf`), `P2437-HV-DTS-002.xlsx`, `P2437-HV-DTS-003.xlsx`, `Emisiones/4.0 HV-LISTADOS/P2437-HV-LIS-001.xlsx`, `Emisiones/MANIFIESTO_EMISION.md`.
   - Memoria: `contexto.md`, `vault/01_Estado actual.md`, `vault/05_Preguntas abiertas.md`, `vault/03_Decisiones/2026-07-27_montaje-mural-planta.md`, `vault/04_Bitácora/2026-07-27_rev2_montaje_mural.md`, `vault/00_Inicio.md`.
+
+
+---
+
+# Plan: Rediseño estético integral de los Excel generados — A3 horizontal, TNR 28, verde corporativo DML (P2437)
+
+## Contexto
+- Objetivo: eliminar la corrección manual de formato en los Excel de especificación. Las celdas se ven pequeñas, el texto se pierde, hay demasiadas filas en blanco y el formato se pierde en cada regeneración. Nuevas instrucciones del cliente: hoja A3, orientación horizontal, Times New Roman 28, mínimo una fila en blanco entre bloques (nunca más), tablas ajustadas a las columnas del encabezado, sin azul en las tablas (verde claro corporativo DML), mejora estética general.
+- Cliente / Proyecto DML: P2437 — HVAC Laboratorio BRINSA.
+- Normas aplicables: GP-N-09 (formato corporativo DML); contenido técnico sin modificar.
+- Archivos a modificar: `generar_excel.py`, `scripts/generar_dts.py`, `scripts/generar_lis.py` (+ nuevo módulo compartido `scripts/estilos_excel.py`). Las plantillas `FormatosDocumentos/*.xlsx` y las fuentes Markdown NO se modifican.
+
+## Supuestos clave
+- [x] La fuente 28 pt aplica al contenido generado (fila 9 en adelante). El encabezado corporativo (filas 1-7) y la PORTADA vienen de la plantilla y se conservan intactos (confirmado por el usuario, 2026-07-28).
+- [x] Alcance: los 4 libros Excel generados — CAL-001 (`generar_excel.py`), DTS-001/002/003 (`scripts/generar_dts.py`) y LIS-001 (`scripts/generar_lis.py`) — para que ningún documento quede con formato viejo (confirmado por el usuario, 2026-07-28).
+- [ ] Verde claro corporativo propuesto: encabezados de tabla relleno `C6E0B4` (verde claro) con texto verde oscuro `375623` en negrita; títulos de sección en verde oscuro `375623`. El azul `1F4E78` desaparece del contenido generado. Los campos de entrada amarillos `FFF2CC` y resultados `C6EFCE` se conservan por su función (entrada/resultado), salvo indicación contraria.
+- [ ] Se crea `scripts/estilos_excel.py` con los estilos, anchos, spans y ajuste de alturas como módulo único usado por los 3 generadores. Justificación: hoy el mismo código de estilo está triplicado; cualquier cambio de formato exige editar 3 archivos y es la causa de que el formato "se pierda" entre regeneraciones. Es la mínima reestructura que resuelve el problema raíz.
+- [ ] A3 horizontal: `page_setup.paperSize = 8`, `orientation = 'landscape'`, `fitToWidth = 1`, `fitToHeight = 0` (ancho siempre en una página), en las hojas de contenido de los 4 libros.
+- [x] El PDF alternativo de DTS-001 (`scripts/pdf_dts001.py`) NO se toca en este plan (confirmado por el usuario, 2026-07-28: solo Excel).
+
+## Tareas
+
+### Módulo compartido
+- [x] T1. Crear `scripts/estilos_excel.py`: paleta corporativa (verde claro `C6E0B4`, verde oscuro `375623`, amarillo entrada `FFF2CC`, verde resultado `C6EFCE`, gris fórmula `E7E6E6`), fuentes TNR 28 (cuerpo, encabezado, título, subtítulo, nota), bordes thin, alineaciones, `N_COLS = 15`, `spans_tabla()`, `aplicar_ancho_columnas()`, `forzar_times_new_roman()`, `ajustar_alturas_filas()` recalibrada y `configurar_pagina_a3(ws)`.
+
+### Tipografía y geometría
+- [x] T2. Fijar tamaño 28 pt en todos los estilos de contenido (cuerpo, encabezados de tabla, títulos, subtítulos, notas, leyendas). Jerarquía por negrita y color, no por tamaño.
+- [x] T3. Recalibrar el modelo de ajuste: `CHAR_POR_UNIDAD_ANCHO` de 2.3 a ~0.9 (proporcional 11/28) y altura de línea de 15 a ~37 pt (28 pt × 1.3), altura mínima de fila 37 pt. Esto elimina el texto cortado/perdido.
+- [x] T4. Recalibrar `ANCHO_COLUMNAS` para A3 horizontal con letra 28: ensanchar las columnas (factor ~2-2.5× sobre el actual) manteniendo la proporción texto > valor > unidad y el ancho total A:O coherente con el encabezado corporativo; validar que ninguna tabla quede con columnas estranguladas.
+
+### Colores
+- [x] T5. Reemplazar el azul `1F4E78` (relleno de encabezados y color de títulos) y el azul de fuente de fórmula `000080` por la paleta verde DML; encabezado de tabla verde claro con texto verde oscuro.
+
+### Espaciado
+- [x] T6. Normalizar separaciones a EXACTAMENTE una fila en blanco: eliminar las dobles filas en blanco consecutivas (p. ej. fila en blanco tras tabla + fila en blanco antes de título), el `r += 2` tras títulos y los bloques de párrafos que sobreestiman filas combinadas vacías.
+
+### Aplicación a los generadores
+- [x] T7. `generar_excel.py`: importar estilos del módulo, eliminar sus definiciones locales duplicadas, aplicar A3 horizontal a la hoja MEMORIA DE CÁLCULO, corregir separaciones.
+- [x] T8. `scripts/generar_dts.py`: idem; aplicar A3 horizontal a ESPECIFICACIÓN; revisar que las imágenes insertadas (curva y referencia, 21 filas reservadas) usen la nueva altura de fila (~37 pt) para que no queden huecos ni imágenes encimadas.
+- [x] T9. `scripts/generar_lis.py`: idem; aplicar A3 horizontal a LISTA (incluye fila 8 de título).
+
+### Verificación y emisión
+- [x] T10. Ejecutar `python generar_excel.py`, `python scripts/generar_dts.py`, `python scripts/generar_lis.py` sin errores.
+- [x] T11. Script de verificación con openpyxl (read-back): en los 5 libros generados comprobar tamaño de fuente 28 en contenido, relleno `C6E0B4` en encabezados de tabla, `paperSize = 8`, `orientation = landscape`, alturas de fila ≥ 37 pt en filas con texto, y que no existan dos filas vacías consecutivas en el contenido.
+- [x] T12. Ejecutar `python scripts/emitir.py` para regenerar `Emisiones/` con los 7 entregables y manifiesto.
+- [x] T13. Actualizar `contexto.md`, `task/todo.md` (sección Revisión) y vault (estado, bitácora, decisión de formato si aplica).
+
+## Riesgos / Puntos de verificación
+- [ ] Con letra 28 el número de páginas impresas crece; `fitToWidth = 1` garantiza el ancho en una página A3 horizontal.
+- [ ] El encabezado corporativo de la plantilla (filas 1-7) se diseñó para letra pequeña; si se amplía a 28 se deforma — por eso se propone conservarlo (confirmar).
+- [ ] Las fórmulas vivas de CAL-001 no deben romperse: solo cambian estilos, no referencias.
+- [ ] Sin Excel local no hay revisión visual automática; la verificación es por read-back de openpyxl + revisión visual del usuario al abrir el archivo.
+- [ ] Validación dimensional: no aplica (solo formato; ningún valor numérico cambia).
+
+## Revisión
+- **Resumen:** se creó `scripts/estilos_excel.py` como módulo único de formato corporativo DML (A3 horizontal fitToWidth=1, Times New Roman 28 en todo el contenido, encabezados de tabla verde claro C6E0B4 con texto verde oscuro 375623, sin azul 1F4E78, altura de línea 38 pt, anchos recalibrados). Los 3 generadores (`generar_excel.py`, `scripts/generar_dts.py`, `scripts/generar_lis.py`) se refactorizaron para importarlo, eliminando el código de estilos triplicado (causa raíz de la pérdida de formato entre regeneraciones). Separaciones normalizadas a exactamente una fila en blanco (flag `_tras_blanco` en HojaDTS/HojaLIS). Imágenes de DTS-001 con reserva recalculada (9 filas × 38 pt por imagen). Nuevo `scripts/verificar_formato_excel.py` (read-back openpyxl): los 5 libros pasan. Emitidos los 7 entregables con `scripts/emitir.py`.
+- **Desviaciones respecto al plan:** ninguna sustancial. El verificador inicial marcaba como "filas vacías" las filas inferiores de rangos combinados (MergedCell); se corrigió el verificador, no los generadores. La primera emisión falló por bloqueo de archivo en `Emisiones/` (WinError 1224, archivo abierto por el usuario); se completó al cerrarlo.
+- **Limitaciones conocidas:** sin Excel local no hay revisión visual automática; el modelo de ajuste (0.9 chars/unidad, 38 pt/línea) es heurístico y puede requerir un ajuste fino tras la revisión visual del usuario — se hace en un solo lugar (`estilos_excel.py`). El encabezado corporativo (filas 1-7) y la portada conservan el formato de plantilla por decisión del usuario. El PDF alternativo de DTS-001 mantiene su formato anterior (azul), fuera de alcance.
+- **Trabajo futuro recomendado:** revisión visual de los 4 Excel en Excel; si se requiere ajuste de anchos/alturas, editar solo `ANCHO_COLUMNAS`, `CHAR_POR_UNIDAD_ANCHO` o `ALTURA_LINEA` en `scripts/estilos_excel.py` y regenerar. Considerar actualizar el PDF alternativo de DTS-001 a la nueva paleta si se usa como entregable.
+- **Archivos entregables y rutas:**
+  - `scripts/estilos_excel.py` (nuevo), `scripts/verificar_formato_excel.py` (nuevo)
+  - `generar_excel.py`, `scripts/generar_dts.py`, `scripts/generar_lis.py` (refactorizados)
+  - `Emisiones/2.0 HV-MEMORIAS DE CALCULO/P2437-HV-CAL-001.xlsx`
+  - `Emisiones/3.0 HV-HOJAS DE DATOS/P2437-HV-DTS-001.xlsx`, `P2437-HV-DTS-002.xlsx`, `P2437-HV-DTS-003.xlsx`
+  - `Emisiones/4.0 HV-LISTADOS/P2437-HV-LIS-001.xlsx`
+  - `Emisiones/1.0 HV-INFORMES/P2437-HV-INF-001.pdf`, `P2437-HV-INF-002.pdf` (sin cambios de contenido)
+  - `contexto.md` y notas del vault

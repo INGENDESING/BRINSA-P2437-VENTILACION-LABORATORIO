@@ -30,6 +30,10 @@ recuperar contexto sin gastar tokens innecesarios.
 - [[2026-07-22_escenarios-filtracion-merv-hepa]]
 - [[2026-07-22_cfd-pressure-outlet]]
 
+## Decisiones de diseño (2026-07-28)
+
+- [[2026-07-28_formato-excel-a3-tnr28-verde]] — formato Excel: A3 horizontal, TNR 28, verde claro DML, módulo único `estilos_excel.py`
+
 ## Decisiones de diseño (2026-07-27)
 
 - [[2026-07-27_montaje-mural-planta]] — REV2: ventilador axial mural Ø560 mm por uniformidad con planta
@@ -39,6 +43,7 @@ recuperar contexto sin gastar tokens innecesarios.
 
 ## Bitácora
 
+- [[2026-07-28]] — rediseño estético de los Excel: A3 horizontal, TNR 28, verde claro DML, módulo único de formato; emisión de 7 entregables
 - [[2026-07-27_rev2_montaje_mural]] — REV2: actualización integral al montaje típico de planta
 - [[2026-07-27_dts002_filtro_axial]] — priorización de DTS-002: adaptación del filtro MERV 13-14 al ventilador axial
 - [[2026-07-27_mejora-presentacion-excel]] — mejora de presentación Excel: A:O, Times New Roman, colores y bordes corporativos; emisión REV1

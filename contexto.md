@@ -1,16 +1,15 @@
 # Contexto del proyecto: HVAC Laboratorio Brinsa
 
 ## Estado actual
-- Última tarea completada (2026-07-27): **REV2 — actualización integral por uniformidad con el montaje típico de planta** (`Montaje/DISENOFINAL.png`). El ventilador pasa de axial tubeaxial con bandas a **axial mural (placa mural) Ø560 mm de transmisión directa**; el banco de filtración MERV 8 + MERV 13-14 se aloja dentro de la **cubierta intemperie** (sin caja/housing ni transición cuadrado/circular); se agregan **estructura de unión pernada al muro** y **malla de protección interior**; se eliminan conexión flexible y persiana. Actualizados: HD-VENT-001, HD-FILT-001, listado_equipos.md, bases_diseno.yaml, generar_excel.py, INF-001/INF-002 LaTeX, imagen de referencia DTS-001 (ahora es la del montaje de planta), docs/index.html. Emitidos los 7 entregables + PDF alternativo DTS-001. Se conservan: caudal 3 840 m³/h, ΔP 165 Pa sitio / 225 Pa catálogo, filtración MERV, rejillas, 12 ACH, sin presurización, cota ~3,0 m.
-- Tarea previa (2026-07-27): priorización de DTS-002 — adaptación del sistema de filtración MERV 13-14 al ventilador axial (configuración con caja/housing y transición, superada por REV2).
-- Tarea previa (2026-07-27): imagen de referencia de montaje del ventilador axial en muro/pasamuros a ~3,0 m de altura.
-- Tarea previa (2026-07-27): excepción de nomenclatura para entregables sin ` REV1` en nombre de archivo.
+- Última tarea completada (2026-07-28): **rediseño estético integral de los Excel generados** (instrucción del cliente): hoja A3 horizontal con ajuste a una página de ancho, Times New Roman 28 en todo el contenido, encabezados de tabla verde claro corporativo DML (`C6E0B4`, sin azul), exactamente una fila en blanco entre bloques, alturas de fila ≥ 38 pt y anchos recalibrados. Se creó `scripts/estilos_excel.py` como módulo único de formato (elimina la triplicación de estilos que hacía perder el formato en cada regeneración) y `scripts/verificar_formato_excel.py` (verificación read-back). Refactorizados `generar_excel.py`, `scripts/generar_dts.py` y `scripts/generar_lis.py`. Emitidos los 7 entregables. El encabezado corporativo (filas 1-7), la portada y el PDF alternativo de DTS-001 conservan su formato anterior (decisión del usuario).
+- Tarea previa (2026-07-27): **REV2 — actualización integral por uniformidad con el montaje típico de planta** (`Montaje/DISENOFINAL.png`). El ventilador pasa de axial tubeaxial con bandas a **axial mural (placa mural) Ø560 mm de transmisión directa**; el banco de filtración MERV 8 + MERV 13-14 se aloja dentro de la **cubierta intemperie** (sin caja/housing ni transición cuadrado/circular); se agregan **estructura de unión pernada al muro** y **malla de protección interior**; se eliminan conexión flexible y persiana. Actualizados: HD-VENT-001, HD-FILT-001, listado_equipos.md, bases_diseno.yaml, generar_excel.py, INF-001/INF-002 LaTeX, imagen de referencia DTS-001 (ahora es la del montaje de planta), docs/index.html. Se conservan: caudal 3 840 m³/h, ΔP 165 Pa sitio / 225 Pa catálogo, filtración MERV, rejillas, 12 ACH, sin presurización, cota ~3,0 m.
 - Próxima tarea pendiente:
+  - Revisión visual de los 4 Excel emitidos (CAL-001, DTS-001/002/003, LIS-001); si hace falta ajuste fino de anchos/alturas, editar solo `scripts/estilos_excel.py` y regenerar.
   - Confirmar modelo/RPM/potencia definitiva del ventilador mural Ø560 mm con el fabricante (Sodeca HQD/HGT mural anticorrosivo como primera opción por canal local; punto 3 840 m³/h @ 225 Pa catálogo).
   - Definir dimensiones de la cubierta intemperie y estructura de unión con los planos del submittal.
   - Confirmar con Camfil/distribuidor el uso continuo del Durafil ES3 24×24 a 2 260 CFM, o mantener ES2.
   - Verificar el caudal real en el ensayo de balanceo (anemometría en rejillas).
-- Fecha de última actualización: 2026-07-27
+- Fecha de última actualización: 2026-07-28
 
 ## Bases de diseño congeladas (actualizadas 2026-07-27 — REV2)
 - Sitio: BRINSA, Cajicá, Cundinamarca — 2 558 msnm, P_atm = 74.1 kPa, T 21/3/14 °C (máx/mín/media), HR media 84 %
@@ -26,6 +25,7 @@
 - Filtración: MERV 8 + MERV 13-14 definitivo — SIN HEPA (laboratorio de análisis industrial)
 
 ## Decisiones de diseño clave
+- **Formato Excel corporativo A3/TNR 28/verde DML (2026-07-28):** por instrucción del cliente, los 4 libros Excel generados (CAL-001, DTS-001/002/003, LIS-001) usan hoja A3 horizontal con ajuste a una página de ancho, Times New Roman 28 en todo el contenido, encabezados de tabla en verde claro DML `C6E0B4` con texto verde oscuro `375623` (azul `1F4E78` eliminado), exactamente una fila en blanco entre bloques y alturas de fila ≥ 38 pt. Todo el formato vive en el módulo único `scripts/estilos_excel.py`; la verificación es automática con `scripts/verificar_formato_excel.py`. El encabezado corporativo (filas 1-7), la portada y el PDF alternativo de DTS-001 conservan su formato anterior.
 - **REV2: ventilador axial mural Ø560 mm por uniformidad con planta (2026-07-27):** el montaje típico instalado en la planta (`Montaje/DISENOFINAL.png`) fija: axial mural (placa mural) Ø560 mm de transmisión directa, banco de filtración MERV 8 + MERV 13-14 alojado en la cubierta intemperie, estructura de unión pernada al muro y malla de protección interior. Se eliminan la transición cuadrado/circular, la caja/housing, la conexión flexible y la persiana de la configuración REV1. El motor va dentro de la corriente corrosiva (transmisión directa) → se exige ejecución encapsulada severe duty IP56/IP66 con eje inox; la alternativa de bandas queda documentada como opción. Se mantienen los materiales anticorrosivos del proyecto (PRFV/inox 316) como upgrade sobre el galvanizado+pintura de planta. La imagen de referencia de DTS-001 pasa a ser la del montaje típico de planta.
 - **Curva ilustrativa axial (2026-07-27):** se mejoró `scripts/generar_img_dts001.py` para generar una curva Q-ΔP basada en los datos investigados: punto de diseño 3 840 m³/h @ 225 Pa catálogo / 165 Pa sitio, factor de densidad k = 0,733, eficiencia η = 0,55 provisional y forma parabólica típica de ventiladores axiales tubeaxial. Se añadieron curva en sitio, curva de potencia de eje teórica, zona de operación recomendada y nota de validez. La curva es ilustrativa y requiere validación contra el catálogo del fabricante seleccionado.
 - **Montaje del ventilador en muro/pasamuros a ~3,0 m (2026-07-27):** se definió que el ventilador axial tubeaxial PRFV se instalará en muro/pasamuros (no en pared libre), con eje a ~3,0 m sobre piso, motor fuera de la corriente de aire corrosivo mediante transmisión por bandas, y acceso para mantenimiento de bandas. Se actualizó la imagen de referencia en `scripts/generar_img_dts001.py` y se añadió la sección 8 de montaje en `HD-VENT-001_ventilador.md`.
@@ -54,6 +54,8 @@
 - `vault/` — vault de Obsidian (memoria a largo plazo; ver skill `obsidian-vault`).
 - `vault/inicializacion.md` — protocolo de arranque para recuperar contexto en nuevas sesiones.
 - `scripts/generar_lis.py` — genera el listado de equipos BOQ en Excel corporativo.
+- `scripts/estilos_excel.py` — módulo ÚNICO de formato corporativo DML de los Excel (A3 horizontal, TNR 28, verde claro, paleta, anchos, alturas). Editar solo aquí para cambios de formato.
+- `scripts/verificar_formato_excel.py` — verificación read-back del formato de los 5 libros generados (sin Excel instalado).
 - `scripts/emitir.py` — regenera Excel, DTS, LIS, recompila INF-001/002 y copia a `Emisiones/`.
 - `scripts/pdf_dts001.py` — genera el PDF alternativo de `P2437-HV-DTS-001` desde el markdown fuente (reportlab).
 - `Emisiones/4.0 HV-LISTADOS/P2437-HV-LIS-001.xlsx` — listado de equipos y materiales (BOQ).
@@ -75,6 +77,8 @@
 
 ## Comandos / workflows útiles
 - Regenerar Excel: `python generar_excel.py`
+- Verificar formato de los 5 libros Excel generados (read-back, sin Excel): `python scripts/verificar_formato_excel.py`
+- Cambios de formato de Excel: editar SOLO `scripts/estilos_excel.py` (paleta, `ANCHO_COLUMNAS`, `CHAR_POR_UNIDAD_ANCHO`, `ALTURA_LINEA`) y regenerar.
 - Compilar informe DML (doble pasada para TOC/referencias; con bibtex si cambian citas): `cd Latex/02_informe_tex && pdflatex "P2437-HV-INF-001 REV0.tex"` (×2). Motor **pdflatex**, tipografía **NewTX**, `microtype`, `siunitx`. Si quedan restos de xelatex (`.toc` con `\xpg@aux`), borrar `.aux`/`.toc`/`.out` y recompilar.
-- **Emitir entregables (recomendado):** `python scripts/emitir.py` — regenera Excel, DTS, LIS, recompila INF-001 e INF-002 y copia todo a `Emisiones/` con nombres GP-N-09 + manifiesto. Ejecutar al cierre de cualquier sesión que toque fuentes de entregables.
+- **Emitir entregables (recomendado):** `python scripts/emitir.py` — regenera Excel, DTS, LIS, recompila INF-001 e INF-002 y copia todo a `Emisiones/` con nombres GP-N-09 + manifiesto. Ejecutar al cierre de cualquier sesión que toque fuentes de entregables. Si falla con WinError 1224, hay un archivo de `Emisiones/` abierto: cerrarlo y reintentar.
 - Despliegue GitHub Pages: Settings > Pages > Deploy from branch (`master` o `main`) > carpeta `/docs`.

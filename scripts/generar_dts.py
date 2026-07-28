@@ -19,22 +19,32 @@ Uso:  python scripts/generar_dts.py
 
 import math
 import re
+import sys
 from copy import copy, deepcopy
 from io import BytesIO
 from pathlib import Path
 
 from openpyxl import load_workbook
-from openpyxl.cell.cell import MergedCell
 from openpyxl.drawing.image import Image as XLImage
-from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
-from openpyxl.utils import get_column_letter, range_boundaries
+from openpyxl.styles import Alignment
 from PIL import Image as PILImage
+
+# Módulo único de formato corporativo DML (A3 horizontal, Times New Roman 28,
+# encabezados verde claro, sin azul). Ver scripts/estilos_excel.py.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from estilos_excel import (  # noqa: E402
+    N_COLS, AL_TEXTO, AL_HEADER, AL_PARRAFO,
+    header_fill, header_font, title_font, section_font, subtitle_font,
+    caption_font, nota_font, body_font, thin_border,
+    CHAR_POR_UNIDAD_ANCHO, ANCHO_COLUMNAS, ALTURA_LINEA,
+    aplicar_ancho_columnas, spans_tabla, forzar_times_new_roman,
+    ajustar_alturas_filas, configurar_pagina_a3,
+)
 
 ROOT = Path(__file__).resolve().parent.parent
 PLANTILLA = ROOT / "FormatosDocumentos" / "DTS.xlsx"
 SALIDA = ROOT / "build" / "dts"
 FILA_INICIO = 9  # contenido tras encabezado corporativo (1-7) y fila 8 libre
-N_COLS = 15      # layout unificado: todas las tablas abarcan A:O
 
 # (archivo .md fuente, código del documento, título para PORTADA!Z5)
 DOCUMENTOS = [
@@ -50,86 +60,7 @@ DOCUMENTOS = [
 ]
 
 # ===================== ESTILOS CORPORATIVOS =====================
-# Fuente obligatoria para todo el documento: Times New Roman.
-header_fill = PatternFill(start_color="1F4E78", end_color="1F4E78", fill_type="solid")
-header_font = Font(name="Times New Roman", color="FFFFFF", bold=True, size=11)
-title_font = Font(name="Times New Roman", bold=True, size=14, color="1F4E78")        # títulos #
-section_font = Font(name="Times New Roman", bold=True, size=12, color="1F4E78")      # títulos ##
-subtitle_font = Font(name="Times New Roman", bold=True, size=11, color="1F4E78")     # títulos ###
-caption_font = Font(name="Times New Roman", bold=True, size=11)                      # leyendas **Tabla N.**
-nota_font = Font(name="Times New Roman", italic=True, size=10, color="404040")        # notas numeradas
-body_font = Font(name="Times New Roman", size=11)
-thin_border = Border(
-    left=Side(style='thin'), right=Side(style='thin'),
-    top=Side(style='thin'), bottom=Side(style='thin')
-)
-AL_TEXTO = Alignment(horizontal='left', vertical='top', wrap_text=True)
-AL_HEADER = Alignment(horizontal='center', vertical='center', wrap_text=True)
-AL_PARRAFO = Alignment(horizontal='left', vertical='top', wrap_text=True)
-
-CHAR_POR_UNIDAD_ANCHO = 2.3
-ANCHO_COLUMNAS = [30.6, 12, 12, 6, 6, 6, 6, 6, 6, 8, 8, 8, 10, 10, 10]
-
-
-def aplicar_ancho_columnas(ws):
-    for i, w in enumerate(ANCHO_COLUMNAS, 1):
-        ws.column_dimensions[get_column_letter(i)].width = w
-
-
-def spans_tabla(n_cols):
-    """Distribuye n_cols columnas markdown en el layout A:O (15 columnas físicas)."""
-    if n_cols > N_COLS:
-        raise ValueError(f"Tabla con {n_cols} columnas supera el layout A:O")
-    base = N_COLS // n_cols
-    extra = N_COLS % n_cols
-    return [base + 1 if i < extra else base for i in range(n_cols)]
-
-
-def forzar_times_new_roman(ws, min_row=1, max_row=None, min_col=1, max_col=N_COLS):
-    """Sobrescribe el nombre de fuente conservando tamaño, negrita, cursiva, color y subrayado."""
-    for row in ws.iter_rows(min_row=min_row, max_row=max_row, min_col=min_col, max_col=max_col):
-        for cell in row:
-            f = cell.font
-            cell.font = Font(
-                name="Times New Roman",
-                size=f.size,
-                bold=f.bold,
-                italic=f.italic,
-                underline=f.underline,
-                color=f.color,
-            )
-
-
-def ajustar_alturas_filas(ws, primera, ultima):
-    """Ajusta alturas de fila estimando líneas de texto con wrap."""
-    for r in range(primera, ultima + 1):
-        max_lineas = 1
-        for c in range(1, N_COLS + 1):
-            cell = ws.cell(row=r, column=c)
-            if isinstance(cell, MergedCell):
-                continue
-            val = cell.value
-            if not val:
-                continue
-            rng = None
-            for m in ws.merged_cells.ranges:
-                if cell.coordinate in m:
-                    rng = m
-                    break
-            if rng:
-                _, sc, _, ec = range_boundaries(str(rng))
-                ancho = sum(ws.column_dimensions[get_column_letter(col)].width or 8.43
-                            for col in range(sc, ec + 1))
-                _, sr, _, _ = range_boundaries(str(rng))
-                filas_combinadas = r - sr + 1
-            else:
-                ancho = ws.column_dimensions[get_column_letter(c)].width or 8.43
-                filas_combinadas = 1
-            chars_linea = max(1.0, ancho / CHAR_POR_UNIDAD_ANCHO)
-            lineas_totales = math.ceil(len(str(val)) / chars_linea)
-            lineas_por_fila = math.ceil(lineas_totales / filas_combinadas)
-            max_lineas = max(max_lineas, lineas_por_fila)
-        ws.row_dimensions[r].height = max(15, max_lineas * 15)
+# Definidos en scripts/estilos_excel.py (importados arriba).
 
 
 # ===================== PARSEO MARKDOWN =====================
@@ -164,13 +95,17 @@ class HojaDTS:
     def __init__(self, ws):
         self.ws = ws
         self.r = FILA_INICIO
+        self._tras_blanco = False  # True si el elemento anterior ya dejó fila en blanco
 
     def _combinar(self, r1, r2, c2=N_COLS):
         self.ws.merge_cells(start_row=r1, start_column=1, end_row=r2, end_column=c2)
 
     def titulo(self, texto, nivel):
-        if self.r > FILA_INICIO:
-            self.r += 1  # fila en blanco antes de cada título
+        # Exactamente una fila en blanco antes de cada título (si el elemento
+        # anterior no la dejó ya, p. ej. una tabla).
+        if self.r > FILA_INICIO and not self._tras_blanco:
+            self.r += 1
+        self._tras_blanco = False
         cell = self.ws.cell(row=self.r, column=1, value=texto)
         cell.font = {1: title_font, 2: section_font}.get(nivel, subtitle_font)
         cell.alignment = Alignment(vertical='center', wrap_text=True)
@@ -195,6 +130,7 @@ class HojaDTS:
         self.r += n
 
     def parrafo(self, texto, negrita=False):
+        self._tras_blanco = False
         if es_nota_numerada(texto):
             for nota in dividir_notas_numeradas(texto):
                 self._parrafo_simple(nota, fuente=nota_font)
@@ -236,6 +172,7 @@ class HojaDTS:
             for cell in row:
                 cell.border = thin_border
         self.r += 1  # fila en blanco tras la tabla
+        self._tras_blanco = True
 
 
 def construir_especificacion(ws, md):
@@ -276,22 +213,20 @@ def insertar_graficos_dts001(ws, fila):
     cell.alignment = Alignment(vertical='center', wrap_text=True)
     ws.merge_cells(start_row=fila, start_column=1, end_row=fila, end_column=N_COLS)
     fila += 2
+    # Filas reservadas por imagen: 400 px ≈ 300 pt de alto / ALTURA_LINEA
+    n_filas_img = math.ceil(400 * 0.75 / ALTURA_LINEA) + 1
     # Curva característica ilustrativa
     img = XLImage(str(curva))
     img.width = 600
     img.height = 400
     ws.add_image(img, f"A{fila}")
-    for r in range(fila, fila + 21):
-        ws.row_dimensions[r].height = 15
-    fila += 21
+    fila += n_filas_img
     # Imagen de referencia del ventilador
     img = XLImage(str(ref))
     img.width = 600
     img.height = 400
     ws.add_image(img, f"A{fila}")
-    for r in range(fila, fila + 21):
-        ws.row_dimensions[r].height = 15
-    fila += 21
+    fila += n_filas_img
     return fila
 
 
@@ -343,6 +278,9 @@ def generar_libro(md_rel, codigo, titulo):
 
     # Ajustar alturas de filas de contenido para evitar texto cortado
     ajustar_alturas_filas(ws, FILA_INICIO, ws.max_row)
+
+    # Página A3 horizontal, ajustada a una página de ancho
+    configurar_pagina_a3(ws)
 
     wb.remove(ws_enc)  # orden final: PORTADA, ESPECIFICACIÓN
     wb.calculation.calcMode = "auto"

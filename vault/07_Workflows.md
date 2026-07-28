@@ -1,11 +1,28 @@
 ---
-fecha: 2026-07-23
+fecha: 2026-07-28
 tags: [workflows]
 ---
 
 # Workflows / comandos útiles
 
 Solo los no triviales que toman tiempo redescubrir.
+
+## Formato de los Excel generados (regla de oro)
+
+Todo el formato corporativo de los Excel (A3 horizontal, Times New Roman 28,
+verde claro DML `C6E0B4`, anchos, alturas) vive en `scripts/estilos_excel.py`.
+Cualquier ajuste estético se edita SOLO ahí (`ANCHO_COLUMNAS`,
+`CHAR_POR_UNIDAD_ANCHO`, `ALTURA_LINEA`, paleta) y se regenera. Nunca editar
+estilos en los generadores ni a mano en el Excel.
+
+## Verificar el formato de los Excel (sin Excel instalado)
+
+```bash
+python scripts/verificar_formato_excel.py
+```
+
+Comprueba en los 5 libros generados: A3 landscape, TNR 28, encabezados verde
+claro, sin azul, alturas ≥ 38 pt y sin dobles filas vacías.
 
 ## Regenerar la memoria de cálculo Excel
 
@@ -29,6 +46,8 @@ en `Emisiones/MANIFIESTO_EMISION.md`.
 (`Latex/02_informe_tex/`, `generar_excel.py`, `Investigacion/Sistemas/`), ejecutar
 este script. Las fuentes se editan; las emisiones se regeneran — nunca editar a
 mano un archivo de `Emisiones/`.
+Si falla con `WinError 1224`, hay un archivo de `Emisiones/` abierto en
+Excel/Acrobat: cerrarlo y reintentar.
 
 ## Compilar el informe DML (doble pasada para TOC/referencias)
 

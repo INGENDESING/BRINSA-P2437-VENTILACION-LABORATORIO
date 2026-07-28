@@ -1,12 +1,11 @@
 from openpyxl import load_workbook
-from openpyxl.styles import Font, PatternFill, Border, Side, Alignment
-from openpyxl.utils import get_column_letter, range_boundaries
 from openpyxl.drawing.image import Image as XLImage
+from openpyxl.utils import get_column_letter
 from PIL import Image as PILImage
 from copy import copy, deepcopy
 from io import BytesIO
-import math
 import os
+import sys
 
 # ===================== PLANTILLA CORPORATIVA =====================
 # El libro nace de FormatosDocumentos/CAL.xlsx (PORTADA + ENCABEZADO).
@@ -16,6 +15,17 @@ import os
 RUTA_BASE = os.path.dirname(os.path.abspath(__file__))
 RUTA_PLANTILLA = os.path.join(RUTA_BASE, "FormatosDocumentos", "CAL.xlsx")
 FILA_INICIO = 9  # primera fila de contenido (tras encabezado 1-7 y fila 8 libre)
+
+# Estilos, geometría A:O y configuración de página: módulo único de formato
+# corporativo DML (A3 horizontal, Times New Roman 28, verde claro, sin azul).
+sys.path.insert(0, os.path.join(RUTA_BASE, "scripts"))
+from estilos_excel import (  # noqa: E402
+    N_COLS, AL_TEXTO, AL_CENTRO, AL_HEADER,
+    header_fill, header_font, title_font, subtitle_font, body_font,
+    input_fill, input_font, result_fill, result_font, formula_fill, formula_font,
+    thin_border, spans_tabla, aplicar_ancho_columnas, forzar_times_new_roman,
+    ajustar_alturas_filas, configurar_pagina_a3,
+)
 
 wb = load_workbook(RUTA_PLANTILLA)
 
@@ -29,53 +39,9 @@ ws_portada["BO1"] = "P2437-HV-CAL-001"
 ws_portada["Z5"] = "MEMORIA DE CÁLCULO DEL SISTEMA DE VENTILACIÓN DEL LABORATORIO"
 
 # ===================== ESTILOS CORPORATIVOS =====================
-# Fuente obligatoria para todo el documento: Times New Roman.
-header_fill = PatternFill(start_color="1F4E78", end_color="1F4E78", fill_type="solid")
-header_font = Font(name="Times New Roman", color="FFFFFF", bold=True, size=11)
-input_fill = PatternFill(start_color="FFF2CC", end_color="FFF2CC", fill_type="solid")
-input_font = Font(name="Times New Roman", bold=True, color="000000")
-result_fill = PatternFill(start_color="C6EFCE", end_color="C6EFCE", fill_type="solid")
-result_font = Font(name="Times New Roman", bold=True, color="006100")
-formula_fill = PatternFill(start_color="E7E6E6", end_color="E7E6E6", fill_type="solid")
-formula_font = Font(name="Times New Roman", color="000080", bold=True)
-title_font = Font(name="Times New Roman", bold=True, size=14, color="1F4E78")
-subtitle_font = Font(name="Times New Roman", bold=True, size=11, color="1F4E78")
-body_font = Font(name="Times New Roman", size=11)
-thin_border = Border(
-    left=Side(style='thin'), right=Side(style='thin'),
-    top=Side(style='thin'), bottom=Side(style='thin')
-)
-
-# Alineaciones unificadas por rol
-AL_TEXTO = Alignment(horizontal='left', vertical='top', wrap_text=True)
-AL_CENTRO = Alignment(horizontal='center', vertical='center', wrap_text=True)
-AL_HEADER = Alignment(horizontal='center', vertical='center', wrap_text=True)
-
-# Layout unificado: TODAS las tablas abarcan las 15 columnas del encabezado (A:O).
-N_COLS = 15
+# Definidos en scripts/estilos_excel.py (importados arriba). Aquí solo quedan
+# los helpers de layout propios de la memoria de cálculo.
 FMT_RESULTADO = '0.0000'
-CHAR_POR_UNIDAD_ANCHO = 2.3
-
-# Anchos de columna proporcionales para el contenido A:O
-ANCHO_COLUMNAS = [30.6, 12, 12, 6, 6, 6, 6, 6, 6, 8, 8, 8, 10, 10, 10]
-
-
-def aplicar_ancho_columnas(ws):
-    """Fija anchos proporcionales para las 15 columnas del documento."""
-    for i, w in enumerate(ANCHO_COLUMNAS, 1):
-        ws.column_dimensions[get_column_letter(i)].width = w
-
-
-def spans_tabla(n_cols):
-    """Distribuye n_cols columnas lógicas en N_COLS columnas físicas (A:O).
-
-    base = N_COLS // n_cols; el residuo se reparte en las primeras columnas.
-    """
-    if n_cols > N_COLS:
-        raise ValueError(f"Tabla con {n_cols} columnas supera el layout A:{get_column_letter(N_COLS)}")
-    base = N_COLS // n_cols
-    extra = N_COLS % n_cols
-    return [base + (1 if i < extra else 0) for i in range(n_cols)]
 
 
 def col_inicio(n_cols, idx):
@@ -87,21 +53,6 @@ def col_inicio(n_cols, idx):
 def col_letra(n_cols, idx):
     """Letra de columna física donde empieza la columna lógica idx (1-based)."""
     return get_column_letter(col_inicio(n_cols, idx))
-
-
-def forzar_times_new_roman(ws, min_row=1, max_row=None, min_col=1, max_col=N_COLS):
-    """Sobrescribe el nombre de fuente conservando tamaño, negrita, cursiva, color y subrayado."""
-    for row in ws.iter_rows(min_row=min_row, max_row=max_row, min_col=min_col, max_col=max_col):
-        for cell in row:
-            f = cell.font
-            cell.font = Font(
-                name="Times New Roman",
-                size=f.size,
-                bold=f.bold,
-                italic=f.italic,
-                underline=f.underline,
-                color=f.color,
-            )
 
 
 def apply_border(ws, start_row, start_col, end_row, end_col):
@@ -165,41 +116,6 @@ def texto_largo(ws, r_ini, r_fin, texto, ultima_col=N_COLS):
     cell.font = body_font
     cell.alignment = AL_TEXTO
     ws.merge_cells(start_row=r_ini, start_column=1, end_row=r_fin, end_column=ultima_col)
-
-
-def ajustar_alturas_filas(ws, primera, ultima):
-    """Ajusta la altura de cada fila en función del texto más largo de la fila,
-    considerando el ancho real (incluyendo celdas combinadas)."""
-    from openpyxl.cell.cell import MergedCell
-    for r in range(primera, ultima + 1):
-        max_lineas = 1
-        for c in range(1, N_COLS + 1):
-            cell = ws.cell(row=r, column=c)
-            if isinstance(cell, MergedCell):
-                continue
-            val = cell.value
-            if not val:
-                continue
-            # Buscar rango combinado al que pertenezca la celda
-            rng = None
-            for m in ws.merged_cells.ranges:
-                if cell.coordinate in m:
-                    rng = m
-                    break
-            if rng:
-                _, sc, _, ec = range_boundaries(str(rng))
-                ancho = sum(ws.column_dimensions[get_column_letter(col)].width or 8.43
-                            for col in range(sc, ec + 1))
-                _, sr, _, _ = range_boundaries(str(rng))
-                filas_combinadas = r - sr + 1
-            else:
-                ancho = ws.column_dimensions[get_column_letter(c)].width or 8.43
-                filas_combinadas = 1
-            chars_linea = max(1.0, ancho / CHAR_POR_UNIDAD_ANCHO)
-            lineas_totales = math.ceil(len(str(val)) / chars_linea)
-            lineas_por_fila = math.ceil(lineas_totales / filas_combinadas)
-            max_lineas = max(max_lineas, lineas_por_fila)
-        ws.row_dimensions[r].height = max(15, max_lineas * 15)
 
 
 # ===================== HOJA ÚNICA: MEMORIA DE CÁLCULO =====================
@@ -558,6 +474,9 @@ for blob, anchor in ENC_IMAGENES:
 
 # Ajustar alturas de fila del contenido para evitar texto cortado
 ajustar_alturas_filas(ws, FILA_INICIO, r + 2)
+
+# Página A3 horizontal, ajustada a una página de ancho
+configurar_pagina_a3(ws)
 
 # Forzar Times New Roman en toda la portada
 forzar_times_new_roman(ws_portada)
