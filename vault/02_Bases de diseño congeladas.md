@@ -8,10 +8,12 @@ tags: [bases-de-diseno]
 Estos valores NO se revisan sin aprobación explícita. Fuente única de verdad:
 `Latex/00_bases_diseno/bases_diseno.yaml`.
 
-**Revisión documental vigente: CERO (0) en todos los entregables** (decisión
-2026-07-28; ver [[2026-07-28_rev0-unica-revision-cero]]). Configuración técnica
-actualizada el 2026-07-27 por cambio de alcance del cliente: sin presurización,
-ventilador axial mural. Ver [[2026-07-27_sin-presurizacion-ventilador-axial]] y
+**Revisión documental vigente: REV1 en INF-001** (10/09/2026, por la
+reubicación de rejillas; ver [[2026-09-17_inf001-rev1-rejillas]]) y **CERO (0)
+en los demás entregables** (decisión 2026-07-28; ver
+[[2026-07-28_rev0-unica-revision-cero]]). Configuración técnica actualizada el
+2026-07-27 por cambio de alcance del cliente: sin presurización, ventilador
+axial mural. Ver [[2026-07-27_sin-presurizacion-ventilador-axial]] y
 [[2026-07-27_montaje-mural-planta]].
 
 | Parámetro | Valor | Fuente |

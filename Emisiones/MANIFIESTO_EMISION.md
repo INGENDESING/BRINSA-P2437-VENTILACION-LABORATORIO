@@ -1,6 +1,6 @@
 # Manifiesto de emisión — Proyecto P2437
 
-Fecha de emisión: 17/09/2026 10:27
+Fecha de emisión: 17/09/2026 11:47
 Generado automáticamente por `scripts/emitir.py`. No editar a mano.
 
 | Carpeta | Archivo emitido | Fuente |

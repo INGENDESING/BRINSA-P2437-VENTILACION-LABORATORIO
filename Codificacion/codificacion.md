@@ -72,7 +72,7 @@ dd/mm/aaaa.
 
 | Documento | Archivo actual | Código GP-N-09 | Estado |
 | --- | --- | --- | --- |
-| Informe técnico del sistema de ventilación y presurización | `Latex/02_informe_tex/P2437-HV-INF-001 REV0.tex/.pdf` | **P2437-HV-INF-001** | Conforme (Rev. 0) |
+| Informe técnico del sistema de ventilación y presurización | `Latex/02_informe_tex/P2437-HV-INF-001 REV0.tex/.pdf` | **P2437-HV-INF-001** | Conforme (Rev. 1: reubicación de rejillas de exfiltración, 10/09/2026) |
 
 ### 4.2. Documentos por codificar (propuesta)
 

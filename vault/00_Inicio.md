@@ -33,6 +33,7 @@ recuperar contexto sin gastar tokens innecesarios.
 ## Decisiones de diseño (2026-09-17)
 
 - [[2026-09-17_rejillas-verticales-cfd]] — rejillas apiladas verticalmente en la pared opuesta a la inyección (disposición BRINSA), validadas por CFD; INF-001 actualizado con 8 figuras
+- [[2026-09-17_inf001-rev1-rejillas]] — INF-001 pasa a REV1 (10/09/2026) por la reubicación de rejillas; fila condicional en tablas compartidas con INF-002 (que sigue en REV0)
 
 ## Decisiones de diseño (2026-07-28)
 

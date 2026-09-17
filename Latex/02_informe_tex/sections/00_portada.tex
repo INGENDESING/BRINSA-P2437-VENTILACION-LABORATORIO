@@ -59,6 +59,9 @@
 			\textbf{Rev.} & \textbf{Fecha} & \textbf{Descripción} & \textbf{Elaboró} & \textbf{Revisó} & \textbf{Aprobó} \\
 			\midrule
 			0 & \fechaRevCero & \descRevCero & \firmaElaboro & \firmaReviso & \firmaAprobo \\
+			\ifnum\docRevision>0
+			1 & \fechaRevUno & \descRevUno & \firmaElaboro & \firmaReviso & \firmaAprobo \\
+			\fi
 			\bottomrule
 		\end{tabularx}
 	\end{table}

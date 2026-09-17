@@ -1,6 +1,6 @@
 ---
 fecha: 2026-07-28
-estado: vigente
+estado: parcialmente superada (INF-001 pasó a REV1 el 2026-09-17; el resto de entregables sigue en REV0)
 tags: [decision]
 ---
 

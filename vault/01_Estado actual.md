@@ -5,7 +5,15 @@ tags: [estado]
 
 # Estado actual
 
-- **Última tarea completada (2026-09-17):** actualización de INF-001 con la
+- **Última tarea completada (2026-09-17, sesión 2):** **INF-001 emitido en
+  REV1** (fecha 10/09/2026) por la reubicación de las rejillas de exfiltración.
+  Tabla de control de revisiones con filas REV0 + REV1 (condicional
+  `\ifnum\docRevision>0` porque `00_hojafirmas.tex` y `00_portada.tex` son
+  compartidas con INF-002, que sigue en REV0); encabezado corporativo «REV 1 /
+  10 de septiembre de 2026»; `codificacion.md` actualizado. Re-emitidos los 7
+  entregables; verificado por extracción de texto del PDF. Ver
+  [[2026-09-17_inf001-rev1-rejillas]].
+- **Tarea previa (2026-09-17, sesión 1):** actualización de INF-001 con la
   nueva simulación CFD — BRINSA definió las tres rejillas de exfiltración
   apiladas verticalmente en la pared opuesta a la inyección; todo lo demás
   sin cambios. Se analizaron e incluyeron las 8 gráficas nuevas
@@ -13,10 +21,8 @@ tags: [estado]
   comentarios CFD en `09_resultados.tex`, `10_analisis.tex`,
   `11_conclusiones.tex`, `12_recomendaciones.tex`, `02_resumen.tex` y
   `13_anexos.tex`; se actualizaron `HD-REJ-001` (§1.2 + corrección Revisión 0),
-  `docs/index.html` y `bases_diseno.yaml`. INF-001 compilado: 0 errores,
-  28 páginas; emitidos los 7 entregables con `scripts/emitir.py` (la primera
-  corrida falló por un archivo de `Emisiones/` abierto; la reejecución
-  completó). Ver [[2026-09-17_rejillas-verticales-cfd]] y [[2026-09-17]].
+  `docs/index.html` y `bases_diseno.yaml`. Ver
+  [[2026-09-17_rejillas-verticales-cfd]] y [[2026-09-17]].
 - **Tarea previa (2026-07-28, sesión 2):** (i) geometría Excel fija
   por instrucción del cliente — ancho de columna 35 y alto de fila 50 en todas
   las hojas de contenido de los 5 libros (portadas y encabezado corporativo

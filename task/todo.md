@@ -511,3 +511,40 @@
   - `Investigacion/Sistemas/hojas_datos/HD-REJ-001_rejillas.md`, `docs/index.html`, `Latex/00_bases_diseno/bases_diseno.yaml`
   - `Emisiones/3.0 HV-HOJAS DE DATOS/P2437-HV-DTS-003.xlsx` (regenerado y emitido)
   - `contexto.md`, `vault/03_Decisiones/2026-09-17_rejillas-verticales-cfd.md`, `vault/04_Bitácora/2026-09-17.md`, `vault/00_Inicio.md`, `vault/01_Estado actual.md`, `vault/02_Bases de diseño congeladas.md`
+
+
+---
+
+# Plan: INF-001 a Revisión 1 (REV1) por reubicación de rejillas (P2437)
+
+## Contexto
+- Objetivo: emitir INF-001 en Revisión 1 (fecha 10/09/2026) a causa del cambio de disposición de las rejillas de exfiltración (apiladas verticalmente, solicitud BRINSA) y la actualización del CFD. Los demás entregables permanecen en REV0.
+- Cliente / Proyecto DML: P2437 — HVAC Laboratorio BRINSA.
+- Normas aplicables: GP-N-09 (control de revisiones).
+
+## Supuestos clave
+- [x] Solo INF-001 cambia de revisión; INF-002, CAL-001, DTS-001/002/003 y LIS-001 siguen en REV0.
+- [x] El nombre del archivo fuente conserva el sufijo `REV0` (intermedio); el emitido no lleva sufijo (excepción de nomenclatura vigente).
+- [x] `sections/00_hojafirmas.tex` y `sections/00_portada.tex` son compartidas entre INF-001 e INF-002 → la fila REV1 debe ser condicional (`\ifnum\docRevision>0`).
+
+## Tareas
+- [x] R1. `config/datos_proyecto.tex`: `\docRevision` por defecto 1, fechas de firma 10/09/2026, macros `\fechaRevUno` / `\descRevUno`.
+- [x] R1b. `P2437-HV-INF-001 REV0.tex`: `\docRevision{1}`, `\docFecha{10/09/2026}`, `\docFechaLarga{10 de septiembre de 2026}` (los `\newcommand` del archivo principal prevalecen sobre los `\providecommand` del config).
+- [x] R2. `00_hojafirmas.tex` y `00_portada.tex`: fila REV1 condicional en la tabla de control de revisiones.
+- [x] R3. `Codificacion/codificacion.md`: INF-001 → «Conforme (Rev. 1)».
+- [x] R4. Recompilar INF-001 e INF-002 (pdflatex ×2): 0 errores, 0 referencias sin resolver.
+- [x] R5. `python scripts/emitir.py`: 7 entregables + manifiesto.
+- [x] R6. Memoria: decisión `2026-09-17_inf001-rev1-rejillas`, estado de `2026-07-28_rev0-unica-revision-cero` → parcialmente superada, bitácora, vault 00/01/02, `contexto.md`.
+
+## Riesgos / Puntos de verificación
+- [x] INF-002 no debe mostrar REV1 (comparte las secciones de portada/firmas): verificado por extracción de texto del PDF (INF-002 sigue «REV 0 / 27 de julio de 2026»).
+
+## Revisión
+- **Resumen:** INF-001 quedó en REV1 (10/09/2026): encabezado corporativo «REV 1», tabla de control de revisiones con REV0 (emisión inicial, 15/07/2026) + REV1 (reubicación de rejillas y actualización CFD, 10/09/2026), fechas de firma 10/09/2026. INF-002 intacto en REV0 gracias a la fila condicional. Emitidos los 7 entregables.
+- **Desviaciones respecto al plan:** los valores de revisión/fecha viven en el archivo principal (`\newcommand`), no solo en `datos_proyecto.tex`; se actualizaron ambos.
+- **Limitaciones conocidas:** el archivo fuente se sigue llamando `P2437-HV-INF-001 REV0.tex` (intermedio); el entregable emitido es `P2437-HV-INF-001.pdf` sin sufijo.
+- **Archivos entregables y rutas:**
+  - `Latex/02_informe_tex/P2437-HV-INF-001 REV0.tex`, `config/datos_proyecto.tex`, `sections/00_hojafirmas.tex`, `sections/00_portada.tex`
+  - `Latex/02_informe_tex/P2437-HV-INF-001 REV0.pdf` (29 págs) y `Emisiones/1.0 HV-INFORMES/P2437-HV-INF-001.pdf`
+  - `Codificacion/codificacion.md`
+  - `vault/03_Decisiones/2026-09-17_inf001-rev1-rejillas.md`, `vault/04_Bitácora/2026-09-17.md`, `vault/00_Inicio.md`, `vault/01_Estado actual.md`, `vault/02_Bases de diseño congeladas.md`, `contexto.md`
