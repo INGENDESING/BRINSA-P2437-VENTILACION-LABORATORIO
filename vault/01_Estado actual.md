@@ -1,11 +1,23 @@
 ---
-fecha: 2026-07-28
+fecha: 2026-09-17
 tags: [estado]
 ---
 
 # Estado actual
 
-- **Última tarea completada (2026-07-28, sesión 2):** (i) geometría Excel fija
+- **Última tarea completada (2026-09-17):** actualización de INF-001 con la
+  nueva simulación CFD — BRINSA definió las tres rejillas de exfiltración
+  apiladas verticalmente en la pared opuesta a la inyección; todo lo demás
+  sin cambios. Se analizaron e incluyeron las 8 gráficas nuevas
+  (`figures/cfd_*.png`, 4 variables × 2 vistas), se reescribieron los
+  comentarios CFD en `09_resultados.tex`, `10_analisis.tex`,
+  `11_conclusiones.tex`, `12_recomendaciones.tex`, `02_resumen.tex` y
+  `13_anexos.tex`; se actualizaron `HD-REJ-001` (§1.2 + corrección Revisión 0),
+  `docs/index.html` y `bases_diseno.yaml`. INF-001 compilado: 0 errores,
+  28 páginas; emitidos los 7 entregables con `scripts/emitir.py` (la primera
+  corrida falló por un archivo de `Emisiones/` abierto; la reejecución
+  completó). Ver [[2026-09-17_rejillas-verticales-cfd]] y [[2026-09-17]].
+- **Tarea previa (2026-07-28, sesión 2):** (i) geometría Excel fija
   por instrucción del cliente — ancho de columna 35 y alto de fila 50 en todas
   las hojas de contenido de los 5 libros (portadas y encabezado corporativo
   intactos), vía `scripts/estilos_excel.py`; (ii) **REV0 única** — todos los
@@ -35,10 +47,11 @@ tags: [estado]
   - Confirmar con Camfil/distribuidor el uso continuo del Durafil ES3 24×24 a
     2 260 CFM, o mantener ES2.
   - Verificar el caudal real en el ensayo de balanceo (anemometría en rejillas).
-- **Fecha de última actualización:** 2026-07-28
+- **Fecha de última actualización:** 2026-09-17
 
 Relacionado: [[inicializacion]], [[02_Bases de diseño congeladas]],
-[[05_Preguntas abiertas]], [[2026-07-28_rev0-unica-revision-cero]],
+[[05_Preguntas abiertas]], [[2026-09-17_rejillas-verticales-cfd]],
+[[2026-07-28_rev0-unica-revision-cero]],
 [[2026-07-28_formato-excel-a3-tnr28-verde]],
 [[2026-07-27_montaje-mural-planta]],
 [[2026-07-27_sin-presurizacion-ventilador-axial]],

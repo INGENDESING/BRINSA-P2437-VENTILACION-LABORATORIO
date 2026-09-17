@@ -113,6 +113,7 @@ rejillas_exfiltracion:
   ancho_mm: 335.5
   proporcion_ancho_alto: 0.95
   perdida_descarga_Pa: 11.0       # pérdida a 3 m/s con C_d = 0.60 (rho = 0.88); descarga libre a atmósfera (sin presurización)
+  ubicacion: "Apiladas verticalmente (una sobre otra) en la pared opuesta a la inyección; disposición definida por BRINSA y validada por CFD (2026-09-17)"
 
 # ---------------------------------------------------------------------
 # Normas aplicables vigentes

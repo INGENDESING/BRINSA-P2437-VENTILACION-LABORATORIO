@@ -30,6 +30,10 @@ recuperar contexto sin gastar tokens innecesarios.
 - [[2026-07-22_escenarios-filtracion-merv-hepa]]
 - [[2026-07-22_cfd-pressure-outlet]]
 
+## Decisiones de diseño (2026-09-17)
+
+- [[2026-09-17_rejillas-verticales-cfd]] — rejillas apiladas verticalmente en la pared opuesta a la inyección (disposición BRINSA), validadas por CFD; INF-001 actualizado con 8 figuras
+
 ## Decisiones de diseño (2026-07-28)
 
 - [[2026-07-28_formato-excel-a3-tnr28-verde]] — formato Excel: A3 horizontal, TNR 28, verde claro DML, módulo único `estilos_excel.py`
@@ -44,6 +48,7 @@ recuperar contexto sin gastar tokens innecesarios.
 
 ## Bitácora
 
+- [[2026-09-17]] — INF-001 actualizado con la nueva simulación CFD (rejillas apiladas verticalmente, disposición BRINSA): 8 figuras, análisis reescrito
 - [[2026-07-28]] — rediseño estético de los Excel: A3 horizontal, TNR 28, verde claro DML, módulo único de formato; emisión de 7 entregables
 - [[2026-07-27_rev2_montaje_mural]] — REV2: actualización integral al montaje típico de planta
 - [[2026-07-27_dts002_filtro_axial]] — priorización de DTS-002: adaptación del filtro MERV 13-14 al ventilador axial

@@ -464,3 +464,50 @@
 - Verificación: `verificar_formato_excel.py` OK en los 5 libros; openpyxl confirma A:O = 35 y filas ≥ 50 en contenido y plantilla intacta en portadas; pdflatex 0 errores en INF-001/002; grep automatizado sobre `Emisiones/` (xlsx + pdf): 0 coincidencias REV1/REV2.
 - Limitación conocida: `Emisiones/2.0 HV-MEMORIAS DE CALCULO/P2437-HV-CAL-001.pdf` es una exportación manual obsoleta (texto "(REV1)", geometría anterior); pendiente retiro o re-exportación desde Excel local. Los PDF manuales DTS-002 y LIS-001 pueden estar obsoletos en geometría.
 - Entregables: 7 emitidos en `Emisiones/` + `P2437-HV-DTS-001.pdf` alternativo; memoria actualizada en `contexto.md`, `vault/01`, `vault/02`, bitácora 2026-07-28 y decisión `2026-07-28_rev0-unica-revision-cero`.
+
+
+---
+
+# Plan: Actualización de INF-001 con nueva simulación CFD — rejillas apiladas verticalmente (P2437)
+
+## Contexto
+- Objetivo: BRINSA definió la reubicación de las 3 rejillas de exfiltración (353×336 mm) en posición vertical, una sobre otra, en la pared opuesta a la inyección; todo lo demás del diseño se mantiene. Actualizar INF-001 con las 8 gráficas CFD nuevas (`Latex/02_informe_tex/figures/`) y reescribir los comentarios; propagar la disposición a los demás documentos.
+- Cliente / Proyecto DML: P2437 — HVAC Laboratorio BRINSA.
+- Normas aplicables: sin cambios normativos (ASHRAE 170/62.1, AMCA 210); el cambio es de disposición geométrica, no de punto de trabajo.
+
+## Supuestos clave
+- [x] Las rejillas quedan apiladas verticalmente en la pared opuesta a la inyección (lectura de las imágenes; configuración del CFD).
+- [x] Los 4 archivos con sufijo " 1" son vistas complementarias; se incluyen las 8 figuras, renombradas a `*_b.png` (pdflatex no tolera espacios).
+- [x] Geometría, condiciones de contorno y valores numéricos sin cambios (3 840 m³/h, 3 m/s, 11 Pa, 165 Pa sitio).
+
+## Tareas
+- [x] T1. Renombrar `cfd_* 1.png` → `cfd_*_b.png` en `figures/`.
+- [x] T2. `09_resultados.tex`: disposición descrita, 4 figuras nuevas (8 total), leyendas reescritas, nota bajo tabla de BC.
+- [x] T3. `10_analisis.tex`: párrafos CFD reescritos para la configuración apilada.
+- [x] T4. `12_recomendaciones.tex`: disposición fija validada (reemplaza "paredes opuestas o perpendiculares").
+- [x] T5. `11_conclusiones.tex`: ítem CFD con disposición apilada.
+- [x] T6. `02_resumen.tex`: mención de la disposición.
+- [x] T7. `13_anexos.tex`: distribución ya validada por CFD; planos en etapa de detalle.
+- [x] T8. `HD-REJ-001_rejillas.md`: §1.2 disposición + corrección encabezado Revisión 1 → 0.
+- [x] T9. `docs/index.html`: tarjeta de rejillas con la disposición.
+- [x] T10. `bases_diseno.yaml`: `rejillas_exfiltracion.ubicacion`.
+- [x] T11. Recompilar INF-001 (pdflatex ×2): 0 errores, 0 referencias sin resolver, 28 páginas.
+- [x] T12. Emitir entregables: `scripts/emitir.py` completó los 7 entregables + manifiesto (la primera corrida falló con WinError 1224 por un archivo de `Emisiones/` abierto; la reejecución, con el archivo cerrado, completó sin errores).
+- [x] T13. Memoria: decisión `2026-09-17_rejillas-verticales-cfd`, bitácora 2026-09-17, vault 00/01/02, `contexto.md`; limpieza de `build/tmp_cfdview/`.
+
+## Riesgos / Puntos de verificación
+- [x] pdflatex no tolera espacios en nombres de archivo → T1 prerequisito (resuelto).
+- [x] Paginación con 8 figuras: 28 páginas, sin overfull nuevo (solo 2.8 pt preexistente en rutina de salida).
+- [x] Ningún valor numérico cambió; verificación cruzada de 3 m/s y 165 Pa intacta.
+
+## Revisión
+- **Resumen:** INF-001 actualizado a la nueva simulación CFD con las rejillas apiladas verticalmente (disposición BRINSA): 8 figuras incluidas con leyendas nuevas, análisis/conclusiones/recomendaciones reescritos para la configuración validada (chorro alineado con rejilla central, recirculaciones alimentan los extremos, ~3 m/s por rejilla, sin retorno). Propagado a HD-REJ-001 (§1.2), dashboard y bases de diseño. Compilación limpia (28 págs, 0 errores).
+- **Desviaciones respecto al plan:** ninguna sustancial. Se corrigió incidentalmente el encabezado de HD-REJ-001 (`Revisión: 1` → `0`), inconsistencia residual de la migración a REV0 única.
+- **Limitaciones conocidas:** la primera emisión falló por bloqueo de archivo (WinError 1224, archivo de `Emisiones/` abierto); la reejecución completó los 7 entregables. Los PNG antiguos de `resultado simulaciones/Case 1-4.png` quedan como histórico.
+- **Archivos entregables y rutas:**
+  - `Latex/02_informe_tex/figures/cfd_*.png` (8, renombradas las `_b`)
+  - `Latex/02_informe_tex/sections/09_resultados.tex`, `10_analisis.tex`, `11_conclusiones.tex`, `12_recomendaciones.tex`, `02_resumen.tex`, `13_anexos.tex`
+  - `Latex/02_informe_tex/P2437-HV-INF-001 REV0.pdf` (28 págs) y `Emisiones/1.0 HV-INFORMES/P2437-HV-INF-001.pdf` (emitido)
+  - `Investigacion/Sistemas/hojas_datos/HD-REJ-001_rejillas.md`, `docs/index.html`, `Latex/00_bases_diseno/bases_diseno.yaml`
+  - `Emisiones/3.0 HV-HOJAS DE DATOS/P2437-HV-DTS-003.xlsx` (regenerado y emitido)
+  - `contexto.md`, `vault/03_Decisiones/2026-09-17_rejillas-verticales-cfd.md`, `vault/04_Bitácora/2026-09-17.md`, `vault/00_Inicio.md`, `vault/01_Estado actual.md`, `vault/02_Bases de diseño congeladas.md`

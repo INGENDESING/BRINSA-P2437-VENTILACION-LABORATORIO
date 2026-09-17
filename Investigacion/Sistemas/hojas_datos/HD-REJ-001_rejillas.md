@@ -3,7 +3,7 @@
 | Campo | Valor |
 |---|---|
 | Código | HD-REJ-001 |
-| Revisión | 1 |
+| Revisión | 0 |
 | Fecha | 2026-07-27 |
 | Proyecto | P2437-HV-INF-001 — BRINSA, laboratorio de análisis industrial, Cajicá |
 | Etiqueta de equipo | REJ-001 a REJ-003 (rejillas de descarga) |
@@ -13,6 +13,8 @@
 ## 1. Servicio
 
 1.1. Descarga libre a la atmósfera del caudal de ventilación del laboratorio, a través de la envolvente del recinto. Las rejillas son la trayectoria de salida permanente del aire y, con el sistema detenido, una vía potencial de ingreso: por ello incorporan malla anti-insectos. Ambiente exterior corrosivo (atmósfera clorada de planta de hipoclorito de calcio).
+
+1.2. Disposición: las tres rejillas se instalan apiladas verticalmente, una sobre otra, en la pared opuesta a la inyección del ventilador, conforme a la disposición definida por BRINSA. Esta configuración fue validada mediante el modelo CFD del recinto: el chorro de inyección alimenta directamente la rejilla central y las recirculaciones superior e inferior distribuyen el caudal hacia las rejillas de los extremos, con velocidades faciales del orden de 3 m/s en los tres niveles (ver P2437-HV-INF-001, sección de resultados CFD).
 
 ## 2. Condiciones de operación y desempeño
 

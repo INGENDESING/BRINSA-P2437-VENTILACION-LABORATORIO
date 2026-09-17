@@ -110,36 +110,66 @@ La Tabla \ref{tab:cfd_boundaries} presenta las condiciones de contorno recomenda
 	\end{tabularx}
 \end{table}
 
+En el modelo, las tres rejillas se ubican apiladas verticalmente, una sobre otra, en la pared opuesta a la inyección, disposición definida por BRINSA. La geometría y la condición de contorno de cada rejilla son idénticas a las de la Tabla \ref{tab:cfd_boundaries}; únicamente cambia su posición sobre la envolvente.
+
 El balance de masas de diseño presenta una discrepancia inferior al 0.1 \%. El caudal de entrada es 1.0667 m$^3$/s, mientras que el caudal teórico de salida distribuido en tres rejillas a \SI{3}{m/s} es 3 $\times$ (0.3532 m $\times$ 0.3355 m) $\times$ \SI{3}{m/s} = 1.0665 m$^3$/s. La diferencia (0.02 \%) se debe al redondeo de dimensiones. Al imponer \texttt{pressure outlet} en las rejillas, el solver determina el caudal de exfiltración a partir del campo de presión; los resultados visuales confirman velocidades faciales del orden de \SI{3}{m/s} en las salidas.
 
 \subsection{Resultados de la simulación CFD}
 
-El modelo de dinámica de fluidos computacional se resolvió en Autodesk CFD con las condiciones de contorno de la Tabla \ref{tab:cfd_boundaries}: inyección como \texttt{velocity inlet} de \SI{8}{m/s} y las tres rejillas como \texttt{pressure outlet} a \SI{0}{Pa} gauge, condición que representa la descarga libre real a la atmósfera. Esta condición de salida evita la sobreespecificación del problema y permite que el caudal de descarga se determine a partir del campo de presión interior. En el régimen incompresible del modelo, los resultados se interpretan como la distribución de flujo y la ventilación del recinto. Las Figuras \ref{fig:cfd_streamlines} a \ref{fig:cfd_vectores_corte} presentan los campos de velocidad resultantes. La velocidad máxima se sitúa en torno a \SI{8}{m/s}, coherente con la inyección de diseño, mientras que las salidas presentan velocidades del orden de \SI{3}{m/s}, compatibles con el dimensionamiento de las rejillas.
+El modelo de dinámica de fluidos computacional se resolvió en Autodesk CFD con las condiciones de contorno de la Tabla \ref{tab:cfd_boundaries}: inyección como \texttt{velocity inlet} de \SI{8}{m/s} y las tres rejillas como \texttt{pressure outlet} a \SI{0}{Pa} gauge, condición que representa la descarga libre real a la atmósfera. Las rejillas se modelaron apiladas verticalmente, una sobre otra, en la pared opuesta a la inyección, conforme a la disposición solicitada por BRINSA. Esta condición de salida evita la sobreespecificación del problema y permite que el caudal de descarga se determine a partir del campo de presión interior. En el régimen incompresible del modelo, los resultados se interpretan como la distribución de flujo y la ventilación del recinto. Las Figuras \ref{fig:cfd_streamlines} a \ref{fig:cfd_vectores_corte_b} presentan los campos de velocidad resultantes. La velocidad máxima se sitúa en torno a \SI{8}{m/s}, coherente con la inyección de diseño, mientras que las salidas presentan velocidades del orden de \SI{3}{m/s}, compatibles con el dimensionamiento de las rejillas.
 
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.92\textwidth]{figures/cfd_streamlines_3d.png}
-	\caption{Líneas de corriente coloreadas por magnitud de velocidad. Vista isométrica del recinto; la inyección se localiza en el extremo derecho y la exfiltración se distribuye entre las tres rejillas del lado opuesto. Escala 0--8200~mm/s.}
+	\caption{Líneas de corriente coloreadas por magnitud de velocidad, vista isométrica frontal. El chorro de inyección (rojo, \SI{\approx 8}{m/s}) atraviesa longitudinalmente el recinto a altura media, alineado con la rejilla central; las líneas de corriente se abren hacia las rejillas superior e inferior de la columna vertical en la pared opuesta, con zonas de recirculación en los tercios superior e inferior del recinto. Escala 0--8200~mm/s.}
 	\label{fig:cfd_streamlines}
 \end{figure}
 
 \begin{figure}[htbp]
 	\centering
+	\includegraphics[width=0.92\textwidth]{figures/cfd_streamlines_3d_b.png}
+	\caption{Líneas de corriente coloreadas por magnitud de velocidad, vista isométrica superior. Se aprecia el núcleo del chorro (verde-amarillo-rojo) en dirección de la pared de descarga y la convergencia de las líneas de corriente hacia la columna vertical de las tres rejillas apiladas. Escala 0--8200~mm/s.}
+	\label{fig:cfd_streamlines_b}
+\end{figure}
+
+\begin{figure}[htbp]
+	\centering
 	\includegraphics[width=0.92\textwidth]{figures/cfd_vectores_3d.png}
-	\caption{Campo vectorial de velocidad en un corte vertical del recinto (vista isométrica). Se observa el flujo dirigido hacia las rejillas de exfiltración y la recirculación en la zona posterior.}
+	\caption{Campo vectorial de velocidad en un corte vertical del recinto (vista isométrica). Los vectores de salida (rojos) atraviesan las tres rejillas apiladas verticalmente en la pared opuesta a la inyección; en el plano de corte se observa la celda de recirculación que alimenta las rejillas de los extremos, sin indicios de flujo entrante.}
 	\label{fig:cfd_vectores_3d}
 \end{figure}
 
 \begin{figure}[htbp]
 	\centering
+	\includegraphics[width=0.92\textwidth]{figures/cfd_vectores_3d_b.png}
+	\caption{Campo vectorial de velocidad, vista isométrica desde el ángulo opuesto. La imagen muestra simultáneamente la boca de inyección (pared derecha) y la columna vertical de rejillas (pared izquierda), con el arrastre simétrico del chorro hacia los tres niveles de descarga.}
+	\label{fig:cfd_vectores_3d_b}
+\end{figure}
+
+\begin{figure}[htbp]
+	\centering
 	\includegraphics[width=0.92\textwidth]{figures/cfd_planta_horizontal.png}
-	\caption{Campo de velocidad en plano horizontal (vista en planta). La inyección desde la derecha genera un flujo cruzado hacia las tres rejillas de la izquierda; las zonas periféricas presentan vórtices de baja velocidad.}
+	\caption{Campo de velocidad en un corte horizontal a la altura de la rejilla central (vista en planta). La inyección desde la derecha genera un chorro recto de pared a pared con dos vórtices de arrastre simétricos a sus lados; la descarga se efectúa a través de la rejilla central de la columna, con velocidades de salida del orden de \SI{3}{m/s}.}
 	\label{fig:cfd_planta_horizontal}
 \end{figure}
 
 \begin{figure}[htbp]
 	\centering
+	\includegraphics[width=0.92\textwidth]{figures/cfd_planta_horizontal_b.png}
+	\caption{Campo de velocidad en el mismo corte horizontal, en vista isométrica. La perspectiva muestra el desarrollo del chorro dentro del volumen del recinto y los vórtices laterales de baja velocidad que lo confinan.}
+	\label{fig:cfd_planta_horizontal_b}
+\end{figure}
+
+\begin{figure}[htbp]
+	\centering
 	\includegraphics[width=0.92\textwidth]{figures/cfd_vectores_corte.png}
-	\caption{Campo vectorial de velocidad en un corte longitudinal. Se aprecia la inyección lateral, la difusión del chorro y el patrón de recirculación en la mitad opuesta del recinto.}
+	\caption{Campo vectorial de velocidad en un corte vertical longitudinal que atraviesa la columna de rejillas. El chorro de inyección alimenta directamente la rejilla central, mientras las celdas de recirculación superior e inferior conducen el aire hacia las rejillas de los extremos; los vectores de salida (rojos) se presentan en los tres niveles.}
 	\label{fig:cfd_vectores_corte}
+\end{figure}
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.92\textwidth]{figures/cfd_vectores_corte_b.png}
+	\caption{Campo vectorial de velocidad en el corte vertical longitudinal, visto desde el lado opuesto. La imagen confirma la distribución vertical del caudal entre las tres rejillas apiladas y la ausencia de corrientes de retorno hacia la inyección.}
+	\label{fig:cfd_vectores_corte_b}
 \end{figure}
